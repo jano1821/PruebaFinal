@@ -1,0 +1,547 @@
+diff --git a/ADMINISTRATIVONEW/src/admin/util/ConstantesErrores.java b/ADMINISTRATIVONEW/src/admin/util/ConstantesErrores.java
+index a98c83f..313e548 100644
+--- a/ADMINISTRATIVONEW/src/admin/util/ConstantesErrores.java
++++ b/ADMINISTRATIVONEW/src/admin/util/ConstantesErrores.java
+@@ -914,4 +914,8 @@
+     //Fin [Req.17-032]
+     //[Req.17-040] gmeza 03.07.2017
+     String ERROR_11221 = "11221";//La cuenta tiene bloqueos pendientes de levantar.
++    
++    // [RSIS-5] agarcia 10.07.2017
++    String ERROR_1502 = "1502";//El Producto de Crédito NO tiene configurado el Cargo Comisión de Envío de EECC. NO procede Operación
++    
+ }
+diff --git a/DELFINWEBNEW/WebRoot/FINANCIERO/creditos/productos/CR-C-CargarSolicitud_CNTR.jsp b/DELFINWEBNEW/WebRoot/FINANCIERO/creditos/productos/CR-C-CargarSolicitud_CNTR.jsp
+index 133b3ae..9623e7f 100644
+--- a/DELFINWEBNEW/WebRoot/FINANCIERO/creditos/productos/CR-C-CargarSolicitud_CNTR.jsp
++++ b/DELFINWEBNEW/WebRoot/FINANCIERO/creditos/productos/CR-C-CargarSolicitud_CNTR.jsp
+@@ -83,7 +83,7 @@
+ 	        //fvalle 01.10.2010  Se modifica la altura del Dialog y se envia el timer      	
+ 			var timer=new Date();
+         	// [RSIS-5] agarcia 10.07.2017
+-        	var prop = "dialogHeight:370px;dialogWidth:700px;center:yes;help:no;resizable:no;status:yes";
++        	var prop = "dialogHeight:390px;dialogWidth:700px;center:yes;help:no;resizable:no;status:yes";
+         	/** Inicio jventura Req.S14-061 05.06.2014 **/
+             window.showModalDialog("<%=request.getContextPath()%>/CR_T_CargoSolicitudProductosCredito_Servlet?evento=nuevo&codigoproducto=<%=strCodigoProducto%>&timer="+timer,window,prop);                                   
+             /** Fin jventura Req.S14-061 05.06.2014 **/
+@@ -102,7 +102,7 @@
+        		//fvalle 01.10.2010  Se modifica la altura del Dialog y se envia el timer   
+  			var timer=new Date();
+  			// [RSIS-5] agarcia 10.07.2017
+- 			var prop = "dialogHeight:370px;dialogWidth:700px;center:yes;help:no;resizable:no;status:yes";       
++ 			var prop = "dialogHeight:390px;dialogWidth:700px;center:yes;help:no;resizable:no;status:yes";       
+  			/** Inicio jventura Req.S14-061 05.06.2014 **/
+         	var url =  "<%=request.getContextPath()%>/CR_T_CargoSolicitudProductosCredito_Servlet?evento=editar&codigoproducto=<%=strCodigoProducto%>&idCargoSolicitud="+codigo+"&descObligacion="+fila[0]+"&timer="+timer;
+         	/** Fin jventura Req.S14-061 05.06.2014 **/
+diff --git a/DELFINWEBNEW/WebRoot/FINANCIERO/creditos/productos/CR-C-CargarSolicitud_TABLA.jsp b/DELFINWEBNEW/WebRoot/FINANCIERO/creditos/productos/CR-C-CargarSolicitud_TABLA.jsp
+index 70444be..9fec32b 100644
+--- a/DELFINWEBNEW/WebRoot/FINANCIERO/creditos/productos/CR-C-CargarSolicitud_TABLA.jsp
++++ b/DELFINWEBNEW/WebRoot/FINANCIERO/creditos/productos/CR-C-CargarSolicitud_TABLA.jsp
+@@ -37,7 +37,8 @@
+ 		/* Inicio [RSIS-5] agarcia 10.07.2017 */
+ 		.active-column-7 {width: 200px;text-align: left}
+ 		.active-column-8 {width: 100px;text-align: left}
+-		.active-column-9 {width: 100px;text-align: left}		
++		.active-column-9 {width: 100px;text-align: left}
++		.active-column-10 {width: 100px;text-align: left}		
+ 		/* Fin [RSIS-5] */
+ 								
+ 		.active-grid-column {border-right: 1px solid threedlightshadow; }
+@@ -50,7 +51,7 @@
+ 		
+ 		var myData = [<%= strLista %>];formatear();
+ 		// [RSIS-5] agarcia 10.07.2017
+-		var myColumns = ["Conceptos","Tipo Importe","Monto","Porcentaje","Aplicar % A","Modif. Tipo Dist.","","Modalidad Aplicación","Financiamiento","Obligatoriedad"];
++		var myColumns = ["Conceptos","Tipo Importe","Monto","Porcentaje","Aplicar % A","Modif. Tipo Dist.","","Modalidad Aplicación","Financiamiento","Obligatoriedad","Visibilidad"];
+ 
+ 		//	create ActiveWidgets Grid javascript object
+ 		var obj = new Active.Controls.Grid;
+diff --git a/DELFINWEBNEW/WebRoot/FINANCIERO/creditos/productos/CR-T-PlanCargoSolicitud_CNTR.jsp b/DELFINWEBNEW/WebRoot/FINANCIERO/creditos/productos/CR-T-PlanCargoSolicitud_CNTR.jsp
+index 1878381..f1c4ae0 100644
+--- a/DELFINWEBNEW/WebRoot/FINANCIERO/creditos/productos/CR-T-PlanCargoSolicitud_CNTR.jsp
++++ b/DELFINWEBNEW/WebRoot/FINANCIERO/creditos/productos/CR-T-PlanCargoSolicitud_CNTR.jsp
+@@ -26,6 +26,7 @@
+ 	<link id="css" href="<%=request.getContextPath()%>/UTILS/css/DELFIN.css" rel="stylesheet" type="text/css">
+ 	<!-- Invocación de Java Scripts -->
+ 	<script src="<%=request.getContextPath()%>/UTILS/Script/MsgValidacion.js"></script>
++	<script src="<%=request.getContextPath()%>/UTILS/Script/DELFIN-Utiles.js"></script>
+ 	<script>
+ 		var f = null;
+ 		var nextfield = 'txtCodigoObligacion';
+@@ -133,6 +134,7 @@
+ 			if ("${param.modalidadAplicacion}" == "<%=Constante.MODALIDAD_COBRO_SEGURO_PAGO_ADELANTADO%>"){
+ 				f.cboTipoImporte.disabled = false;
+ 				f.cboTipoDistribucion.disabled = false;
++				f.cboAplicarPorcentaje.disabled = false;
+ 			}
+ 			// Fin [RSIS-5] agarcia 10.07.2017
+         	var codigoPlan = f.hididPlan.value;
+@@ -251,12 +253,18 @@
+         }
+         
+         function defaultPorModalidad(){
+-        	if ("${param.modalidadAplicacion}" == "<%=Constante.MODALIDAD_COBRO_SEGURO_PAGO_ADELANTADO%>" 
+-        			&& f.hididPlan.value == ""){
+-				f.cboTipoImporte.value = "MF";
+-				f.cboTipoDistribucion.value = "DC";
++        	if ("${param.modalidadAplicacion}" == "<%=Constante.MODALIDAD_COBRO_SEGURO_PAGO_ADELANTADO%>"){
+ 				f.cboTipoImporte.disabled = true;
+ 				f.cboTipoDistribucion.disabled = true;
++				f.cboAplicarPorcentaje.disabled = true;
++				if (isEmpty(f.hididPlan.value)){
++					f.cboTipoImporte.value = "<%=Constante.CR_CARGOS_TIPO_IMPORTE_APLICAR_MONTO_FIJO%>";
++					f.cboTipoDistribucion.value = "<%=Constante.CR_CARGOS_DISTRIBUCION_IMPORTE_POR_CUOTA%>";
++					f.txtImporteAplicar.focus();
++				}
++				if (f.cboTipoImporte.value == "<%=Constante.CR_CARGOS_TIPO_IMPORTE_APLICAR_PORCENTAJE%>"){
++					f.txtPorcentajeAplicar.focus();	
++				}
+ 			}
+         }
+         // Fin [RSIS-5] 
+diff --git a/DELFINWEBNEW/WebRoot/FINANCIERO/creditos/productos/CR-T-RegistroCargarSolicitud_CNTR.jsp b/DELFINWEBNEW/WebRoot/FINANCIERO/creditos/productos/CR-T-RegistroCargarSolicitud_CNTR.jsp
+index 6d70b87..2ea6a13 100644
+--- a/DELFINWEBNEW/WebRoot/FINANCIERO/creditos/productos/CR-T-RegistroCargarSolicitud_CNTR.jsp
++++ b/DELFINWEBNEW/WebRoot/FINANCIERO/creditos/productos/CR-T-RegistroCargarSolicitud_CNTR.jsp
+@@ -29,16 +29,14 @@
+ 		var nextfield = 'txtCodigoObligacion';
+ 		function cargar(){
+ 			f = document.getElementById("frmRegistroObligaciones");
+-			
+-			<%
+-			if(!accion.equals("E")){
+-			%>			
++			var accion = "${param.accion}";
++			if (accion == ""){
+ 				f.txtCodigoObligacion.focus();
+-			<%
++			}else{
++			 	disabledCBO();
+ 			}
+-			%>
+-			
+ 		}
++		
+ 		function keyDown(DnEvents) {
+             k = window.event.keyCode;
+             //Reconocimiento de la tecla enter, para q simule el tab
+@@ -299,6 +297,13 @@
+         		f.cboFinanciamiento.disabled = true;
+         	}
+         }
++        
++		function disabledCBO(){
++			f.cboModalidadAplicacion.disabled = true;
++			f.cboFinanciamiento.disabled = true;
++			f.cboObligatorio.disabled = true;
++			f.cboVisibilidad.disabled = true;
++		}
+         <%-- Fin [RSIS-5] agarcia 10.07.2017 --%>
+ 		
+ 	</script>
+@@ -390,7 +395,7 @@
+ 			<tr>
+ 				<td  align="left" class="etiqueta" style="width: 15%">&nbsp;Obligatorio</td>
+ 				<td width="40%"  align="left">
+-				    <select name="cboObligatorio" style="width: 40%" tabindex="11" class="${claseCssIz}" onfocus="nextfield='txtCodigoObligacion'">
++				    <select name="cboObligatorio" style="width: 40%" tabindex="11" class="${claseCssIz}" onfocus="nextfield='cboVisibilidad'">
+                         <c:forEach var='lstObligatoriedad' items='${requestScope.lstObligatoriedad}'> 
+                         <option value="<c:out value='${lstObligatoriedad.codigo}'/>" title="${lstObligatoriedad.descripcion}" 
+                         <c:if test='${lstObligatoriedad.codigo == beanCargo.indicadorObligatoriedad}'>SELECTED</c:if> > 
+@@ -399,6 +404,18 @@
+                      </select>   
+ 				</td>
+ 			</tr>
++			<tr>
++				<td  align="left" class="etiqueta" style="width: 15%">&nbsp;Visibilidad</td>
++				<td width="40%"  align="left">
++				    <select name="cboVisibilidad" style="width: 40%" tabindex="11" class="${claseCssIz}" onfocus="nextfield='txtCodigoObligacion'">
++                        <c:forEach var='lstVisibilidad' items='${requestScope.lstVisibilidad}'> 
++                        <option value="<c:out value='${lstVisibilidad.codigo}'/>" title="${lstVisibilidad.descripcion}" 
++                        <c:if test='${lstVisibilidad.codigo == beanCargo.indicadorVisibilidad}'>SELECTED</c:if> > 
++                        <c:out value='${lstVisibilidad.descripcion}'/> </option>
++                        </c:forEach> 
++                     </select>   
++				</td>
++			</tr>
+ 		</table>
+ 		<%-- Fin [RSIS-5] --%>
+ 		<table cellpadding="0" cellspacing="0" border="0">
+diff --git a/DELFINWEBNEW/src/financ/creditos/productos/servlets/CR_C_CargoSolicitudProductosCredito_Servlet.java b/DELFINWEBNEW/src/financ/creditos/productos/servlets/CR_C_CargoSolicitudProductosCredito_Servlet.java
+index 1abb788..aa43ca6 100644
+--- a/DELFINWEBNEW/src/financ/creditos/productos/servlets/CR_C_CargoSolicitudProductosCredito_Servlet.java
++++ b/DELFINWEBNEW/src/financ/creditos/productos/servlets/CR_C_CargoSolicitudProductosCredito_Servlet.java
+@@ -135,7 +135,8 @@
+ 	        	// Inicio [RSIS-5] agarcia 10.07.2017
+ 	        	myData.append("\""+StringUtil.toBlank(beancrCargoSolicitudProductoCredito.getDescModalidadAplicacion())+"\",");
+ 	        	myData.append("\""+StringUtil.toBlank(beancrCargoSolicitudProductoCredito.getDescIndicadorFinanciamiento())+"\",");
+-	        	myData.append("\""+StringUtil.toBlank(beancrCargoSolicitudProductoCredito.getDescIndicadorObligatoriedad())+"\"");
++	        	myData.append("\""+StringUtil.toBlank(beancrCargoSolicitudProductoCredito.getDescIndicadorObligatoriedad())+"\",");
++	        	myData.append("\""+StringUtil.toBlank(beancrCargoSolicitudProductoCredito.getDescIndicadorVisibilidad())+"\"");
+ 	        	// Fin [RSIS-5]
+ 	        	myData.append("]");	        	   
+ 	        	    if(i < pos_fin - 1)
+diff --git a/DELFINWEBNEW/src/financ/creditos/productos/servlets/CR_T_CargoSolicitudProductosCredito_Servlet.java b/DELFINWEBNEW/src/financ/creditos/productos/servlets/CR_T_CargoSolicitudProductosCredito_Servlet.java
+index 109fbc7..5639ae7 100644
+--- a/DELFINWEBNEW/src/financ/creditos/productos/servlets/CR_T_CargoSolicitudProductosCredito_Servlet.java
++++ b/DELFINWEBNEW/src/financ/creditos/productos/servlets/CR_T_CargoSolicitudProductosCredito_Servlet.java
+@@ -369,6 +369,7 @@
+ 		String modalidadAplicacion = request.getParameter("cboModalidadAplicacion");
+ 		String indicadorFinanciamiento = request.getParameter("cboFinanciamiento");
+ 		String indicadorObligatoriedad = request.getParameter("cboObligatorio");
++		String indicadorVisibilidad = request.getParameter("cboVisibilidad");
+ 		// Fin [RSIS-5] 
+ 
+ 		beancrCargoSolicitudProductoCredito.setIdCargoSolicitud(idCargoSolicitud);
+@@ -392,6 +393,7 @@
+ 		beancrCargoSolicitudProductoCredito.setModalidadAplicacion(modalidadAplicacion);
+ 		beancrCargoSolicitudProductoCredito.setIndicadorFinanciamiento(indicadorFinanciamiento);
+ 		beancrCargoSolicitudProductoCredito.setIndicadorObligatoriedad(indicadorObligatoriedad);
++		beancrCargoSolicitudProductoCredito.setIndicadorVisibilidad(indicadorVisibilidad);
+ 		// Fin [RSIS-5]
+ 		//comportamiento editar / nuevo
+ 		beancrCargoSolicitudProductoCredito.setAccion(accion);
+@@ -403,6 +405,7 @@
+     	ArrayList<BeanCombo> lstModalidadAplicacion;
+ 		ArrayList<BeanCombo> lstFinancimiento;
+ 		ArrayList<BeanCombo> lstObligatoriedad;
++		ArrayList<BeanCombo> lstVisibilidad;
+ 		
+     	lstModalidadAplicacion = utilFacadeIntrefaceLocal.lstDataCatalogoOrdenVisualizacion(
+ 				Constante.TABLA_CR_OBLIGACIONES_PRODUCTO, Constante.CAMPO_CRTPROB_MODALIDA_APLICACION);
+@@ -410,10 +413,13 @@
+ 				Constante.TABLA_CR_OBLIGACIONES_PRODUCTO, Constante.CAMPO_CRTPROB_FINANCIAMIENTO);
+ 		lstObligatoriedad = utilFacadeIntrefaceLocal.lstDataCatalogoOrdenVisualizacion(
+ 				Constante.TABLA_CR_OBLIGACIONES_PRODUCTO, Constante.CAMPO_CRTPROB_OBLIGATORIEDAD);
++		lstVisibilidad = utilFacadeIntrefaceLocal.lstDataCatalogoOrdenVisualizacion(
++				Constante.TABLA_CR_OBLIGACIONES_PRODUCTO, Constante.CAMPO_CRTPROB_OBLIGATORIEDAD);
+ 
+ 		request.setAttribute("lstModalidadAplicacion", lstModalidadAplicacion);
+ 		request.setAttribute("lstFinancimiento", lstFinancimiento);
+ 		request.setAttribute("lstObligatoriedad", lstObligatoriedad);
++		request.setAttribute("lstVisibilidad", lstVisibilidad);
+ 	}
+ 	// Fin [RSIS-5]
+ 	
+diff --git a/FINANCIERONEW/src/financ/creditos/beans/BeanCRCargoSolicitudProductoCredito.java b/FINANCIERONEW/src/financ/creditos/beans/BeanCRCargoSolicitudProductoCredito.java
+index e82423d..1971a37 100644
+--- a/FINANCIERONEW/src/financ/creditos/beans/BeanCRCargoSolicitudProductoCredito.java
++++ b/FINANCIERONEW/src/financ/creditos/beans/BeanCRCargoSolicitudProductoCredito.java
+@@ -72,15 +72,19 @@
+ 	
+ 	private String indicadorObligatoriedad;
+ 	
++	private String indicadorVisibilidad;
++	
+ 	private String descModalidadAplicacion;
+ 	
+ 	private String descIndicadorFinanciamiento;
+ 	
+ 	private String descIndicadorObligatoriedad;
+ 	
++	private String descIndicadorVisibilidad;
++	
+ 	private String codigoConcepto;
+ 	
+-	private String montoAplicarSolicitud;
++	private Double montoAplicarSolicitud;
+ 	
+ 	private String montoEvaluadoSolicitud;
+ 	// Fin [RSIS-5]
+@@ -352,11 +356,11 @@
+ 		this.codigoConcepto = codigoConcepto;
+ 	}
+ 
+-	public String getMontoAplicarSolicitud() {
++	public Double getMontoAplicarSolicitud() {
+ 		return montoAplicarSolicitud;
+ 	}
+ 
+-	public void setMontoAplicarSolicitud(String montoAplicarSolicitud) {
++	public void setMontoAplicarSolicitud(Double montoAplicarSolicitud) {
+ 		this.montoAplicarSolicitud = montoAplicarSolicitud;
+ 	}
+ 
+@@ -367,6 +371,22 @@
+ 	public void setMontoEvaluadoSolicitud(String montoEvaluadoSolicitud) {
+ 		this.montoEvaluadoSolicitud = montoEvaluadoSolicitud;
+ 	}
++
++	public String getIndicadorVisibilidad() {
++		return indicadorVisibilidad;
++	}
++
++	public void setIndicadorVisibilidad(String indicadorVisibilidad) {
++		this.indicadorVisibilidad = indicadorVisibilidad;
++	}
++
++	public String getDescIndicadorVisibilidad() {
++		return descIndicadorVisibilidad;
++	}
++
++	public void setDescIndicadorVisibilidad(String descIndicadorVisibilidad) {
++		this.descIndicadorVisibilidad = descIndicadorVisibilidad;
++	}
+ 	// Fin [RSIS-5]
+ 	
+ 
+diff --git a/FINANCIERONEW/src/financ/creditos/beans/BeanCRSolCreCargosCronograma.java b/FINANCIERONEW/src/financ/creditos/beans/BeanCRSolCreCargosCronograma.java
+index 7254cec..c8cdc98 100644
+--- a/FINANCIERONEW/src/financ/creditos/beans/BeanCRSolCreCargosCronograma.java
++++ b/FINANCIERONEW/src/financ/creditos/beans/BeanCRSolCreCargosCronograma.java
+@@ -2,10 +2,16 @@
+ 
+ import java.util.Date;
+ 
++/**
++ * 
++ * BeanCRSolCreCargosCronograma
++ * 
++ *@since [RSIS-5] agarcia 10.07.2017
++ *
++ */
++public class BeanCRSolCreCargosCronograma implements java.io.Serializable {
+ 
+-public class BeanCRSolCreCargosCronograma  implements java.io.Serializable{
+-
+-private static final long serialVersionUID = 100000000050145L;
++	private static final long serialVersionUID = 100000000050145L;
+ 	private String idCargoCronogramaSolicitudCredito;
+ 
+ 	private String crSolicitudCredito;
+@@ -35,6 +41,9 @@
+ 	private Long numeroCuotasDistribuirCargo;
+ 
+ 	private Double montoCargoPorCuota;
++
++	// [RSIS-5] agarcia 10.07.2017
++	private Long idAtributoCronograma;
+ 
+ 	private String estadoRegistro;
+ 
+@@ -249,4 +258,14 @@
+ 		this.descConceptoOperacion = descConceptoOperacion;
+ 	}
+ 
++	// Inicio [RSIS-5] agarcia 10.07.2017
++	public Long getIdAtributoCronograma() {
++		return idAtributoCronograma;
++	}
++
++	public void setIdAtributoCronograma(Long idAtributoCronograma) {
++		this.idAtributoCronograma = idAtributoCronograma;
++	}
++	// Fin [RSIS-5] 
++
+ }
+diff --git a/FINANCIERONEW/src/financ/creditos/entity/CRObligacionesPorProducto.java b/FINANCIERONEW/src/financ/creditos/entity/CRObligacionesPorProducto.java
+index 3cbe896..50e0a49 100644
+--- a/FINANCIERONEW/src/financ/creditos/entity/CRObligacionesPorProducto.java
++++ b/FINANCIERONEW/src/financ/creditos/entity/CRObligacionesPorProducto.java
+@@ -31,12 +31,22 @@
+ 	@NamedQuery(name="CRObligacionesPorProducto.countByCodigoProductoEstado",
+ 		query = "select count(model) from CRObligacionesPorProducto model " +
+ 				 " WHERE model.crProducto.codigoProducto = :codigoProductoValue " +
+-				 "   and model.estadoRegistro =:estadoValue "
++				 "   and model.estadoRegistro =:estadoValue " +
++				 "   and model.indicadorVisibilidad =:indicadorVisibilidad "
+ 	),
+ 	@NamedQuery(name="CRObligacionesPorProducto.findByCodigoProductoEstado",
+ 		query = "select model from CRObligacionesPorProducto model " +
+ 				 " WHERE model.crProducto.codigoProducto = :codigoProductoValue " +
+-				 "   and model.estadoRegistro =:estadoValue "
++				 "   and model.estadoRegistro =:estadoValue " +
++				 "   and model.indicadorVisibilidad =:indicadorVisibilidad "
++     ),
++	@NamedQuery(name="CRObligacionesPorProducto.findByCodigoProductoSolicitud",
++	query = "select model from CRObligacionesPorProducto model " +
++			 " WHERE model.crProducto.codigoProducto = :codigoProducto " +
++			 "   and model.estadoRegistro =:estado " +
++			 "   and model.indicadorVisibilidad =:indicadorVisibilidad " +
++			 "   and model.indicadorFinanciamiento =:indicadorFinanciamiento " +
++			 "   and model.indicadorObligatoriedad =:indicadorObligatoriedad "
+      )
+ 	// Fin [RSIS-5]
+ })
+@@ -98,6 +108,8 @@
+ 	private String indicadorFinanciamiento;
+ 	
+ 	private String indicadorObligatoriedad;
++	
++	private String indicadorVisibilidad;
+ 	// Fin [RSIS-5] 
+ 
+ 	private List<CRSolCreDeducibleEmisionFianza> lstCRSolCreDeducibleEmisionFianza = new ArrayList<CRSolCreDeducibleEmisionFianza>(0);
+@@ -436,5 +448,16 @@
+ 	public void setIndicadorObligatoriedad(String indicadorObligatoriedad) {
+ 		this.indicadorObligatoriedad = indicadorObligatoriedad;
+ 	}
++
++	@Column(name = "C_INDVIS", unique = false, nullable = true, insertable = true, updatable = true, length = 1)
++	public String getIndicadorVisibilidad() {
++		return indicadorVisibilidad;
++	}
++
++	public void setIndicadorVisibilidad(String indicadorVisibilidad) {
++		this.indicadorVisibilidad = indicadorVisibilidad;
++	}
++	
++	
+ 	// Fin [RSIS-5]
+-}
+\ No newline at end of file
++}
+diff --git a/FINANCIERONEW/src/financ/creditos/facade/CRProductosCreditosFacade.java b/FINANCIERONEW/src/financ/creditos/facade/CRProductosCreditosFacade.java
+index 264d0b8..fb8c43c 100644
+--- a/FINANCIERONEW/src/financ/creditos/facade/CRProductosCreditosFacade.java
++++ b/FINANCIERONEW/src/financ/creditos/facade/CRProductosCreditosFacade.java
+@@ -2519,6 +2519,7 @@
+ 			crObligacionesPorProducto.setModalidadAplicacion(beancrCargoSolicitudProductoCredito.getModalidadAplicacion());
+ 			crObligacionesPorProducto.setIndicadorFinanciamiento(beancrCargoSolicitudProductoCredito.getIndicadorFinanciamiento());
+ 			crObligacionesPorProducto.setIndicadorObligatoriedad(beancrCargoSolicitudProductoCredito.getIndicadorObligatoriedad());
++			crObligacionesPorProducto.setIndicadorVisibilidad(beancrCargoSolicitudProductoCredito.getIndicadorVisibilidad());
+ 			// Fin [RSIS-5] 
+ 			
+ 			//[Req. 13-135] jchilon 18.11.2013: Se Mejora para el registro productos de credito -> cargos al cronograma -> cargos a la solicitud  
+diff --git a/FINANCIERONEW/src/financ/creditos/local/CRObligacionesPorProductoInterfaceLocal.java b/FINANCIERONEW/src/financ/creditos/local/CRObligacionesPorProductoInterfaceLocal.java
+index 758eaa4..ed5604f 100644
+--- a/FINANCIERONEW/src/financ/creditos/local/CRObligacionesPorProductoInterfaceLocal.java
++++ b/FINANCIERONEW/src/financ/creditos/local/CRObligacionesPorProductoInterfaceLocal.java
+@@ -79,11 +79,12 @@
+ 	 * @since [RSIS-5] 13.07.2017
+ 	 * 
+ 	 * @param codigoProducto
++	 * @param indicadorVisibilidad
+ 	 * @param estadoRegistro
+ 	 * @return
+ 	 * @throws Exception
+ 	 */
+-	public Long countByCodigoProductoEstado(String codigoProducto, String estadoRegistro) throws Exception;
++	public Long countByCodigoProductoEstado(String codigoProducto, String indicadorVisibilidad, String estadoRegistro) throws Exception;
+ 	
+ 	/**
+ 	 * Retorna las obligaciones según el código de un producto y el estado enviado
+@@ -93,10 +94,14 @@
+ 	 * 
+ 	 * @param codigoProducto
+ 	 * @param estadoRegistro
++	 * @param indicadorVisibilidad
+ 	 * @param beanPaginable
+ 	 * @return
+ 	 * @throws Exception
+ 	 */
+-	public List<CRObligacionesPorProducto> findByCodigoProductoEstadoPaginable(String codigoProducto, String estadoRegistro,BeanPaginable beanPaginable) throws Exception;
++	public List<CRObligacionesPorProducto> findByCodigoProductoEstadoPaginable(String codigoProducto, String estadoRegistro,String indicadorVisibilidad, BeanPaginable beanPaginable) throws Exception;
++
++	public List<CRObligacionesPorProducto> findByCodigoProducto(
++			BeanCRCargoSolicitudProductoCredito bean) throws Exception;
+ 
+ }
+\ No newline at end of file
+diff --git a/FINANCIERONEW/src/financ/creditos/session/CRObligacionesPorProductoSession.java b/FINANCIERONEW/src/financ/creditos/session/CRObligacionesPorProductoSession.java
+index 82a8813..fd208b6 100644
+--- a/FINANCIERONEW/src/financ/creditos/session/CRObligacionesPorProductoSession.java
++++ b/FINANCIERONEW/src/financ/creditos/session/CRObligacionesPorProductoSession.java
+@@ -139,6 +139,7 @@
+ 			bean.setModalidadAplicacion(instance.getModalidadAplicacion());
+ 			bean.setIndicadorFinanciamiento(instance.getIndicadorFinanciamiento());
+ 			bean.setIndicadorObligatoriedad(instance.getIndicadorObligatoriedad());
++			bean.setIndicadorVisibilidad(instance.getIndicadorVisibilidad());
+ 			
+ 			return bean;
+ 		} catch (RuntimeException re) {
+@@ -303,6 +304,7 @@
+ 				beancrCargoSolicitudProductoCredito.setModalidadAplicacion(crObligacionesPorProducto.getModalidadAplicacion());
+ 				beancrCargoSolicitudProductoCredito.setIndicadorFinanciamiento(crObligacionesPorProducto.getIndicadorFinanciamiento());
+ 				beancrCargoSolicitudProductoCredito.setIndicadorObligatoriedad(crObligacionesPorProducto.getIndicadorObligatoriedad());
++				beancrCargoSolicitudProductoCredito.setIndicadorVisibilidad(crObligacionesPorProducto.getIndicadorVisibilidad());
+ 				
+ 				id = new CBCatalogoCheckConstraintId(Constante.TABLA_CR_OBLIGACIONES_PRODUCTO,
+ 						Constante.CAMPO_CRTPROB_MODALIDA_APLICACION,
+@@ -329,6 +331,15 @@
+ 				if (!StringUtil.isEmpty(cbCatalogoCheckConstraint)) {
+ 					beancrCargoSolicitudProductoCredito
+ 							.setDescIndicadorObligatoriedad(cbCatalogoCheckConstraint.getDescripcion());
++				}
++				
++				id = new CBCatalogoCheckConstraintId(Constante.TABLA_CR_OBLIGACIONES_PRODUCTO,
++						Constante.CAMPO_CRTPROB_VISIBILIDAD,
++						crObligacionesPorProducto.getIndicadorVisibilidad());
++				cbCatalogoCheckConstraint = cbCatalogoCheckConstraintInterfaceLocal.findById(id);
++				if (!StringUtil.isEmpty(cbCatalogoCheckConstraint)) {
++					beancrCargoSolicitudProductoCredito
++							.setDescIndicadorVisibilidad(cbCatalogoCheckConstraint.getDescripcion());
+ 				}
+ 				
+ 				lstObligacionesxProducto.add(beancrCargoSolicitudProductoCredito);
+@@ -465,11 +476,12 @@
+ 	}
+ 	
+ 	// Inicio [RSIS-5] agarcia 10.07.2017
+-	public Long countByCodigoProductoEstado(String codigoProducto, String estadoRegistro) throws Exception {
++	public Long countByCodigoProductoEstado(String codigoProducto, String indicadorVisibilidad, String estadoRegistro) throws Exception {
+ 		try {
+ 			return (Long) entityManager.createNamedQuery("CRObligacionesPorProducto.countByCodigoProductoEstado")
+                             				.setParameter("codigoProductoValue", codigoProducto)
+                             				.setParameter("estadoValue", estadoRegistro)
++                            				.setParameter("indicadorVisibilidad", indicadorVisibilidad)
+                             				.getSingleResult();
+ 		}catch (RuntimeException re) {
+ 			throw re;
+@@ -477,11 +489,12 @@
+ 	}
+ 	
+ 	@SuppressWarnings("unchecked")
+-	public List<CRObligacionesPorProducto> findByCodigoProductoEstadoPaginable(String codigoProducto, String estadoRegistro,BeanPaginable beanPaginable) throws Exception {
++	public List<CRObligacionesPorProducto> findByCodigoProductoEstadoPaginable(String codigoProducto, String estadoRegistro,String indicadorVisibilidad, BeanPaginable beanPaginable) throws Exception {
+ 		try {
+ 			return (ArrayList<CRObligacionesPorProducto>) entityManager.createNamedQuery("CRObligacionesPorProducto.findByCodigoProductoEstado")
+                             				.setParameter("codigoProductoValue", codigoProducto)
+                             				.setParameter("estadoValue", estadoRegistro)
++                            				.setParameter("indicadorVisibilidad", indicadorVisibilidad)
+                             				.setFirstResult(beanPaginable.getFirstResult())
+                             				.setMaxResults(beanPaginable.getMaxResult())
+                             				.getResultList();
+@@ -489,6 +502,23 @@
+ 			throw re;
+ 		}
+ 	}
++	
++	@SuppressWarnings("unchecked")
++	public List<CRObligacionesPorProducto> findByCodigoProducto(BeanCRCargoSolicitudProductoCredito bean)
++			throws Exception {
++		try {
++			return (ArrayList<CRObligacionesPorProducto>) entityManager
++					.createNamedQuery("CRObligacionesPorProducto.findByCodigoProductoSolicitud")
++					.setParameter("codigoProducto", bean.getStrCodigoProducto())
++					.setParameter("estado", bean.getStrEstado())
++					.setParameter("indicadorVisibilidad", bean.getIndicadorVisibilidad())
++					.setParameter("indicadorFinanciamiento", bean.getIndicadorFinanciamiento())
++					.setParameter("indicadorObligatoriedad", bean.getIndicadorObligatoriedad())
++					.getResultList();
++		} catch (RuntimeException re) {
++			throw re;
++		}
++	}
+ 	// Fin [RSIS-5] 
+ }
+ 
+diff --git a/FINANCIERONEW/src/financ/util/Constante.java b/FINANCIERONEW/src/financ/util/Constante.java
+index f4faab9..b7d7ff1 100644
+--- a/FINANCIERONEW/src/financ/util/Constante.java
++++ b/FINANCIERONEW/src/financ/util/Constante.java
+@@ -2615,8 +2615,14 @@
+     public static final String CAMPO_CRTPROB_MODALIDA_APLICACION = "C_MODAPL";
+     public static final String CAMPO_CRTPROB_FINANCIAMIENTO = "C_INDFIN";
+     public static final String CAMPO_CRTPROB_OBLIGATORIEDAD = "C_INDOBL";
++    public static final String CAMPO_CRTPROB_VISIBILIDAD = "C_INDVIS";
+     public static final String MODALIDAD_COBRO_SEGURO_PAGO_ADELANTADO = "PA";
+     public static final String MODALIDAD_COBRO_SEGURO_DISTRIBUIDO_CRONOGRAMA = "DC";
++    public static final String CR_CARGOS_TIPO_IMPORTE_APLICAR_MONTO_FIJO = "MF";
++    public static final String CR_CARGOS_TIPO_IMPORTE_APLICAR_PORCENTAJE = "PR";
++    public static final String CR_CARGOS_DISTRIBUCION_IMPORTE_POR_CUOTA = "DC";
++    public static final String CARGOS_CRONOGRAMA_PORTES = "143OB004004";
++    public static final String CR_ESTADO_SOLICITUD_RESOLUCION = "R";
+     // Fin [RSIS-5]
+ }
+ 

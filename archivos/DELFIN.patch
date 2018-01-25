@@ -1,0 +1,1375 @@
+diff --git a/DELFINWEBNEW/.classpath b/DELFINWEBNEW/.classpath
+index 6c42886..0f38d04 100644
+--- a/DELFINWEBNEW/.classpath
++++ b/DELFINWEBNEW/.classpath
+@@ -1,35 +1,46 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<classpath>
+-	<classpathentry kind="src" path="src"/>
+-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+-	<classpathentry kind="con" path="com.genuitec.eclipse.j2eedt.core.J2EE14_CONTAINER"/>
+-	<classpathentry combineaccessrules="false" kind="src" path="/ADMINISTRATIVONEW"/>
+-	<classpathentry combineaccessrules="false" kind="src" path="/FINANCIERONEW"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/JasperBabylon-1.0.0.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/barbecue-1.5-beta1.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/bsh-2.0b4.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-beanutils-1.7.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-codec-1.3.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-collections-2.1.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-dbcp-1.2.1.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-digester-1.7.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-fileupload-1.1.1.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-httpclient-3.1.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-io-1.3.1.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-javaflow-20060411.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-logging-1.0.2.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-logging-api-1.0.2.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-math-1.0.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-pool-1.3.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-vfs-1.0.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/iReport.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jakarta-bcel-20050813.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/poi-3.0.1-FINAL-20070705.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jsonplugin-0.34.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/itext-1.3.1.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jasperreports-3.0.0-applet.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jasperreports-3.0.0.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jasperreports-extensions-1.3.1.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jasperreports-flash-2.0.5.jar"/>
+-	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
+-</classpath>
++<?xml version="1.0" encoding="UTF-8"?>
++<classpath>
++	<classpathentry kind="src" path="src"/>
++	<classpathentry kind="con" path="com.genuitec.eclipse.j2eedt.core.J2EE14_CONTAINER"/>
++	<classpathentry combineaccessrules="false" kind="src" path="/ADMINISTRATIVONEW"/>
++	<classpathentry combineaccessrules="false" kind="src" path="/FINANCIERONEW"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/JasperBabylon-1.0.0.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/barbecue-1.5-beta1.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/bsh-2.0b4.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-beanutils-1.7.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-codec-1.3.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-collections-2.1.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-dbcp-1.2.1.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-digester-1.7.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-fileupload-1.1.1.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-httpclient-3.1.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-io-1.3.1.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-javaflow-20060411.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-logging-1.0.2.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-logging-api-1.0.2.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-math-1.0.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-pool-1.3.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-vfs-1.0.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/iReport.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jakarta-bcel-20050813.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/poi-3.0.1-FINAL-20070705.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jsonplugin-0.34.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/itext-1.3.1.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jasperreports-3.0.0-applet.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jasperreports-3.0.0.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jasperreports-extensions-1.3.1.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jasperreports-flash-2.0.5.jar"/>
++	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_07">
++		<attributes>
++			<attribute name="owner.project.facets" value="java"/>
++		</attributes>
++	</classpathentry>
++	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/JBoss 4.2 Runtime">
++		<attributes>
++			<attribute name="owner.project.facets" value="jst.web"/>
++		</attributes>
++	</classpathentry>
++	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
++	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
++	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
++</classpath>
+diff --git a/DELFINWEBNEW/.project b/DELFINWEBNEW/.project
+index d6944cb..ba099d1 100644
+--- a/DELFINWEBNEW/.project
++++ b/DELFINWEBNEW/.project
+@@ -6,6 +6,11 @@
+ 	</projects>
+ 	<buildSpec>
+ 		<buildCommand>
++			<name>org.eclipse.wst.common.project.facet.core.builder</name>
++			<arguments>
++			</arguments>
++		</buildCommand>
++		<buildCommand>
+ 			<name>org.eclipse.wst.jsdt.core.javascriptValidator</name>
+ 			<arguments>
+ 			</arguments>
+@@ -42,9 +47,12 @@
+ 		</buildCommand>
+ 	</buildSpec>
+ 	<natures>
++		<nature>org.eclipse.jem.workbench.JavaEMFNature</nature>
++		<nature>org.eclipse.wst.common.modulecore.ModuleCoreNature</nature>
+ 		<nature>com.genuitec.eclipse.ast.deploy.core.deploymentnature</nature>
+ 		<nature>com.genuitec.eclipse.j2eedt.core.webnature</nature>
+ 		<nature>org.eclipse.jdt.core.javanature</nature>
+ 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
++		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
+ 	</natures>
+ </projectDescription>
+diff --git a/DELFINWEBNEW/.tern-project b/DELFINWEBNEW/.tern-project
+new file mode 100644
+index 0000000..66ea919
+--- /dev/null
++++ b/DELFINWEBNEW/.tern-project
+@@ -0,0 +1,14 @@
++{
++  "plugins": {
++    "guess-types": {
++      
++    },
++    "outline": {
++      
++    }
++  },
++  "libs": [
++    "ecma5",
++    "browser"
++  ]
++}
+\ No newline at end of file
+diff --git a/DELFINWEBNEW/WebRoot/FINANCIERO/cuentasPasivas/CP_C_SeleccionDetalleTransaccionCTSDobleMoneda_CHILD.jsp b/DELFINWEBNEW/WebRoot/FINANCIERO/cuentasPasivas/CP_C_SeleccionDetalleTransaccionCTSDobleMoneda_CHILD.jsp
+new file mode 100644
+index 0000000..e15957d
+--- /dev/null
++++ b/DELFINWEBNEW/WebRoot/FINANCIERO/cuentasPasivas/CP_C_SeleccionDetalleTransaccionCTSDobleMoneda_CHILD.jsp
+@@ -0,0 +1,158 @@
++<!-- CP_C_SeleccionDetalleTransaccionCTSDobleMoneda_CHILD.jsp -->
++<%-- [RSIS-184] acnunez 16.11.2017 --%>
++<html>
++<head>
++<title>Seleccion de Datos</title>
++<!-- Invocaci�n de Estilos -->
++<link id="css" href="<%=request.getContextPath()%>/UTILS/css/DELFIN.css"
++    rel="stylesheet" type="text/css">
++<script
++    src="<%=request.getContextPath()%>/UTILS/Script/DELFIN-Utiles.js"></script>
++<script
++    src="<%=request.getContextPath()%>/UTILS/Script/MsgValidacion.js"></script>
++<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
++<%@ taglib prefix='fmt' uri='http://java.sun.com/jstl/fmt'%>
++<%@ taglib uri="/delfin" prefix="delfinTagHtml"%>
++</head>
++<body onLoad="load();">
++    <form method="post" name="frmRetiroCTSDobleMoneda"
++        id="frmActualizacionIndividual">
++        <input type="hidden" id="hidCodEmpleador" name="hidCodEmpleador" />
++        <input type="hidden" id="cadenaTransaccion" name="cadenaTransaccion" value='<c:out value="${cadenaTransaccion}" />'/>
++        <input type="hidden" id="estado" name="estado" />
++        <table width="99%" class="frame" align="center">
++            <tr height="5">
++                <td><img src="<%=request.getContextPath()%>/UTILS/img/t.gif"
++                    width="1" height="5"></td>
++            </tr>
++
++            <tr>
++                <td align="left" valign="middle">
++                    <delfinTagHtml:boton nombre="BT_Grabar_P.gif" onclick="cargarTabla();" />
++                    <delfinTagHtml:boton nombre="BT_Salir_P.gif" onclick="salir();" />
++                </td>
++            </tr>
++        </table>
++        <table width="99%">
++            <tr height="5">
++                <td><img src="<%=request.getContextPath()%>/UTILS/img/t.gif"
++                    width="1" height="5"></td>
++            </tr>
++        </table>
++        <table width="99%" class="frame" align="center">
++            <tr>
++                  <td class="etiqueta" width="30%">
++                    Cuentas
++                  </td>
++                  <td width="60%">
++                    <select name="cboNumeroCuenta" class="campoobligatorioiz" style="width: 155" onchange="cargarDatos();">
++                        <option value="">Selecione Cuenta...</option>
++                              <c:forEach var='BeanCPMaestroCuentas' items='${lstBeanCPMaestroCuentas}'>
++                                <option value="<c:out value='${BeanCPMaestroCuentas.numeroCuenta}'/>">
++                                  <c:out value='${BeanCPMaestroCuentas.numeroCuenta}' />
++                                </option>
++                              </c:forEach>
++                           </select>
++                  </td>
++                </tr>
++                <tr>
++                  <tr>
++                    <td class="etiqueta" width="30%">
++                      Producto
++                    </td>
++                    <td>
++                      <input class="campodisplayiz" type="text" name="txtProducto" tabindex="-1" readonly="readonly" style="width: 80%">
++                    </td>
++                  </tr>
++                </tr>
++                
++                <!-- COLUMNA 1 - FILA 2 -->
++                <tr>
++                  <td class="etiqueta" width="30%">
++                    Saldo Intangible
++                  </td>
++                  <td width="60%">
++                    <input class="campodisplayde" type="text" name="txtSaldoIntangible" tabindex="-1" readonly="readonly" style="width: 30%">
++                  </td>
++                </tr>
++                <tr>
++                  <td class="etiqueta" width="30%">
++                    Saldo Disponible
++                  </td>
++                  <td width="60%">
++                    <input class="campodisplayde" type="text" name="txtSaldoDisponible" tabindex="-1" readonly="readonly" style="width: 30%">
++                  </td>
++                </tr>
++                <!-- COLUMNA 1 - FILA 3 -->
++                <tr>
++                  <td class="etiqueta" width="30%">
++                    Moneda Cta
++                  </td>
++                  <td width="60%">
++                    <input class="campodisplayiz" type="text" name="txtMoneda" tabindex="-1" readonly="readonly">
++                  </td>
++                </tr>
++        </table>
++        <table width="99%">
++            <tr height="5">
++                <td><img src="<%=request.getContextPath()%>/UTILS/img/t.gif"
++                    width="1" height="5"></td>
++            </tr>
++        </table>
++    </form>
++    <script>
++        var f;
++        var operacionEnProceso = false;
++
++        function load(){
++            path = '<%=request.getContextPath()%>';
++            referrer = '<%=request.getParameter("referrer")%>';
++            f = document.frmRetiroCTSDobleMoneda;
++        }
++
++        function keyDown(DnEvents) {
++            //Reconocimiento de la tecla ESC para el cerrado de la ventana
++            if (window.event.keyCode == 27) {
++                window.close()
++            }
++            ;
++        }
++
++        document.onkeydown = keyDown;
++
++        function salir() {
++            window.close();
++        }
++
++          function cargarDatos(){
++              if(byID('cboNumeroCuenta').value == ''){
++                buscarCuentaCTS();
++                return false;
++              }
++              var url = path + '/CP_T_RetiroCTS_Servlet';
++              var params = '?action=obtenerDatosRetiro';
++              params += '&numeroCuenta=' + byID('cboNumeroCuenta').value;
++              ajaxRequestGET(url + params, true, function(xmldoc) {
++                  mensajeRespuestaXML(xmldoc, function(){
++                    var bean = getJSONObject(xmldoc ,'beanCPDatosRetiroCTS');
++                    byID('txtProducto').value = bean.descripcionProducto;
++                    byID('txtSaldoDisponible').value = formateadorParam(bean.saldoDisponible,2);
++                    byID('txtMoneda').value = bean.descripccionMoneda;
++                    byID('txtSaldoIntangible').value = formateadorParam(bean.montoIntangible,2);
++                    byID('estado').value = bean.descripcionEstadoCuenta;
++                  });
++              });
++          }
++
++          function cargarTabla(){
++              if (byID('cboNumeroCuenta').value == ''){
++                  return false;
++              }
++              var callerWindowObj = dialogArguments;
++              callerWindowObj.cargarTabla(byID('cboNumeroCuenta').value,byID('txtProducto').value,byID('estado').value,byID('txtMoneda').value,byID('cadenaTransaccion').value);
++              window.close();
++          }
++    </script>
++</body>
++</html>
++
+diff --git a/DELFINWEBNEW/WebRoot/FINANCIERO/cuentasPasivas/CP_T_RetiroDobleMonedaCTS_CNTR.jsp b/DELFINWEBNEW/WebRoot/FINANCIERO/cuentasPasivas/CP_T_RetiroDobleMonedaCTS_CNTR.jsp
+new file mode 100644
+index 0000000..ac62592
+--- /dev/null
++++ b/DELFINWEBNEW/WebRoot/FINANCIERO/cuentasPasivas/CP_T_RetiroDobleMonedaCTS_CNTR.jsp
+@@ -0,0 +1,414 @@
++<!-- CP_T_RetiroDobleMonedaCTS_CNTR.jsp -->
++<%-- [RSIS-184] acnunez 16.11.2017 --%>
++<%@ taglib uri="/delfin" prefix="delfinTagHtml"%>
++<html>
++<head>
++<!-- Titulo del M�dulo -->
++<!-- Invocaci�n de Estilos -->
++<link id="css" href="<%=request.getContextPath()%>/UTILS/css/DELFIN.css"
++	rel="stylesheet" type="text/css">
++<!-- Invocaci�n de Java Scripts -->
++<script
++	src="<%=request.getContextPath()%>/UTILS/Script/MsgValidacion.js"></script>
++<script
++    src="<%=request.getContextPath()%>/UTILS/Script/DELFIN-Utiles.js"></script>
++	<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
++    <%@ taglib prefix='fmt' uri='http://java.sun.com/jstl/fmt'%>
++</head>
++<!-- Definci�n del color del body -->
++<body onhelp="getF1()" class="colorbody" onload="load();">
++	<form name="frmDepositoDobleMoneda" method="post">
++	    <input type="hidden" id="codCliente" name="codCliente">
++	    <input type="hidden" id="cadenaTransaccion" name="cadenaTransaccion">
++	    <input type="hidden" id="cuentas" name="cuentas">
++	    <input type="hidden" id="indicadorProcesamiento" name="indicadorProcesamiento" value="N">
++        <table height="10" width="100%" cellspacing="0" cellpadding="0">
++            <tr>
++                <td class="tituloopcion">RETIRO CTS DOBLE MONEDA</td>
++            </tr>
++        </table>
++        
++        <table width="99%" cellspacing="0" cellpadding="0">
++            <tr>
++                <td><img src="<%=request.getContextPath()%>/UTILS/img/t.gif" width="1" height="3"></td>
++            </tr>
++        </table>
++        <table class="frame" width="98%" cellspacing="0" cellpadding="0" align="center">
++            <tr>
++                <td class="etiqueta" align="left">
++                    <delfinTagHtml:boton nombre="BT_Grabar.gif" onclick="grabar()" /> 
++                    <delfinTagHtml:boton nombre="BT_Salir.gif" onclick="salir()" />
++                </td>
++            </tr>
++        </table>
++        <table width="100%" cellspacing="0" cellpadding="0" align="center">
++            <table width="98%" cellspacing="0" cellpadding="0" align="center">
++	            <tr>
++	                <td>
++	                    <img src="<%=request.getContextPath()%>/UTILS/img/t.gif" width="1" height="3">
++	                </td>
++	            </tr>
++	            <tr>
++	                <td class=tituloframe >DATOS DE LA TRANSACCION</td>
++	            </tr>
++            </table>
++            <table width="98%" class="frame" cellspacing="0" cellpadding="0" align="center">
++                <tr>
++                    <td class="etiqueta" width="100px">Cliente</td>
++                    <td>
++                        <input name="txtNroDocumento" style="width: 150" tabindex="1" class="campoobligatorioiz" value="" maxlength="15">
++                    </td>
++                    <td><input name="txtNombreCliente" style="width: 300" tabindex="1" class="campodisplayiz" value="" maxlength="15" readonly>
++                        <img title="Detalle" style="CURSOR: hand" src="<%=request.getContextPath()%>/UTILS/img/Detalle.gif" onclick="buscar()">
++                    </td>
++                    <td width="600px"></td>
++                </tr>
++                <table width="84%" cellspacing="0" cellpadding="0">
++			        <tr>
++			            <td><img src="<%=request.getContextPath()%>/UTILS/img/t.gif" width="1" height="3"></td>
++			        </tr>
++			    </table>
++                <table width="98%" cellpadding="0" cellspacing="0" align="center">
++                    <tr class=tituloframe>CUENTAS CTS</tr>
++                    <tr>
++                        <td width="92%" colspan="2">
++                            <iframe frameborder="0" width="99%" height="200px" id="ifrmCuentas" name="ifrmCuentas" class="frame">
++                            </iframe>
++                        </td>
++                        
++                    </tr>
++                    <tr>
++                        <td width="8%" align="right">
++                            <delfinTagHtml:boton nombre="BT_Procesar_P.gif" onclick="procesar();" name="btnProcesar" />
++                            <delfinTagHtml:boton nombre="BT_Agregar_P.gif" onclick="agregarCuenta();" name="btnAgregarTitular" /> 
++                            <delfinTagHtml:boton nombre="BT_Eliminar_P.gif" onclick="eliminarCuenta();" name="btnEliminarTitular" />
++                        </td>
++                    </tr>
++                </table>
++                <table width="84%" cellspacing="0" cellpadding="0">
++			        <tr>
++			            <td><img src="<%=request.getContextPath()%>/UTILS/img/t.gif" width="1" height="3"></td>
++			        </tr>
++			    </table>
++			    <table width="98%" cellspacing="0" cellpadding="0" align="center">
++	                <tr>
++	                    <td class="etiqueta" width="350px">Moneda de Transaccion</td>
++	                    <td width="150px">
++	                        <select name="cboMoneda" class="campoobligatorioiz"   onFocus="nextfield ='cboTipoPago';" style="width: 155" >  
++		                      <c:forEach var='listaMoneda' items='${listaMoneda}'>
++		                        <option value="<c:out value='${listaMoneda.codigoMoneda}'/>" <c:if test="${strMoneda == listaMoneda.descripcion}"> selected</c:if>>
++		                          <c:out value='${listaMoneda.descripcion}' />
++		                        </option>
++		                      </c:forEach>
++		                   </select>   
++	                    </td>
++	                </tr>
++	                <tr>
++	                    <td class="etiqueta" width="350px">Forma de Retiro</td>
++	                    <td width="150px">
++	                        <select name="cboTipoPago" class="campoobligatorioiz" onFocus="nextfield ='txtOperacionesBanco';" style="width: 155">
++		                        <c:forEach var='listaTipoPago' items='${listaTipoPago}'>
++		                          <option value="<c:out value='${listaTipoPago.tipoMovimiento}'/>" >
++		                            <c:out value='${listaTipoPago.descripcion}' />
++		                          </option>
++		                        </c:forEach>
++		                    </select> 
++	                    </td>
++	                </tr>
++	                <tr>
++	                    <td class="etiqueta" width="350px">Monto a Retirar</td>
++                        <td width="150px">
++                            <input name="montoTotal" style="width: 150" tabindex="1" class="campoobligatoriode" value='0.00' maxlength="15" onblur="this.value=formateadorParam(this.value,2)">
++                        </td>
++	                    <td width="550px">
++                            
++                        </td>
++	                </tr>
++	                <tr>
++                        <td class="etiqueta" width="350px">Total Capital en Moneda de la Transaccion</td>
++                        <td width="150px">
++                            <input name="totalCapital" style="width: 150" tabindex="1" class="campodisplayde" value='0.00' maxlength="15" onblur="this.value=formateadorParam(this.value,2)" readonly>
++                        </td>
++                        <td width="550px">
++                            
++                        </td>
++                    </tr>
++	                <tr>
++                        <td class="etiqueta" width="350px">Total de Rem. Acumuladas en Moneda de la Transaccion</td>
++                        <td width="150px">
++                            <input name="remuneracionesAcumuladas" style="width: 150" tabindex="1" class="campodisplayde" value='0.00' maxlength="15" onblur="this.value=formateadorParam(this.value,2)" readonly>
++                        </td>
++                        <td width="550px">
++                            
++                        </td>
++                    </tr>
++                    <tr>
++                        <td class="etiqueta" width="350px">Total Intangible en Moneda de la Transaccion</td>
++                        <td width="150px">
++                            <input name="Intangible" style="width: 150" tabindex="1" class="campodisplayde" value='0.00' maxlength="15" onblur="this.value=formateadorParam(this.value,2)" readonly>
++                        </td>
++                        <td width="550px">
++                            
++                        </td>
++                    </tr>
++                    <tr>
++                        <td class="etiqueta" width="350px">Total Disponible en Moneda de la Transaccion</td>
++                        <td width="150px">
++                            <input name="Tangible" style="width: 150" tabindex="1" class="campodisplayde" value='0.00' maxlength="15" onblur="this.value=formateadorParam(this.value,2)" readonly>
++                        </td>
++                        <td width="550px">
++                            
++                        </td>
++                    </tr>
++                </table>
++                <table width="84%" height="60%" cellspacing="0" cellpadding="0">
++                    <tr>
++                        <td><img src="<%=request.getContextPath()%>/UTILS/img/t.gif" width="1" height="3"></td>
++                    </tr>
++                </table>
++            </table>
++        </table>
++        <%@ include file="/GENERAL/Header.jsp"%>
++    </form>
++    <script>
++    var f = document.forms[0];
++    var path; 
++    function load(){
++        path = '<%=request.getContextPath()%>';
++        onLoadTabla();
++    }
++
++    function onLoadTabla(){
++        var params = '?action=TABLA_CTAS_CTS';
++        params += '&time=' + new Date().getTime();
++        var url = path + '/CP_C_RetiroDobleMonedaCTS_Servlet' + params;
++        document.ifrmCuentas.location.replace(url);
++    }
++    
++    function keyDown(DnEvents){
++        //Reconocimiento de la tecla enter, para q simule el tab
++        k = window.event.keyCode;
++        if (k == 13 )       
++            if (nextfield == 'done') return true;
++            else if(nextfield=='busqueda'){
++                return false;
++            }else{
++                eval('document.forms[0].' + nextfield + '.focus()');
++                return false;
++            }
++        //Reconocimiento de la tecla ESC para el cerrado de la ventana
++        if (k == 27) {
++            salir();
++            return false;
++        }
++        //Reconocimiento de la tecla F10 para Grabar
++        if (k == 121) {
++            if (f.hidControla.value == "true"){
++                f.hidControla.value = "false";
++                grabar(); 
++            }else{
++                alert("Grabaci�n en proceso");
++            }
++        }
++        //Reconocimiento de la tecla F9 para Busquedas
++        if (k == 120) {
++            if(nextfield == 'busqueda')buscar();
++        }
++        //Reconocimiento de la tecla Backspace para cancelarla
++        if (k == 8)return backspace();
++        //Reconocimiento de la tecla F1
++        if (k == 112)ayuda();
++        //Reconocimiento de la tecla Control para cancelarla
++        if (event.ctrlKey){
++            event.keyCode = 0;
++            return false;
++        }
++        //Cancela teclas F3,F5,F11
++        if (window.event && (k == 114 || k == 116 || k == 117 || k == 122))
++            event.keyCode = 505;
++        if(event.keyCode == 505)return false;
++    }
++    document.onkeydown = keyDown;
++    
++    function salir() {
++        window.location = path + '/GENERAL/Menu.jsp';
++    }
++
++    function buscar(){
++        var valor = byID('txtNroDocumento').value;
++        var nombre='CLIENTESCTS';
++        var url = path + '/GENERAL/Busqueda.jsp';
++        var params = '?cboValorBuscar1=DOI';
++        params += '&cboValorBuscar2=Nombre';
++        params += '&txtValorBuscar=' + valor;
++        params += '&tabla=' + nombre;
++        
++        window.showModalDialog(url + params ,window,'dialogHeight:330px;dialogWidth:670px;center:yes;help:no;resizable:no;status:no');
++    }
++
++    function insertarPersona(data){            
++        byID('codCliente').value = data[0];
++        byID('txtNroDocumento').value = data[1];
++        byID('txtNombreCliente').value = data[2];
++
++        onLoadTabla();
++    }
++
++    function agregarCuenta(){
++        byID('cadenaTransaccion').value = ifrmCuentas.devuelveFila();
++        byID('cuentas').value = ifrmCuentas.devuelveCuentas();
++        if (byID('codCliente').value==null || byID('codCliente').value == ""){
++            alert("Debe Seleccionar Cliente");
++        }else{
++            var params = "?action=FORMULARIO_CTAS_CTS";
++            params += '&codCliente='+byID('codCliente').value;
++            params += '&cadenaTransaccion='+byID('cadenaTransaccion').value;
++            params += '&cuentas='+byID('cuentas').value;
++            params += '&time=' + new Date().getTime();
++            var url = path + '/CP_C_RetiroDobleMonedaCTS_Servlet' + params;
++            var winl = (screen.width - 330) / 2;
++            var wint = (screen.height - 230) / 2;
++
++            var attribs = 'dialogHeight:230px;dialogWidth:330px;center:no;dialogLeft:'
++                + winl + ';dialogTop:' + wint + 'help:no;resizable:no;status:no';
++                window.showModalDialog(url, window, attribs);
++        }
++    }
++
++    function cargarTabla(numerocuenta,producto,estado,moneda,cadenaTransaccion){
++        var params = '?action=TABLA_CTAS_CTS';
++        params += '&numerocuenta=' + numerocuenta;
++        params += '&producto=' + producto;
++        params += '&estado=' + estado;
++        params += '&moneda=' + moneda;
++        params += '&cadenaTransaccion=' + cadenaTransaccion;
++        params += '&time=' + new Date().getTime();
++        var url = path + '/CP_C_RetiroDobleMonedaCTS_Servlet' + params;
++        document.ifrmCuentas.location.replace(url);
++    }
++
++    function eliminarCuenta(){
++        byID('cadenaTransaccion').value = ifrmCuentas.devuelveFila();
++        if (ifrmCuentas.NumerodeFilas() <= 0){
++            alert("Debe Seleccionar Cuenta");
++        }else{
++            var params = "?action=ELIMINAR_CUENTA_TABLA_CTS";
++            params += '&numerocuenta=' + ifrmCuentas.obtenerNumeroCuenta();
++            params += '&cadenaTransaccion='+byID('cadenaTransaccion').value;
++            params += '&time=' + new Date().getTime();
++
++            var url = path + '/CP_C_RetiroDobleMonedaCTS_Servlet' + params;
++            document.ifrmCuentas.location.replace(url);
++        }
++    }
++
++    function procesar(){
++        byID('cadenaTransaccion').value = ifrmCuentas.devuelveFila();
++        byID('cuentas').value = ifrmCuentas.devuelveCuentas();
++        if (byID('codCliente').value==null || byID('codCliente').value == ""){
++            alert("Debe Seleccionar Cliente");
++            return false;
++        }
++        if (byID('montoTotal').value<=0.0){
++            alert("Debe Ingresar Monto a retirar");
++            return false;
++        }
++
++        if (ifrmCuentas.NumerodeFilas() <= 1){
++            alert("Debe Procesar 2 o mas cuentas");
++            return false;
++        }
++
++        var params = "?action=PROCESAR";
++        params += '&codCliente='+byID('codCliente').value;
++        params += '&cadenaTransaccion='+byID('cadenaTransaccion').value;
++        params += '&cboMoneda='+byID('cboMoneda').value;
++        params += '&cboTipoPago='+byID('cboTipoPago').value;
++        params += '&cuentas='+byID('cuentas').value;
++        params += '&montoTotal='+byID('montoTotal').value;
++        params += '&indicadorProcesamiento=N';
++        params += '&time=' + new Date().getTime();
++        var url = path + '/CP_C_RetiroDobleMonedaCTS_Servlet' + params;
++        document.ifrmCuentas.location.replace(url);
++    }
++
++    function grabar(){
++        byID('cadenaTransaccion').value = ifrmCuentas.devuelveFila();
++        byID('cuentas').value = ifrmCuentas.devuelveCuentas();
++        if (byID('codCliente').value==null || byID('codCliente').value == ""){
++            alert("Debe Seleccionar Cliente");
++            return false;
++        }
++        if (byID('montoTotal').value<=0.0){
++            alert("Debe Ingresar Monto a retirar");
++            return false;
++        }
++
++        if (byID('indicadorProcesamiento').value == "N"){
++            alert("Debe Procesar las Cuentas antes de Grabar");
++            return false;
++        }
++
++        if (ifrmCuentas.NumerodeFilas() <= 1){
++            alert("Debe Procesar 2 o mas cuentas");
++            byID('indicadorProcesamiento').value = "N";
++            return false;
++        }
++
++        var params = "action=GRABAR";
++        params += '&codCliente='+byID('codCliente').value;
++        params += '&cadenaTransaccion='+byID('cadenaTransaccion').value;
++        params += '&cboMoneda='+byID('cboMoneda').value;
++        params += '&cboTipoPago='+byID('cboTipoPago').value;
++        params += '&cuentas='+byID('cuentas').value;
++        params += '&montoTotal='+byID('montoTotal').value;
++        params += '&indicadorProcesamiento='+byID('indicadorProcesamiento').value;
++        params += '&time=' + new Date().getTime();
++        var url = path + '/CP_C_RetiroDobleMonedaCTS_Servlet';
++
++        ajaxRequestPOST(url, params, false, function(xmldoc){
++            mensajeRespuestaXML(xmldoc, function(){
++                alert(m_8570);
++            });
++            var respuestaTransaccion = getValor(xmldoc, 'codigoError');
++            if (respuestaTransaccion=="000"){
++                var listaTransacciones = getValor(xmldoc, 'listaTransacciones');
++                onLoadTabla();
++                limpiarValores();
++                if (listaTransacciones.length>0){
++                    var arrayTransacciones = listaTransacciones.split("-");
++                    for (var i=0;i<arrayTransacciones.length;i++){
++                        if (arrayTransacciones[i]!=""){
++                            mostrarComprobante(arrayTransacciones[i]);
++                        }
++                    }
++                }
++            }
++        });
++
++        byID('indicadorProcesamiento').value = "N";
++    }
++
++    function mostrarComprobante(numero){
++        window.showModalDialog(path + "/FINANCIERO/operaciones/OP-ReimpresionComprobanteIngresoEgreso.jsp?nrooperacion="+numero,window,
++                               "dialogHeight:125px;dialogWidth:290px;center:yes; help:no;resizable:no;status:no");
++    }
++
++    function limpiarValores(){
++        onLoadTabla();
++        byID('codCliente').value="";
++        byID('cadenaTransaccion').value="";
++        byID('cboMoneda').value="1";
++        byID('cboTipoPago').value="EF";
++        byID('cuentas').value="";
++        byID('montoTotal').value="0.00";
++        byID('txtNroDocumento').value="";
++        byID('txtNombreCliente').value="";
++        byID('totalCapital').value="0.00";
++        byID('remuneracionesAcumuladas').value="0.00";
++        byID('Intangible').value="0.00";
++        byID('Tangible').value="0.00";
++    }
++    </script>
++</body>
++</html>
+\ No newline at end of file
+diff --git a/DELFINWEBNEW/WebRoot/FINANCIERO/cuentasPasivas/CP_T_RetiroDobleMonedaCTS_TABLA.jsp b/DELFINWEBNEW/WebRoot/FINANCIERO/cuentasPasivas/CP_T_RetiroDobleMonedaCTS_TABLA.jsp
+new file mode 100644
+index 0000000..dc6dfa9
+--- /dev/null
++++ b/DELFINWEBNEW/WebRoot/FINANCIERO/cuentasPasivas/CP_T_RetiroDobleMonedaCTS_TABLA.jsp
+@@ -0,0 +1,154 @@
++<!-- CP_T_RetiroDobleMonedaCTS_TABLA.jsp -->
++<%-- [RSIS-184] acnunez 16.11.2017 --%>
++<html>
++<head>
++    <%
++    String myData = (String) session.getAttribute("myData");
++    %>
++    <!-- Invocaci�n de Estilos -->
++    <link id="css" href="<%=request.getContextPath()%>/UTILS/css/DELFIN.css" rel="stylesheet" type="text/css">
++    
++    <!-- Invocaci�n de JavaScript -->
++    <script src="<%=request.getContextPath()%>/UTILS/Script/DELFIN-Tabla.js"></script>
++    <script src="<%=request.getContextPath()%>/UTILS/Script/MsgValidacion.js"></script>
++
++    <!-- Definici�n de estilos propias de la tabla -->  
++    <style>
++        .active-controls-grid {width:100%;height: 100%; font: menu;text-align: left;}
++        .active-column-0 {width: 120px; text-align: left;}<!-- numero de cuenta -->
++        .active-column-1 {width:  100px; text-align: left;}<!-- producto -->
++        .active-column-2 {width:  60px; text-align: center;}<!-- estado -->
++        .active-column-3 {width:  80px; text-align: center;}<!-- moneda cuenta -->
++        .active-column-4 {width:  160px; text-align: right;}<!-- monto intangible en moneda de la cuenta -->
++        .active-column-5 {width:  160px; text-align: right;}<!-- monto disponible en moneda de la cuenta -->
++        .active-column-6 {width:  150px; text-align: right;}<!-- tipo de cambio -->
++        .active-column-7 {width:  200px; text-align: right;}<!-- monto en moneda de la transaccion -->
++        .active-column-8 {width:  150px; text-align: right;}<!-- itf en moneda de la cuenta -->
++        .active-column-9 {width:  270px; text-align: left;}<!-- observaciones -->
++        
++        .active-grid-column {border-right: 1px solid threedlightshadow;}
++        .active-grid-row {border-bottom: 1px solid threedlightshadow;}
++    </style>
++</head>
++<body onhelp="">
++    <script>
++        var myData = [<%=myData%>];
++        var myColumns = ["N� Cuenta", "Producto", "Estado", "Moneda Cta", "Saldo Intangible de la Cta", "Saldo Disponible de la Cta","Tipo de Cambio a Aplicar","Monto a Retirar en Moneda de Cta", "ITF en Moneda de la Cta","Observaciones"];
++        var obj = new Active.Controls.Grid;
++
++        obj.setId("obj");
++        // grid header
++        obj.gridColumn = myColumns;
++        // grid data
++        obj.gridData = myData;
++        //  header methods
++        obj.getColumnCount = function() {return this.gridColumn.length};
++        obj.getColumnText = function(i){return this.gridColumn[i]};
++        //  data methods
++        obj.getDataCount = function() {return this.gridData.length};
++        obj.getDataText = function(i, j){return this.gridData[i][j]};
++        obj.setDataText = function(value, i, j){this.gridData[i][j] = value};
++
++
++        obj.setRowHeaderWidth("28px");
++        obj.setColumnHeaderHeight("20px");
++
++        var row = new Active.Templates.Row; 
++        row.setEvent("ondblclick", function(){this.action("myAction")});    
++        obj.setTemplate("row", row);
++        obj.setAction("myAction", function(src){
++            parent.onDetalleMovimiento();
++        });
++        //Evento Focus de la grilla 
++
++        //Evento que reconoce la tecla ENTER
++        var defaultEventHandler = obj.getEvent("onkeydown");
++        var myEventHandler = function(event){
++            if(event.keyCode==13){
++                parent.onDetalleMovimiento();
++            }
++            else if(event.keyCode==27){                  
++                parent.salir();
++                event.returnValue = false;              
++            }else if (event.keyCode == 8)event.returnValue = backspace();//Cancela Backspace
++            else if (event.keyCode == 112)parent.ayuda();//F1 ACERCA DE...
++            else if (event.ctrlKey){//Cancela Control
++                event.keyCode = 0;
++                event.returnValue = false; 
++            }else if (window.event && (event.keyCode == 114 || event.keyCode == 116 ||
++                event.keyCode == 117 || event.keyCode == 122)){//Cancela F3,F5,F6 y F11
++                event.keyCode = 505;
++                if(event.keyCode == 505)event.returnValue = false;  
++            }else
++                defaultEventHandler.call(this, event);
++        }
++        obj.setEvent("onkeydown", myEventHandler);  
++
++        //Pintado de la grilla
++        document.write(obj);
++
++        parent.document.getElementById("totalCapital").value=formateadorParam("${montoCapitalFinal}",2);
++        parent.document.getElementById("remuneracionesAcumuladas").value=formateadorParam("${montoRemuneracionesAcumuladas}",2);
++        parent.document.getElementById("Intangible").value=formateadorParam("${montoIntangible}",2);
++        parent.document.getElementById("Tangible").value=formateadorParam("${montoTangible}",2);
++        parent.document.getElementById("indicadorProcesamiento").value = "${procesamiento}";
++        
++        function getTableIndex() {
++            return obj.getProperty("selection/index");
++        }
++        
++        function mySelect(){
++        }
++
++        function datosPagina(pag){
++          //
++          //parent.window.document.ifrmRegistro.location.replace(urlPeriodo);
++        }
++    
++        function paginacion(direccion){
++        }
++    
++        function valores(){
++        }
++        
++        function devuelveFila(){
++            var tabla = new Array(NumerodeFilas());
++            if(myData.length){
++                for (e=0; e<NumerodeFilas(); e++){
++                    var fila = new Array(myColumns.length);
++                    for (i=0; i<myColumns.length; i++){
++                        fila[i] = obj.getDataProperty('text', e, i);
++                        if (i==myColumns.length-1){
++                            fila[i+1] = ";";
++                        }
++                    }
++                    tabla[e] = fila;
++                }
++            }
++            return  tabla;
++        }
++
++        function devuelveCuentas(){
++            var fila = new Array(NumerodeFilas());
++            if(NumerodeFilas()){
++                for (i=0; i<NumerodeFilas(); i++){
++                    fila[i] = obj.getDataProperty('text', i, 0);
++                }
++            }
++            return  fila;
++        }
++
++        if(myData.length>0){
++            obj.setSelectionIndex(0);
++        }
++        
++        function obtenerNumeroCuenta() {
++            return myData[getTableIndex()][0];
++        }
++        
++        function NumerodeFilas() {
++            return obj.getRowProperty("values").length;
++        }
++    </script>
++</body>
++</html>
+\ No newline at end of file
+diff --git a/DELFINWEBNEW/WebRoot/GENERAL/Busqueda.jsp b/DELFINWEBNEW/WebRoot/GENERAL/Busqueda.jsp
+index 94f7e00..8055410 100644
+--- a/DELFINWEBNEW/WebRoot/GENERAL/Busqueda.jsp
++++ b/DELFINWEBNEW/WebRoot/GENERAL/Busqueda.jsp
+@@ -1450,7 +1450,13 @@
+             <%}else if(strTabla.equals("DESTINOCREDITO")){%>
+                 document.title = "B�squeda Destino Cr�dito";
+                 url = '<%=path%>/Busqueda_DestinoCredito_Servlet?criterio='+criterio+'&valor='+valor;
+-            <%}%>          
++            <%}
++            //Inicio [RSIS-184] acnunez 06.11.2017
++            else if(strTabla.equals("CLIENTESCTS")){%>
++            document.title = "B�squeda de Clientes con CTS";
++            url = '<%=path%>/Busqueda_GeneralPersonas_Servlet?criterio='+criterio+'&valor='+valor+'&strCodEmp='+<%=strCodEmp%>+'&flag=cts';
++            <%}%>
++            //Fin[RSIS-184]
+     }else{
+             <%if(strTabla.equals("SUBCONCEPTO")){%>
+                 document.title = "B�squeda de Subconceptos";
+@@ -2389,7 +2395,13 @@
+                 document.title = "B�squeda Lote Apertura CTS";
+                 url = '<%=path%>/Busqueda_LoteAperturaCTS_Servlet?criterio='+criterio+'&valor='+valor;
+             <%-- Fin [Req. 14-150] --%>
++            <%}
++            //Inicio [RSIS-184] acnunez 06.11.2017
++            else if(strTabla.equals("CLIENTESCTS")){%>
++	            document.title = "B�squeda de Clientes con CTS";
++	            url = '<%=path%>/Busqueda_GeneralPersonas_Servlet?criterio='+criterio+'&valor='+valor+'&strCodEmp='+<%=strCodEmp%>+'&flag=cts';
+             <%}%>
++            //Fin[RSIS-184]
+ 
+                
+             }
+@@ -3383,7 +3395,13 @@
+             }else if(strTabla.equals("FUNCIONARIOS_NEGOCIOS")){%>
+             document.title = "B�squeda de Funcionarios de Negocio";
+             url = '<%=path%>/CR_T_MantenimientoUsuarioFuncionario_Servlet?action=BUSCAR_FUNCIONARIOS&criterio=' + criterio + '&valor=' + valor + '&codigoTipoBanca=<%=codigoTipoBanca%>' + '&filtrarUsuarioConectado=<%=filtrarUsuarioConectado%>';
++            <%}
++            //Inicio [RSIS-184] acnunez 06.11.2017
++            else if(strTabla.equals("CLIENTESCTS")){%>
++                document.title = "B�squeda de Clientes con CTS";
++                url = '<%=path%>/Busqueda_GeneralPersonas_Servlet?criterio='+criterio+'&valor='+valor+'&strCodEmp='+<%=strCodEmp%>+'&flag=cts';
+             <%}%>
++            //Fin[RSIS-184]
+ 
+             <%-- [Req.14-020] esalazar 11.05.2016 --%>
+             window.document.ifrmBusqueda.location.replace(url + '&timeCache=' + (new Date()).getTime());
+diff --git a/DELFINWEBNEW/WebRoot/WEB-INF/web.xml b/DELFINWEBNEW/WebRoot/WEB-INF/web.xml
+index ac23877..5000e98 100644
+--- a/DELFINWEBNEW/WebRoot/WEB-INF/web.xml
++++ b/DELFINWEBNEW/WebRoot/WEB-INF/web.xml
+@@ -25233,17 +25233,17 @@
+     	<url-pattern>/CR_T_BonosSolicitud_Servlet</url-pattern>
+     </servlet-mapping>
+     <!-- Fin [RSIS-156] agarcia 19.10.2017 -->
+-    <!-- Inicio [MSIS-388] gmeza 08.11.2017 -->
++    <!-- Inicio [RSIS-184] acnunez 07.11.2017 -->
+     <servlet>
+         <description>
+         </description>
+-        <display-name>CB_T_HistoricoEnvioMail_Servlet</display-name>
+-        <servlet-name>CB_T_HistoricoEnvioMail_Servlet</servlet-name>
+-        <servlet-class>admin.email.servlets.CB_T_HistoricoEnvioMail_Servlet</servlet-class>
++        <display-name>CP_C_RetiroDobleMonedaCTS_Servlet</display-name>
++        <servlet-name>CP_C_RetiroDobleMonedaCTS_Servlet</servlet-name>
++        <servlet-class>financ.cuentaspasivas.sevlets.CP_C_RetiroDobleMonedaCTS_Servlet</servlet-class>
+     </servlet>
+     <servlet-mapping>
+-        <servlet-name>CB_T_HistoricoEnvioMail_Servlet</servlet-name>
+-        <url-pattern>/CB_T_HistoricoEnvioMail_Servlet</url-pattern>
++        <servlet-name>CP_C_RetiroDobleMonedaCTS_Servlet</servlet-name>
++        <url-pattern>/CP_C_RetiroDobleMonedaCTS_Servlet</url-pattern>
+     </servlet-mapping>
+-    <!-- Fin [MSIS-388] -->
++    <!-- Fin [RSIS-184] -->
+ </web-app>
+diff --git a/DELFINWEBNEW/src/financ/cuentaspasivas/sevlets/CP_C_RetiroDobleMonedaCTS_Servlet.java b/DELFINWEBNEW/src/financ/cuentaspasivas/sevlets/CP_C_RetiroDobleMonedaCTS_Servlet.java
+new file mode 100644
+index 0000000..a87460a
+--- /dev/null
++++ b/DELFINWEBNEW/src/financ/cuentaspasivas/sevlets/CP_C_RetiroDobleMonedaCTS_Servlet.java
+@@ -0,0 +1,285 @@
++package financ.cuentaspasivas.sevlets;
++
++import java.util.ArrayList;
++import java.util.HashMap;
++import java.util.List;
++import java.util.Map;
++
++import javax.servlet.http.HttpSession;
++
++import admin.contab.beans.BeanCBMoneda;
++import admin.contab.entity.CBTiposMovimiento;
++import admin.util.Constante;
++import financ.cuentaspasivas.beans.BeanCPCuentasCTS;
++import financ.cuentaspasivas.beans.BeanCPMaestroCuentas;
++import financ.cuentaspasivas.beans.BeanCuentasRetiroDobleMoneda;
++import financ.cuentaspasivas.facade.CPCuentasPasivasCTSFacade;
++import financ.cuentaspasivas.facade.CPCuentasPasivasFacade;
++import financ.cuentaspasivas.facade.CPRetiroDobleMonedaCTSFacade;
++import financ.cuentaspasivas.local.CPCuentasPasivasCTSFacadeLocal;
++import financ.cuentaspasivas.local.CPCuentasPasivasFacadeLocal;
++import financ.cuentaspasivas.local.CPRetiroDobleMonedaCTSFacadeInterfaceLocal;
++import financ.util.FormatoFecha;
++import general.servlets.GE_BaseMethodInvocation_Servlet;
++import pe.com.tfc.utils.RequestMapping;
++import pe.com.tfc.utils.ResponseType;
++
++/**
++ * @author acnunez CP_C_RetiroDobleMonedaCTS_Servlet
++ * @since [RSIS-184] 02.11.2017
++ */
++public class CP_C_RetiroDobleMonedaCTS_Servlet extends GE_BaseMethodInvocation_Servlet {
++    private static final long serialVersionUID = -9193356114680294610L;
++    
++    private static final String PATH = "/FINANCIERO/cuentasPasivas/";
++    private static final String URL_CHILD = PATH + "CP_C_SeleccionDetalleTransaccionCTSDobleMoneda_CHILD.jsp";
++    private static final String URL_TABLA = PATH + "CP_T_RetiroDobleMonedaCTS_TABLA.jsp";
++    private static final String CONTENEDOR_RETIRO_DOBLE_MONEDA_CTS = "FINANCIERO/cuentasPasivas/CP_T_RetiroDobleMonedaCTS_CNTR.jsp";
++    
++    private CPCuentasPasivasFacadeLocal cpCuentasPasivasFacadeLocal;
++    private CPCuentasPasivasCTSFacadeLocal cpCuentasPasivasCTSFacadeLocal;
++    private CPRetiroDobleMonedaCTSFacadeInterfaceLocal cpRetiroDobleMonedaCTSFacadeInterfaceLocal;
++
++    protected void initEJBs() throws Exception {
++        cpCuentasPasivasFacadeLocal = lookup(CPCuentasPasivasFacade.LocalJNDIName);
++        cpCuentasPasivasCTSFacadeLocal = lookup(CPCuentasPasivasCTSFacade.LocalJNDIName);
++        cpRetiroDobleMonedaCTSFacadeInterfaceLocal = lookup(CPRetiroDobleMonedaCTSFacade.LocalJNDIName);
++    }
++
++    protected void execute(ServletParams servletParams) throws Exception {
++        removeSessionAttribute(servletParams, "myData");
++        contenedorRetiroDobleMonedaCTS(servletParams);
++    }
++
++    protected void contenedorRetiroDobleMonedaCTS(ServletParams servletParams) throws Exception {
++        List<BeanCBMoneda> lstBeanCBMoneda = new ArrayList<BeanCBMoneda>();
++        List<CBTiposMovimiento> lstCBTiposMovimiento = new ArrayList<CBTiposMovimiento>();
++        lstBeanCBMoneda = cpCuentasPasivasCTSFacadeLocal.listarMonedas(getBeanParametrosAuditoria(servletParams));
++        lstCBTiposMovimiento = cpCuentasPasivasCTSFacadeLocal.listarTiposPago(financ.util.Constante.TRANSACCION_VIA_DOBLE_MONEDA,
++                                                                              getBeanParametrosAuditoria(servletParams));
++        setRequestAttribute(servletParams, "listaMoneda", lstBeanCBMoneda);
++        setRequestAttribute(servletParams, "listaTipoPago", lstCBTiposMovimiento);
++
++        forward(servletParams, CONTENEDOR_RETIRO_DOBLE_MONEDA_CTS);
++    }
++
++    @RequestMapping(value = "TABLA_CTAS_CTS", url = URL_TABLA)
++    protected void tablaCuentasCTS(ServletParams servletParams) throws Exception {
++        removeSessionAttribute(servletParams, "myData");
++        List<BeanCuentasRetiroDobleMoneda> listBeanCuentasRetiroDobleMoneda = null;
++
++        String numeroCuenta = _toBlank(getParameter(servletParams, "numerocuenta"));
++        String descripcionProducto = _toBlank(getParameter(servletParams, "producto"));
++        String estado = _toBlank(getParameter(servletParams, "estado"));
++        String descripcionMoneda = _toBlank(getParameter(servletParams, "moneda"));
++        String montoTransaccion = "0.00";
++        String itf = "0.00";
++        String cadenaTransaccion = _toBlank(getParameter(servletParams, "cadenaTransaccion"));
++        String myData;
++        String procesamiento = "N";
++
++        if (!_isEmpty(numeroCuenta)) {
++            listBeanCuentasRetiroDobleMoneda = cpRetiroDobleMonedaCTSFacadeInterfaceLocal.setBeanCuentasRetiroDobleMoneda(cadenaTransaccion,
++                                                                                                                          numeroCuenta,
++                                                                                                                          descripcionProducto,
++                                                                                                                          estado,
++                                                                                                                          descripcionMoneda,
++                                                                                                                          montoTransaccion,
++                                                                                                                          itf);
++        }
++        if (_isEmpty(listBeanCuentasRetiroDobleMoneda)) {
++            listBeanCuentasRetiroDobleMoneda = new ArrayList<BeanCuentasRetiroDobleMoneda>();
++        }
++
++        myData = getMyData(listBeanCuentasRetiroDobleMoneda,
++                           "numeroCuenta",
++                           "descripcionProducto",
++                           "estado",
++                           "monedaCuenta",
++                           "montoIntangible",
++                           "montoDisponible",
++                           "tipoCambio",
++                           "montoTransaccion",
++                           "itf",
++                           "observacion");
++
++        setRequestAttribute(servletParams, "procesamiento", procesamiento);
++        setRequestAttribute(servletParams, "ConsolidadoTotal", "0.00");
++        setSessionAttribute(servletParams, "myData", myData.toString());
++        forward(servletParams);
++    }
++
++    @RequestMapping(value = "FORMULARIO_CTAS_CTS", url = URL_CHILD)
++    protected void formularioCuentasCTS(ServletParams servletParams) throws Exception {
++        List<BeanCPMaestroCuentas> lstBeanCPMaestroCuentas = new ArrayList<BeanCPMaestroCuentas>();
++        String codigoCliente = getParameter(servletParams, "codCliente");
++        String cadenaTransaccion = getParameter(servletParams, "cadenaTransaccion");
++        String cuentas = getParameter(servletParams, "cuentas");
++        String[] parts = cuentas.split(",");
++
++        lstBeanCPMaestroCuentas = cpCuentasPasivasFacadeLocal.obtenerCuentasByCodigoPersonaCTS(codigoCliente, "S", 0, 0);
++        
++        lstBeanCPMaestroCuentas = cpRetiroDobleMonedaCTSFacadeInterfaceLocal.nuevaListaCTS(lstBeanCPMaestroCuentas,
++                                                                                           parts);
++
++        setRequestAttribute(servletParams, "lstBeanCPMaestroCuentas", lstBeanCPMaestroCuentas);
++        setRequestAttribute(servletParams, "cadenaTransaccion", cadenaTransaccion);
++        
++        forward(servletParams);
++    }
++
++    @RequestMapping(value = "BUSQUEDA_DATOS_PERSONAS_CTS", responseType = ResponseType.XML)
++    public void busquedaDatosPersonaCTS(ServletParams servletParams) throws Exception {
++        String strNumeroCuenta = getParameter(servletParams, "nrocuenta");//numero de cuenta del banco
++        BeanCPCuentasCTS beanCPCuentasCTS = cpCuentasPasivasCTSFacadeLocal.consultaBeanCPCuentasCTS(strNumeroCuenta,
++                                                                                                    getBeanParametrosAuditoria(servletParams));
++
++        StringBuilder sbRespuesta = new StringBuilder();
++        sbRespuesta.append("<codigoError>" + valorFormat(NO_ERROR) + "</codigoError>");
++        sbRespuesta.append("<mensajeError>" + valorFormat(CADENA_VACIA) + "</mensajeError>");
++        sbRespuesta.append("<NumeroCuenta>" + strNumeroCuenta + "</NumeroCuenta>");
++        sbRespuesta.append("<nombreCliente>" + beanCPCuentasCTS.getNombreCliente() + "</nombreCliente>");
++        sbRespuesta.append("<documentoCliente>" + beanCPCuentasCTS.getDOI() + "</documentoCliente>");
++        sbRespuesta.append("<RemuneracionAcumulada>" + beanCPCuentasCTS.getRemuneracionAcumulada() + "</RemuneracionAcumulada>");
++        sbRespuesta.append("<NroRemuneracionAcumulada>" + beanCPCuentasCTS.getNumeroRemAcumulada() + "</NroRemuneracionAcumulada>");
++        sbRespuesta.append("<FechaRemuneracionAcumulada>" + FormatoFecha.dateUtilToStringDDMMYYYY(beanCPCuentasCTS.getFechaActRemAcumulada()) + "</FechaRemuneracionAcumulada>");
++        sbRespuesta.append("<codigoMoneda>" + beanCPCuentasCTS.getCodigoMoneda() + "</codigoMoneda>");
++        responseXML(servletParams, sbRespuesta.toString());
++    }
++
++    @RequestMapping(value = "ELIMINAR_CUENTA_TABLA_CTS", url = URL_TABLA)
++    public void eliminarCuentaTablaCTS(ServletParams servletParams) throws Exception {
++        removeSessionAttribute(servletParams, "myData");
++        List<BeanCuentasRetiroDobleMoneda> listBeanCuentasRetiroDobleMoneda = null;
++
++        String numeroCuenta = _toBlank(getParameter(servletParams, "numerocuenta"));
++        String cadenaTransaccion = _toBlank(getParameter(servletParams, "cadenaTransaccion"));
++        String myData;
++        String procesamiento = "N";
++
++        if (!_isEmpty(numeroCuenta)) {
++            listBeanCuentasRetiroDobleMoneda = cpRetiroDobleMonedaCTSFacadeInterfaceLocal.quitarCuentaListaCTS(cadenaTransaccion, numeroCuenta);
++        }
++        if (_isEmpty(listBeanCuentasRetiroDobleMoneda)) {
++            listBeanCuentasRetiroDobleMoneda = new ArrayList<BeanCuentasRetiroDobleMoneda>();
++        }
++
++        myData = getMyData(listBeanCuentasRetiroDobleMoneda,
++                           "numeroCuenta",
++                           "descripcionProducto",
++                           "estado",
++                           "monedaCuenta",
++                           "montoIntangible",
++                           "montoDisponible",
++                           "tipoCambio",
++                           "montoTransaccion",
++                           "itf",
++                           "observacion");
++
++        setRequestAttribute(servletParams, "procesamiento", procesamiento);
++        setSessionAttribute(servletParams, "myData", myData.toString());
++        forward(servletParams);
++    }
++
++    @RequestMapping(value = "PROCESAR", url = URL_TABLA)
++    public void procesarCTS(ServletParams servletParams) throws Exception {
++        removeSessionAttribute(servletParams, "myData");
++        List<BeanCuentasRetiroDobleMoneda> listBeanCuentasRetiroDobleMoneda = null;
++        Map<String, Object> output = new HashMap<String, Object>();
++
++        String cuentas = _toBlank(getParameter(servletParams, "cuentas"));
++        String cadenaTransaccion = _toBlank(getParameter(servletParams, "cadenaTransaccion"));
++        String monedaTransaccion = _toBlank(getParameter(servletParams, "cboMoneda"));
++        String formaRetiro = _toBlank(getParameter(servletParams, "cboTipoPago"));
++        String montoTotal = _toBlank(getParameter(servletParams, "montoTotal"));
++        String indicadorProcesamiento = _toBlank(getParameter(servletParams, "indicadorProcesamiento"));
++        
++        String myData;
++        String montoCapitalFinal;
++        String montoTangible;
++        String montoIntangible;
++        String montoRemuneracionesAcumuladas;
++        String procesamiento = "N";
++
++        output = cpRetiroDobleMonedaCTSFacadeInterfaceLocal.procesarListaCTS(cadenaTransaccion,
++                                                                             cuentas,
++                                                                             monedaTransaccion,
++                                                                             formaRetiro,
++                                                                             montoTotal,
++                                                                             indicadorProcesamiento,
++                                                                             getBeanParametrosAuditoria(servletParams));
++
++        listBeanCuentasRetiroDobleMoneda = (List<BeanCuentasRetiroDobleMoneda>) output.get("lista");
++
++        if (_isEmpty(listBeanCuentasRetiroDobleMoneda)) {
++            listBeanCuentasRetiroDobleMoneda = new ArrayList<BeanCuentasRetiroDobleMoneda>();
++        }
++        montoCapitalFinal = _toStr(output.get("montoCapitalFinal"));
++        montoTangible = _toStr(output.get("montoTangible"));
++        montoIntangible = _toStr(output.get("montoIntangible"));
++        montoRemuneracionesAcumuladas = _toStr(output.get("montoRemuneracionesAcumuladas"));
++
++        myData = getMyData(listBeanCuentasRetiroDobleMoneda,
++                           "numeroCuenta",
++                           "descripcionProducto",
++                           "estado",
++                           "monedaCuenta",
++                           "montoIntangible",
++                           "montoDisponible",
++                           "tipoCambio",
++                           "montoTransaccion",
++                           "itf",
++                           "observacion");
++
++        if (_equiv(output.get("codigoError").toString(),NO_ERROR)){
++            procesamiento = "S";
++        }else{
++            montoCapitalFinal = "0.00";
++            montoTangible = "0.00";
++            montoIntangible = "0.00";
++            montoRemuneracionesAcumuladas = "0.00";
++        }
++        
++        setRequestAttribute(servletParams, "montoCapitalFinal", montoCapitalFinal);
++        setRequestAttribute(servletParams, "montoTangible", montoTangible);
++        setRequestAttribute(servletParams, "montoIntangible", montoIntangible);
++        setRequestAttribute(servletParams, "montoRemuneracionesAcumuladas", montoRemuneracionesAcumuladas);
++        setRequestAttribute(servletParams, "procesamiento", procesamiento);
++        setSessionAttribute(servletParams, "myData", myData.toString());
++        forward(servletParams);
++    }
++
++    @RequestMapping(value = "GRABAR", responseType = ResponseType.XML)
++    public void grabarRetiroDobleMonedaCTS(ServletParams servletParams) throws Exception {
++        removeSessionAttribute(servletParams, "myData");
++        Map<String, Object> output = new HashMap<String, Object>();
++
++        String cuentas = _toBlank(getParameter(servletParams, "cuentas"));
++        String cadenaTransaccion = _toBlank(getParameter(servletParams, "cadenaTransaccion"));
++        String monedaTransaccion = _toBlank(getParameter(servletParams, "cboMoneda"));
++        String formaRetiro = _toBlank(getParameter(servletParams, "cboTipoPago"));
++        String montoTotal = _toBlank(getParameter(servletParams, "montoTotal"));
++        String indicadorProcesamiento = _toBlank(getParameter(servletParams, "indicadorProcesamiento"));
++        String codEntidadManejadoraValores = getSessionAttribute(servletParams,
++                                                                 "codEntidadManejadoraValores",
++                                                                 String.class);
++
++        output = cpRetiroDobleMonedaCTSFacadeInterfaceLocal.grabarRetiroDobleMonedaCTS(cadenaTransaccion,
++                                                                                       cuentas,
++                                                                                       monedaTransaccion,
++                                                                                       formaRetiro,
++                                                                                       montoTotal,
++                                                                                       codEntidadManejadoraValores,
++                                                                                       indicadorProcesamiento,
++                                                                                       getBeanParametrosAuditoria(servletParams));
++
++        StringBuilder sbRespuesta = new StringBuilder();
++        sbRespuesta.append("<codigoError>" + valorFormat(output.get("codigoError").toString()) + "</codigoError>");
++        if (!_equiv(output.get("codigoError").toString(), NO_ERROR)){
++            sbRespuesta.append("<mensajeError>" + valorFormat(output.get("mensajeError").toString()) + "</mensajeError>");
++        }else{
++            sbRespuesta.append("<listaTransacciones>" + valorFormat(output.get("listaTransacciones").toString()) + "</listaTransacciones>");
++        }
++        responseXML(servletParams, sbRespuesta.toString());
++    }
++}
+diff --git a/DELFINWEBNEW/src/financ/operaciones/servlets/OP_ImpresionBoletas_Servlet_T3.java b/DELFINWEBNEW/src/financ/operaciones/servlets/OP_ImpresionBoletas_Servlet_T3.java
+index b80eedd..d38f1a0 100644
+--- a/DELFINWEBNEW/src/financ/operaciones/servlets/OP_ImpresionBoletas_Servlet_T3.java
++++ b/DELFINWEBNEW/src/financ/operaciones/servlets/OP_ImpresionBoletas_Servlet_T3.java
+@@ -1972,6 +1972,12 @@
+ 					double dblMontoAjuste = 0;
+ 					String simboloMonedaP2 = "";
+ 					String flagITF = "0";
++					//Inicio [RSIS-184] acnunez 26.11.2017
++					Boolean flagCV = false;
++					Double montoCV=0.0;
++					Double TCCV=1.0;
++					String strSimboloMonedaTC = "";
++					//fin [RSIS-184]
+ 					if(beanOPCabeceraTransaccionesDiarias.getLstTransaccionesSecundarias()!=null &&
+ 							beanOPCabeceraTransaccionesDiarias.getLstTransaccionesSecundarias().size()>0	){
+ 						for(int k=0;k<beanOPCabeceraTransaccionesDiarias.getLstTransaccionesSecundarias().size();k++){
+@@ -1983,7 +1989,17 @@
+ 								dblMontoAjuste = 	new BigDecimal(dblMontoPagar.toString()).setScale(2, BigDecimal.ROUND_HALF_EVEN).doubleValue();
+ 							}if(transaccionSecundaria.getCodigoOperacion().equals("OP028")){
+ 								flagITF = "1";
++							}if (transaccionSecundaria.getCodigoOperacion().equals("OP022") || transaccionSecundaria.getCodigoOperacion().equals("OP007")){//Inicio [RSIS-184] acnunez 26.11.2017
++							    flagCV = true;
++							    montoCV=transaccionSecundaria.getMontoMovimiento();
++							    TCCV=transaccionSecundaria.getTipoCambio();
++							    if (transaccionSecundaria.getCodigoOperacion().equals("OP022") ){
++							        strSimboloMonedaTC = "S/.";
++							    }else{
++							        strSimboloMonedaTC = "$";
++							    }
+ 							}
++							//Fin [RSIS-184]
+ 						}
+ 					}
+ 
+@@ -2021,6 +2037,10 @@
+ 		                  out.println("MONTO AJUSTE  : "+rellenaEspaciosIzquierda(new BigDecimal(dblMontoAjuste).setScale(2, BigDecimal.ROUND_HALF_EVEN).toString(),10)+"  Divisa : "+strSimboloMoneda);
+ 		                  out.println("MONTO A PAGAR  : "+rellenaEspaciosIzquierda(new BigDecimal(dblMontoMovimiento+dblMontoAjuste).setScale(2, BigDecimal.ROUND_HALF_EVEN).toString(),10)+"  Divisa : "+strSimboloMoneda);
+ 		               }
++		               if (flagCV){//Inicio [RSIS-184] acnunez 27.11.2017
++		                   out.println("MONTO ENTREGA  : "+new BigDecimal(montoCV).setScale(2, BigDecimal.ROUND_HALF_EVEN).toString()+"  Divisa : "+strSimboloMonedaTC);
++	                       out.println("TIPO CAMBIO    : "+new BigDecimal(TCCV).setScale(2, BigDecimal.ROUND_HALF_EVEN).toString());
++		               }//Fin [RSIS-184]
+ 		               out.println("DNI            : "+strNumeroDocumentoIdentidad);
+ 		               out.println("NOMBRE         : "+strNombreReferencia);
+ 		               if("EF".equals(strTipoMovimiento)){
+diff --git a/DELFINWEBNEW/src/general/busquedas/Busqueda_GeneralPersonas_Servlet.java b/DELFINWEBNEW/src/general/busquedas/Busqueda_GeneralPersonas_Servlet.java
+index 2591acb..0cd80f1 100644
+--- a/DELFINWEBNEW/src/general/busquedas/Busqueda_GeneralPersonas_Servlet.java
++++ b/DELFINWEBNEW/src/general/busquedas/Busqueda_GeneralPersonas_Servlet.java
+@@ -23,6 +23,7 @@
+ import financ.clientes.local.CLPersonasInterfaceLocal;
+ import financ.util.CadenaUtil;
+ import general.utils.Paginacion;
++import pe.com.tfc.utils.StringUtil;
+ 
+ /**
+  * Busqueda_GeneralPersonas_Servlet
+@@ -281,6 +282,67 @@
+ 			e.printStackTrace();
+ 		}
+         //Inicio [Req. 14-121] aromero 08.09.2014
++		//Inicio [RSIS-184] acnunez 06.11.2017
++        } else if (flag.equalsIgnoreCase("cts")) {
++            try {
++                lstPersonas = clPersonaFacadeInterfaceLocal.findByClientesCTS(strCriterio,strValor,strCodEmp,StringUtil.toStr(inPagina));
++                if (lstPersonas.size() > 0) {
++                    for (int i = 0; i < lstPersonas.size(); i++) {
++                        beanPersonas = (BeanCLPersonas) lstPersonas.get(i);
++                        myData.append("[");
++
++                        //codigo persona 0
++                        myData.append(beanPersonas.getStrCodigoPersona() != null ? "\"" + beanPersonas.getStrCodigoPersona() + "\"," : "\"\",");
++
++                        //numero de documento de identidad  1
++                        String docu = beanPersonas.getStrNumeroDocumentoIdentidad();
++                        myData.append("\"" + docu + "\",");
++
++                        //nombre o  razon social 2
++                        razonSocial = beanPersonas.getStrNombreoRazonSocial() != null ? beanPersonas.getStrNombreoRazonSocial() : "";
++                        myData.append("\"" + CadenaUtil.preparaCadena(razonSocial) + "\",");
++
++                        //tipo documento de identidad 3 
++                        String codigoTipoDocumento = beanPersonas.getStrCodigoTipoDocumento() != null ? beanPersonas.getStrCodigoTipoDocumento() : "";
++                        myData.append("\"" + CadenaUtil.preparaCadena(codigoTipoDocumento) + "\",");
++
++                        //fecha nac 4
++                        myData.append(beanPersonas.getStrFechaNacimiento() != null ? "\"" + beanPersonas.getStrFechaNacimiento() + "\"," : "\"\",");
++
++                        //Direccion completa 5
++                        String direccionCompleta = beanPersonas.getStrDireccionCompleta() != null ? beanPersonas.getStrDireccionCompleta() : "";
++                        myData.append("\"" + CadenaUtil.preparaCadena(direccionCompleta) + "\",");
++
++                        //codigo tipo persona 6
++                        myData.append(beanPersonas.getStrCodigoTipoPersona() == null ? "\"\"," : "\"" + beanPersonas.getStrCodigoTipoPersona() + "\",");
++
++                        //Condicion de afilacion 7
++                        myData.append(beanPersonas.getStrCondicionAfiliacion() == null ? "\"\"," : "\"" + (beanPersonas.getStrCondicionAfiliacion().equals("C") ? "CLIENTE" : "PERSONA") + "\",");
++
++                        //codigo SBS 8
++                        myData.append(beanPersonas.getStrCodigoDeudorSbs() == null ? "\"\"," : "\"" + beanPersonas.getStrCodigoDeudorSbs() + "\",");
++
++                        //codigo Area Laboral 9
++                        myData.append(beanPersonas.getStrAreaLaboralVinculacionEmpresa() == null ? "\"\"," : "\"" + beanPersonas.getStrAreaLaboralVinculacionEmpresa() + "\",");
++
++                        //Descripcion Area Laboral 10
++                        myData.append(beanPersonas.getDescripcionAreaLaboral() == null ? "\"\"," : "\"" + beanPersonas.getDescripcionAreaLaboral() + "\",");
++
++                        //Ruc
++                        myData.append(beanPersonas.getStrNumeroRuc() == null ? "\"\"," : "\"" + beanPersonas.getStrNumeroRuc() + "\"");
++
++                        myData.append("]");
++                        if (i < lstPersonas.size() - 1)
++                            myData.append(",");
++                        totReg=Integer.parseInt(beanPersonas.getCanReg().toString());
++                    }
++                }
++
++            } catch (Exception e) {
++                System.out.println("Error en Servlet:" + e.getMessage());
++                e.printStackTrace();
++            }
++            //Fin [RSIS-184]
+         }else{
+             try{
+                 

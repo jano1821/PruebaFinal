@@ -1,0 +1,1301 @@
+diff --git a/FINANCIERONEW/.classpath b/FINANCIERONEW/.classpath
+index 6a9e136..21e7ae4 100644
+--- a/FINANCIERONEW/.classpath
++++ b/FINANCIERONEW/.classpath
+@@ -1,20 +1,30 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<classpath>
+-	<classpathentry kind="src" path="src"/>
+-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+-	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
+-	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_CORE"/>
+-	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_JAXB2"/>
+-	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_HTTP_CLIENT"/>
+-	<classpathentry combineaccessrules="false" kind="src" path="/ADMINISTRATIVONEW"/>
+-	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE_TOOLS"/>
+-	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_CORE"/>
+-	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_EXTRAS"/>
+-	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_EM"/>
+-	<classpathentry kind="lib" path="/DELFINWEBNEW/WebRoot/WEB-INF/lib/poi-3.0.1-FINAL-20070705.jar"/>
+-	<classpathentry kind="lib" path="classes12.jar"/>
+-	<classpathentry kind="lib" path="com.ibm.mqjms.jar"/>
+-	<classpathentry kind="lib" path="jboss-annotations-ejb3.jar"/>
+-	<classpathentry kind="lib" path="/DELFINWEBNEW/WebRoot/WEB-INF/lib/jasperreports-3.0.0.jar"/>
+-	<classpathentry kind="output" path="classes"/>
+-</classpath>
+\ No newline at end of file
++<?xml version="1.0" encoding="UTF-8"?>
++<classpath>
++	<classpathentry kind="src" path="src"/>
++	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
++	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_CORE"/>
++	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_JAXB2"/>
++	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_HTTP_CLIENT"/>
++	<classpathentry combineaccessrules="false" kind="src" path="/ADMINISTRATIVONEW"/>
++	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE_TOOLS"/>
++	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_CORE"/>
++	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_EXTRAS"/>
++	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_EM"/>
++	<classpathentry kind="lib" path="/DELFINWEBNEW/WebRoot/WEB-INF/lib/poi-3.0.1-FINAL-20070705.jar"/>
++	<classpathentry kind="lib" path="classes12.jar"/>
++	<classpathentry kind="lib" path="com.ibm.mqjms.jar"/>
++	<classpathentry kind="lib" path="jboss-annotations-ejb3.jar"/>
++	<classpathentry kind="lib" path="/DELFINWEBNEW/WebRoot/WEB-INF/lib/jasperreports-3.0.0.jar"/>
++	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_07">
++		<attributes>
++			<attribute name="owner.project.facets" value="java"/>
++		</attributes>
++	</classpathentry>
++	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/JBoss 4.2 Runtime">
++		<attributes>
++			<attribute name="owner.project.facets" value="jst.ejb"/>
++		</attributes>
++	</classpathentry>
++	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
++	<classpathentry kind="output" path="classes"/>
++</classpath>
+diff --git a/FINANCIERONEW/.project b/FINANCIERONEW/.project
+index ad8cb28..f16645c 100644
+--- a/FINANCIERONEW/.project
++++ b/FINANCIERONEW/.project
+@@ -6,6 +6,11 @@
+ 	</projects>
+ 	<buildSpec>
+ 		<buildCommand>
++			<name>org.eclipse.wst.common.project.facet.core.builder</name>
++			<arguments>
++			</arguments>
++		</buildCommand>
++		<buildCommand>
+ 			<name>org.eclipse.jdt.core.javabuilder</name>
+ 			<arguments>
+ 			</arguments>
+@@ -32,9 +37,12 @@
+ 		</buildCommand>
+ 	</buildSpec>
+ 	<natures>
++		<nature>org.eclipse.jem.workbench.JavaEMFNature</nature>
++		<nature>org.eclipse.wst.common.modulecore.ModuleCoreNature</nature>
+ 		<nature>com.genuitec.eclipse.ast.deploy.core.deploymentnature</nature>
+ 		<nature>com.genuitec.eclipse.j2eedt.core.ejbnature</nature>
+ 		<nature>org.eclipse.dali.core.persistenceNature</nature>
+ 		<nature>org.eclipse.jdt.core.javanature</nature>
++		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
+ 	</natures>
+ </projectDescription>
+diff --git a/FINANCIERONEW/src/financ/clientes/facade/CLPersonaFacade.java b/FINANCIERONEW/src/financ/clientes/facade/CLPersonaFacade.java
+index 7133b81..cb03b67 100644
+--- a/FINANCIERONEW/src/financ/clientes/facade/CLPersonaFacade.java
++++ b/FINANCIERONEW/src/financ/clientes/facade/CLPersonaFacade.java
+@@ -4917,4 +4917,33 @@
+         }
+     }
+     // Fin [Req. S16-003] dlazo 11.02.2016
++    //Inicio [RSIS-184] acnunez 06.11.2017
++    public List<BeanCLPersonas> findByClientesCTS(String strTipoBusqueda,
++                                                  String strValordeBusqueda,
++                                                  String codigoEmpresa,
++                                                  String posicionIni) throws Exception {
++        List<BeanCLPersonas> listBeanCLPersonas = null;
++
++        listBeanCLPersonas = clPersonasInterfaceLocal.findByClientesCTS(strTipoBusqueda,
++                                                                        strValordeBusqueda,
++                                                                        codigoEmpresa,
++                                                                        posicionIni);
++
++        List<BeanCLPersonas> lstPersonasFinal = new ArrayList<BeanCLPersonas>();
++        for (int i = 0; i < listBeanCLPersonas.size(); i++) {
++            BeanCLPersonas beanCLPersonas = (BeanCLPersonas) listBeanCLPersonas.get(i);
++            if (beanCLPersonas.getStrCodigoTipoPersona().equals("N")) {
++                CLPersonasNaturales clPersonasNaturales = clPersonasNaturalesInterfaceLocal.findById(beanCLPersonas.getStrCodigoPersona());
++                if (clPersonasNaturales.getFechaNacimiento() != null)
++                    beanCLPersonas.setStrFechaNacimiento(FormatoFecha.dateToStringDDMMYYYYY(clPersonasNaturales.getFechaNacimiento()));
++            } else {
++                CLPersonasJuridicas clPersonasJuridicas = clPersonasJuridicasInterfaceLocal.findById(beanCLPersonas.getStrCodigoPersona());
++                if (clPersonasJuridicas.getFechaInscripcionRegistrosPublicos() != null)
++                    beanCLPersonas.setStrFechaNacimiento(FormatoFecha.dateToStringDDMMYYYYY(clPersonasJuridicas.getFechaInscripcionRegistrosPublicos()));
++            }
++            lstPersonasFinal.add(beanCLPersonas);
++        }
++        return lstPersonasFinal;
++    }
++    //Fin [RSIS-184]
+ }
+diff --git a/FINANCIERONEW/src/financ/clientes/local/CLPersonaFacadeInterfaceLocal.java b/FINANCIERONEW/src/financ/clientes/local/CLPersonaFacadeInterfaceLocal.java
+index c72ce52..796fcbb 100644
+--- a/FINANCIERONEW/src/financ/clientes/local/CLPersonaFacadeInterfaceLocal.java
++++ b/FINANCIERONEW/src/financ/clientes/local/CLPersonaFacadeInterfaceLocal.java
+@@ -526,4 +526,19 @@
+      */
+     public BeanCLPersona findByDocumentoIdentidad(String numeroDocumento,
+                                                   BeanParametrosAuditoria beanParametrosAuditoria) throws Exception;
++    
++    /**
++     * @author acnunez
++     * @since [RSIS-184] 06.11.2017
++     * @param strTipoBusqueda
++     * @param strValordeBusqueda
++     * @param codigoEmpresa
++     * @param posicionIni
++     * @return
++     * @throws Exception
++     */
++    public List<BeanCLPersonas> findByClientesCTS(String strTipoBusqueda,
++                                                  String strValordeBusqueda,
++                                                  String codigoEmpresa,
++                                                  String posicionIni) throws Exception;
+ }
+diff --git a/FINANCIERONEW/src/financ/clientes/local/CLPersonasInterfaceLocal.java b/FINANCIERONEW/src/financ/clientes/local/CLPersonasInterfaceLocal.java
+index 7315128..b740e06 100644
+--- a/FINANCIERONEW/src/financ/clientes/local/CLPersonasInterfaceLocal.java
++++ b/FINANCIERONEW/src/financ/clientes/local/CLPersonasInterfaceLocal.java
+@@ -496,4 +496,19 @@
+      * @return List<CLPersonas>
+      */
+     public List<CLPersonas> findByGrupoEconomico(String criterio, String valor, String codigoPersona, int posicionInicial);
++    
++    /**
++     * @author acnunez
++     * @since [RSIS-184] 06.11.2017
++     * @param strTipoBusqueda
++     * @param strValordeBusqueda
++     * @param codigoEmpresa
++     * @param posicionIni
++     * @return
++     * @throws Exception
++     */
++    public List<BeanCLPersonas> findByClientesCTS(String strTipoBusqueda,
++                                                  String strValordeBusqueda,
++                                                  String codigoEmpresa,
++                                                  String posicionIni) throws Exception ;
+ }
+\ No newline at end of file
+diff --git a/FINANCIERONEW/src/financ/clientes/session/CLPersonasSession.java b/FINANCIERONEW/src/financ/clientes/session/CLPersonasSession.java
+index af7147a..671fb00 100644
+--- a/FINANCIERONEW/src/financ/clientes/session/CLPersonasSession.java
++++ b/FINANCIERONEW/src/financ/clientes/session/CLPersonasSession.java
+@@ -3724,4 +3724,82 @@
+        return (List<CLPersonas>) query.getResultList();
+     }
+     //Fin [S14-020] 02.03.2016
++    
++    //Inicio [RSIS-184] acnunez 06.11.2017
++    public List<BeanCLPersonas> findByClientesCTS(String strTipoBusqueda,
++                                                  String strValordeBusqueda,
++                                                  String codigoEmpresa,
++                                                  String posicionIni) throws Exception {
++
++        List lstBeanCLPersonas = new ArrayList<BeanCLPersonas>();
++
++        List<LAListaPEP> lstPEP = new ArrayList<LAListaPEP>();
++
++        try {
++            int posIni = (Integer.parseInt(posicionIni) - 1) * Paginacion.NUM_REG;
++            String strCadena = "";
++            // Fecha_Hora hora = new Fecha_Hora();
++            int edad = 0;
++
++            if ("Nombre".equals(strTipoBusqueda)) {
++                strCadena = " nombreoRazonSocial like :valorBusqueda ";
++                strValordeBusqueda = "%"+strValordeBusqueda+"%";
++            } else if (strTipoBusqueda.equals("DOI")) {
++                strCadena = " numeroDocumentoIdentidad = :valorBusqueda ";
++            }
++            /////////////////CANTIDAD TOTAL DE REGISTROS//////////////////////////
++            String queryStringCount = "select count(codigoPersona) from CLPersonas " + 
++                                      " where " + strCadena + " and " + 
++                                      " codigoEmpresa =:codigoEmpresa and " + 
++                                      " codigoPersona in (select clClientes.codigoCliente from CPMaestroCuentas " +
++                                                          "where numeroCuenta in  (select numeroCuenta from CPCuentasCTS ) )";
++            Long cantReg = (Long) entityManager.createQuery(queryStringCount).setParameter("valorBusqueda",
++                                                                                           strValordeBusqueda).setParameter("codigoEmpresa",
++                                                                                                                            codigoEmpresa).getSingleResult();
++            //////////////////////////////////////////////////////////////////////
++            String queryString = "select a from CLPersonas a" + 
++                                 " where " + strCadena + " and " + 
++                                 " codigoEmpresa =:codigoEmpresa and " + 
++                                 " codigoPersona in (select clClientes.codigoCliente from CPMaestroCuentas " +
++                                                     "where numeroCuenta in  (select numeroCuenta from CPCuentasCTS ) )";
++            List lstCLPersonas = entityManager.createQuery(queryString).setParameter("valorBusqueda",
++                                                                                     strValordeBusqueda).setParameter("codigoEmpresa",
++                                                                                                                      codigoEmpresa).setFirstResult(posIni).setMaxResults(Paginacion.NUM_REG).getResultList();
++
++            Iterator itLstCLPersonas = lstCLPersonas.iterator();
++            BeanCLPersonas beanCLPersonas = null;
++
++            while (itLstCLPersonas.hasNext()) {
++                CLPersonas clPersonas = (CLPersonas) itLstCLPersonas.next();
++                beanCLPersonas = new BeanCLPersonas();
++                beanCLPersonas.setStrCodigoPersona(clPersonas.getCodigoPersona());
++                beanCLPersonas.setStrNombreoRazonSocial(clPersonas.getNombreoRazonSocial());
++                beanCLPersonas.setStrCodigoTipoDocumento(clPersonas.getClTipoDocumentoPersona().getCodigoTipoDocumentoPersona());
++                beanCLPersonas.setStrDescripcionTipoDocumento(clPersonas.getClTipoDocumentoPersona().getDescripcion());
++                beanCLPersonas.setStrNumeroDocumentoIdentidad(clPersonas.getNumeroDocumentoIdentidad());
++                beanCLPersonas.setStrCodigoTipoPersona(clPersonas.getClTipoPersona().getCodigoTipoPersona());
++                beanCLPersonas.setCanReg(cantReg);
++
++                if (beanCLPersonas.getStrNumeroDocumentoIdentidad() != null && beanCLPersonas.getStrNumeroDocumentoIdentidad().equals("91000000")) {
++                    lstPEP = laListaPEPInterfaceLocal.findByNombrePersonaAndEstado(clPersonas.getNombreoRazonSocial(),
++                                                                                   "S");
++                } else {
++                    lstPEP = laListaPEPInterfaceLocal.findByTipoDocumentoAndNumeroDocumentoAndEstado(beanCLPersonas.getStrCodigoTipoDocumento(),
++                                                                                                     beanCLPersonas.getStrNumeroDocumentoIdentidad(),
++                                                                                                     "S");
++                }
++
++                if (lstPEP != null && lstPEP.size() > 0) {
++                    beanCLPersonas.setIndEstadoLAPEP("S");
++                }
++
++                lstBeanCLPersonas.add(beanCLPersonas);
++            }
++
++        } catch (RuntimeException re) {
++            throw re;
++        }
++        return lstBeanCLPersonas;
++    }
++    //Fin [RSIS-184]
+ }
+\ No newline at end of file
+diff --git a/FINANCIERONEW/src/financ/cuentaspasivas/beans/BeanCPDatosRetiroCTS.java b/FINANCIERONEW/src/financ/cuentaspasivas/beans/BeanCPDatosRetiroCTS.java
+index ad77c45..9227878 100644
+--- a/FINANCIERONEW/src/financ/cuentaspasivas/beans/BeanCPDatosRetiroCTS.java
++++ b/FINANCIERONEW/src/financ/cuentaspasivas/beans/BeanCPDatosRetiroCTS.java
+@@ -49,6 +49,7 @@
+    private String codigoEntidadFinancieraCargo;
+    private String numeroCuentaCargoEntidadFinanciera;
+    private String tipoCambio; //[RSIS-65] kdelacruz 17.08.2017
++   private Double montoIntangible;//[RSIS-184] acnunez 08.11.2017
+ 
+    public String getNumeroCuenta() {
+       return numeroCuenta;
+@@ -338,4 +339,15 @@
+     public void setTipoCambio(String tipoCambio) {
+         this.tipoCambio = tipoCambio;
+     }
++    //Inicio [RSIS-184] acnunez 08.11.2017
++
++    public Double getMontoIntangible() {
++        return montoIntangible;
++    }
++
++    public void setMontoIntangible(Double montoIntangible) {
++        this.montoIntangible = montoIntangible;
++    }
++
++    //Fin [RSIS-184]
+ }
+diff --git a/FINANCIERONEW/src/financ/cuentaspasivas/beans/BeanCuentasRetiroDobleMoneda.java b/FINANCIERONEW/src/financ/cuentaspasivas/beans/BeanCuentasRetiroDobleMoneda.java
+new file mode 100644
+index 0000000..76bd49f
+--- /dev/null
++++ b/FINANCIERONEW/src/financ/cuentaspasivas/beans/BeanCuentasRetiroDobleMoneda.java
+@@ -0,0 +1,121 @@
++package financ.cuentaspasivas.beans;
++
++/**
++ * 
++ * @author acnunez
++ * @since [RSIS-184] 24.11.2017
++ *
++ */
++
++public class BeanCuentasRetiroDobleMoneda {
++
++    private String numeroCuenta;
++    private String descripcionProducto;
++    private String estado;
++    private String monedaCuenta;
++    private String montoTransaccion;
++    private String itf;
++    private Double porcentaje;
++    private String montoDisponible;
++    private String tipoCambio;
++    private String montoIntangible;
++    private String observacion;
++    private String numeroTransaccion;
++
++    public String getNumeroCuenta() {
++        return numeroCuenta;
++    }
++
++    public void setNumeroCuenta(String numeroCuenta) {
++        this.numeroCuenta = numeroCuenta;
++    }
++
++    public String getDescripcionProducto() {
++        return descripcionProducto;
++    }
++
++    public void setDescripcionProducto(String descripcionProducto) {
++        this.descripcionProducto = descripcionProducto;
++    }
++
++    public String getEstado() {
++        return estado;
++    }
++
++    public void setEstado(String estado) {
++        this.estado = estado;
++    }
++
++    public String getMonedaCuenta() {
++        return monedaCuenta;
++    }
++
++    public void setMonedaCuenta(String monedaCuenta) {
++        this.monedaCuenta = monedaCuenta;
++    }
++
++    public String getMontoTransaccion() {
++        return montoTransaccion;
++    }
++
++    public void setMontoTransaccion(String montoTransaccion) {
++        this.montoTransaccion = montoTransaccion;
++    }
++
++    public String getItf() {
++        return itf;
++    }
++
++    public void setItf(String itf) {
++        this.itf = itf;
++    }
++
++    public Double getPorcentaje() {
++        return porcentaje;
++    }
++
++    public void setPorcentaje(Double porcentaje) {
++        this.porcentaje = porcentaje;
++    }
++
++    public String getMontoDisponible() {
++        return montoDisponible;
++    }
++
++    public void setMontoDisponible(String montoDisponible) {
++        this.montoDisponible = montoDisponible;
++    }
++
++    public String getTipoCambio() {
++        return tipoCambio;
++    }
++
++    public void setTipoCambio(String tipoCambio) {
++        this.tipoCambio = tipoCambio;
++    }
++
++    public String getMontoIntangible() {
++        return montoIntangible;
++    }
++
++    public void setMontoIntangible(String montoIntangible) {
++        this.montoIntangible = montoIntangible;
++    }
++
++    public String getObservacion() {
++        return observacion;
++    }
++
++    public void setObservacion(String observacion) {
++        this.observacion = observacion;
++    }
++
++    public String getNumeroTransaccion() {
++        return numeroTransaccion;
++    }
++
++    public void setNumeroTransaccion(String numeroTransaccion) {
++        this.numeroTransaccion = numeroTransaccion;
++    }
++
++}
+diff --git a/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPCuentasPasivasCTSFacade.java b/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPCuentasPasivasCTSFacade.java
+index 0302e4a..c67369a 100644
+--- a/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPCuentasPasivasCTSFacade.java
++++ b/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPCuentasPasivasCTSFacade.java
+@@ -159,6 +159,7 @@
+             BeanCPMaestroCuentas BeanCPMaestroCuentas=lstBeanCPMaestroCuentas.get(0);
+             CLPersonas clPersonas=clPersonasInterfaceLocal.findById(BeanCPMaestroCuentas.getCodigoClienteTitular());
+             if(!_isEmpty(clPersonas)){
++                beanCPCuentasCTS.setCodigoPersona(clPersonas.getCodigoPersona());//[RSIS-184] acnunez 28.11.2017
+                beanCPCuentasCTS.setNombreCliente(clPersonas.getNombreoRazonSocial());
+                beanCPCuentasCTS.setNumeroCuenta(numeroCuenta);
+                beanCPCuentasCTS.setDOI(clPersonas.getNumeroDocumentoIdentidad());
+@@ -197,7 +198,9 @@
+             lstcbTiposMovimiento.add(cbTiposMovimientoInterfaceLocal.findById(Constante.CODIGO_TIPO_PAGO_BOLETA_DEPOSITO));
+             lstcbTiposMovimiento.add(cbTiposMovimientoInterfaceLocal.findById(Constante.CODIGO_TIPO_PAGO_BOLETA_LIQUIDACION));
+             lstcbTiposMovimiento.add(cbTiposMovimientoInterfaceLocal.findById(Constante.CODIGO_TIPO_PAGO_RECURSOS_HUMANOS));
+-         }else{
++         }else if (medio.equals(financ.util.Constante.TRANSACCION_VIA_DOBLE_MONEDA)){//Inicio [RSIS-184] acnunez 03.11.2017
++             lstcbTiposMovimiento.add(cbTiposMovimientoInterfaceLocal.findById(Constante.CODIGO_TIPO_PAGO_BOLETA_EFECTIVO));
++         }else{//Fin [RSIS-184]
+             lstcbTiposMovimiento.add(cbTiposMovimientoInterfaceLocal.findById(Constante.CODIGO_TIPO_PAGO_BOLETA_DEPOSITO));
+             lstcbTiposMovimiento.add(cbTiposMovimientoInterfaceLocal.findById(Constante.CODIGO_TIPO_PAGO_BOLETA_EFECTIVO));
+             lstcbTiposMovimiento.add(cbTiposMovimientoInterfaceLocal.findById(Constante.CODIGO_TIPO_PAGO_BOLETA_LIQUIDACION));
+@@ -513,6 +516,9 @@
+          bean.setFechaActRemAcumulada(cpCuentasCTS.getFechaActRemAcumulada());
+          bean.setRemuneracionAcumulada(cpCuentasCTS.getRemuneracionAcumulada());
+          bean.setMontoCapitalDisponibleTangible(cpCuentasCTS.getMontoCapitalDisponibleTangible());
++         //Inicio [MSIS-184] acnunez 16.11.2017
++         bean.setMontoCapitalIntangible(cpCuentasCTS.getMontoCapitalIntangible());
++         //Fin [MSIS-184]
+          //jaramirez Req s14-150 07-03-2015
+          bean.setNumeroRemAcumulada(_isEmpty(cpCuentasCTS.getNumeroRemAcumulada())? 0 : cpCuentasCTS.getNumeroRemAcumulada());
+          return bean;
+diff --git a/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPRetiroCTSFacade.java b/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPRetiroCTSFacade.java
+index 06cba34..ffe5f56 100644
+--- a/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPRetiroCTSFacade.java
++++ b/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPRetiroCTSFacade.java
+@@ -125,6 +125,7 @@
+          beanCPDatosRetiroCTS.setRemuneracionAcumulada(cpCuentasCTS.getRemuneracionAcumulada());
+          beanCPDatosRetiroCTS.setCantidadSueldos(4);
+          beanCPDatosRetiroCTS.setSaldoDisponible(cpMaestroCuentas.getMontoTotalDisponibleRetirar());
++         beanCPDatosRetiroCTS.setMontoIntangible(cpCuentasCTS.getMontoTotalIntangible());//[RSIS-184] acnunez 08.11.2017
+       } catch (Exception e) {
+          throw handlerError(e, beanParametrosAuditoria.getUsuarioInsercion(), modulo);
+       }
+@@ -694,6 +695,24 @@
+       }
+    }
+ 
++    //Inicio [RSIS-184] acnunez 27.11.20187
++    public CPMovimientoCuentaCTS retiroPublico(CPCuentasCTS cpCuentasCTS,
++                                               Double montoRetiro,
++                                               String codigoOperacion,
++                                               String tipoMovimiento,
++                                               String numeroReferencia,
++                                               BeanCPDatosRetiroCTS beanCPDatosRetiroCTS,
++                                               BeanParametrosAuditoria beanParametrosAuditoria) throws Exception {
++        return retiro(cpCuentasCTS,
++                      montoRetiro,
++                      codigoOperacion,
++                      tipoMovimiento,
++                      numeroReferencia,
++                      beanCPDatosRetiroCTS,
++                      beanParametrosAuditoria);
++    }
++    //Fin [RSIS-184]
++   
+    /**
+     * Actualiza los saldos de la cuenta y genera el movimiento correspondiente a un Retiro segun su codigo de operacion y tipo de movimiento, retorna el movimiento generado.
+     * 
+@@ -744,6 +763,25 @@
+       return cpMovimientoCuentaCTS;
+    }
+    
++    //Inicio [RSIS-184] acnunez 27.11.2017
++    public String generarTransaccionPublico(CPCuentasCTS cpCuentasCTS,
++                                            CPMovimientoCuentaCTS cpMovimientoCuentaCTS,
++                                            String codigoCanalOperacion,
++                                            String codigoOperacionFinanciera,
++                                            String codigoSubOperacion,
++                                            String codigoEntidadManejadoraValores,
++                                            BeanCPDatosRetiroCTS beanCPDatosRetiroCTS,
++                                            BeanParametrosAuditoria beanParametrosAuditoria) throws Exception {
++        return generarTransaccion(cpCuentasCTS,
++                                  cpMovimientoCuentaCTS,
++                                  codigoCanalOperacion,
++                                  codigoOperacionFinanciera,
++                                  codigoSubOperacion,
++                                  codigoEntidadManejadoraValores,
++                                  beanCPDatosRetiroCTS,
++                                  beanParametrosAuditoria);
++    }
++    //Fin [RSIS-184]
+    /**
+     * Genera la transaccion financiera, contable y asiento de un retiro CTS
+     * 
+diff --git a/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPRetiroDobleMonedaCTSFacade.java b/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPRetiroDobleMonedaCTSFacade.java
+new file mode 100644
+index 0000000..ff1e995
+--- /dev/null
++++ b/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPRetiroDobleMonedaCTSFacade.java
+@@ -0,0 +1,601 @@
++package financ.cuentaspasivas.facade;
++
++import java.util.ArrayList;
++import java.util.HashMap;
++import java.util.List;
++import java.util.Map;
++
++import javax.ejb.EJB;
++import javax.ejb.Stateless;
++
++import admin.contab.beans.BeanParametrosAuditoria;
++import admin.contab.entity.CBRangoFactorCambioMoneda;
++import admin.contab.local.CBRangoFactorCambioMonedaInterfaceLocal;
++import admin.util.Constante;
++import admin.util.ConstantesErrores;
++import financ.cuentaspasivas.beans.BeanCPCuentasCTS;
++import financ.cuentaspasivas.beans.BeanCPDatosRetiroCTS;
++import financ.cuentaspasivas.beans.BeanCPMaestroCuentas;
++import financ.cuentaspasivas.beans.BeanCuentasRetiroDobleMoneda;
++import financ.cuentaspasivas.entity.CPCuentasCTS;
++import financ.cuentaspasivas.entity.CPMaestroCuentas;
++import financ.cuentaspasivas.entity.CPMovimientoCuentaCTS;
++import financ.cuentaspasivas.local.CPActualizarSaldosCTSFacadeInterfaceLocal;
++import financ.cuentaspasivas.local.CPCuentasPasivasCTSFacadeLocal;
++import financ.cuentaspasivas.local.CPRetiroCTSFacadeInterfaceLocal;
++import financ.cuentaspasivas.local.CPRetiroDobleMonedaCTSFacadeInterfaceLocal;
++import financ.operaciones.entity.OPTransaccionesAplicar;
++import financ.operaciones.local.OPBNCompraVentaFacadeInterfaceLocal;
++import financ.operaciones.local.OPBNCorrelativoTransaccionesFacadeInterfaceLocal;
++import financ.operaciones.local.OPTransaccionesAplicarInterfaceLocal;
++import financ.util.FormatoFecha;
++import pe.com.tfc.utils.ErrorControladoException;
++
++//[RSIS-184] acnunez 20.11.2017
++
++@Stateless
++public class CPRetiroDobleMonedaCTSFacade extends CPGeneralesCTSFacade implements CPRetiroDobleMonedaCTSFacadeInterfaceLocal {
++
++    public static final String LocalJNDIName = CPRetiroDobleMonedaCTSFacade.class.getSimpleName() + "/local";
++    public static final String RemoteJNDIName = CPRetiroDobleMonedaCTSFacade.class.getSimpleName() + "/remote";
++
++    @EJB
++    private CPCuentasPasivasCTSFacadeLocal cpCuentasPasivasCTSFacadeLocal;
++    @EJB
++    private CBRangoFactorCambioMonedaInterfaceLocal cbRangoFactorCambioMonedaInterfaceLocal;
++    @EJB
++    private CPRetiroCTSFacadeInterfaceLocal cpRetiroCTSFacadeInterfaceLocal;
++    @EJB
++    private CPActualizarSaldosCTSFacadeInterfaceLocal cpActualizarSaldosCTSFacadeInterfaceLocal;
++    @EJB
++    private OPTransaccionesAplicarInterfaceLocal opTransaccionesAplicarInterfaceLocal;
++    @EJB
++    private OPBNCompraVentaFacadeInterfaceLocal opBNCompraVentaFacadeInterfaceLocal;
++    @EJB
++    private OPBNCorrelativoTransaccionesFacadeInterfaceLocal opBNCorrelativoTransaccionesFacadeInterfaceLocal;
++
++    public List<CPMaestroCuentas> obtenerCuentasCliente(BeanParametrosAuditoria beanParametrosAuditoria) throws Exception {
++        List<CPMaestroCuentas> listCPMaestroCuentas = null;
++        String modulo = "CPRetiroDobleMonedaCTSFacade.obtenerCuentasCliente";
++        try {
++
++        } catch (Exception e) {
++            handlerError(e, beanParametrosAuditoria.getUsuarioInsercion(), modulo);
++        }
++
++        return listCPMaestroCuentas;
++    }
++
++    public List<BeanCuentasRetiroDobleMoneda> setBeanCuentasRetiroDobleMoneda(String cadenatransaccion,
++                                                                              String numeroCuenta,
++                                                                              String descripcionProducto,
++                                                                              String estado,
++                                                                              String descripcionMoneda,
++                                                                              String montoTransaccion,
++                                                                              String itf) throws Exception {
++        List<BeanCuentasRetiroDobleMoneda> listBeanCuentasRetiroDobleMoneda = new ArrayList<BeanCuentasRetiroDobleMoneda>();
++        BeanCuentasRetiroDobleMoneda beanCuentasRetiroDobleMoneda = new BeanCuentasRetiroDobleMoneda();
++        String[] parts;
++
++        beanCuentasRetiroDobleMoneda.setNumeroCuenta(numeroCuenta);
++        beanCuentasRetiroDobleMoneda.setDescripcionProducto(descripcionProducto);
++        beanCuentasRetiroDobleMoneda.setEstado(estado);
++        beanCuentasRetiroDobleMoneda.setMonedaCuenta(descripcionMoneda);
++        beanCuentasRetiroDobleMoneda.setMontoIntangible("0.00");
++        beanCuentasRetiroDobleMoneda.setMontoDisponible("0.00");
++        beanCuentasRetiroDobleMoneda.setTipoCambio("1.00");
++        beanCuentasRetiroDobleMoneda.setMontoTransaccion(montoTransaccion);
++        beanCuentasRetiroDobleMoneda.setItf(itf);
++
++        listBeanCuentasRetiroDobleMoneda.add(beanCuentasRetiroDobleMoneda);
++
++        if (!_isEmpty(cadenatransaccion)) {
++            beanCuentasRetiroDobleMoneda = new BeanCuentasRetiroDobleMoneda();
++            parts = cadenatransaccion.split(",");
++            beanCuentasRetiroDobleMoneda.setNumeroCuenta(parts[0]);
++            beanCuentasRetiroDobleMoneda.setDescripcionProducto(parts[1]);
++            beanCuentasRetiroDobleMoneda.setEstado(parts[2]);
++            beanCuentasRetiroDobleMoneda.setMonedaCuenta(parts[3]);
++            beanCuentasRetiroDobleMoneda.setMontoIntangible(parts[4]);
++            beanCuentasRetiroDobleMoneda.setMontoDisponible(parts[5]);
++            beanCuentasRetiroDobleMoneda.setTipoCambio(parts[6]);
++            beanCuentasRetiroDobleMoneda.setMontoTransaccion(parts[7]);
++            beanCuentasRetiroDobleMoneda.setItf(parts[8]);
++            beanCuentasRetiroDobleMoneda.setObservacion(parts[9]);
++
++            listBeanCuentasRetiroDobleMoneda.add(beanCuentasRetiroDobleMoneda);
++        }
++
++        return listBeanCuentasRetiroDobleMoneda;
++    }
++
++    public List<BeanCPMaestroCuentas> nuevaListaCTS(List<BeanCPMaestroCuentas> lstBeanCPMaestroCuentas,
++                                                    String[] cuentas) throws Exception {
++        List<BeanCPMaestroCuentas> lstBeanCPMaestroCuentasNew = new ArrayList<BeanCPMaestroCuentas>();
++        Integer contador = 0;
++
++        for (BeanCPMaestroCuentas beanCPMaestroCuentas : lstBeanCPMaestroCuentas) {
++            for (String cuenta : cuentas) {
++                if (_equiv(beanCPMaestroCuentas.getNumeroCuenta(), cuenta)) {
++                    contador++;
++                }
++            }
++            if (contador == 0) {
++                lstBeanCPMaestroCuentasNew.add(beanCPMaestroCuentas);
++            }
++            contador = 0;
++        }
++
++        return lstBeanCPMaestroCuentasNew;
++    }
++
++    public List<BeanCuentasRetiroDobleMoneda> quitarCuentaListaCTS(String cadenaTransaccion,
++                                                                   String cuenta) throws Exception {
++        List<BeanCuentasRetiroDobleMoneda> listBeanCuentasRetiroDobleMoneda = new ArrayList<BeanCuentasRetiroDobleMoneda>();
++        BeanCuentasRetiroDobleMoneda beanCuentasRetiroDobleMoneda = null;
++        String[] filas;
++        String[] columnas;
++
++        filas = cadenaTransaccion.split(";,");
++
++        for (String fila : filas) {
++            columnas = fila.split(",");
++
++            if (!_equiv(cuenta, columnas[0])) {
++                beanCuentasRetiroDobleMoneda = new BeanCuentasRetiroDobleMoneda();
++                beanCuentasRetiroDobleMoneda.setNumeroCuenta(columnas[0]);
++                beanCuentasRetiroDobleMoneda.setDescripcionProducto(columnas[1]);
++                beanCuentasRetiroDobleMoneda.setEstado(columnas[2]);
++                beanCuentasRetiroDobleMoneda.setMonedaCuenta(columnas[3]);
++                beanCuentasRetiroDobleMoneda.setMontoIntangible(columnas[4]);
++                beanCuentasRetiroDobleMoneda.setMontoDisponible(columnas[5]);
++                beanCuentasRetiroDobleMoneda.setTipoCambio(columnas[6]);
++                beanCuentasRetiroDobleMoneda.setMontoTransaccion(columnas[7]);
++                beanCuentasRetiroDobleMoneda.setItf(columnas[8]);
++                beanCuentasRetiroDobleMoneda.setObservacion(columnas[9]);
++
++                listBeanCuentasRetiroDobleMoneda.add(beanCuentasRetiroDobleMoneda);
++            }
++        }
++
++        return listBeanCuentasRetiroDobleMoneda;
++    }
++
++    public Map<String, Object> procesarListaCTS(String cadenaTransaccion,
++                                                String cuenta,
++                                                String monedaTransaccion,
++                                                String formaRetiro,
++                                                String montoTotal,
++                                                String indicadorProcesamiento,
++                                                BeanParametrosAuditoria beanParametrosAuditoria) throws Exception {
++        Map<String, Object> output = new HashMap<String, Object>();
++        List<BeanCuentasRetiroDobleMoneda> listBeanCuentasRetiroDobleMoneda = new ArrayList<BeanCuentasRetiroDobleMoneda>();
++        List<BeanCuentasRetiroDobleMoneda> listBeanCuentasRetiroDobleMonedaTemp = new ArrayList<BeanCuentasRetiroDobleMoneda>();
++        BeanCPCuentasCTS beanCPCuentasCTS = null;
++        String monedaCuenta;
++        String modalidadTipoCambio = "";
++        CBRangoFactorCambioMoneda cbRangoFactorCambioMoneda;
++        Double montoConvertido = 0.0;
++        Double montoTangible = 0.0;
++        Double montoIntangible = 0.0;
++        Double montoCapitalFinal = 0.0;
++        Double montoTransaccionTemporal = 0.0;
++        Double montoRemuneracionesAcumuladas = 0.0;
++        Integer contadorRemuneracionesAcumuladas = 0;
++        BeanCuentasRetiroDobleMoneda beanCuentasRetiroDobleMoneda = null;
++        String[] cuentas;
++        String[] filas;
++        String[] columnas;
++        String modulo = "CPRetiroDobleMonedaCTSFacade.procesarListaCTS";
++        String observaciones;
++        output.put("total", "0.00");
++        output.put("lista", null);
++
++        try {
++            cuentas = cuenta.split(",");
++            output.put("codigoError", NO_ERROR);
++            for (String individual : cuentas) {
++                beanCPCuentasCTS = cpCuentasPasivasCTSFacadeLocal.consultaBeanCPCuentasCTS(individual,
++                                                                                           beanParametrosAuditoria);
++
++                if (!_isEmpty(beanCPCuentasCTS)) {
++                    beanCuentasRetiroDobleMoneda = new BeanCuentasRetiroDobleMoneda();
++                    beanCuentasRetiroDobleMoneda.setNumeroCuenta(beanCPCuentasCTS.getNumeroCuenta());
++                    beanCuentasRetiroDobleMoneda.setMontoDisponible(_toStr(beanCPCuentasCTS.getMontoCapitalDisponibleTangible()));
++                    beanCuentasRetiroDobleMoneda.setMontoIntangible(_toStr(beanCPCuentasCTS.getMontoCapitalIntangible()));
++                    monedaCuenta = beanCPCuentasCTS.getCodigoMoneda();
++                    montoTangible = _toDouble(beanCPCuentasCTS.getMontoCapitalDisponibleTangible());
++                    montoIntangible = _toDouble(beanCPCuentasCTS.getMontoCapitalIntangible());
++
++                    if (!_equiv(monedaCuenta, monedaTransaccion)) {
++
++                        if (_equiv(monedaTransaccion, Constante.CODIGO_MONEDA_SOLES)) {
++                            modalidadTipoCambio = financ.util.Constante.MODALIDAD_TIPO_CAMBIO_COMPRA;
++                        }
++                        if (_equiv(monedaTransaccion, Constante.CODIGO_MONEDA_DOLARES)) {
++                            modalidadTipoCambio = financ.util.Constante.MODALIDAD_TIPO_CAMBIO_VENTA;
++                        }
++                        cbRangoFactorCambioMoneda = cbRangoFactorCambioMonedaInterfaceLocal.findByEmpresaAgenciaFechaProcesoTipoCambioMonedaOrigenMonedaDestinoMontoPersona(Constante.ID_TFC,
++                                                                                                                                                                            financ.util.Constante.CODIGO_OFICINA_PRINCIPAL,
++                                                                                                                                                                            FormatoFecha.stringToUtilDate("10/10/2017"),
++                                                                                                                                                                            //FormatoFecha.stringToUtilDate(beanParametrosAuditoria.getFechaProceso()),
++                                                                                                                                                                            financ.util.Constante.CLASE_CAMBIO_OPERACIONES,
++                                                                                                                                                                            modalidadTipoCambio,
++                                                                                                                                                                            monedaTransaccion,
++                                                                                                                                                                            monedaCuenta,
++                                                                                                                                                                            montoTangible + montoIntangible,
++                                                                                                                                                                            "N");
++                        if (_isEmpty(cbRangoFactorCambioMoneda)) {
++                            if (_equiv(indicadorProcesamiento,"N")){
++                                observaciones = obtenerDescripcionError(ConstantesErrores.ERROR_7061);
++                            }else{
++                                throw new ErrorControladoException(ConstantesErrores.ERROR_7061,obtenerDescripcionError(ConstantesErrores.ERROR_7061));
++                            }
++                        }else{
++                            observaciones = "OK";
++                        }
++                        if (_equiv(monedaTransaccion, Constante.CODIGO_MONEDA_SOLES)) {
++                            montoConvertido = (montoTangible + montoIntangible) * cbRangoFactorCambioMoneda.getFactorConversion();
++                            if (beanCPCuentasCTS.getRemuneracionAcumulada()<9999999.0){
++                                montoRemuneracionesAcumuladas = beanCPCuentasCTS.getRemuneracionAcumulada() * cbRangoFactorCambioMoneda.getFactorConversion();
++                            }
++                        }
++                        if (_equiv(monedaTransaccion, Constante.CODIGO_MONEDA_DOLARES)) {
++                            montoConvertido = (montoTangible + montoIntangible) / cbRangoFactorCambioMoneda.getFactorConversion();
++                            if (beanCPCuentasCTS.getRemuneracionAcumulada()<9999999.0){
++                                montoRemuneracionesAcumuladas = beanCPCuentasCTS.getRemuneracionAcumulada() / cbRangoFactorCambioMoneda.getFactorConversion();
++                            }
++                        }
++                        beanCuentasRetiroDobleMoneda.setTipoCambio(_toStr(cbRangoFactorCambioMoneda.getFactorConversion()));
++                        
++                    } else {
++                        montoConvertido = montoTangible + montoIntangible;
++                        beanCuentasRetiroDobleMoneda.setTipoCambio("1.0");
++                        if (beanCPCuentasCTS.getRemuneracionAcumulada()<9999999.0){
++                            montoRemuneracionesAcumuladas = beanCPCuentasCTS.getRemuneracionAcumulada();
++                        }
++                        observaciones = "OK";
++                    }
++                    if (beanCPCuentasCTS.getRemuneracionAcumulada() < 999999.00) {
++                        if (contadorRemuneracionesAcumuladas>=1){
++                            observaciones = obtenerDescripcionError(ConstantesErrores.ERROR_11290);
++                        }
++                        contadorRemuneracionesAcumuladas++;
++                    }
++                    beanCuentasRetiroDobleMoneda.setMontoTransaccion(_toStr(montoConvertido));
++                    beanCuentasRetiroDobleMoneda.setObservacion(observaciones);
++                    montoCapitalFinal = montoCapitalFinal + montoConvertido;
++                }
++                listBeanCuentasRetiroDobleMoneda.add(beanCuentasRetiroDobleMoneda);
++            }
++
++            if (contadorRemuneracionesAcumuladas > 1 || contadorRemuneracionesAcumuladas <= 0) {
++                if (_equiv(indicadorProcesamiento,"N")){
++                    observaciones = obtenerDescripcionError(ConstantesErrores.ERROR_11290);
++                }else{
++                    throw new ErrorControladoException(ConstantesErrores.ERROR_11290,obtenerDescripcionError(ConstantesErrores.ERROR_11290));
++                }
++            } else {
++                montoTangible = montoCapitalFinal - montoRemuneracionesAcumuladas;
++                if (montoTangible<=0.0){
++                    montoTangible=0.0;
++                }
++                montoIntangible = montoCapitalFinal - montoTangible;
++            }
++
++            if (montoTangible<=0.0){
++                montoTangible = 0.0;
++                if (_equiv(indicadorProcesamiento,"N")){
++                    observaciones = obtenerDescripcionError(ConstantesErrores.ERROR_1497);
++                }else{
++                    throw new ErrorControladoException(ConstantesErrores.ERROR_1497,obtenerDescripcionError(ConstantesErrores.ERROR_1497));
++                }
++            }
++
++            output.put("montoCapitalFinal", _round(montoCapitalFinal,2));
++            output.put("montoTangible", _round(montoTangible,2));
++            output.put("montoIntangible", _round(montoIntangible,2));
++            output.put("montoRemuneracionesAcumuladas", _round(montoRemuneracionesAcumuladas,2));
++
++            for (BeanCuentasRetiroDobleMoneda beanCuentasRetiroDobleMonedaTemp : listBeanCuentasRetiroDobleMoneda) {
++                beanCuentasRetiroDobleMonedaTemp.setPorcentaje(_toDouble(beanCuentasRetiroDobleMonedaTemp.getMontoTransaccion()) / montoCapitalFinal);
++                montoTransaccionTemporal = _toDouble(beanCuentasRetiroDobleMonedaTemp.getMontoDisponible())+_toDouble(beanCuentasRetiroDobleMonedaTemp.getMontoIntangible());
++                if (_toDouble(beanCuentasRetiroDobleMonedaTemp.getTipoCambio()) > 1.0) {
++                    if (_equiv(monedaTransaccion, Constante.CODIGO_MONEDA_SOLES)) {
++                        beanCuentasRetiroDobleMonedaTemp.setMontoTransaccion(_toStr(_round((_toDouble(montoTotal) * beanCuentasRetiroDobleMonedaTemp.getPorcentaje()) / _toDouble(beanCuentasRetiroDobleMonedaTemp.getTipoCambio()),
++                                                                                           2)));
++                    }
++                    if (_equiv(monedaTransaccion, Constante.CODIGO_MONEDA_DOLARES)) {
++                        beanCuentasRetiroDobleMonedaTemp.setMontoTransaccion(_toStr(_round((_toDouble(montoTotal) / beanCuentasRetiroDobleMonedaTemp.getPorcentaje()) * _toDouble(beanCuentasRetiroDobleMonedaTemp.getTipoCambio()),
++                                                                                           2)));
++                    }
++                    
++                } else {
++                    beanCuentasRetiroDobleMonedaTemp.setMontoTransaccion(_toStr(_round(_toDouble(montoTotal) * beanCuentasRetiroDobleMonedaTemp.getPorcentaje(),
++                                                                                       2)));
++                }
++                if (montoTransaccionTemporal<_toDouble(beanCuentasRetiroDobleMonedaTemp.getMontoTransaccion())){
++                    beanCuentasRetiroDobleMonedaTemp.setObservacion(obtenerDescripcionError(ConstantesErrores.ERROR_1497));
++                }
++                listBeanCuentasRetiroDobleMonedaTemp.add(beanCuentasRetiroDobleMonedaTemp);
++            }
++            montoTransaccionTemporal = 0.0;
++            listBeanCuentasRetiroDobleMoneda = new ArrayList<BeanCuentasRetiroDobleMoneda>();
++            listBeanCuentasRetiroDobleMoneda.addAll(listBeanCuentasRetiroDobleMonedaTemp);
++
++            listBeanCuentasRetiroDobleMonedaTemp = new ArrayList<BeanCuentasRetiroDobleMoneda>();
++
++            filas = cadenaTransaccion.split(";,");
++
++            for (String fila : filas) {
++                columnas = fila.split(",");
++                for (BeanCuentasRetiroDobleMoneda beanCuentasRetiroDobleMonedaTemp : listBeanCuentasRetiroDobleMoneda) {
++                    if (_equiv(beanCuentasRetiroDobleMonedaTemp.getNumeroCuenta(), columnas[0])) {
++                        beanCuentasRetiroDobleMonedaTemp.setDescripcionProducto(columnas[1]);
++                        beanCuentasRetiroDobleMonedaTemp.setEstado(columnas[2]);
++                        beanCuentasRetiroDobleMonedaTemp.setMonedaCuenta(columnas[3]);
++                        beanCuentasRetiroDobleMonedaTemp.setItf(columnas[8]);
++
++                        listBeanCuentasRetiroDobleMonedaTemp.add(beanCuentasRetiroDobleMonedaTemp);
++                        break;
++                    }
++                }
++
++            }
++        } catch (ErrorControladoException e) {
++            handlerError(e, beanParametrosAuditoria.getUsuarioInsercion(), modulo);
++            output.put("codigoError", e.getCodigoError());
++            output.put("mensajeError", e.getMensajeError());
++        }
++        output.put("lista", listBeanCuentasRetiroDobleMonedaTemp);
++        return output;
++    }
++
++    public Map<String, Object> grabarRetiroDobleMonedaCTS(String cadenaTransaccion,
++                                                          String cuenta,
++                                                          String monedaTransaccion,
++                                                          String formaRetiro,
++                                                          String montoTotal,
++                                                          String codEntidadManejadoraValores,
++                                                          String indicadorProcesamiento,
++                                                          BeanParametrosAuditoria beanParametrosAuditoria) throws Exception {
++        Map<String, Object> output = new HashMap<String, Object>();
++        List<BeanCuentasRetiroDobleMoneda> listBeanCuentasRetiroDobleMoneda = new ArrayList<BeanCuentasRetiroDobleMoneda>();
++        String modulo = "CPRetiroDobleMonedaCTSFacade.grabarRetiroDobleMonedaCTS";
++        try {
++            output = procesarListaCTS(cadenaTransaccion,
++                                      cuenta,
++                                      monedaTransaccion,
++                                      formaRetiro,
++                                      montoTotal,
++                                      indicadorProcesamiento,
++                                      beanParametrosAuditoria);
++            listBeanCuentasRetiroDobleMoneda = (List<BeanCuentasRetiroDobleMoneda>) output.get("lista");
++
++            if (_isEmpty(listBeanCuentasRetiroDobleMoneda)) {
++                listBeanCuentasRetiroDobleMoneda = new ArrayList<BeanCuentasRetiroDobleMoneda>();
++            }else{
++                if (_equiv(_toStr(output.get("codigoError")), NO_ERROR)) {
++                    output = new HashMap<String, Object>();
++                    output = efectuarRetiro(codEntidadManejadoraValores,
++                                            listBeanCuentasRetiroDobleMoneda,
++                                            monedaTransaccion,
++                                            beanParametrosAuditoria);
++                }
++            }
++        } catch (Exception e) {
++            throw handlerError(e, beanParametrosAuditoria.getUsuarioInsercion(), modulo);
++        }
++        return output;
++    }
++
++    private Map<String, Object> efectuarRetiro(String codEntidadManejadoraValores,
++                                               List<BeanCuentasRetiroDobleMoneda> listBeanCuentasRetiroDobleMoneda,
++                                               String monedaTransaccion,
++                                               BeanParametrosAuditoria beanParametrosAuditoria) throws Exception {
++        Map<String, Object> output = new HashMap<String, Object>();
++        Map<String, Object> outputActualizacion = new HashMap<String, Object>();
++        CPCuentasCTS cpCuentasCTS = null;
++        CPMovimientoCuentaCTS cpMovimientoCuentaCTS = null;
++        BeanCPCuentasCTS beanCPCuentasCTS = null;
++        BeanCPDatosRetiroCTS beanCPDatosRetiroCTS = null;
++        String numeroTx = "";
++        Double saldoDisponible = 0.0;
++        Double remuneracionAcumuladaAntes = 0.0;
++        Double remuneracionAcumulada = 0.0;
++        String modulo = "CPRetiroDobleMonedaCTSFacade.efectuarRetiro";
++        String codigoError = NO_ERROR;
++        Double montoDestino = 0.0;
++        String tipoOperacion  ="";
++        String operaciones = "";
++
++        output.put("codigoError", NO_ERROR);
++        outputActualizacion.put("codigoError", NO_ERROR);
++
++        try {
++            for (BeanCuentasRetiroDobleMoneda beanCuentasRetiroDobleMoneda : listBeanCuentasRetiroDobleMoneda) {
++                beanCPCuentasCTS = cpCuentasPasivasCTSFacadeLocal.consultaBeanCPCuentasCTS(beanCuentasRetiroDobleMoneda.getNumeroCuenta(),
++                                                                                           beanParametrosAuditoria);
++                saldoDisponible = beanCPCuentasCTS.getMontoCapitalDisponibleTangible();
++                remuneracionAcumuladaAntes = beanCPCuentasCTS.getRemuneracionAcumulada();
++                if (saldoDisponible < _toDouble(beanCuentasRetiroDobleMoneda.getMontoTransaccion())) {
++                    remuneracionAcumulada = beanCPCuentasCTS.getMontoCapitalIntangible() - _toDouble(beanCuentasRetiroDobleMoneda.getMontoTransaccion());
++                    try {
++                        outputActualizacion = cpActualizarSaldosCTSFacadeInterfaceLocal.procesarActualizacionIndividual(beanCuentasRetiroDobleMoneda.getNumeroCuenta(),
++                                                                                                                        beanCPCuentasCTS.getCodigoMoneda(),
++                                                                                                                        beanCPCuentasCTS.getCodigoMoneda(),
++                                                                                                                        remuneracionAcumulada,
++                                                                                                                        beanCPCuentasCTS.getDOI(),
++                                                                                                                        CADENA_VACIA,
++                                                                                                                        "10/10/2017",
++                                                                                                                        //FormatoFecha.dateToStringDDMMYYYYY(beanParametrosAuditoria.getFechaProceso()),
++                                                                                                                        _toStr(beanCPCuentasCTS.getNumeroRemAcumulada()),
++                                                                                                                        beanParametrosAuditoria);
++                    } catch (Exception e) {
++                        throw new ErrorControladoException(ConstantesErrores.ERROR_11279);
++                    }
++                }
++                beanCPDatosRetiroCTS = new BeanCPDatosRetiroCTS();
++
++                beanCPDatosRetiroCTS.setNumeroCuenta(beanCuentasRetiroDobleMoneda.getNumeroCuenta());
++                beanCPDatosRetiroCTS.setMontoRetiro(_toDouble(beanCuentasRetiroDobleMoneda.getMontoTransaccion()));
++                beanCPDatosRetiroCTS.setMontoTotalRetiro(_toDouble(beanCuentasRetiroDobleMoneda.getMontoTransaccion()));
++                beanCPDatosRetiroCTS.setCodigoMonedaRetiro(beanCPCuentasCTS.getCodigoMoneda());
++                beanCPDatosRetiroCTS.setCodigoCliente(beanCPCuentasCTS.getCodigoPersona());
++                beanCPDatosRetiroCTS.setTipoCambio(beanCuentasRetiroDobleMoneda.getTipoCambio());
++
++                try {
++                    if (_isEmpty(beanCPDatosRetiroCTS)) {
++                        throw new ErrorControladoException(ConstantesErrores.ERROR_969);
++                    }
++                    if (_isEmpty(beanCPDatosRetiroCTS.getMontoTotalRetiro())) {
++                        throw new ErrorControladoException(ConstantesErrores.ERROR_969);
++                    }
++                    if (_isEmpty(beanCPDatosRetiroCTS.getCodigoMonedaRetiro())) {
++                        throw new ErrorControladoException(ConstantesErrores.ERROR_1132);
++                    }
++                    if (_isEmpty(beanCPDatosRetiroCTS.getNumeroTransaccionPorAplicar()) && verificaTransaccionPorAplicar(beanCPDatosRetiroCTS.getNumeroCuenta())) {
++                        throw new ErrorControladoException(ConstantesErrores.ERROR_889);
++                    }
++
++                    cpCuentasCTS = obtenerCuentaCTS(beanCPDatosRetiroCTS.getNumeroCuenta());
++                    cpCuentasCTS = arreglaSaldosCTS(cpCuentasCTS, beanParametrosAuditoria);
++
++                    if (_isEmpty(cpCuentasCTS)) {
++                        throw new ErrorControladoException(ConstantesErrores.ERROR_1566);
++                    }
++                    if (_isEmpty(cpCuentasCTS.getCpMaestroCuentas())) {
++                        throw new ErrorControladoException(ConstantesErrores.ERROR_1566);
++                    }
++                    if (!_isEmpty(beanCPDatosRetiroCTS.getCodigoCliente())) {
++                        if (!_equiv(cpCuentasCTS.getCpMaestroCuentas().getClClientes().getCodigoCliente(),
++                                    beanCPDatosRetiroCTS.getCodigoCliente())) {
++                            throw new ErrorControladoException(ConstantesErrores.ERROR_1484);
++                        }
++                    }
++                    if (Math.round(cpCuentasCTS.getCpMaestroCuentas().getMontoTotalDisponibleRetirar() * 100.0) / 100.0 < beanCPDatosRetiroCTS.getMontoTotalRetiro()) {
++                        throw new ErrorControladoException(ConstantesErrores.ERROR_1497);
++                    }
++
++                    cpMovimientoCuentaCTS = cpRetiroCTSFacadeInterfaceLocal.retiroPublico(cpCuentasCTS,
++                                                                                          beanCPDatosRetiroCTS.getMontoRetiro(),
++                                                                                          financ.util.Constante.COD_RETIRO,
++                                                                                          TIPO_MOVIMIENTO_EFECTIVO,
++                                                                                          null,
++                                                                                          beanCPDatosRetiroCTS,
++                                                                                          beanParametrosAuditoria);
++
++                    codigoError = cpRetiroCTSFacadeInterfaceLocal.generarTransaccionPublico(cpCuentasCTS,
++                                                                                            cpMovimientoCuentaCTS,
++                                                                                            CODIGO_CANAL_OPERACION_ADMINISTRATIVA,
++                                                                                            financ.util.Constante.OPERACION_FINANCIERA_RETIRO_EN_CUENTA,
++                                                                                            financ.util.Constante.INDICADOR_TRANSACCION_SUBOPERACION_RETIRO_CAPITAL,
++                                                                                            codEntidadManejadoraValores,
++                                                                                            beanCPDatosRetiroCTS,
++                                                                                            beanParametrosAuditoria);
++
++                    if (!_equiv(codigoError, NO_ERROR)) {
++                        throw new ErrorControladoException(codigoError);
++                    }
++                    numeroTx = _isEmpty(cpMovimientoCuentaCTS.getNumeroCorrelativoTransaccion()) ? "" : cpMovimientoCuentaCTS.getNumeroCorrelativoTransaccion().toString();
++
++                    if (!_equiv(cpCuentasCTS.getCpMaestroCuentas().getCodigoMoneda(), monedaTransaccion)) {
++                        if (_equiv(monedaTransaccion, financ.util.Constante.CODIGO_MONEDA_SOLES)) {
++                            montoDestino = beanCPDatosRetiroCTS.getMontoRetiro() * _toDouble(beanCPDatosRetiroCTS.getTipoCambio());
++                            tipoOperacion = financ.util.Constante.COMPRA;
++                        } else {
++                            montoDestino = beanCPDatosRetiroCTS.getMontoRetiro() / _toDouble(beanCPDatosRetiroCTS.getTipoCambio());
++                            tipoOperacion = financ.util.Constante.VENTA;
++                        }
++                        
++                        Long numeroOperacion = opBNCorrelativoTransaccionesFacadeInterfaceLocal.generar(beanParametrosAuditoria.getCodigoEmpresa(),
++                                                                                                        beanParametrosAuditoria.getCodigoAgencia(),
++                                                                                                        new java.sql.Date(beanParametrosAuditoria.getFechaProceso().getTime()),
++                                                                                                        beanParametrosAuditoria.getUsuarioInsercion(),
++                                                                                                        beanParametrosAuditoria.getTerminalInsercion(),
++                                                                                                        beanParametrosAuditoria.getIpInsercion());
++                        
++                        String correlativoTransaccion = generarCorrelativo(Constante.TABLA_TRANSACCIONES_DIARIAS,
++                                                                           _toInteger(Constante.TAMA�O_CORRELATIVO_TABLA_TRANSACCION_NOTA_CARGO_ABONO),
++                                                                           beanParametrosAuditoria);
++                        
++                        Map<Object, Object> mapCompraVenta = opBNCompraVentaFacadeInterfaceLocal.generar(codEntidadManejadoraValores,
++                                                                                                         beanParametrosAuditoria.getCodigoEmpresa(),
++                                                                                                         beanParametrosAuditoria.getCodigoAgencia(),
++                                                                                                         _toStr(numeroOperacion), 
++                                                                                                         correlativoTransaccion, 
++                                                                                                         numeroTx,
++                                                                                                         tipoOperacion,
++                                                                                                         FormatoFecha.stringToSqlDate("10/10/2017"),
++                                                                                                         //FormatoFecha.dateUtilToSQLDate(beanParametrosAuditoria.getFechaProceso()),
++                                                                                                         FormatoFecha.obtenerHora(),
++                                                                                                         cpCuentasCTS.getCpMaestroCuentas().getCodigoMoneda(),
++                                                                                                         beanCPDatosRetiroCTS.getMontoRetiro(),
++                                                                                                         monedaTransaccion,
++                                                                                                         montoDestino,
++                                                                                                         _toDouble(beanCPDatosRetiroCTS.getTipoCambio()),
++                                                                                                         beanParametrosAuditoria.getUsuarioInsercion(),
++                                                                                                         "O", //tipoReferencia, 
++                                                                                                         null, //Referencia, 
++                                                                                                         null, //descripcionReferencia, 
++                                                                                                         cpCuentasCTS.getCpMaestroCuentas().getClClientes().getCodigoCliente(),
++                                                                                                         "N",
++                                                                                                         "EF", //indicadortipoOperacion, 
++                                                                                                         "N", //indicadorAplicacionCaja, 
++                                                                                                         "S", //indicadorCreacionMovimientoCompraVenta, 
++                                                                                                         beanParametrosAuditoria.getUsuarioInsercion(),
++                                                                                                         beanParametrosAuditoria.getTerminalInsercion(),
++                                                                                                         beanParametrosAuditoria.getIpInsercion());
++                        if (!_equiv(_toStr(mapCompraVenta.get("strError")), NO_ERROR)) {
++                            throw new ErrorControladoException(mapCompraVenta.get("strError").toString());
++                        }
++                    }
++                } catch (ErrorControladoException e) {
++                    throw new ErrorControladoException(e.getCodigoError());
++                }
++
++                if (saldoDisponible < _toDouble(beanCuentasRetiroDobleMoneda.getMontoTransaccion())) {
++                    try {
++                        outputActualizacion = cpActualizarSaldosCTSFacadeInterfaceLocal.procesarActualizacionIndividual(beanCuentasRetiroDobleMoneda.getNumeroCuenta(),
++                                                                                                                        beanCPCuentasCTS.getCodigoMoneda(),
++                                                                                                                        beanCPCuentasCTS.getCodigoMoneda(),
++                                                                                                                        remuneracionAcumuladaAntes,
++                                                                                                                        beanCPCuentasCTS.getDOI(),
++                                                                                                                        CADENA_VACIA,
++                                                                                                                        "10/10/2017",
++                                                                                                                        //FormatoFecha.dateToStringDDMMYYYYY(beanParametrosAuditoria.getFechaProceso()),
++                                                                                                                        _toStr(beanCPCuentasCTS.getNumeroRemAcumulada()),
++                                                                                                                        beanParametrosAuditoria);
++                    } catch (Exception e) {
++                        throw new ErrorControladoException(ConstantesErrores.ERROR_11279);
++                    }
++                }
++                if (_isEmpty(numeroTx)) {
++                    throw new ErrorControladoException(ConstantesErrores.ERROR_1998);
++                }else{
++                    operaciones = operaciones + numeroTx + "-";
++                }
++            }
++        } catch (ErrorControladoException e) {
++            output.put("codigoError", e.getCodigoError());
++            output.put("mensajeError", obtenerDescripcionError(e.getCodigoError()));
++            throw handlerError(e, beanParametrosAuditoria.getUsuarioInsercion(), modulo);
++        }
++
++        output.put("listaTransacciones", operaciones);
++
++        return output;
++    }
++
++    protected boolean verificaTransaccionPorAplicar(String numeroCuentaCTS) {
++        List<OPTransaccionesAplicar> lstOPTransaccionesAplicar;
++        lstOPTransaccionesAplicar = opTransaccionesAplicarInterfaceLocal.findByCodigoCtaReferencia(numeroCuentaCTS);
++
++        for (OPTransaccionesAplicar opTransaccionesAplicar : lstOPTransaccionesAplicar) {
++           if (_equiv(opTransaccionesAplicar.getEstadoRegistro(), Constante.ESTADO_GENERADO)) {
++              return true;
++           }
++        }
++        return false;
++     }
++}
+diff --git a/FINANCIERONEW/src/financ/cuentaspasivas/local/CPRetiroCTSFacadeInterfaceLocal.java b/FINANCIERONEW/src/financ/cuentaspasivas/local/CPRetiroCTSFacadeInterfaceLocal.java
+index 210bafa..f6884cc 100644
+--- a/FINANCIERONEW/src/financ/cuentaspasivas/local/CPRetiroCTSFacadeInterfaceLocal.java
++++ b/FINANCIERONEW/src/financ/cuentaspasivas/local/CPRetiroCTSFacadeInterfaceLocal.java
+@@ -6,6 +6,8 @@
+ 
+ import admin.contab.beans.BeanParametrosAuditoria;
+ import financ.cuentaspasivas.beans.BeanCPDatosRetiroCTS;
++import financ.cuentaspasivas.entity.CPCuentasCTS;
++import financ.cuentaspasivas.entity.CPMovimientoCuentaCTS;
+ 
+ /**
+  * 
+@@ -155,4 +157,48 @@
+    public void aplicarTransaccionRetiroEfectivo(String numeroTransaccionPorAplicar,
+                                                 BeanParametrosAuditoria beanParametrosAuditoria) throws Exception;
+ 
++    /**
++     * @author acnunez
++     * @since [RSIS-184] 27.11.2017
++     * @param cpCuentasCTS
++     * @param montoRetiro
++     * @param codigoOperacion
++     * @param tipoMovimiento
++     * @param numeroReferencia
++     * @param beanCPDatosRetiroCTS
++     * @param beanParametrosAuditoria
++     * @return
++     * @throws Exception
++     */
++    public CPMovimientoCuentaCTS retiroPublico(CPCuentasCTS cpCuentasCTS,
++                                               Double montoRetiro,
++                                               String codigoOperacion,
++                                               String tipoMovimiento,
++                                               String numeroReferencia,
++                                               BeanCPDatosRetiroCTS beanCPDatosRetiroCTS,
++                                               BeanParametrosAuditoria beanParametrosAuditoria) throws Exception;
++
++    /**
++     * @author acnunez
++     * @since [RSIS-184] 26.11.2017
++     * @param cpCuentasCTS
++     * @param cpMovimientoCuentaCTS
++     * @param codigoCanalOperacion
++     * @param codigoOperacionFinanciera
++     * @param codigoSubOperacion
++     * @param codigoEntidadManejadoraValores
++     * @param beanCPDatosRetiroCTS
++     * @param beanParametrosAuditoria
++     * @return
++     * @throws Exception
++     */
++    public String generarTransaccionPublico(CPCuentasCTS cpCuentasCTS,
++                                            CPMovimientoCuentaCTS cpMovimientoCuentaCTS,
++                                            String codigoCanalOperacion,
++                                            String codigoOperacionFinanciera,
++                                            String codigoSubOperacion,
++                                            String codigoEntidadManejadoraValores,
++                                            BeanCPDatosRetiroCTS beanCPDatosRetiroCTS,
++                                            BeanParametrosAuditoria beanParametrosAuditoria) throws Exception;
++
+ }
+diff --git a/FINANCIERONEW/src/financ/cuentaspasivas/local/CPRetiroDobleMonedaCTSFacadeInterfaceLocal.java b/FINANCIERONEW/src/financ/cuentaspasivas/local/CPRetiroDobleMonedaCTSFacadeInterfaceLocal.java
+new file mode 100644
+index 0000000..1f4c216
+--- /dev/null
++++ b/FINANCIERONEW/src/financ/cuentaspasivas/local/CPRetiroDobleMonedaCTSFacadeInterfaceLocal.java
+@@ -0,0 +1,100 @@
++package financ.cuentaspasivas.local;
++
++import java.util.List;
++import java.util.Map;
++
++import javax.ejb.Local;
++
++import admin.contab.beans.BeanParametrosAuditoria;
++import financ.cuentaspasivas.beans.BeanCPMaestroCuentas;
++import financ.cuentaspasivas.beans.BeanCuentasRetiroDobleMoneda;
++
++@Local
++public interface CPRetiroDobleMonedaCTSFacadeInterfaceLocal {
++
++    /**
++     * @author acnunez
++     * @since [RSIS-184] 08.11.2017
++     * @param numeroCuenta
++     * @param descripcionProducto
++     * @param estado
++     * @param descripcionMoneda
++     * @param montoTransaccion
++     * @param itf
++     * @return
++     * @throws Exception
++     */
++    public List<BeanCuentasRetiroDobleMoneda> setBeanCuentasRetiroDobleMoneda(String cadenatransaccion,
++                                                                              String numeroCuenta,
++                                                                              String descripcionProducto,
++                                                                              String estado,
++                                                                              String descripcionMoneda,
++                                                                              String montoTransaccion,
++                                                                              String itf) throws Exception;
++
++    /**
++     * @author acnunez
++     * @since [RSIS-184] 10.11.2017
++     * @param lstBeanCPMaestroCuentas
++     * @param cuentas
++     * @return
++     * @throws Exception
++     */
++    public List<BeanCPMaestroCuentas> nuevaListaCTS(List<BeanCPMaestroCuentas> lstBeanCPMaestroCuentas,
++                                                    String[] cuentas) throws Exception;
++
++    /**
++     * @author acnunez
++     * @since [RSIS-184] 13.11..2017
++     * @param cadenaransaccion
++     * @param cuenta
++     * @return
++     * @throws Exception
++     */
++    public List<BeanCuentasRetiroDobleMoneda> quitarCuentaListaCTS(String cadenaTransaccion,
++                                                                   String cuenta) throws Exception;
++
++    /**
++     * @author acnunez
++     * @since [RSIS-184] 13.11.2017
++     * @param cadenaTransaccion
++     * @param cuenta
++     * @param monedaTransaccion
++     * @param formaRetiro
++     * @param montoTotal
++     * @param indicadorProcesamiento
++     * @param beanParametrosAuditoria
++     * @return
++     * @throws Exception
++     */
++    public Map<String, Object> procesarListaCTS(String cadenaTransaccion,
++                                                String cuenta,
++                                                String monedaTransaccion,
++                                                String formaRetiro,
++                                                String montoTotal,
++                                                String indicadorProcesamiento,
++                                                BeanParametrosAuditoria beanParametrosAuditoria) throws Exception;
++
++    /**
++     * @author acnunez
++     * @since [RSIS-184] acnunez 27.11.2017
++     * @param cadenaTransaccion
++     * @param cuenta
++     * @param monedaTransaccion
++     * @param formaRetiro
++     * @param montoTotal
++     * @param codEntidadManejadoraValores
++     * @param indicadorProcesamiento
++     * @param beanParametrosAuditoria
++     * @return
++     * @throws Exception
++     */
++    public Map<String, Object> grabarRetiroDobleMonedaCTS(String cadenaTransaccion,
++                                                          String cuenta,
++                                                          String monedaTransaccion,
++                                                          String formaRetiro,
++                                                          String montoTotal,
++                                                          String codEntidadManejadoraValores,
++                                                          String indicadorProcesamiento,
++                                                          BeanParametrosAuditoria beanParametrosAuditoria) throws Exception;
++}
+diff --git a/FINANCIERONEW/src/financ/util/Constante.java b/FINANCIERONEW/src/financ/util/Constante.java
+index 1167103..7fbc1da 100644
+--- a/FINANCIERONEW/src/financ/util/Constante.java
++++ b/FINANCIERONEW/src/financ/util/Constante.java
+@@ -2883,5 +2883,8 @@
+     //Inicio [MSIS-147] cllanos 09.11.2017
+     public static final String CODIGO_TIPO_MOVIMIENTO_EFECTIVO = "EF";
+     public static final String CODIGO_TIPO_MOVIMIENTO_BOLETA_DEPOSITO = "BN";
+-    //Fin [MSIS-147]
++    //Fin [MSIS-147]
++    //Inicio [RSIS-184] acnunez 03.11.2017
++    public static final String TRANSACCION_VIA_DOBLE_MONEDA = "R";
++    //Fin [RSIS-184]
+ }
+\ No newline at end of file

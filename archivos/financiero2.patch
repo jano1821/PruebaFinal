@@ -1,0 +1,237 @@
+diff --git a/FINANCIERONEW/.classpath b/FINANCIERONEW/.classpath
+index 6a9e136..21e7ae4 100644
+--- a/FINANCIERONEW/.classpath
++++ b/FINANCIERONEW/.classpath
+@@ -1,20 +1,30 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<classpath>
+-	<classpathentry kind="src" path="src"/>
+-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+-	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
+-	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_CORE"/>
+-	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_JAXB2"/>
+-	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_HTTP_CLIENT"/>
+-	<classpathentry combineaccessrules="false" kind="src" path="/ADMINISTRATIVONEW"/>
+-	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE_TOOLS"/>
+-	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_CORE"/>
+-	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_EXTRAS"/>
+-	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_EM"/>
+-	<classpathentry kind="lib" path="/DELFINWEBNEW/WebRoot/WEB-INF/lib/poi-3.0.1-FINAL-20070705.jar"/>
+-	<classpathentry kind="lib" path="classes12.jar"/>
+-	<classpathentry kind="lib" path="com.ibm.mqjms.jar"/>
+-	<classpathentry kind="lib" path="jboss-annotations-ejb3.jar"/>
+-	<classpathentry kind="lib" path="/DELFINWEBNEW/WebRoot/WEB-INF/lib/jasperreports-3.0.0.jar"/>
+-	<classpathentry kind="output" path="classes"/>
+-</classpath>
+\ No newline at end of file
++<?xml version="1.0" encoding="UTF-8"?>
++<classpath>
++	<classpathentry kind="src" path="src"/>
++	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
++	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_CORE"/>
++	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_JAXB2"/>
++	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_HTTP_CLIENT"/>
++	<classpathentry combineaccessrules="false" kind="src" path="/ADMINISTRATIVONEW"/>
++	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE_TOOLS"/>
++	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_CORE"/>
++	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_EXTRAS"/>
++	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_EM"/>
++	<classpathentry kind="lib" path="/DELFINWEBNEW/WebRoot/WEB-INF/lib/poi-3.0.1-FINAL-20070705.jar"/>
++	<classpathentry kind="lib" path="classes12.jar"/>
++	<classpathentry kind="lib" path="com.ibm.mqjms.jar"/>
++	<classpathentry kind="lib" path="jboss-annotations-ejb3.jar"/>
++	<classpathentry kind="lib" path="/DELFINWEBNEW/WebRoot/WEB-INF/lib/jasperreports-3.0.0.jar"/>
++	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_07">
++		<attributes>
++			<attribute name="owner.project.facets" value="java"/>
++		</attributes>
++	</classpathentry>
++	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/JBoss 4.2 Runtime">
++		<attributes>
++			<attribute name="owner.project.facets" value="jst.ejb"/>
++		</attributes>
++	</classpathentry>
++	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
++	<classpathentry kind="output" path="classes"/>
++</classpath>
+diff --git a/FINANCIERONEW/.project b/FINANCIERONEW/.project
+index ad8cb28..f16645c 100644
+--- a/FINANCIERONEW/.project
++++ b/FINANCIERONEW/.project
+@@ -6,6 +6,11 @@
+ 	</projects>
+ 	<buildSpec>
+ 		<buildCommand>
++			<name>org.eclipse.wst.common.project.facet.core.builder</name>
++			<arguments>
++			</arguments>
++		</buildCommand>
++		<buildCommand>
+ 			<name>org.eclipse.jdt.core.javabuilder</name>
+ 			<arguments>
+ 			</arguments>
+@@ -32,9 +37,12 @@
+ 		</buildCommand>
+ 	</buildSpec>
+ 	<natures>
++		<nature>org.eclipse.jem.workbench.JavaEMFNature</nature>
++		<nature>org.eclipse.wst.common.modulecore.ModuleCoreNature</nature>
+ 		<nature>com.genuitec.eclipse.ast.deploy.core.deploymentnature</nature>
+ 		<nature>com.genuitec.eclipse.j2eedt.core.ejbnature</nature>
+ 		<nature>org.eclipse.dali.core.persistenceNature</nature>
+ 		<nature>org.eclipse.jdt.core.javanature</nature>
++		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
+ 	</natures>
+ </projectDescription>
+diff --git a/FINANCIERONEW/src/financ/cuentaspasivas/entity/CPMovimientoCuentaCTS.java b/FINANCIERONEW/src/financ/cuentaspasivas/entity/CPMovimientoCuentaCTS.java
+index c1a5f89..bb8c2f4 100644
+--- a/FINANCIERONEW/src/financ/cuentaspasivas/entity/CPMovimientoCuentaCTS.java
++++ b/FINANCIERONEW/src/financ/cuentaspasivas/entity/CPMovimientoCuentaCTS.java
+@@ -43,8 +43,16 @@
+ 	           "       AND a.fechaMovimiento = :fechaMovimiento " +
+ 	           "       AND a.codigoOperacion NOT IN ('CE005','CE006','CE009','OP028') " +
+ 	           "       AND a.estadoMovimiento = :estadoMovimiento " +
+-	           "       order by a.id.correlativoMovimiento desc " )
++	           "       order by a.id.correlativoMovimiento desc " ),
+ 	//Fin [Req.17-031]
++	//Inicio [RSIS-114] acnunez 27.09.2017
++    @NamedQuery(name = "CPMovimientoCuentaCTS.obtenerUltimosMovimientosPorCuentaAndConceptoOperacion", 
++    query = "    select a from CPMovimientoCuentaCTS a " +
++            "     WHERE a.id.numeroCuentaCTS = :numeroCuenta " +
++            "       AND a.codigoOperacion = :ConceptoOperacion " +
++            "       AND a.estadoMovimiento = :estadoMovimiento " +
++            "       order by a.id.correlativoMovimiento desc " )
++ //Fin [RSIS-114]
+ })
+ 
+ @Entity
+diff --git a/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPActualizarSaldosCTSFacade.java b/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPActualizarSaldosCTSFacade.java
+index a219043..4ba56a0 100644
+--- a/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPActualizarSaldosCTSFacade.java
++++ b/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPActualizarSaldosCTSFacade.java
+@@ -198,8 +198,7 @@
+             }
+             cbRangoFactorCambioMoneda = cbRangoFactorCambioMonedaInterfaceLocal.findByEmpresaAgenciaFechaProcesoTipoCambioMonedaOrigenMonedaDestinoMontoPersona(Constante.ID_TFC,
+                                                                                                                                                                 financ.util.Constante.CODIGO_OFICINA_PRINCIPAL,
+-                                                                                                                                                                FormatoFecha.stringToDateddMMyyyy("21/09/2017"),
+-                                                                                                                                                                //beanParametrosAuditoria.getFechaProceso(),
++                                                                                                                                                                beanParametrosAuditoria.getFechaProceso(),
+                                                                                                                                                                 financ.util.Constante.CLASE_CAMBIO_OPERACIONES,
+                                                                                                                                                                 modalidadTipoCambio,
+                                                                                                                                                                 monedaDestino,
+diff --git a/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPCuentasPasivasCTSFacade.java b/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPCuentasPasivasCTSFacade.java
+index 9d5754f..3984ed6 100644
+--- a/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPCuentasPasivasCTSFacade.java
++++ b/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPCuentasPasivasCTSFacade.java
+@@ -2,6 +2,7 @@
+ 
+ import java.math.BigDecimal;
+ import java.util.ArrayList;
++import java.util.Date;
+ import java.util.HashMap;
+ import java.util.List;
+ import java.util.Map;
+@@ -828,25 +829,48 @@
+   //Fin [CC15-059] aromero 
+ 
+     //Inicio [RSIS-114] acnunez 25.09.2017
+-    public Map<String,Object> validacionesCTS(GenericBean genericBean,
+-                                  BeanParametrosAuditoria beanParametrosAuditoria) throws Exception {
+-        Map<String,Object> output = new HashMap<String, Object>();
++    public Map<String, Object> validacionesCTS(GenericBean genericBean,
++                                               BeanParametrosAuditoria beanParametrosAuditoria) throws Exception {
++        Map<String, Object> output = new HashMap<String, Object>();
+         output.put("codigoError", NO_ERROR);
+         output.put("mensajeError", CADENA_VACIA);
++        output.put("conformidad", NO_ERROR);
+ 
+         try {
+-            if (!_isEmpty(genericBean.getProperty("fechaValor"))){
++            if (!_isEmpty(genericBean.getProperty("fechaValor"))) {
+                 Integer diasTransacurridos = 0;
+ 
+                 diasTransacurridos = FormatoFecha.diasTranscurridos(FormatoFecha.stringToDateddMMyyyy(_toStr(genericBean.getProperty("fechaValor"))),
+                                                                     beanParametrosAuditoria.getFechaProceso(),
+                                                                     "N",
+                                                                     "P");
+-                if (diasTransacurridos > 60){
++                if (diasTransacurridos > 60) {
+                     output.put("codigoError", ConstantesErrores.ERROR_11252);
+                     output.put("mensajeError", obtenerDescripcionError(ConstantesErrores.ERROR_11252));
+                 }
+             }
++            if (!_isEmpty(genericBean.getProperty("numeroCuenta"))) {
++                Integer diasTransacurridos = 0;
++                List<CPMovimientoCuentaCTS> listCPMovimientoCuentaCTS = new ArrayList<CPMovimientoCuentaCTS>();
++                Date fechaUltimoMovimientoDeposito = null;
++
++                listCPMovimientoCuentaCTS = cpMovimientoCuentaCTSInterfaceLocal.findByUltimoMovimientoNumeroCuentaPorConceptoOperacion(genericBean.getProperty("numeroCuenta").toString(),
++                                                                                                                                       Constante.CONSTANTE_DEPOSITO_CTA);
++                
++                if (!_isEmpty(listCPMovimientoCuentaCTS)){
++                    for (CPMovimientoCuentaCTS cpMovimientoCuentaCTS : listCPMovimientoCuentaCTS){
++                        fechaUltimoMovimientoDeposito = cpMovimientoCuentaCTS.getFechaMovimiento();
++                    }
++    
++                    diasTransacurridos = FormatoFecha.diasTranscurridos(fechaUltimoMovimientoDeposito,
++                                                                        beanParametrosAuditoria.getFechaProceso(),
++                                                                        "N",
++                                                                        "P");
++                    if (diasTransacurridos < 60) {
++                        output.put("conformidad", ERROR_NO_CONTROLADO);
++                    }
++                }
++            }
+         } catch (Exception e) {
+             output.put("codigoError", ERROR_NO_CONTROLADO);
+         }
+diff --git a/FINANCIERONEW/src/financ/cuentaspasivas/local/CPMovimientoCuentaCTSInterfaceLocal.java b/FINANCIERONEW/src/financ/cuentaspasivas/local/CPMovimientoCuentaCTSInterfaceLocal.java
+index 5c71899..bd70134 100644
+--- a/FINANCIERONEW/src/financ/cuentaspasivas/local/CPMovimientoCuentaCTSInterfaceLocal.java
++++ b/FINANCIERONEW/src/financ/cuentaspasivas/local/CPMovimientoCuentaCTSInterfaceLocal.java
+@@ -242,4 +242,15 @@
+      * @throws Exception
+      */
+     public List<CPMovimientoCuentaCTS> findByUltimoMovimientoNumeroCuentaFecha(String numeroCuenta,Date fechaMovimiento) throws Exception;
++
++    /**
++     * @author acnunez
++     * @since [RSIS-114] 27.09.2017
++     * @param numeroCuenta
++     * @param ConceptoOperacion
++     * @return
++     * @throws Exception
++     */
++    public List<CPMovimientoCuentaCTS> findByUltimoMovimientoNumeroCuentaPorConceptoOperacion(String numeroCuenta,
++                                                                                              String ConceptoOperacion) throws Exception;
+ }
+\ No newline at end of file
+diff --git a/FINANCIERONEW/src/financ/cuentaspasivas/session/CPMovimientoCuentaCTSSession.java b/FINANCIERONEW/src/financ/cuentaspasivas/session/CPMovimientoCuentaCTSSession.java
+index 54b753a..322bd18 100644
+--- a/FINANCIERONEW/src/financ/cuentaspasivas/session/CPMovimientoCuentaCTSSession.java
++++ b/FINANCIERONEW/src/financ/cuentaspasivas/session/CPMovimientoCuentaCTSSession.java
+@@ -1022,4 +1022,23 @@
+         }
+     }
+     //Fin [Req.17-031]
++    //Inicio [RSIS-114] acnunez 27.09.2017
++    public List<CPMovimientoCuentaCTS> findByUltimoMovimientoNumeroCuentaPorConceptoOperacion(String numeroCuenta,
++                                                                                              String ConceptoOperacion) throws Exception {
++        Query query;
++        try {
++            query = entityManager.createNamedQuery("CPMovimientoCuentaCTS.obtenerUltimosMovimientosPorCuentaAndConceptoOperacion");
++            query.setParameter("numeroCuenta", numeroCuenta);
++            query.setParameter("ConceptoOperacion", ConceptoOperacion);
++            query.setParameter("estadoMovimiento", financ.util.Constante.ESTADO_MOVIMIENTO_CUENTA_CTS_VIGENTE);
++            query.setFirstResult(0);
++            query.setMaxResults(1);
++
++            return query.getResultList();
++
++        } catch (RuntimeException e) {
++            throw e;
++        }
++    }
++    //Fin [RSIS-114]
+ }
+\ No newline at end of file

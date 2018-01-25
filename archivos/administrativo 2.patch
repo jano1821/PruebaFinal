@@ -1,0 +1,90 @@
+diff --git a/ADMINISTRATIVONEW/.classpath b/ADMINISTRATIVONEW/.classpath
+index 99b1ea4..522484f 100644
+--- a/ADMINISTRATIVONEW/.classpath
++++ b/ADMINISTRATIVONEW/.classpath
+@@ -1,17 +1,27 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<classpath>
+-	<classpathentry kind="src" path="src"/>
+-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+-	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
+-	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE_TOOLS"/>
+-	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_CORE"/>
+-	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_EXTRAS"/>
+-	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_EM"/>
+-	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_CORE"/>
+-	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_JAXB2"/>
+-	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_HTTP_CLIENT"/>
+-	<classpathentry kind="lib" path="/DELFINWEBNEW/WebRoot/WEB-INF/lib/poi-3.0.1-FINAL-20070705.jar"/>
+-	<classpathentry kind="lib" path="/DELFINWEBNEW/WebRoot/PROCESOS/applet/jsch-0.1.44.jar"/>
+-	<classpathentry kind="lib" path="/DELFINWEBNEW/WebRoot/PROCESOS/applet/descargaSFTP-1.2.jar"/>
+-	<classpathentry kind="output" path="classes"/>
+-</classpath>
++<?xml version="1.0" encoding="UTF-8"?>
++<classpath>
++	<classpathentry kind="src" path="src"/>
++	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
++	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE_TOOLS"/>
++	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_CORE"/>
++	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_EXTRAS"/>
++	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_EM"/>
++	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_CORE"/>
++	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_JAXB2"/>
++	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_HTTP_CLIENT"/>
++	<classpathentry kind="lib" path="/DELFINWEBNEW/WebRoot/WEB-INF/lib/poi-3.0.1-FINAL-20070705.jar"/>
++	<classpathentry kind="lib" path="/DELFINWEBNEW/WebRoot/PROCESOS/applet/jsch-0.1.44.jar"/>
++	<classpathentry kind="lib" path="/DELFINWEBNEW/WebRoot/PROCESOS/applet/descargaSFTP-1.2.jar"/>
++	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_07">
++		<attributes>
++			<attribute name="owner.project.facets" value="java"/>
++		</attributes>
++	</classpathentry>
++	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/JBoss 4.2 Runtime">
++		<attributes>
++			<attribute name="owner.project.facets" value="jst.ejb"/>
++		</attributes>
++	</classpathentry>
++	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
++	<classpathentry kind="output" path="classes"/>
++</classpath>
+diff --git a/ADMINISTRATIVONEW/.project b/ADMINISTRATIVONEW/.project
+index ea19403..dd716d6 100644
+--- a/ADMINISTRATIVONEW/.project
++++ b/ADMINISTRATIVONEW/.project
+@@ -6,6 +6,11 @@
+ 	</projects>
+ 	<buildSpec>
+ 		<buildCommand>
++			<name>org.eclipse.wst.common.project.facet.core.builder</name>
++			<arguments>
++			</arguments>
++		</buildCommand>
++		<buildCommand>
+ 			<name>org.eclipse.jdt.core.javabuilder</name>
+ 			<arguments>
+ 			</arguments>
+@@ -32,9 +37,12 @@
+ 		</buildCommand>
+ 	</buildSpec>
+ 	<natures>
++		<nature>org.eclipse.jem.workbench.JavaEMFNature</nature>
++		<nature>org.eclipse.wst.common.modulecore.ModuleCoreNature</nature>
+ 		<nature>com.genuitec.eclipse.ast.deploy.core.deploymentnature</nature>
+ 		<nature>com.genuitec.eclipse.j2eedt.core.ejbnature</nature>
+ 		<nature>org.eclipse.dali.core.persistenceNature</nature>
+ 		<nature>org.eclipse.jdt.core.javanature</nature>
++		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
+ 	</natures>
+ </projectDescription>
+diff --git a/ADMINISTRATIVONEW/src/admin/util/ConstantesErrores.java b/ADMINISTRATIVONEW/src/admin/util/ConstantesErrores.java
+index b72db52..7208ce2 100644
+--- a/ADMINISTRATIVONEW/src/admin/util/ConstantesErrores.java
++++ b/ADMINISTRATIVONEW/src/admin/util/ConstantesErrores.java
+@@ -949,4 +949,7 @@
+ 
+     // [RSIS-48] rsanchez 08.09.2017
+     String ERROR_11237 = "11237"; //No se ha registrado Billetaje para la moneda indicada.
++    //Inicio [RSIS-114] acnunez 25.09.2017
++    String ERROR_11252 = "11252";//Fecha Valor no puede Exceder los 60 d�as.
++    //Fin [RSIS-114]
+ }

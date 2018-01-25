@@ -1,0 +1,2404 @@
+diff --git a/ADMINISTRATIVONEW/src/admin/util/ConstantesErrores.java b/ADMINISTRATIVONEW/src/admin/util/ConstantesErrores.java
+index 12ce631..aec84a5 100644
+--- a/ADMINISTRATIVONEW/src/admin/util/ConstantesErrores.java
++++ b/ADMINISTRATIVONEW/src/admin/util/ConstantesErrores.java
+@@ -894,5 +894,10 @@
+     String ERROR_1430  = "1430";//Fecha de proceso no válida
+     String ERROR_190   = "190";//No se encontró número de Transacción en Transacciones
+     //Fin [Req.17-031]
++    
++    //Inicio [Req.17-032] agarcia 26.05.2017
++    String ERROR_11217 = "11217";//Operación no disponible para modalidad de crédito seleccionado.
++    String ERROR_463 = "463";//Estado Credito es distinto a Vigente.
++    //Fin [Req.17-032]
+ 
+ }
+diff --git a/DELFINWEBNEW/WebRoot/FINANCIERO/creditos/cuentaCredito/CR-C-BusquedaCreditoPersona_CNTR.jsp b/DELFINWEBNEW/WebRoot/FINANCIERO/creditos/cuentaCredito/CR-C-BusquedaCreditoPersona_CNTR.jsp
+new file mode 100644
+index 0000000..8b0af94
+--- /dev/null
++++ b/DELFINWEBNEW/WebRoot/FINANCIERO/creditos/cuentaCredito/CR-C-BusquedaCreditoPersona_CNTR.jsp
+@@ -0,0 +1,127 @@
++<!-- CR-C-BusquedaCreditoPersona_CNTR.jsp -->
++<%-- [Req.17-032] agarcia 25.05.2017 --%>
++<jsp:directive.page import="java.util.Date" />
++<%
++
++%>
++<html>
++    <head>
++    <title>BUSQUEDA DE CREDITOS</title>
++    <link href="<%=request.getContextPath()%>/UTILS/css/DELFIN.css" rel="stylesheet" type="text/css">
++        <!-- Invocación de JavaScript -->
++        <script src="<%=request.getContextPath()%>/UTILS/Script/Utiles.js"></script>
++        <script src="<%=request.getContextPath()%>/UTILS/Script/MsgValidacion.js"></script>
++        <script type="text/javascript" src="<%=request.getContextPath()%>/UTILS/Script/DELFIN-Utiles.js"></script>
++    </head>
++   <script>
++	   var path = "<%=request.getContextPath()%>";
++	   var f;
++	   function foco(){ 
++		    f = document.forms[0]; 
++		    f.numeroCredito.focus();
++		    byID('hidepage').style.visibility = 'hidden';
++		    buscar();
++	   }
++	   function buscar(pag){
++		    var params = serializeForm(byID('frm'),true);
++		    params += "&action=LISTAR";
++		    params += '&hid_pagina=' + ((pag)?pag:1);
++		    params += '&time=' + new Date().getTime();
++		    byID('hidepage').style.visibility = '';
++		    var url = path + '/CR_C_BusquedaCreditoPersona_Servlet'+params;
++		    document.ifrm.location.replace(url);
++		}
++	   var nextfield = "txtBusqueda";
++       var done = "done";      
++       function keyDown(DnEvents){
++           k = window.event.keyCode;
++           if (k == 13)
++               if (nextfield == 'done'){
++            	   buscar();
++                   return false;
++               }
++               else { 
++                   eval('document.forms[0].' + nextfield + '.focus()');        
++                   return false;
++               }
++           if (event.keyCode == 27) { salir(); }
++           //Reconocimiento de la tecla F1
++           if (k == 112)ayuda();
++       }
++       document.onkeydown = keyDown;
++       function salir(){
++    	   window.close();
++       }
++       
++       function pag(direccion){
++    	   document.frames[0].paginacion(direccion);
++       }
++  </script>
++    <!-- Definción del color del body -->
++    <body onLoad="loadImages();foco();">
++        <div id="hidepage" style="position: absolute; left: 280px; top: 160px; width: 150; height: 20;">
++            <table width=100%>
++                <tr>
++                    <td>
++                        <img src="<%=request.getContextPath()%>/UTILS/img/loading.gif">
++                    </td>
++                </tr>
++            </table>
++        </div>
++        <form name="frm" id="frm" method="post">
++            <input type="hidden" id="codigoPersona" name="codigoPersona" value="${codigoPersona}"> 
++            <div align="center">
++                <table border="0" cellpadding="0" cellspacing="0">
++                    <tr>
++                        <td><img src="<%=request.getContextPath()%>/UTILS/img/t.gif" width="1" height="4"></td>
++                    </tr>
++                </table>
++                <table width="98%" border="0" cellpadding="0" cellspacing="0">
++                    <tr>
++                        <td>
++                            <table width="98%" class="frame">
++                                <tr>
++						            <td class="etiqueta" width="16%">&nbsp;Tipo de B&uacute;squeda<br></td>
++						            <td width="25%">
++						                <select name="cboTipoBusqueda" class="campoobligatorioiz" onFocus="nextfield ='txtBusqueda'" tabindex="1" style="width: 99%">
++						                  <option value="NC">Número Crédito</option>
++                                        </select>
++                                    </td>
++                                    <td width="55%" align=left>
++                                        <input type=text name=numeroCredito size=48 class=campoobligatorioiz tabindex=2 style="width: 99%" value="${numeroCredito}" onFocus='this.select();nextfield =done'>
++                                    </td>
++                                </tr>
++                            </table>
++                        </td>
++                    </tr>
++                </table>
++                <table border="0" cellpadding="0" cellspacing="0">
++                    <tr>
++                        <td><img src="<%=request.getContextPath()%>/UTILS/img/t.gif" width="1" height="4"></td>
++                    </tr>
++                </table>
++                <table width="98%" align="center" height="220">
++                    <tr>
++                        <td>
++                            <iframe src="<%=request.getContextPath()%>/FINANCIERO/creditos/cuentaCredito/CR-C-BusquedaCreditoPersona_TABLA.jsp" class="frame" align="top"
++                                    frameborder="0" style="width:100% "  height="99%" name="ifrm" id="ifrm">
++                            </iframe>  
++                        </td>
++                    </tr>
++                </table>
++                <table width="98%">
++                    <tr>
++                        <td align="right">
++                <IMG src="<%=request.getContextPath()%>/UTILS/img/PagRe.gif" onClick="pag(-1);" style="CURSOR: hand;vertical-align: middle;" alt="Anterior">
++                <label id="inicial" style="width:25;text-align:left;font-size:8pt;font-family:Arial;vertical-align: middle;"></label>
++                <IMG src="<%=request.getContextPath()%>/UTILS/img/t.gif" height=1 width="10">
++                <label id="final" style="width:25;text-align:right;font-size:8pt;font-family:Arial;vertical-align: middle;"></label>
++                <IMG src="<%=request.getContextPath()%>/UTILS/img/PagAv.gif" onClick="pag(1)" style="CURSOR: hand;vertical-align: middle;" alt="Siguiente">
++                <label id="total" style="width:50;text-align:left;font-size:8pt;font-family:Arial;vertical-align: middle;"></label>
++                        </td>
++                    </tr>
++                </table>
++            </div>
++        </form>
++    </body>
++</html>
+\ No newline at end of file
+diff --git a/DELFINWEBNEW/WebRoot/FINANCIERO/creditos/cuentaCredito/CR-C-BusquedaCreditoPersona_TABLA.jsp b/DELFINWEBNEW/WebRoot/FINANCIERO/creditos/cuentaCredito/CR-C-BusquedaCreditoPersona_TABLA.jsp
+new file mode 100644
+index 0000000..65f80b0
+--- /dev/null
++++ b/DELFINWEBNEW/WebRoot/FINANCIERO/creditos/cuentaCredito/CR-C-BusquedaCreditoPersona_TABLA.jsp
+@@ -0,0 +1,219 @@
++<!-- CR-C-BusquedaCreditoPersona_TABLA.jsp-->
++<%-- [Req.S17-032] agarcia 25.05.2017 --%>
++<jsp:directive.page import="general.utils.Paginacion"/>
++<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
++<%
++  String hid_pagina = request.getParameter("hid_pagina") != null?request.getParameter("hid_pagina"):"1";  
++  String ini = request.getAttribute("inicio") != null?(String)request.getAttribute("inicio"):"0";
++  String indFin = request.getAttribute("indFin") != null?(String)request.getAttribute("indFin"):"0";
++  
++  String comienzo = request.getAttribute("inicio") != null?(String)request.getAttribute("inicio"):"0";
++  String fin = request.getAttribute("fin") != null?(String)request.getAttribute("fin"):"0";
++  String total = request.getAttribute("total") != null?(String)request.getAttribute("total"):"0";
++%>
++<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
++<html>
++  <head>    
++    <meta http-equiv="pragma" content="no-cache">
++    <meta http-equiv="cache-control" content="no-cache">
++    <meta http-equiv="expires" content="0">    
++    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
++    <meta http-equiv="description" content="This is my page">    
++    <link id="css" href="<%=request.getContextPath()%>/UTILS/css/DELFIN.css" rel="stylesheet" type="text/css">
++    <script src="<%=request.getContextPath()%>/UTILS/Script/DELFIN-Tabla.js"></script>    
++    <script src="<%=request.getContextPath()%>/UTILS/Script/grid.js"></script>
++    <script src="<%=request.getContextPath()%>/UTILS/Script/MsgValidacion.js"></script>
++ 
++    <style>
++      .active-controls-grid {width: "100%"; height: 100%; font: menu;}  
++          .active-column-0  {width: 120px; text-align: left;}
++          .active-column-1  {width: 120px; text-align: left;}
++          .active-column-2  {width: 150px; text-align: left;}
++          .active-column-3  {width: 250px; text-align: left;}
++          .active-column-4  {width: 120px; text-align: left;}             
++          .active-column-5  {display:none;}
++          .active-column-6  {width: 150px; text-align: left;}
++          
++      .active-grid-column {border-right: 1px solid threedlightshadow; }
++      .active-grid-row {border-bottom: 1px solid threedlightshadow; }      
++    </style>
++  </head>  
++  <body onload="parent.loadImages();">
++    <script>
++      var myData = [<%= request.getAttribute("myData") != null?request.getAttribute("myData").toString():"" %>];        
++      var myColumns = [
++                        "Número Credito",
++                        "Agencia",
++                        "Tipo Crédito",
++                        "Producto",
++                        "Moneda",
++                        "codigoMoneda",
++                        "Estado"
++                        ];
++        
++      var obj = new Active.Controls.Grid;       
++        obj.setId("obj");
++        obj.gridColumn = myColumns;
++        obj.gridData = myData;
++        obj.getColumnCount = function() {return this.gridColumn.length};
++        obj.getColumnText = function(i){return this.gridColumn[i]};
++        obj.getDataCount = function() {return this.gridData.length};
++        obj.getDataText = function(i, j){return this.gridData[i][j]};
++        obj.setDataText = function(value, i, j){this.gridData[i][j] = value};   
++        obj.setRowHeaderWidth("28px");
++        obj.setColumnHeaderHeight("20px");  
++        var row = new Active.Templates.Row; 
++        row.setEvent("ondblclick", function(){this.action("myAction")});    
++        obj.setTemplate("row", row);
++        obj.setAction("myAction", function(src)
++        {          
++            enviar();
++        });
++        
++      
++      var f = parent.document.forms[0];        
++      var defaultEventHandler = obj.getEvent("onkeydown");
++      var myEventHandler = function(event){ 
++        if(event.keyCode == 13){
++            enviar();
++        }else if(event.keyCode==27){
++          parent.salir();
++          event.returnValue = false;
++        }else if (event.keyCode == 8)event.returnValue = backspace();
++        else if (event.keyCode == 112)parent.ayuda();
++        else if (event.ctrlKey){
++          event.returnValue = false; 
++        }else if (window.event && (event.keyCode == 114 || event.keyCode == 116 ||
++          event.keyCode == 117 || event.keyCode == 122)){
++          event.keyCode = 505;
++        if(event.keyCode == 505)event.returnValue = false;  
++        }else
++          defaultEventHandler.call(this, event);
++        }
++        obj.setEvent("onkeydown", myEventHandler);  
++        
++        
++      document.write(obj);            
++        
++      if(myData.length>0){ 
++        obj.setSelectionIndex(0);
++      }
++                                        
++      document.oncontextmenu = new Function("return false");       
++        
++      function getTableIndex() {
++        return obj.getProperty("selection/index");
++      }
++        
++        
++      function NumerodeFilas() {
++        return obj.getRowProperty("values").length;
++      }
++          
++      function devuelveTamanio(){
++        return myData.length;
++      }
++        
++      function devuelveFila(){
++        var fila = new Array(myColumns.length);
++        if(myData.length){
++          var index = obj.getSelectionProperty("index");
++          for(i=0; i<myColumns.length; i++)
++            fila[i] = obj.getDataProperty('text', index, i);
++        }
++        return  fila;
++      }
++        
++      function devuelveFilaIndicada(index){
++        var fila = new Array(myColumns.length);
++        if(myData.length){
++          for (i=0; i<myColumns.length; i++)
++            fila[i] = obj.getDataProperty('text', index, i);
++        }
++        return  fila;
++      }
++        
++      function setFoco(){
++        if (devuelveTamanio()>0){
++          document.getElementById('obj.data.item:0.item:0').focus();
++          obj.setSelectionIndex(0);
++        }           
++      }
++       
++      function mySelect(){          
++        var index = this.getSelectionProperty("index");
++        var myData = new Array(myColumns.length);
++        var f = parent.document.forms[0];
++        for (i=0; i<myData.length; i++)
++          myData[i] = this.getDataProperty("text", index, i);
++        }
++  
++      function obtenerSeleccionado(fila){
++          return myData[fila][0];
++      }
++      
++      function obtenerCodigoPago(fila){
++          return myData[fila][1];
++      }
++
++      function devuelveTamanioByFicha(codigoFicha){
++          var cant = 0;
++          var data = new Array(myData.length);
++          for(var i=0; i < myData.length; ++i) { 
++            data[i] = devuelveFilaIndicada(i);
++              if (data[i][2] == codigoFicha) cant++;
++          } 
++          return cant;
++        }
++      
++      function enviar(){
++    	  var callerWindowObj = dialogArguments;
++          var index =  obj.getSelectionProperty("index");
++          var fila = new Array(myColumns.length);
++              for (var i=0; i<myColumns.length; i++){
++                  fila[i] = obj.getDataProperty("text", index, i);
++              }
++          callerWindowObj.insertaData(fila);
++          window.close();
++      }
++
++      function datosPagina(pag){
++          parent.buscar(pag);
++      }
++   
++      function paginacion(direccion){
++          if(myData.length < 1){
++            return;
++          }
++          var pag = eval("<%=hid_pagina%>")+eval(direccion);
++              if(direccion == "-1"){
++                 <%if(!ini.equals("0")){%>
++                      datosPagina(pag);
++                 <%}else{%>
++                      alert(m_0060);
++                 <%}%>
++           }else{
++                 <%if(indFin.equals("0")){%>
++                      datosPagina(pag);
++                 <%}else{%>
++                      alert(m_0061);
++                 <%}%>
++          }
++      }
++       
++      valores();
++      function valores(){
++            if(myData.length>0){
++               parent.inicial.innerHTML = eval(<%=comienzo%>)+1;
++               parent.final.innerHTML   = <%= fin %>;
++               parent.total.innerHTML   = "de <%= total %>";
++            }else{
++               parent.inicial.innerHTML = "";
++               parent.final.innerHTML   = "";
++               parent.total.innerHTML   = "";
++            }
++        }
++
++    </script> 
++  </body>
++</html>
+diff --git a/DELFINWEBNEW/WebRoot/FINANCIERO/operaciones/OP-IngresosEgresosVariosRight_CNTR.jsp b/DELFINWEBNEW/WebRoot/FINANCIERO/operaciones/OP-IngresosEgresosVariosRight_CNTR.jsp
+index 29ba1bd..6aed655 100644
+--- a/DELFINWEBNEW/WebRoot/FINANCIERO/operaciones/OP-IngresosEgresosVariosRight_CNTR.jsp
++++ b/DELFINWEBNEW/WebRoot/FINANCIERO/operaciones/OP-IngresosEgresosVariosRight_CNTR.jsp
+@@ -1,3 +1,6 @@
++<!-- OP-IngresosEgresosVariosRight_CNTR.jsp -->
++<%-- [Req.17-032] agarcia 25.05.2017 --%>
++<%@page import="financ.util.Constante"%>
+ <jsp:directive.page import="java.util.List"/>
+ <jsp:directive.page import="java.util.ArrayList"/>
+ <jsp:directive.page import="admin.contab.beans.BeanCBParametroReporteDetalle"/>
+@@ -66,6 +69,11 @@
+ 			if(oblig=='S' && eval("form1.parametro"+nomObj+".value")==''){
+ 				alert(m_0001);
+ 				var componente="form1.parametro"+nomObj+".focus();";
++				//Inicio [Req.S17-032] agarcia 26.05.2017
++				try{
++					eval(componente);
++				}catch (e) {}
++				//Fni [Req.S17-032] 
+ 				return false;		
+ 			}		
+ 		<%} %>
+@@ -104,22 +112,47 @@
+   	}
+ 
+ 	function busquedaAyuda(obj,codigoTabla){
+-		form1=document.frmParametros;
+-		var winl = (screen.width - 670) / 2;
+-	    var wint = (screen.height - 340) / 2;
+-
+-		var componente=eval("form1.parametro"+obj);
+-		//valor = "01364";
+-		valor = componente.value;
+-		form1.objeto.value=obj;
+-		var fecha=new Date();
+-		var nombreMetodoRetorno="insertaData";
+-
+-		var param=form1.path.value+"/GE_Busqueda_Servlet?codigoTabla="+codigoTabla+"&nombreMetodo="+nombreMetodoRetorno+"&valor="+valor+"&fecha="+fecha;
+-		
+-		window.showModalDialog(param,window,"dialogHeight:330px;dialogWidth:670px;"+
+-                                   "center:no;dialogLeft:"+winl+";dialogTop:"+wint+";help:no;resizable:no;status:yes");
++		//Inicio [Req.S17-032] agarcia 26.05.2017
++		if (obj == "<%=Constante.COD_PARAMETRO_NRO_CREDITO_INGRESOS_EGRESOS%>"){
++			var codigoPersona = parent.document.forms[0].txtCodCliPro.value;
++			if (codigoPersona == ""){
++				alert(m_8562);
++				return;
++			} 
++			var componente=eval("document.frmParametros.parametro"+obj);
++	        valor = componente.value;
++	        document.frmParametros.objeto.value=obj;
++			var winl = (screen.width - 670) / 2;
++	        var wint = (screen.height - 300) / 2;
++	        var param = document.frmParametros.path.value+"/CR_C_BusquedaCreditoPersona_Servlet?action=MOSTRAR_CNTR";
++	        param += "&codigoPersona="+codigoPersona;
++	        param += "&numeroCredito="+valor;
++	        param += "&fecha="+new Date();
++	        window.showModalDialog(param,window,"dialogHeight:300px;dialogWidth:670px;"+
++                    "center:no;dialogLeft:"+winl+";dialogTop:"+wint+";help:no;resizable:no;status:yes");
++		}else{
++			busquedaPorTabla(obj,codigoTabla);
++		}
++		//Fin [Req.S17-032] agarcia 26.05.2017
+   	}
++	
++	function busquedaPorTabla(obj,codigoTabla){
++		form1=document.frmParametros;
++        var winl = (screen.width - 670) / 2;
++        var wint = (screen.height - 340) / 2;
++
++        var componente=eval("form1.parametro"+obj);
++        
++        valor = componente.value;
++        form1.objeto.value=obj;
++        var fecha=new Date();
++        var nombreMetodoRetorno="insertaData";
++
++        var param=form1.path.value+"/GE_Busqueda_Servlet?codigoTabla="+codigoTabla+"&nombreMetodo="+nombreMetodoRetorno+"&valor="+valor+"&fecha="+fecha;
++        
++        window.showModalDialog(param,window,"dialogHeight:330px;dialogWidth:670px;"+
++                                   "center:no;dialogLeft:"+winl+";dialogTop:"+wint+";help:no;resizable:no;status:yes");
++	}
+ 
+   	function insertaData(fila){
+   		//alert("Generador Reporte CHILD.");
+@@ -131,6 +164,11 @@
+ 	  	var parametro=eval("form1.parametro"+nombreObjeto);
+ 	  	parametro.value=fila[0];
+ 		//alert('hi2');
++		//Inicio [Req.S17-032] agarcia 26.05.2017
++		if (nombreObjeto == "<%=Constante.COD_PARAMETRO_NRO_CREDITO_INGRESOS_EGRESOS%>"){
++			parent.document.forms[0].cboMoneda.value = fila[5];
++		}
++		//Fin [Req.S17-032] 
+     }
+ 
+   	function mensaje(){
+@@ -341,7 +379,8 @@
+ 		          <td class="etiqueta" width="60%" align="left">
+ 		          	<% if(bean.getTipoObjetoJspAMostrar().equals("CT")){ %>
+ 		          		<% if(bean.getTipoDato().equals("C")){ %>		          		
+-		          		<input name="parametro<%=nameParametro%>" id="parametro<%=idParametro%>"  tabindex="<%=(i+1)%>"  maxlength="<%=bean.getLongitudColumna()%>" class="<%=myStyle%>" type="text" size="15" value="" onfocus="this.select();nextfield='parametro<%=bean.getNextField()%>';idObjSel='<%=idParametro%>';nomTblBus='<%=bean.getAyudaRelacionada()%>'" >
++		          		<%-- [Req.S17-032] agarcia 26.05.2017 --%>
++		          		<input name="parametro<%=nameParametro%>" id="parametro<%=idParametro%>"  tabindex="<%=(i+1)%>"  maxlength="<%=bean.getLongitudColumna()%>" class="<%=myStyle%>" type="text" size="15" value="<%=bean.getValorParametro()%>" onfocus="this.select();nextfield='parametro<%=bean.getNextField()%>';idObjSel='<%=idParametro%>';nomTblBus='<%=bean.getAyudaRelacionada()%>'" >
+ 		          		<% } else if(bean.getTipoDato().equals("A")){ %>
+ 		          		<input name="parametro<%=nameParametro%>" id="parametro<%=idParametro%>" tabindex="<%=(i+1)%>" maxlength="10" class="<%=myStyle%>" type="text" size="15" onfocus="this.select();nextfield='parametro<%=bean.getNextField()%>';idObjSel='<%=idParametro%>';nomTblBus='<%=bean.getAyudaRelacionada()%>'">
+ 		          		<% } else if(bean.getTipoDato().equals("N")){ %>
+@@ -370,7 +409,8 @@
+ 					<% } %>
+ 					</select>
+ 		           	<% } else if(bean.getTipoObjetoJspAMostrar().equals("TA")){ %>
+-		           	<textarea name="parametro<%=nameParametro%>" id="parametro<%=idParametro%>"  tabindex="<%=(i+1)%>" class="<%=myStyle%>" cols="35" onfocus="this.select();nextfield='<%=bean.getNextField()%>';idObjSel='<%=idParametro%>';nomTblBus='<%=bean.getAyudaRelacionada()%>'"></textarea>
++		           	<%-- [Req.S17-032] agarcia 26.05.2017 --%>
++		           	<textarea name="parametro<%=nameParametro%>" id="parametro<%=idParametro%>"  tabindex="<%=(i+1)%>" class="<%=myStyle%>" cols="35" onfocus="this.select();nextfield='<%=bean.getNextField()%>';idObjSel='<%=idParametro%>';nomTblBus='<%=bean.getAyudaRelacionada()%>'"><%=bean.getValorParametro()%></textarea>
+ 		          	<% } %>
+ 		          </td>
+ 		      </tr>
+diff --git a/DELFINWEBNEW/WebRoot/FINANCIERO/operaciones/OP-IngresosEgresosVarios_CNTR.jsp b/DELFINWEBNEW/WebRoot/FINANCIERO/operaciones/OP-IngresosEgresosVarios_CNTR.jsp
+index 5b5d525..a195711 100644
+--- a/DELFINWEBNEW/WebRoot/FINANCIERO/operaciones/OP-IngresosEgresosVarios_CNTR.jsp
++++ b/DELFINWEBNEW/WebRoot/FINANCIERO/operaciones/OP-IngresosEgresosVarios_CNTR.jsp
+@@ -244,9 +244,11 @@
+ 			<input type="hidden" name="txtCodCliPro" value="<%=txtCodCliPro%>" />
+ 			<input type="hidden" name="txtCodSubCon" value="<%=codSubCon%>" />
+ 			<input type="hidden" name="txtCodTipoDocumento" />
++			<%-- [Req.S17-032] agarcia 26.05.2017 --%>
++			<input type="hidden" name="numeroCorrelativoComprobante" value="${sessionScope.numeroCorrelativoComprobante}" />
++			<input type="hidden" name="txtIndObligPersona" value="${sessionScope.txtIndObligPersona}" />
+ 			<input type="hidden" name="operacion" value="IG001" />
+ 			<input type="hidden" name="referrer" />
+-			<input type="hidden" name="txtIndObligPersona" value="N" />
+ 			<input type="hidden" name="txtTipoNumeracion" value="M" />
+ 			<input type="hidden" name="flag" value="" />
+ 			<input type="hidden" id="hidVerifica" name="hidVerifica" value="true" />
+@@ -297,7 +299,8 @@
+ 						</table>
+ 						<table width="100%" class="frame" border="0" cellpadding="0" cellspacing="0">
+ 							<tr>
+-								<td width="40%" align="center">
++								<%-- Inicio [Req.S17-032] agarcia 26.05.2017 --%>
++								<td width="20%" align="center">
+ 									<table width="100%" cellpadding="0" cellspacing="0">
+ 										<tr>
+ 											<td class="etiqueta">
+@@ -311,7 +314,7 @@
+ 										</tr>
+ 									</table>
+ 								</td>
+-								<td class="etiqueta" align="center">
++								<td width="20%" class="etiqueta" align="center">
+ 									<div id="ingreso" class="textoazul">
+ 										INGRESO
+ 									</div>
+@@ -319,6 +322,8 @@
+ 										EGRESO
+ 									</div>
+ 								</td>
++								<td width="60%"></td>
++								<%-- Fin [Req.S17-032]  --%>
+ 							</tr>
+ 						</table>
+ 						<table cellpadding="0" cellspacing="0">
+@@ -336,11 +341,16 @@
+ 									DATOS INGRESOS / EGRESO
+ 								</td>
+ 								<td>
+-									&nbsp;
+-								</td>
++                                    &nbsp;
++                                </td>
+ 								<td class="tituloframe">
+ 									DATOS REFERENCIALES
+ 								</td>
++								<%-- Inicio [Req.S17-032] agarcia 26.05.2017 --%>
++								<td>
++                                    &nbsp;
++                                </td>
++                                <%-- Fin [Req.S17-032] agarcia 26.05.2017 --%>
+ 							</tr>
+ 
+ 							<tr>
+@@ -362,31 +372,31 @@
+ 													onfocus="this.select();nextfield='txtCliPro';KK='txtFecha'">
+ 											</td>
+ 										</tr>
+-   <!-- Inicio [Req. S14-100] jventura 16.02.2016 -->
+-  <tr id="flagRecaudacion">
+-      <td class="etiqueta" width="100px">&nbsp;<b>Recaud. Bantiq</b></td>
+-      <td colspan="3">
+-          <input type="checkbox" name="chkIndRecaudacion"  style="margin-left: -4px" onclick="habilitaBantiq(0);" value="N" tabindex="25"> 
+-      </td>
+-  </tr>
+-  <tr  id="idLiqBTQ"  style="display:none" >
+-      <td class="etiqueta">
+-          &nbsp;Nro.Liquidaci&oacute;n
+-      </td>
+-      <td colspan="3">
+-          <input name="txtNroLiquidacion" class="campoobligatorioiz" readonly
+-              tabindex="1"
+-              onFocus="this.select();nextfield ='txtCliPro';concepto='txtNroLiquidacion'"
+-              onKeyPress="valida_numero(this.value,'int')" size=7
+-              maxlength=15
+-              value="<%=txtNroLiquidacion%>">
+-          <a href="javascript:obtieneDescripcion('txtNroLiquidacion','S');" tabindex="-1">
+-                  <img src="<%=request.getContextPath()%>/UTILS/img/Detalle.gif" border=0>
+-          </a>
+-      <input type="hidden" name="txtNumCuenta" class="campodisplayiz" readonly tabindex="-1" size="15">
+-      </td>                                           
+-  </tr>
+-  <!-- Fin [Req. S14-100]-->
++									   <!-- Inicio [Req. S14-100] jventura 16.02.2016 -->
++									  <tr id="flagRecaudacion">
++									      <td class="etiqueta" width="100px">&nbsp;<b>Recaud. Bantiq</b></td>
++									      <td colspan="3">
++									          <input type="checkbox" name="chkIndRecaudacion"  style="margin-left: -4px" onclick="habilitaBantiq(0);" value="N" tabindex="25"> 
++									      </td>
++									  </tr>
++									  <tr  id="idLiqBTQ"  style="display:none" >
++									      <td class="etiqueta">
++									          &nbsp;Nro.Liquidaci&oacute;n
++									      </td>
++									      <td colspan="3">
++									          <input name="txtNroLiquidacion" class="campoobligatorioiz" readonly
++									              tabindex="1"
++									              onFocus="this.select();nextfield ='txtCliPro';concepto='txtNroLiquidacion'"
++									              onKeyPress="valida_numero(this.value,'int')" size=7
++									              maxlength=15
++									              value="<%=txtNroLiquidacion%>">
++									          <a href="javascript:obtieneDescripcion('txtNroLiquidacion','S');" tabindex="-1">
++									                  <img src="<%=request.getContextPath()%>/UTILS/img/Detalle.gif" border=0>
++									          </a>
++									      <input type="hidden" name="txtNumCuenta" class="campodisplayiz" readonly tabindex="-1" size="15">
++									      </td>                                           
++									  </tr>
++									  <!-- Fin [Req. S14-100]-->
+ 										<tr>
+ 											<td class="etiqueta">
+ 												&nbsp;Concepto
+@@ -528,44 +538,44 @@
+ 											</td>
+ 										</tr>
+ 										 <!-- Inicio [Req. S14-100] jventura 16.02.2016 -->
+- <tr  id="NumRefBTQ"  style="display:none" >
+-     <td class="etiqueta">
+-             &nbsp;Num Ref. Bantiq.
+-     </td>
+-     <td colspan="3">
+-         <input name="txtNumRefBTQ" id="txtNumRefBTQ"
+-             style="width:150"
+-             class="campodisplayiz" readonly tabindex="2"
+-             value="<%=txtNumRefBTQ%>">
+-     </td>
+- </tr>
+- <tr  id="MontoBTQ"  style="display:none" >
+-     <td class="etiqueta">
+-             &nbsp;Monto Liq.
+-     </td>
+-     <td colspan="3">
+-         <input name="txtMontoBTQ" id="txtMontoBTQ"
+-             class="campodisplayde" readonly tabindex="2" style="width:150"
+-             onFocus="this.select();nextfield ='txtTipoDocumento';concepto='txtCliPro';"
+-             onKeyPress="valida_numero(this.value,'int')"
+-             onBlur="formateo()"
+-             value="<%=txtMontoBTQ%>">
+-     </td>
+- </tr>
+- <tr  id="ItfBTQ"  style="display:none" >
+-     <td class="etiqueta">
+-             &nbsp;ITF
+-     </td>
+-     <td colspan="3">
+-         <input name="txtItfBTQ" id="txtItfBTQ"
+-             class="campodisplayde" readonly tabindex="2" style="width:150"
+-             onFocus="this.select();nextfield ='txtTipoDocumento';concepto='txtCliPro';"
+-             onKeyPress="valida_numero(this.value,'int')"
+-             onBlur="formateo()"
+-             value="<%=txtItfBTQ%>">
+-     </td>
+- </tr>
+- <!-- Fin [Req. S14-100]-->
++										 <tr  id="NumRefBTQ"  style="display:none" >
++										     <td class="etiqueta">
++										             &nbsp;Num Ref. Bantiq.
++										     </td>
++										     <td colspan="3">
++										         <input name="txtNumRefBTQ" id="txtNumRefBTQ"
++										             style="width:150"
++										             class="campodisplayiz" readonly tabindex="2"
++										             value="<%=txtNumRefBTQ%>">
++										     </td>
++										 </tr>
++										 <tr  id="MontoBTQ"  style="display:none" >
++										     <td class="etiqueta">
++										             &nbsp;Monto Liq.
++										     </td>
++										     <td colspan="3">
++										         <input name="txtMontoBTQ" id="txtMontoBTQ"
++										             class="campodisplayde" readonly tabindex="2" style="width:150"
++										             onFocus="this.select();nextfield ='txtTipoDocumento';concepto='txtCliPro';"
++										             onKeyPress="valida_numero(this.value,'int')"
++										             onBlur="formateo()"
++										             value="<%=txtMontoBTQ%>">
++										     </td>
++										 </tr>
++										 <tr  id="ItfBTQ"  style="display:none" >
++										     <td class="etiqueta">
++										             &nbsp;ITF
++										     </td>
++										     <td colspan="3">
++										         <input name="txtItfBTQ" id="txtItfBTQ"
++										             class="campodisplayde" readonly tabindex="2" style="width:150"
++										             onFocus="this.select();nextfield ='txtTipoDocumento';concepto='txtCliPro';"
++										             onKeyPress="valida_numero(this.value,'int')"
++										             onBlur="formateo()"
++										             value="<%=txtItfBTQ%>">
++										     </td>
++										 </tr>
++										 <!-- Fin [Req. S14-100]-->
+ 										<tr>
+ 											<td class="etiqueta">
+ 												&nbsp;Monto
+@@ -787,10 +797,11 @@
+ 										</tr>
+ 									</table>
+ 								</td>
+-								<td>
+-									&nbsp;
+-								</td>
+-								<td align="left" width="360px">
++							    <%-- Inicio [Req.S17-032] agarcia 26.05.2017 --%>
++								<td width="50px">
++                                    &nbsp;
++                                </td>
++								<td align="left" width="360px" valign="top">
+ 									<table width="100%" style="height:270px;" class="frame"	cellpadding="0" cellspacing="0">
+ 										<tr>
+ 											<td valign="top" align="left">
+@@ -801,6 +812,10 @@
+ 										</tr>
+ 									</table>
+ 								</td>
++								<td>
++                                    &nbsp;
++                                </td>
++                                <%-- Fin [Req.S17-032] agarcia 26.05.2017 --%>
+ 							</tr>
+ 						</table>
+ 						<table width="99%">
+@@ -1254,6 +1269,13 @@
+ 					f.txtCodCliPro.focus();
+ 					return false
+ 				}
++				// Inicio [Req.S17-032] agarcia 26.05.2017
++				if(RTrim(LTrim(f.txtCliPro.value))==''){
++                    alert(m_0001);
++                    f.txtCliPro.focus();
++                    return false;
++                }
++                // Fin [Req.S17-032] 
+ 			}
+ 			
+ 			if(myOption[0].checked==true){	
+@@ -1880,6 +1902,11 @@
+ 		//jmedina 28.08.2013 : Recibos Manuales [Req 12-014]
+ 		session.removeAttribute("myData2");	
+ 		//session.removeAttribute("registros");
++		
++		// Inicio [Req.S17-032] agarcia 26.05.2017
++		session.removeAttribute("numeroCorrelativoComprobante");
++		session.removeAttribute("codSubCon");
++		// Fin [Req.S17-032] agarcia 26.05.2017
+ 			
+ 	%>
+ 					
+diff --git a/DELFINWEBNEW/WebRoot/WEB-INF/web.xml b/DELFINWEBNEW/WebRoot/WEB-INF/web.xml
+index 6d90c91..e426b8f 100644
+--- a/DELFINWEBNEW/WebRoot/WEB-INF/web.xml
++++ b/DELFINWEBNEW/WebRoot/WEB-INF/web.xml
+@@ -24975,4 +24975,17 @@
+         <url-pattern>/OP_ValidacionAnulacionOperacion_Servlet</url-pattern>
+     </servlet-mapping>
+     <!-- Fin [Req.17-031] -->
++    <!-- Inicio [Req.17-032] agarcia 11.05.2017 -->
++    <servlet>
++    	<description>
++    	</description>
++    	<display-name>CR_C_BusquedaCreditoPersona_Servlet</display-name>
++    	<servlet-name>CR_C_BusquedaCreditoPersona_Servlet</servlet-name>
++    	<servlet-class>financ.creditos.cuentaCredito.servlets.CR_C_BusquedaCreditoPersona_Servlet</servlet-class>
++    </servlet>
++    <servlet-mapping>
++    	<servlet-name>CR_C_BusquedaCreditoPersona_Servlet</servlet-name>
++    	<url-pattern>/CR_C_BusquedaCreditoPersona_Servlet</url-pattern>
++    </servlet-mapping>
++    <!-- Fin [Req.17-032] agarcia -->
+ </web-app>
+diff --git a/DELFINWEBNEW/src/financ/creditos/cuentaCredito/servlets/CR_C_BusquedaCreditoPersona_Servlet.java b/DELFINWEBNEW/src/financ/creditos/cuentaCredito/servlets/CR_C_BusquedaCreditoPersona_Servlet.java
+new file mode 100644
+index 0000000..8c42c85
+--- /dev/null
++++ b/DELFINWEBNEW/src/financ/creditos/cuentaCredito/servlets/CR_C_BusquedaCreditoPersona_Servlet.java
+@@ -0,0 +1,69 @@
++package financ.creditos.cuentaCredito.servlets;
++
++import financ.creditos.beans.BeanCRBusquedaCuentaCredito;
++import financ.creditos.facade.CRCuentaCreditoFacade;
++import financ.creditos.local.CRCuentaCreditoFacadeInterfaceLocal;
++import financ.util.Constante;
++import general.servlets.GE_BaseMethodInvocation_Servlet;
++
++import java.util.List;
++
++import admin.contab.beans.BeanParametrosAuditoria;
++import pe.com.tfc.utils.RequestMapping;
++
++/**
++ * CR_C_BusquedaCreditoPersona_Servlet
++ * 
++ * @author agarcia
++ * @since [S17-032] 25.05.2017
++ */
++public class CR_C_BusquedaCreditoPersona_Servlet extends GE_BaseMethodInvocation_Servlet {
++
++    private static final long serialVersionUID = 3111804512200566879L;
++    private static final String PATH_MODULO = "/FINANCIERO/creditos/cuentaCredito/";
++    private static final String URL_CONTENEDOR = PATH_MODULO + "CR-C-BusquedaCreditoPersona_CNTR.jsp";
++    private static final String URL_TABLA = PATH_MODULO + "CR-C-BusquedaCreditoPersona_TABLA.jsp";
++
++    private CRCuentaCreditoFacadeInterfaceLocal crCuentaCreditoFacadeInterfaceLocal;
++
++    protected void initEJBs() throws Exception {
++        crCuentaCreditoFacadeInterfaceLocal = lookup(CRCuentaCreditoFacade.LocalJNDIName);
++    }
++
++    @Override
++    protected void execute(ServletParams servletParams) throws Exception {
++    }
++
++    @RequestMapping(value = "MOSTRAR_CNTR", url = URL_CONTENEDOR)
++    protected void mostrarContenedorHandler(final ServletParams servletParams) throws Exception {
++        setRequestAttribute(servletParams, "codigoPersona", getParameter(servletParams, "codigoPersona"));
++        setRequestAttribute(servletParams, "numeroCredito", getParameter(servletParams, "numeroCredito"));
++        forward(servletParams);
++    }
++
++    @RequestMapping(value = "LISTAR", url = URL_TABLA)
++    protected void listarAlquileres(final ServletParams servletParams) throws Exception {
++        List<BeanCRBusquedaCuentaCredito> lstbBeanCRBusquedaCuentaCreditos;
++        BeanParametrosAuditoria beanParametrosAuditoria = getBeanParametrosAuditoria(servletParams);
++        final BeanCRBusquedaCuentaCredito bean = mapearBean(servletParams, BeanCRBusquedaCuentaCredito.class);
++        bean.setCodigoEmpresa(beanParametrosAuditoria.getCodigoEmpresa());
++        bean.setEstadoCredito(Constante.ESTADO_CREDITO_VIGENTE);
++        bean.setModalidadCredito(Constante.TIPO_MODALIDAD_CREDITO_PRESTAMOS_CUOTA);
++        
++        iniciarPaginarFromDB(servletParams, bean);
++        lstbBeanCRBusquedaCuentaCreditos = crCuentaCreditoFacadeInterfaceLocal.buscarVigentesByPersona(bean,beanParametrosAuditoria);
++        terminarPaginarFromDB(servletParams, lstbBeanCRBusquedaCuentaCreditos);
++        
++        final String myData = getMyData(lstbBeanCRBusquedaCuentaCreditos,
++                                        "numeroCredito",
++                                        "descripcionAgencia",
++                                        "descripcionTipoCredito",
++                                        "descripcionProducto",
++                                        "descripcionMoneda",
++                                        "codigoMoneda",
++                                        "estado");
++
++        setRequestAttribute(servletParams, "myData", myData);
++        forward(servletParams);
++    }
++}
+diff --git a/DELFINWEBNEW/src/financ/operaciones/servlets/OP_C_IngresosEgresosVariosParametros_Servlet.java b/DELFINWEBNEW/src/financ/operaciones/servlets/OP_C_IngresosEgresosVariosParametros_Servlet.java
+index 7f141cc..ec1e1a3 100644
+--- a/DELFINWEBNEW/src/financ/operaciones/servlets/OP_C_IngresosEgresosVariosParametros_Servlet.java
++++ b/DELFINWEBNEW/src/financ/operaciones/servlets/OP_C_IngresosEgresosVariosParametros_Servlet.java
+@@ -1,16 +1,8 @@
+ package financ.operaciones.servlets;
+ 
+-import financ.operaciones.beans.BeanOPCierreDiarioCaja;
+-import financ.operaciones.beans.BeanOPMonedaDescripcion;
+-import financ.operaciones.local.CBBNMonedaFacadeInterfaceLocal;
+-import financ.operaciones.local.OPBNCierreCajaFacadeInterfaceLocal;
+-import financ.operaciones.local.OPBNComprobantesContablesIngresoEgresoFacadeInterfaceLocal;
+-import general.utils.FormatoFecha;
+-
+ import java.io.IOException;
+ import java.sql.Date;
+ import java.util.List;
+-import java.util.Map;
+ 
+ import javax.naming.InitialContext;
+ import javax.servlet.ServletException;
+@@ -19,9 +11,12 @@
+ import javax.servlet.http.HttpServletResponse;
+ import javax.servlet.http.HttpSession;
+ 
+-import admin.contab.beans.BeanCBCatalogoErrores;
+ import admin.contab.beans.BeanControlErrores;
+ import admin.contab.local.CBControlErroresFacadeInterfaceLocal;
++import financ.operaciones.local.CBBNMonedaFacadeInterfaceLocal;
++import financ.operaciones.local.OPBNCierreCajaFacadeInterfaceLocal;
++import financ.operaciones.local.OPBNComprobantesContablesIngresoEgresoFacadeInterfaceLocal;
++import general.utils.FormatoFecha;
+ 
+ public class OP_C_IngresosEgresosVariosParametros_Servlet extends HttpServlet {
+     
+@@ -66,6 +61,8 @@
+ 		String strFecPro = session.getAttribute("strFecPro")!=null?(String)session.getAttribute("strFecPro"):"";
+ 		String tipoEntidad=request.getParameter("tipoEntidad")!=null?(String)request.getParameter("tipoEntidad"):"";
+ 		String codSubConcepto=request.getParameter("codSubConcepto")!=null?(String)request.getParameter("codSubConcepto"):null;
++		// [Req.S17-032] agarcia 26.05.2017
++		String numeroCorrelativoComprobante = request.getParameter("numeroCorrelativoComprobante")!=null?(String)request.getParameter("numeroCorrelativoComprobante"):"";
+ 		FormatoFecha hora = new FormatoFecha();
+         Date fec = new Date(System.currentTimeMillis());
+ 		String error ="",strError;
+@@ -74,7 +71,8 @@
+ 		try{
+ 		//Me indica la página a cargar
+ 			if(codSubConcepto!=null){
+-				List lstParametros =opIngresoEgresosInterfaceLocal.obtenerParametros(codSubConcepto, strCodEmp, strCodUsu);
++			    // [Req.S17-032] agarcia 26.05.2017
++			    List lstParametros =opIngresoEgresosInterfaceLocal.obtenerParametros(codSubConcepto, strCodEmp, strCodUsu, numeroCorrelativoComprobante);
+ 				session.setAttribute("lstParametrosSubConcepto",lstParametros);
+ 			}
+ 		
+diff --git a/DELFINWEBNEW/src/financ/operaciones/servlets/OP_T_IngresosEgresosVarios_Servlet.java b/DELFINWEBNEW/src/financ/operaciones/servlets/OP_T_IngresosEgresosVarios_Servlet.java
+index 4361668..9b2157a 100644
+--- a/DELFINWEBNEW/src/financ/operaciones/servlets/OP_T_IngresosEgresosVarios_Servlet.java
++++ b/DELFINWEBNEW/src/financ/operaciones/servlets/OP_T_IngresosEgresosVarios_Servlet.java
+@@ -318,49 +318,50 @@
+ 				error = "0";
+ 				mensaje = "0";
+ 				// [Req. S14-100] jventura 16.02.2016
+-            session.setAttribute("txtEstadoPago", Constante.ESTADO_LIQ_BANTIQ_PAGADO);
++				session.setAttribute("txtEstadoPago", Constante.ESTADO_LIQ_BANTIQ_PAGADO);
+ 				//session.setAttribute("corrTxn",((Long)mapa.get("numeroCorrelativoOperacion")).toString());
+ 				session.setAttribute("corrTxn",(mapa.get("numeroTransaccionPrincipal")).toString());//vperez 06.10.2010 seteo del correlativo de la transaccion
+-				
+-			String numeroTransaccion=mapa.get("numeroTransaccionPrincipal")!=null?mapa.get("numeroTransaccionPrincipal").toString():"";
++				// [Req.S17-032] agarcia 26.05.2017
++				session.setAttribute("numeroCorrelativoComprobante", mapa.get("numeroCorrelativoComprobante"));
++    			String numeroTransaccion=mapa.get("numeroTransaccionPrincipal")!=null?mapa.get("numeroTransaccionPrincipal").toString():"";
++    			
++    			// hpajuelo 28.12.2011 Si la transaccion se hizo con Boleta de Deposito, se verifica si se realizo con efectivo en la entidad bancaria para registrar info
++    			 if(strTipoComp!=null && strTipoComp.equals("BN") 
++    					 && indicadorDepositoEfectivo!=null && indicadorDepositoEfectivo.equals("E")
++    					 	&& strCodPersona!=null && !strCodPersona.equals("")){
++    				 if(numeroTransaccion!=null){
++    					 BeanParametrosAuditoria beanParametrosAuditoria = new BeanParametrosAuditoria();
++    					 beanParametrosAuditoria.setFechaProceso(financ.util.FormatoFecha.stringToUtilDate(strFecPro));
++    					 beanParametrosAuditoria.setFechaInsercion(financ.util.FormatoFecha.stringToUtilDate(strFecPro));
++    					 beanParametrosAuditoria.setUsuarioInsercion(strCodUsu);
++    					 beanParametrosAuditoria.setTerminalInsercion(request.getRemoteHost());
++    					 beanParametrosAuditoria.setIpInsercion(request.getRemoteAddr());
++    					 beanParametrosAuditoria.setCodigoEmpresa(strCodEmp);
++    					 beanParametrosAuditoria.setCodigoAgencia(strCodAge);
++    					 laOperacionesDepositosEfectivoFacadeInterfaceLocal.registroOperacion(numeroTransaccion, beanParametrosAuditoria);
++    				 }
++    			 }
++    			 //------------------------------------------------------------
+ 			
+-			// hpajuelo 28.12.2011 Si la transaccion se hizo con Boleta de Deposito, se verifica si se realizo con efectivo en la entidad bancaria para registrar info
+-			 if(strTipoComp!=null && strTipoComp.equals("BN") 
+-					 && indicadorDepositoEfectivo!=null && indicadorDepositoEfectivo.equals("E")
+-					 	&& strCodPersona!=null && !strCodPersona.equals("")){
+-				 if(numeroTransaccion!=null){
+-					 BeanParametrosAuditoria beanParametrosAuditoria = new BeanParametrosAuditoria();
+-					 beanParametrosAuditoria.setFechaProceso(financ.util.FormatoFecha.stringToUtilDate(strFecPro));
+-					 beanParametrosAuditoria.setFechaInsercion(financ.util.FormatoFecha.stringToUtilDate(strFecPro));
+-					 beanParametrosAuditoria.setUsuarioInsercion(strCodUsu);
+-					 beanParametrosAuditoria.setTerminalInsercion(request.getRemoteHost());
+-					 beanParametrosAuditoria.setIpInsercion(request.getRemoteAddr());
+-					 beanParametrosAuditoria.setCodigoEmpresa(strCodEmp);
+-					 beanParametrosAuditoria.setCodigoAgencia(strCodAge);
+-					 laOperacionesDepositosEfectivoFacadeInterfaceLocal.registroOperacion(numeroTransaccion, beanParametrosAuditoria);
+-				 }
+-			 }
+-			 //------------------------------------------------------------
+-			
+-			//evargas transaccion contable
+-			if(numeroTransaccion!=null && !"".equals(numeroTransaccion)){
+-						  List lstTransacciones2 = new ArrayList();
+-						  
+-						  String transaccionContable=opBNTransaccionesFacadeInterfaceLocal.obtenerNumeroTransaccionContable(new Long(numeroTransaccion), strCodUsu);
+-						  if(transaccionContable!=null && !transaccionContable.equals("")){
+-							  lstTransacciones2.add(new Long(transaccionContable));
+-							  cgGenerarAsientoMdbFacadeLocal.generarAsientoContable(request.getRemoteHost(), request.getRemoteAddr(), lstTransacciones2,strCodAge,strCodUsu,strCodEmp);
+-						  }
+-					}
+-			}else{
+-			    try{
+-					BeanCBCatalogoErrores cbCatalogoErrores = cbControlErroresFacadeInterfaceLocal.obtenerCatalogoError(mensaje);
+-					error = cbCatalogoErrores.getDescripcion();
+-			    }catch(Exception e){
+-			    	mensaje = "1";
+-			        error = "1";
+-			    }
+-			}
++    			 //evargas transaccion contable
++    			if(numeroTransaccion!=null && !"".equals(numeroTransaccion)){
++    						  List lstTransacciones2 = new ArrayList();
++    						  
++    						  String transaccionContable=opBNTransaccionesFacadeInterfaceLocal.obtenerNumeroTransaccionContable(new Long(numeroTransaccion), strCodUsu);
++    						  if(transaccionContable!=null && !transaccionContable.equals("")){
++    							  lstTransacciones2.add(new Long(transaccionContable));
++    							  cgGenerarAsientoMdbFacadeLocal.generarAsientoContable(request.getRemoteHost(), request.getRemoteAddr(), lstTransacciones2,strCodAge,strCodUsu,strCodEmp);
++    						  }
++    					}
++    			}else{
++    			    try{
++    					BeanCBCatalogoErrores cbCatalogoErrores = cbControlErroresFacadeInterfaceLocal.obtenerCatalogoError(mensaje);
++    					error = cbCatalogoErrores.getDescripcion();
++    			    }catch(Exception e){
++    			    	mensaje = "1";
++    			        error = "1";
++    			    }
++    			}            
+ 			
+ 		}catch (Exception e){
+ 			e.printStackTrace();
+diff --git a/DELFINWEBNEW/src/general/busquedas/Busqueda_SubConceptoOperacion_Servlet.java b/DELFINWEBNEW/src/general/busquedas/Busqueda_SubConceptoOperacion_Servlet.java
+index 7ec54a5..ffa8180 100644
+--- a/DELFINWEBNEW/src/general/busquedas/Busqueda_SubConceptoOperacion_Servlet.java
++++ b/DELFINWEBNEW/src/general/busquedas/Busqueda_SubConceptoOperacion_Servlet.java
+@@ -155,20 +155,14 @@
+ 			}
+ 			// Fin [Req.14-150]
+ 
+-			if (pos_fin + 1 > lstBeanCBSubConceptoOperacion.size()) {
+-				fin = "1";
+-				pos_ini=0;
+-				pos_fin = lstBeanCBSubConceptoOperacion.size();
+-			}
+-			if (pos_ini < 0)
+-				pos_ini = 0;
++			// Inicio [Req.S17-032] agarcia 26.05.2017
+ 			
+ 			StringBuffer myData = new StringBuffer();
+ 			BeanCBSubConceptoOperacion beanCBSubConceptoOperacion=new BeanCBSubConceptoOperacion();
+ 			beanCBSubConceptoOperacion.setCanReg(new Long(0)); 
+ 			if (lstBeanCBSubConceptoOperacion!=null){
+ 				
+-				for (int i=pos_ini; i<pos_fin; i++){
++				for (int i=0; i<lstBeanCBSubConceptoOperacion.size(); i++){
+ 					beanCBSubConceptoOperacion = (BeanCBSubConceptoOperacion)lstBeanCBSubConceptoOperacion.get(i);
+ 					
+ 					String strCodigolargo = beanCBSubConceptoOperacion.getCodigoSubConcepto()!=null?
+@@ -196,15 +190,17 @@
+ 					myData.append( "\"" + strCodigoOperacion + "\"");//gfernandez 26.09.2012
+ 					myData.append("]");
+ 					
+-					if (i < pos_fin-1)
++					if (i < lstBeanCBSubConceptoOperacion.size()-1)
+ 						myData.append(",");
+ 				}
+ 			}
+-			
++
+ 			int inicio = Paginacion.getNumInicioActual(Integer.parseInt(strPagina));
+ 			int total=0;
+ 			if(beanCBSubConceptoOperacion.getCanReg()!=null){
+ 				total = Integer.parseInt(beanCBSubConceptoOperacion.getCanReg().toString());
++			}else{
++			    total = lstBeanCBSubConceptoOperacion.size();
+ 			}
+            	int finalPagina;
+            	if(total>50)
+@@ -221,7 +217,14 @@
+            	
+            if( total == 1 ) {
+             	finalPagina= 1;
+-            }          
++            }
++           
++           if (pos_fin + 1 > total) {
++               fin = "1";
++               pos_fin = total;
++           }
++           if (pos_ini < 0)
++               pos_ini = 0;
+            
+             response.setContentType("text/html");
+ 			PrintWriter out = response.getWriter();	
+@@ -320,10 +323,10 @@
+ 				out.println("eliminarTodos();");
+ 				out.println("parent.document.getElementById('hidepage').style.visibility = '';");
+ 				out.println("if(criterio == 'Codigo')");
+-				out.println("	urlPeriodo = '<%=path%>/Busqueda_SubConceptoOperacion_Servlet?criterio='+");
++				out.println("   urlPeriodo = '"+ request.getContextPath() +"/Busqueda_SubConceptoOperacion_Servlet?criterio='+");
+ 				out.println("		criterio+'&valor='+codigoconcepto+valor+'&codoperacion='+codigoconcepto+'&hid_pagina='+pag;");
+ 				out.println("else");
+-				out.println("	urlPeriodo = '<%=path%>/Busqueda_SubConceptoOperacion_Servlet?criterio='+");
++				out.println("   urlPeriodo = '"+ request.getContextPath() +"/Busqueda_SubConceptoOperacion_Servlet?criterio='+");
+ 				out.println("		criterio+'&valor='+valor+'&codoperacion='+codigoconcepto+'&hid_pagina='+pag;");
+ 				out.println("parent.window.document.ifrmBusqueda.location.replace(urlPeriodo);");
+ 			} else {
+@@ -334,10 +337,10 @@
+ 			    out.println("eliminarTodos();");
+ 			    out.println("parent.document.getElementById('hidepage').style.visibility = '';");
+ 				out.println("if(criterio == 'Codigo')");
+-				out.println("	urlPeriodo = '<%=path%>/Busqueda_SubConceptoOperacion_Servlet?criterio='+");
++				out.println("   urlPeriodo = '"+ request.getContextPath() +"/Busqueda_SubConceptoOperacion_Servlet?criterio='+");
+ 				out.println("		criterio+'&valor='+codigoconcepto+valor+'&codoperacion='+codigoconcepto+'&hid_pagina='+pag;");
+ 				out.println("else");
+-				out.println("	urlPeriodo = '<%=path%>/Busqueda_SubConceptoOperacion_Servlet?criterio='+");
++				out.println("   urlPeriodo = '"+ request.getContextPath() +"/Busqueda_SubConceptoOperacion_Servlet?criterio='+");
+ 				out.println("		criterio+'&valor='+valor+'&codoperacion='+codigoconcepto+'&hid_pagina='+pag;");
+ 				out.println("parent.window.document.ifrmBusqueda.location.replace(urlPeriodo);");
+ 			} else {
+@@ -351,7 +354,8 @@
+ 			out.println("function valores(){");
+ 			out.println("	if(myData.length>0){");
+ 			out.println("		parent.inicial.innerHTML = " + inicio);
+-			out.println("		parent.final.innerHTML   = " + finalPagina);
++			out.println("		parent.final.innerHTML   = " + pos_fin);
++			// Fin [Req.S17-032]
+ 			out.println("		parent.total.innerHTML   = 'de " + total+"'");
+ 			out.println("	}else{");
+ 			out.println("		parent.inicial.innerHTML = ''");
+diff --git a/FINANCIERONEW/src/financ/creditos/beans/BeanCRBusquedaCuentaCredito.java b/FINANCIERONEW/src/financ/creditos/beans/BeanCRBusquedaCuentaCredito.java
+new file mode 100644
+index 0000000..a215ec7
+--- /dev/null
++++ b/FINANCIERONEW/src/financ/creditos/beans/BeanCRBusquedaCuentaCredito.java
+@@ -0,0 +1,151 @@
++package financ.creditos.beans;
++
++import pe.com.tfc.utils.imports.beans.BeanPaginable;
++
++/**
++ * BeanCRBusquedaCuentaCredito
++ * 
++ * @autor agarcia
++ * @since [S17-032] 26.05.2017
++ */
++public class BeanCRBusquedaCuentaCredito extends BeanPaginable {
++
++    private static final long serialVersionUID = 2673166599251096532L;
++
++    private String numeroCredito;
++    private String tipoCredito;
++    private String subTipoCredito;
++    private String descripcionTipoCredito;
++    private String descripcionSubTipoCredito;
++    private String descripcionProducto;
++    private String codigoMoneda;
++    private String descripcionMoneda;
++    private String codigoAgencia;
++    private String descripcionAgencia;
++    private String estado;
++    private String codigoPersona;
++    private String codigoEmpresa;
++    private String estadoCredito;
++    private String modalidadCredito;
++
++    public String getNumeroCredito() {
++        return numeroCredito;
++    }
++
++    public void setNumeroCredito(String numeroCredito) {
++        this.numeroCredito = numeroCredito;
++    }
++
++    public String getTipoCredito() {
++        return tipoCredito;
++    }
++
++    public void setTipoCredito(String tipoCredito) {
++        this.tipoCredito = tipoCredito;
++    }
++
++    public String getSubTipoCredito() {
++        return subTipoCredito;
++    }
++
++    public void setSubTipoCredito(String subTipoCredito) {
++        this.subTipoCredito = subTipoCredito;
++    }
++
++    public String getDescripcionTipoCredito() {
++        return descripcionTipoCredito;
++    }
++
++    public void setDescripcionTipoCredito(String descripcionTipoCredito) {
++        this.descripcionTipoCredito = descripcionTipoCredito;
++    }
++
++    public String getDescripcionSubTipoCredito() {
++        return descripcionSubTipoCredito;
++    }
++
++    public void setDescripcionSubTipoCredito(String descripcionSubTipoCredito) {
++        this.descripcionSubTipoCredito = descripcionSubTipoCredito;
++    }
++
++    public String getDescripcionProducto() {
++        return descripcionProducto;
++    }
++
++    public void setDescripcionProducto(String descripcionProducto) {
++        this.descripcionProducto = descripcionProducto;
++    }
++
++    public String getCodigoMoneda() {
++        return codigoMoneda;
++    }
++
++    public void setCodigoMoneda(String codigoMoneda) {
++        this.codigoMoneda = codigoMoneda;
++    }
++
++    public String getDescripcionMoneda() {
++        return descripcionMoneda;
++    }
++
++    public void setDescripcionMoneda(String descripcionMoneda) {
++        this.descripcionMoneda = descripcionMoneda;
++    }
++
++    public String getCodigoAgencia() {
++        return codigoAgencia;
++    }
++
++    public void setCodigoAgencia(String codigoAgencia) {
++        this.codigoAgencia = codigoAgencia;
++    }
++
++    public String getDescripcionAgencia() {
++        return descripcionAgencia;
++    }
++
++    public void setDescripcionAgencia(String descripcionAgencia) {
++        this.descripcionAgencia = descripcionAgencia;
++    }
++
++    public String getEstado() {
++        return estado;
++    }
++
++    public void setEstado(String estado) {
++        this.estado = estado;
++    }
++
++    public String getCodigoPersona() {
++        return codigoPersona;
++    }
++
++    public void setCodigoPersona(String codigoPersona) {
++        this.codigoPersona = codigoPersona;
++    }
++
++    public String getCodigoEmpresa() {
++        return codigoEmpresa;
++    }
++
++    public void setCodigoEmpresa(String codigoEmpresa) {
++        this.codigoEmpresa = codigoEmpresa;
++    }
++
++    public String getEstadoCredito() {
++        return estadoCredito;
++    }
++
++    public void setEstadoCredito(String estadoCredito) {
++        this.estadoCredito = estadoCredito;
++    }
++
++    public String getModalidadCredito() {
++        return modalidadCredito;
++    }
++
++    public void setModalidadCredito(String modalidadCredito) {
++        this.modalidadCredito = modalidadCredito;
++    }
++
++}
+diff --git a/FINANCIERONEW/src/financ/creditos/facade/CRCuentaCreditoFacade.java b/FINANCIERONEW/src/financ/creditos/facade/CRCuentaCreditoFacade.java
+index c45fee4..5fde35a 100644
+--- a/FINANCIERONEW/src/financ/creditos/facade/CRCuentaCreditoFacade.java
++++ b/FINANCIERONEW/src/financ/creditos/facade/CRCuentaCreditoFacade.java
+@@ -78,6 +78,7 @@
+ import financ.clientes.local.CLPersonaFacadeInterfaceLocal;
+ import financ.clientes.local.CLPersonasInterfaceLocal;
+ import financ.creditos.beans.BeanCRAtributoCronogramaXProducto;
++import financ.creditos.beans.BeanCRBusquedaCuentaCredito;
+ import financ.creditos.beans.BeanCRCargoDiasAtrasoxProducto;
+ import financ.creditos.beans.BeanCRCuentaCredito;
+ import financ.creditos.beans.BeanCRHistoricoCredito;
+@@ -11069,4 +11070,38 @@
+         return codigoAgencia;
+     }
+     // Fin [Req.S17-022]
++    
++    // Inicio [Req.S17-032] agarcia 26.05.2017
++    public List<BeanCRBusquedaCuentaCredito> buscarVigentesByPersona(BeanCRBusquedaCuentaCredito bean,
++                                                                     BeanParametrosAuditoria beanParametrosAuditoria) throws Exception {
++        String modulo = "CRCuentaCreditoFacade.buscarVigentesByPersona()";
++        String usuario = beanParametrosAuditoria.getUsuarioInsercion();
++        List<BeanCRBusquedaCuentaCredito> lstReturn;
++        List listCRCuentaCredito;
++        Long cantReg;
++        BeanCRBusquedaCuentaCredito beanCRBusquedaCuentaCredito;
++        try {
++            cantReg = crCuentaCreditoInterfaceLocal.countVigentesByPersona(bean);
++            listCRCuentaCredito = crCuentaCreditoInterfaceLocal.buscarVigentesByPersona(bean);
++            lstReturn = new ArrayList<BeanCRBusquedaCuentaCredito>();
++            for (Object object : listCRCuentaCredito) {
++                Object[] row = (Object[]) object;
++                beanCRBusquedaCuentaCredito = new BeanCRBusquedaCuentaCredito();
++                beanCRBusquedaCuentaCredito.setNumeroCredito(_toStr(row.length > 0 ? row[0] : ""));
++                beanCRBusquedaCuentaCredito.setDescripcionAgencia(_toStr(row.length > 1 ? row[1] : ""));
++                beanCRBusquedaCuentaCredito.setDescripcionTipoCredito(_toStr(row.length > 2 ? row[2] : ""));
++                beanCRBusquedaCuentaCredito.setDescripcionProducto(_toStr(row.length > 3 ? row[3] : ""));
++                beanCRBusquedaCuentaCredito.setDescripcionMoneda(_toStr(row.length > 4 ? row[4] : ""));
++                beanCRBusquedaCuentaCredito.setCodigoMoneda(_toStr(row.length > 5 ? row[5] : ""));
++                beanCRBusquedaCuentaCredito.setEstado(_toStr(row.length > 6 ? row[6] : ""));
++                beanCRBusquedaCuentaCredito.setCantReg(cantReg);
++                lstReturn.add(beanCRBusquedaCuentaCredito);
++            }
++            
++        } catch (Exception e) {
++            throw handlerError(e, usuario, modulo);
++        }
++        return lstReturn;
++    }
++    // Fin [Req.S17-032] agarcia 
+ }
+\ No newline at end of file
+diff --git a/FINANCIERONEW/src/financ/creditos/local/CRCuentaCreditoFacadeInterfaceLocal.java b/FINANCIERONEW/src/financ/creditos/local/CRCuentaCreditoFacadeInterfaceLocal.java
+index 93d881b..8a5c006 100644
+--- a/FINANCIERONEW/src/financ/creditos/local/CRCuentaCreditoFacadeInterfaceLocal.java
++++ b/FINANCIERONEW/src/financ/creditos/local/CRCuentaCreditoFacadeInterfaceLocal.java
+@@ -7,6 +7,7 @@
+ import javax.ejb.Local;
+ 
+ import admin.contab.beans.BeanParametrosAuditoria;
++import financ.creditos.beans.BeanCRBusquedaCuentaCredito;
+ import financ.creditos.beans.BeanCRCuentaCredito;
+ import financ.creditos.beans.BeanCRHistoricoCredito;
+ import financ.creditos.beans.BeanCRSeguimientoLineaVidaCrear;
+@@ -341,5 +342,19 @@
+      */
+     public String obtenerAgenciaPorCliente(String codigoCliente, BeanParametrosAuditoria beanParametrosAuditoria) throws Exception;
+     
++    /**
++     * Busqueda de creditos vigentes por persona 
++     * 
++     * @author agarcia
++     * @since [Req.S17-032] 25.05.2017
++     * 
++     * @param bean
++     * @param beanParametrosAuditoria
++     * @return
++     * @throws Exception
++     */
++    public List<BeanCRBusquedaCuentaCredito> buscarVigentesByPersona(BeanCRBusquedaCuentaCredito bean,
++                                                                     BeanParametrosAuditoria beanParametrosAuditoria)throws Exception;
++    
+     
+ }
+\ No newline at end of file
+diff --git a/FINANCIERONEW/src/financ/creditos/local/CRCuentaCreditoInterfaceLocal.java b/FINANCIERONEW/src/financ/creditos/local/CRCuentaCreditoInterfaceLocal.java
+index 5168d8d..715d37f 100644
+--- a/FINANCIERONEW/src/financ/creditos/local/CRCuentaCreditoInterfaceLocal.java
++++ b/FINANCIERONEW/src/financ/creditos/local/CRCuentaCreditoInterfaceLocal.java
+@@ -7,6 +7,7 @@
+ 
+ import javax.ejb.Local;
+ 
++import financ.creditos.beans.BeanCRBusquedaCuentaCredito;
+ import financ.creditos.beans.BeanCRCuentaCredito;
+ import financ.creditos.beans.BeanCRHistoricoCredito;
+ import financ.creditos.beans.BeanCRVectorAplicacion;
+@@ -630,4 +631,24 @@
+     * @throws Exception
+     */
+    public List<CRCuentaCredito> findAllByCodigoClienteEstadoCredito(Object codigoCliente,Object codigoEstado) throws Exception;
++
++   /**
++    * @author agarcia
++    * @since [Req.S17-032] 25.05.2017
++    * 
++    * @param bean
++    * @return
++    * @throws Exception
++    */
++   public Long countVigentesByPersona(BeanCRBusquedaCuentaCredito bean) throws Exception;
++
++   /**
++    * @author agarcia
++    * @since [Req.S17-032] 25.05.2017
++    * 
++    * @param bean
++    * @return
++    * @throws Exception
++    */
++   public List buscarVigentesByPersona(BeanCRBusquedaCuentaCredito bean) throws Exception;
+ }
+\ No newline at end of file
+diff --git a/FINANCIERONEW/src/financ/creditos/session/CRCuentaCreditoSession.java b/FINANCIERONEW/src/financ/creditos/session/CRCuentaCreditoSession.java
+index 519360e..6eae2c2 100644
+--- a/FINANCIERONEW/src/financ/creditos/session/CRCuentaCreditoSession.java
++++ b/FINANCIERONEW/src/financ/creditos/session/CRCuentaCreditoSession.java
+@@ -24,7 +24,9 @@
+ import javax.persistence.Query;
+ import javax.sql.DataSource;
+ 
++import pe.com.tfc.utils.StringUtil;
+ import sbs.util.Constante;
++import financ.creditos.beans.BeanCRBusquedaCuentaCredito;
+ import financ.creditos.beans.BeanCRCuentaCredito;
+ import financ.creditos.beans.BeanCRHistoricoCredito;
+ import financ.creditos.beans.BeanCRVectorAplicacion;
+@@ -3445,5 +3447,72 @@
+          }
+      }
+      // Fin [Req.S17-022]
+-	
++
++     // Inicio [Req.S17-032] agarcia 26.05.2017
++     private String getQuery(String queryCount) {
++         StringBuilder sbQuery = new StringBuilder();
++         if (StringUtil.equiv(queryCount, financ.util.Constante.QUERY_COUNT)){
++             sbQuery.append("SELECT COUNT(1) ");
++         }else{
++             sbQuery.append("SELECT CRE.C_NUMCRE NUM_CREDITO, ");
++             sbQuery.append("        (SELECT AGE.C_DESCRI");
++             sbQuery.append("           FROM CBTAGEN AGE");
++             sbQuery.append("          WHERE AGE.C_CODEMP = CRE.C_CODEMP");
++             sbQuery.append("                AND AGE.C_CODAGE = CRE.C_CODAGE) AGENCIA, ");
++             sbQuery.append("        (TIP.C_DESCRI) || '-' || (SUB.C_DESCRI) TIPO, ");
++             sbQuery.append("        (SELECT PRO.C_DESCRI FROM CRTPROD PRO WHERE CRE.C_CODPRO = PRO.C_CODPRO) PRODUCTO, ");
++             sbQuery.append("        (SELECT MON.C_DESCRI FROM CBTTMON MON WHERE MON.C_CODMON = CRE.C_CODMON) MONEDA, ");
++             sbQuery.append("        CRE.C_CODMON COD_MONEDA, ");
++             sbQuery.append("        CRE.C_ESTCRE || ' / ' || CASE WHEN CRE.C_ESTCON <> CRE.C_ESTCO2 THEN ");
++             sbQuery.append("               (SELECT ECON.C_DESCRI FROM CRTESCO ECON WHERE CRE.C_ESTCON = ECON.C_ESTCON) || '/' || ");
++             sbQuery.append("               (SELECT ECON.C_DESCRI FROM CRTESCO ECON WHERE CRE.C_ESTCO2 = ECON.C_ESTCON) ");
++             sbQuery.append("           ELSE ");
++             sbQuery.append("           (SELECT ECON.C_DESCRI FROM CRTESCO ECON WHERE CRE.C_ESTCON = ECON.C_ESTCON) ");
++             sbQuery.append("        END ESTADO ");
++         }
++         sbQuery.append("   FROM CRMCTCR CRE, CRTTICR TIP, CRTSTCR SUB");
++         sbQuery.append("   WHERE CRE.C_CODCLI = :codigoPersona");
++         sbQuery.append("    AND CRE.C_CODEMP = :codigoEmpresa");
++         sbQuery.append("    AND CRE.C_TIPCRE = TIP.C_TIPCRE");
++         sbQuery.append("    AND SUB.C_STICRE = CRE.C_STICRE");
++         sbQuery.append("    AND SUB.C_TIPCRE = TIP.C_TIPCRE");
++         sbQuery.append("    AND CRE.C_ESTCRE = :estadoCredito");
++         sbQuery.append("    AND CRE.C_MODCRE = :modalidadCredito");
++         sbQuery.append("    AND CRE.C_NUMCRE = nvl(:numeroCredito,CRE.C_NUMCRE) ");
++         return sbQuery.toString();
++     }
++     
++     public Long countVigentesByPersona(BeanCRBusquedaCuentaCredito bean) throws Exception {
++        Query query;
++        try {
++             query = entityManager.createNativeQuery(getQuery(financ.util.Constante.QUERY_COUNT));
++             query.setParameter("codigoPersona", bean.getCodigoPersona());
++             query.setParameter("codigoEmpresa", bean.getCodigoEmpresa());
++             query.setParameter("estadoCredito", bean.getEstadoCredito());
++             query.setParameter("modalidadCredito", bean.getModalidadCredito());
++             query.setParameter("numeroCredito", bean.getNumeroCredito());
++             return ((BigDecimal) query.getSingleResult()).longValue();
++        } catch (Exception re) {
++            re.printStackTrace();
++            throw re;
++        }
++    }
++
++    public List buscarVigentesByPersona(BeanCRBusquedaCuentaCredito bean) throws Exception {
++        Query query;
++        try {
++             query = entityManager.createNativeQuery(getQuery(financ.util.Constante.QUERY_FIND));
++             query.setParameter("codigoPersona", bean.getCodigoPersona());
++             query.setParameter("codigoEmpresa", bean.getCodigoEmpresa());
++             query.setParameter("estadoCredito", bean.getEstadoCredito());
++             query.setParameter("modalidadCredito", bean.getModalidadCredito());
++             query.setParameter("numeroCredito", bean.getNumeroCredito());
++             query.setMaxResults(bean.getMaxResult());
++             query.setFirstResult(bean.getFirstResult());
++             return query.getResultList();
++        } catch (Exception re) {
++            throw re;
++        }
++    }
++    // Fin [Req.S17-032] 
+ }
+\ No newline at end of file
+diff --git a/FINANCIERONEW/src/financ/operaciones/beans/BeanOPParametroxSubconcepto.java b/FINANCIERONEW/src/financ/operaciones/beans/BeanOPParametroxSubconcepto.java
+index 4102795..e42e44c 100644
+--- a/FINANCIERONEW/src/financ/operaciones/beans/BeanOPParametroxSubconcepto.java
++++ b/FINANCIERONEW/src/financ/operaciones/beans/BeanOPParametroxSubconcepto.java
+@@ -3,269 +3,280 @@
+ import java.util.Date;
+ import java.util.List;
+ 
+-public class BeanOPParametroxSubconcepto  implements java.io.Serializable{
++public class BeanOPParametroxSubconcepto implements java.io.Serializable {
+ 
+-private static final long serialVersionUID = 100000000090029L;
+-	
+-	private String idParametro;
++    private static final long serialVersionUID = 100000000090029L;
+ 
+-	private String codigoOperacion;
++    private String idParametro;
+ 
+-	private String codigoSubConcepto;
++    private String codigoOperacion;
+ 
+-	private String codigoEmpresa;
++    private String codigoSubConcepto;
+ 
+-	private String etiquetaParametro;
++    private String codigoEmpresa;
+ 
+-	private String CNomfis;
++    private String etiquetaParametro;
+ 
+-	private String tipoDato;
++    private String CNomfis;
+ 
+-	private String tipoObjetoJspAMostrar;
++    private String tipoDato;
+ 
+-	private Long longitudColumna;
++    private String tipoObjetoJspAMostrar;
+ 
+-	private Long longitudDecimales;
++    private Long longitudColumna;
+ 
+-	private String obtenerValoresDe;
++    private Long longitudDecimales;
+ 
+-	private String nombreParametroSession;
++    private String obtenerValoresDe;
+ 
+-	private String atributoConstraint;
++    private String nombreParametroSession;
+ 
+-	private String ayudaRelacionada;
++    private String atributoConstraint;
+ 
+-	private String estadoRegistro;
++    private String ayudaRelacionada;
+ 
+-	private Date fechaInsercion;
++    private String estadoRegistro;
+ 
+-	private String usuarioInsercion;
++    private Date fechaInsercion;
+ 
+-	private String terminalInsercion;
++    private String usuarioInsercion;
+ 
+-	private String ipInsercion;
++    private String terminalInsercion;
+ 
+-	private Date fechaModificacion;
++    private String ipInsercion;
+ 
+-	private String usuarioModificacion;
++    private Date fechaModificacion;
+ 
+-	private String terminalModificacion;
++    private String usuarioModificacion;
+ 
+-	private String ipModificacion;
+-	
+-	private String nextField;
+-	
+-	private List lstOptions;
+-	
+-	private String parametroObligatorio;
+-	
++    private String terminalModificacion;
+ 
+-	public String getAtributoConstraint() {
+-		return atributoConstraint;
+-	}
++    private String ipModificacion;
+ 
+-	public void setAtributoConstraint(String atributoConstraint) {
+-		this.atributoConstraint = atributoConstraint;
+-	}
++    private String nextField;
+ 
+-	public String getAyudaRelacionada() {
+-		return ayudaRelacionada;
+-	}
++    private List lstOptions;
+ 
+-	public void setAyudaRelacionada(String ayudaRelacionada) {
+-		this.ayudaRelacionada = ayudaRelacionada;
+-	}
++    private String parametroObligatorio;
+ 
+-	public String getCNomfis() {
+-		return CNomfis;
+-	}
++    // [Req.S17-032] agarcia 26.05.2017
++    private String valorParametro;
+ 
+-	public void setCNomfis(String nomfis) {
+-		CNomfis = nomfis;
+-	}
++    public String getAtributoConstraint() {
++        return atributoConstraint;
++    }
+ 
+-	public String getCodigoEmpresa() {
+-		return codigoEmpresa;
+-	}
++    public void setAtributoConstraint(String atributoConstraint) {
++        this.atributoConstraint = atributoConstraint;
++    }
+ 
+-	public void setCodigoEmpresa(String codigoEmpresa) {
+-		this.codigoEmpresa = codigoEmpresa;
+-	}
++    public String getAyudaRelacionada() {
++        return ayudaRelacionada;
++    }
+ 
+-	public String getCodigoOperacion() {
+-		return codigoOperacion;
+-	}
++    public void setAyudaRelacionada(String ayudaRelacionada) {
++        this.ayudaRelacionada = ayudaRelacionada;
++    }
+ 
+-	public void setCodigoOperacion(String codigoOperacion) {
+-		this.codigoOperacion = codigoOperacion;
+-	}
++    public String getCNomfis() {
++        return CNomfis;
++    }
+ 
+-	public String getCodigoSubConcepto() {
+-		return codigoSubConcepto;
+-	}
++    public void setCNomfis(String nomfis) {
++        CNomfis = nomfis;
++    }
+ 
+-	public void setCodigoSubConcepto(String codigoSubConcepto) {
+-		this.codigoSubConcepto = codigoSubConcepto;
+-	}
++    public String getCodigoEmpresa() {
++        return codigoEmpresa;
++    }
+ 
+-	public String getEstadoRegistro() {
+-		return estadoRegistro;
+-	}
++    public void setCodigoEmpresa(String codigoEmpresa) {
++        this.codigoEmpresa = codigoEmpresa;
++    }
+ 
+-	public void setEstadoRegistro(String estadoRegistro) {
+-		this.estadoRegistro = estadoRegistro;
+-	}
++    public String getCodigoOperacion() {
++        return codigoOperacion;
++    }
+ 
+-	public String getEtiquetaParametro() {
+-		return etiquetaParametro;
+-	}
++    public void setCodigoOperacion(String codigoOperacion) {
++        this.codigoOperacion = codigoOperacion;
++    }
+ 
+-	public void setEtiquetaParametro(String etiquetaParametro) {
+-		this.etiquetaParametro = etiquetaParametro;
+-	}
++    public String getCodigoSubConcepto() {
++        return codigoSubConcepto;
++    }
+ 
+-	public Date getFechaInsercion() {
+-		return fechaInsercion;
+-	}
++    public void setCodigoSubConcepto(String codigoSubConcepto) {
++        this.codigoSubConcepto = codigoSubConcepto;
++    }
+ 
+-	public void setFechaInsercion(Date fechaInsercion) {
+-		this.fechaInsercion = fechaInsercion;
+-	}
++    public String getEstadoRegistro() {
++        return estadoRegistro;
++    }
+ 
+-	public Date getFechaModificacion() {
+-		return fechaModificacion;
+-	}
++    public void setEstadoRegistro(String estadoRegistro) {
++        this.estadoRegistro = estadoRegistro;
++    }
+ 
+-	public void setFechaModificacion(Date fechaModificacion) {
+-		this.fechaModificacion = fechaModificacion;
+-	}
++    public String getEtiquetaParametro() {
++        return etiquetaParametro;
++    }
+ 
+-	public String getIdParametro() {
+-		return idParametro;
+-	}
++    public void setEtiquetaParametro(String etiquetaParametro) {
++        this.etiquetaParametro = etiquetaParametro;
++    }
++
++    public Date getFechaInsercion() {
++        return fechaInsercion;
++    }
++
++    public void setFechaInsercion(Date fechaInsercion) {
++        this.fechaInsercion = fechaInsercion;
++    }
++
++    public Date getFechaModificacion() {
++        return fechaModificacion;
++    }
++
++    public void setFechaModificacion(Date fechaModificacion) {
++        this.fechaModificacion = fechaModificacion;
++    }
++
++    public String getIdParametro() {
++        return idParametro;
++    }
++
++    public void setIdParametro(String idParametro) {
++        this.idParametro = idParametro;
++    }
+ 
+-	public void setIdParametro(String idParametro) {
+-		this.idParametro = idParametro;
+-	}
++    public String getIpInsercion() {
++        return ipInsercion;
++    }
+ 
+-	public String getIpInsercion() {
+-		return ipInsercion;
+-	}
++    public void setIpInsercion(String ipInsercion) {
++        this.ipInsercion = ipInsercion;
++    }
+ 
+-	public void setIpInsercion(String ipInsercion) {
+-		this.ipInsercion = ipInsercion;
+-	}
++    public String getIpModificacion() {
++        return ipModificacion;
++    }
+ 
+-	public String getIpModificacion() {
+-		return ipModificacion;
+-	}
++    public void setIpModificacion(String ipModificacion) {
++        this.ipModificacion = ipModificacion;
++    }
+ 
+-	public void setIpModificacion(String ipModificacion) {
+-		this.ipModificacion = ipModificacion;
+-	}
++    public Long getLongitudColumna() {
++        return longitudColumna;
++    }
+ 
+-	public Long getLongitudColumna() {
+-		return longitudColumna;
+-	}
++    public void setLongitudColumna(Long longitudColumna) {
++        this.longitudColumna = longitudColumna;
++    }
+ 
+-	public void setLongitudColumna(Long longitudColumna) {
+-		this.longitudColumna = longitudColumna;
+-	}
++    public Long getLongitudDecimales() {
++        return longitudDecimales;
++    }
+ 
+-	public Long getLongitudDecimales() {
+-		return longitudDecimales;
+-	}
++    public void setLongitudDecimales(Long longitudDecimales) {
++        this.longitudDecimales = longitudDecimales;
++    }
+ 
+-	public void setLongitudDecimales(Long longitudDecimales) {
+-		this.longitudDecimales = longitudDecimales;
+-	}
++    public String getNombreParametroSession() {
++        return nombreParametroSession;
++    }
+ 
+-	public String getNombreParametroSession() {
+-		return nombreParametroSession;
+-	}
++    public void setNombreParametroSession(String nombreParametroSession) {
++        this.nombreParametroSession = nombreParametroSession;
++    }
+ 
+-	public void setNombreParametroSession(String nombreParametroSession) {
+-		this.nombreParametroSession = nombreParametroSession;
+-	}
++    public String getObtenerValoresDe() {
++        return obtenerValoresDe;
++    }
+ 
+-	public String getObtenerValoresDe() {
+-		return obtenerValoresDe;
+-	}
++    public void setObtenerValoresDe(String obtenerValoresDe) {
++        this.obtenerValoresDe = obtenerValoresDe;
++    }
+ 
+-	public void setObtenerValoresDe(String obtenerValoresDe) {
+-		this.obtenerValoresDe = obtenerValoresDe;
+-	}
++    public String getTerminalInsercion() {
++        return terminalInsercion;
++    }
+ 
+-	public String getTerminalInsercion() {
+-		return terminalInsercion;
+-	}
++    public void setTerminalInsercion(String terminalInsercion) {
++        this.terminalInsercion = terminalInsercion;
++    }
+ 
+-	public void setTerminalInsercion(String terminalInsercion) {
+-		this.terminalInsercion = terminalInsercion;
+-	}
++    public String getTerminalModificacion() {
++        return terminalModificacion;
++    }
+ 
+-	public String getTerminalModificacion() {
+-		return terminalModificacion;
+-	}
++    public void setTerminalModificacion(String terminalModificacion) {
++        this.terminalModificacion = terminalModificacion;
++    }
+ 
+-	public void setTerminalModificacion(String terminalModificacion) {
+-		this.terminalModificacion = terminalModificacion;
+-	}
++    public String getTipoDato() {
++        return tipoDato;
++    }
+ 
+-	public String getTipoDato() {
+-		return tipoDato;
+-	}
++    public void setTipoDato(String tipoDato) {
++        this.tipoDato = tipoDato;
++    }
+ 
+-	public void setTipoDato(String tipoDato) {
+-		this.tipoDato = tipoDato;
+-	}
++    public String getTipoObjetoJspAMostrar() {
++        return tipoObjetoJspAMostrar;
++    }
+ 
+-	public String getTipoObjetoJspAMostrar() {
+-		return tipoObjetoJspAMostrar;
+-	}
++    public void setTipoObjetoJspAMostrar(String tipoObjetoJspAMostrar) {
++        this.tipoObjetoJspAMostrar = tipoObjetoJspAMostrar;
++    }
+ 
+-	public void setTipoObjetoJspAMostrar(String tipoObjetoJspAMostrar) {
+-		this.tipoObjetoJspAMostrar = tipoObjetoJspAMostrar;
+-	}
++    public String getUsuarioInsercion() {
++        return usuarioInsercion;
++    }
+ 
+-	public String getUsuarioInsercion() {
+-		return usuarioInsercion;
+-	}
++    public void setUsuarioInsercion(String usuarioInsercion) {
++        this.usuarioInsercion = usuarioInsercion;
++    }
+ 
+-	public void setUsuarioInsercion(String usuarioInsercion) {
+-		this.usuarioInsercion = usuarioInsercion;
+-	}
++    public String getUsuarioModificacion() {
++        return usuarioModificacion;
++    }
+ 
+-	public String getUsuarioModificacion() {
+-		return usuarioModificacion;
+-	}
++    public void setUsuarioModificacion(String usuarioModificacion) {
++        this.usuarioModificacion = usuarioModificacion;
++    }
+ 
+-	public void setUsuarioModificacion(String usuarioModificacion) {
+-		this.usuarioModificacion = usuarioModificacion;
+-	}
++    public String getNextField() {
++        return nextField;
++    }
+ 
+-	public String getNextField() {
+-		return nextField;
+-	}
++    public void setNextField(String nextField) {
++        this.nextField = nextField;
++    }
+ 
+-	public void setNextField(String nextField) {
+-		this.nextField = nextField;
+-	}
++    public List getLstOptions() {
++        return lstOptions;
++    }
+ 
+-	public List getLstOptions() {
+-		return lstOptions;
+-	}
++    public void setLstOptions(List lstOptions) {
++        this.lstOptions = lstOptions;
++    }
+ 
+-	public void setLstOptions(List lstOptions) {
+-		this.lstOptions = lstOptions;
+-	}
++    public String getParametroObligatorio() {
++        return parametroObligatorio;
++    }
+ 
+-	public String getParametroObligatorio() {
+-		return parametroObligatorio;
+-	}
++    public void setParametroObligatorio(String parametroObligatorio) {
++        this.parametroObligatorio = parametroObligatorio;
++    }
+ 
+-	public void setParametroObligatorio(String parametroObligatorio) {
+-		this.parametroObligatorio = parametroObligatorio;
+-	}
++    // Inicio [Req.S17-032] agarcia 26.05.2017
++    public String getValorParametro() {
++        return valorParametro;
++    }
+ 
++    public void setValorParametro(String valorParametro) {
++        this.valorParametro = valorParametro;
++    }
++    // Fin [Req.S17-032]
+ }
+diff --git a/FINANCIERONEW/src/financ/operaciones/facade/OPBNComprobantesContablesIngresoEgresoFacade.java b/FINANCIERONEW/src/financ/operaciones/facade/OPBNComprobantesContablesIngresoEgresoFacade.java
+index 828f9c4..bdc4041 100644
+--- a/FINANCIERONEW/src/financ/operaciones/facade/OPBNComprobantesContablesIngresoEgresoFacade.java
++++ b/FINANCIERONEW/src/financ/operaciones/facade/OPBNComprobantesContablesIngresoEgresoFacade.java
+@@ -52,12 +52,15 @@
+ import admin.contab.local.CBTipoDocumentoInterfaceLocal;
+ import admin.contab.local.CBTipoImpuestoDocumentoInterfaceLocal;
+ import admin.contab.local.CBTipoImpuestoLeyInterfaceLocal;
++import admin.util.ConstantesErrores;
+ import admin.util.FormatoFecha;
+ import financ.clientes.entity.CLPersonas;
+ import financ.clientes.local.CLPersonaFacadeInterfaceLocal;
+ import financ.creditos.entity.CBRecibosCobranza;
++import financ.creditos.entity.CRCuentaCredito;
+ import financ.creditos.local.CBAsigRecibosCobranzaInterfaceLocal;
+ import financ.creditos.local.CBRecibosCobranzaInterfaceLocal;
++import financ.creditos.local.CRCuentaCreditoInterfaceLocal;
+ import financ.liquidacion.local.BTPreLiquidacionFacadeInterfaceLocal;
+ import financ.operaciones.beans.BeanOPComprobantesIngresoEgreso;
+ import financ.operaciones.beans.BeanOPDetalleComprobantesIngresoEgreso;
+@@ -184,6 +187,10 @@
+ 	// [S14-100] jventura 10.02.2016
+    @EJB
+    private BTPreLiquidacionFacadeInterfaceLocal btPreLiquidacionFacadeInterfaceLocal;
++   
++   // [Req.S17-032] agarcia 26.05.2017
++   @EJB
++   private CRCuentaCreditoInterfaceLocal crCuentaCreditoInterfaceLocal;
+ 
+ 	
+ 	private Context context=null;
+@@ -297,6 +304,7 @@
+ 
+ 	//lrondon 04.11.2010 se agrego parametro persona remesa
+ 	 /** @since 19.11.2012 [fvalle]   Se agrega excepcion para Estado de Recibo en Almacen. Ticket 4218.
++	  * @since [Req.S17-032] agarcia Clean code
+ 	  */
+ 	public Map<Object, Object> generarXCaja(String codEntidadManejadoraValores,	
+ 											String codigoAgencia, 
+@@ -473,6 +481,8 @@
+ 						montoComprobante, nombrePersona, lstOptions, tipoTarjeta, banco, numeroCheque, usuario, terminal, ip, fecha, observacion,
+ 						 numeroCorrelativo, numeroTransaccion);
+ 				
++				// [Req.S17-032] agarcia 26.05.2017
++				output.put("numeroCorrelativoComprobante", numeroCorrelativo);
+ 				
+ 				//hpajuelo 25.05.2011 Devoluciones ingresos varios o terceros
+ 				String subConceptoDevolucion = "";
+@@ -811,65 +821,6 @@
+ 			
+ 			else {
+ 				
+-				/**** INICIA VERIFICA QUE EL RECIBO NO HAYA SIDO UTILIZADO ****/
+-				
+-				//jmedina Se comento la validación de recibos manuales - Req 12-014
+-/*				if (numeroSerie != null && !numeroSerie.equals("") &&
+-				numeroDocumento != null && !numeroDocumento.equals("")) {
+-					Long contador = cbAsigRecibosCobranzaInterfaceLocal.
+-									findByEmpresaSerie(codigoEmpresa, numeroSerie, numeroDocumento);
+-					if(contador.intValue()>0){
+-						List lstEstadoRecibo = cbAsigRecibosCobranzaInterfaceLocal.
+-												findEstadoByEmpresaSerieRecibo(codigoEmpresa, numeroSerie, numeroDocumento);
+-						if(lstEstadoRecibo.size()>0) {
+-							String estado=(String)lstEstadoRecibo.get(0);
+-							if(estado.equals("R")){
+-								output.put("strError","3047");
+-				                return output;
+-							}
+-							if(estado.equals("C")){
+-								output.put("strError","1065");
+-				                return output;
+-							}
+-							if(estado.equals("N")){
+-								output.put("strError","1066");
+-				                return output;
+-							}
+-							//fvalle 19.11.2012 Ticket - 4218. Estado de Recibo en Almacen 
+-							if(estado.equals("E")){
+-								output.put("strError","1383");
+-				                return output;
+-							}
+-							
+-							List lstFecha=cbAsigRecibosCobranzaInterfaceLocal.obtenerFechaAsignacionByEstadoByEmpresaSerieRecibo(codigoEmpresa, numeroSerie, numeroDocumento);
+-							if(lstFecha.size()>0){
+-								Date fechaAsignacion=lstFecha.get(0)!=null?(Date)lstFecha.get(0):null;
+-								if(fechaAsignacion!=null){
+-									if (fechaValuta == null) {
+-										if(fechaRegistro.getTime() < fechaAsignacion.getTime()){
+-											output.put("strError","1099");
+-							                return output;
+-										}
+-									}
+-									else {
+-										if(fechaValuta.getTime()<fechaAsignacion.getTime()){
+-											output.put("strError","1099");
+-							                return output;
+-										}
+-									}
+-								}
+-							}
+-						
+-							
+-						}
+-					}else {
+-		                output.put("strError","3046");
+-		                return output;
+-					}
+-				}*/
+-				
+-				/**** FIN VERIFICA QUE EL RECIBO NO HAYA SIDO UTILIZADO ****/
+-				
+ 				conceptoOperacionFinanciera="011";
+ 				referencia=abreviaturaDoc+numeroSerie +" - " + numeroDocumento;
+ 				numeroTransaccion = cbCorrelativoInterfaceLocal.GenerarCorrelativo(
+@@ -890,85 +841,8 @@
+ 				grabarOPDcmpcOPDcmpd(codigoAgencia, codigoEmpresa, codigoMoneda, codigoCliente, fechaRegistro, indicadorIngresoEgreso, tipoMovimiento,
+ 						montoComprobante, nombrePersona, lstOptions, tipoTarjeta, banco, numeroCheque, usuario, terminal, ip, fecha, observacion,
+ 						 numeroCorrelativo, numeroTransaccion);
+-				
+-				/*
+-				// Crear registro en la Cabecera de Comprobantes Contables
+-				OPComprobantesIngresoEgreso opComprobantesIngresoEgreso =
+-					new OPComprobantesIngresoEgreso();
+-				
+-				CBAgencia cbAgencia = new CBAgencia();
+-				CBAgenciaId cbAgenciaId = new CBAgenciaId();
+-				cbAgenciaId.setCodigoAgencia(codigoAgencia);
+-				cbAgenciaId.setCodigoEmpresa(codigoEmpresa);
+-				cbAgencia.setId(cbAgenciaId);
+-				
+-				CBMoneda cbMoneda = new CBMoneda();
+-				cbMoneda.setCodigoMoneda(codigoMoneda);
+-				
+-				
+-				CBTiposMovimiento cbTiposMovimiento = new CBTiposMovimiento();
+-				cbTiposMovimiento.setTipoMovimiento(tipoMovimiento);
+-				
+-				opComprobantesIngresoEgreso.setNumeroCorrelativo(numeroCorrelativo);
+-				opComprobantesIngresoEgreso.setCodigoEmpresa(codigoEmpresa);
+-				opComprobantesIngresoEgreso.setCodigoAgencia(codigoAgencia);
+-				opComprobantesIngresoEgreso.setFechaRegistroComprobante(fechaRegistro);
+-				opComprobantesIngresoEgreso.setEstadoRegistro("V");
+-				opComprobantesIngresoEgreso.setIndicadorIngresoEgreso(indicadorIngresoEgreso);
+-				opComprobantesIngresoEgreso.setCodigoMoneda(codigoMoneda);
+-				opComprobantesIngresoEgreso.setMontoComprobante(montoComprobante);
+-				opComprobantesIngresoEgreso.setCodigoTipoDocumento(null);
+-				opComprobantesIngresoEgreso.setNumeroSerieDocumento(null);
+-				opComprobantesIngresoEgreso.setNumeroDocumento(null);
+-				opComprobantesIngresoEgreso.setCodigoPersona(codigoCliente);
+-				opComprobantesIngresoEgreso.setNombrePersona(nombrePersona);
+-				opComprobantesIngresoEgreso.setObservacion(observacion.length()>249?observacion.substring(0,249):observacion);
+-				if ("RC".equals(tipoMovimiento)) {
+-					opComprobantesIngresoEgreso.setCodigoEntidadFinanciera(banco);
+-					opComprobantesIngresoEgreso.setDocumentoReferencia(numeroCheque);
+-				}else if ("TD".equals(tipoMovimiento)) {
+-					opComprobantesIngresoEgreso.setTipoTarjeta(tipoTarjeta);
+-					opComprobantesIngresoEgreso.setDocumentoReferencia(numeroCheque);
+-				}
+-				
+-			
+-				opComprobantesIngresoEgreso.setFechaAplicacion(fecha);
+-				opComprobantesIngresoEgreso.setUsuarioAplicacion(usuario);
+-				opComprobantesIngresoEgreso.setNumeroTransaccionGenerada(new Long(numeroTransaccion));
+-				opComprobantesIngresoEgreso.setTipoMovimiento(tipoMovimiento);
+-				opComprobantesIngresoEgreso.setFechaVencimientoDcto(fechaRegistro);
+-				opComprobantesIngresoEgreso.setFechaInsercion(fechaRegistro);
+-				opComprobantesIngresoEgreso.setUsuarioInsercion(usuario);
+-				opComprobantesIngresoEgreso.setTerminalInsercion(terminal);
+-				opComprobantesIngresoEgreso.setIpInsercion(ip);
+-				opComprobantesIngresoEgresoInterfaceLocal.save(opComprobantesIngresoEgreso);
+-				
+-				
+-				
+-				// Crea detalle de comprobantes por conceptos:
+-				if(lstOptions!=null){
+-					for(int i=0;i<lstOptions.size();i++){
+-						BeanOPDetalleComprobantesIngresoEgreso beanDetalle=(BeanOPDetalleComprobantesIngresoEgreso)lstOptions.get(i);
+-						OPDetalleComprobantesIngresoEgreso opDetalleComprobantesIngresoEgreso=new
+-																						OPDetalleComprobantesIngresoEgreso();
+-						
+-						opDetalleComprobantesIngresoEgreso.setId(new OPDetalleComprobantesIngresoEgresoId(numeroCorrelativo,beanDetalle.getIdParametro()));
+-						opDetalleComprobantesIngresoEgreso.setOpComprobantesIngresoEgreso(opComprobantesIngresoEgreso);
+-						OPParametroxSubconcepto opParametroxSubconcepto=new OPParametroxSubconcepto();
+-						opParametroxSubconcepto.setIdParametro(beanDetalle.getIdParametro());
+-						opDetalleComprobantesIngresoEgreso.setOpParametroxSubconcepto(opParametroxSubconcepto);
+-						opDetalleComprobantesIngresoEgreso.setCodigoEmpresa(codigoEmpresa);
+-						opDetalleComprobantesIngresoEgreso.setValorParametro(beanDetalle.getValorParametro());
+-						opDetalleComprobantesIngresoEgreso.setEstadoRegistro("S");
+-						opDetalleComprobantesIngresoEgreso.setFechaInsercion(fechaRegistro);
+-						opDetalleComprobantesIngresoEgreso.setUsuarioInsercion(usuario);
+-						opDetalleComprobantesIngresoEgreso.setTerminalInsercion(terminal);
+-						opDetalleComprobantesIngresoEgreso.setIpInsercion(ip);
+-						opDetalleComprobantesIngresoEgresoInterfaceLocal.save(opDetalleComprobantesIngresoEgreso);
+-					}
+-				}
+-				entityManager.flush();
+-				*/
++				// [Req.S17-032] agarcia 26.05.2017
++				output.put("numeroCorrelativoComprobante", numeroCorrelativo);
+ 				
+ 				// Registro de la transacción de operación por el comprobante de ingreso
+ 				if (correlativoOperacion == null)
+@@ -1003,19 +877,42 @@
+ 	
+ 				}
+ 				
+-            // Inicio [Req. S14-100] jventura 16.02.2016
+-            String glosaBantiq = Constante.CADENA_VACIA;
+-            numeroReferenciaBantiq = StringUtil.toStr(numeroReferenciaBantiq);
+-            if (!StringUtil.isEmpty(numeroReferenciaBantiq)) {
+-                glosaBantiq = Constante.GLOSA_LIQUIDACION_BANTIQ + numeroReferenciaBantiq;
+-            }
+-            // Fin [Req. S14-100]
++                // Inicio [Req. S14-100] jventura 16.02.2016
++                String glosaBantiq = Constante.CADENA_VACIA;
++                numeroReferenciaBantiq = StringUtil.toStr(numeroReferenciaBantiq);
++                if (!StringUtil.isEmpty(numeroReferenciaBantiq)) {
++                    glosaBantiq = Constante.GLOSA_LIQUIDACION_BANTIQ + numeroReferenciaBantiq;
++                }
++                // Fin [Req. S14-100]
+             
+ 				//jjurado 13.03.2014 Req.S14-029
+ 				if(!"143IG001046".equals(codigoSubConcepto) && !"143IG001047".equals(codigoSubConcepto)&& !"143IG001048".equals(codigoSubConcepto))
+ 				{
+ 					codigoSubConcepto=null;
+ 				}
++				
++				// Inicio [Req.S17-032] agarcia 26.05.2017
++                String numeroReferenciaTransaccion = numeroReferenciaBantiq;
++                if (!StringUtil.isEmpty(lstOptions)) {
++                    for (int i = 0; i < lstOptions.size(); i++) {
++                        BeanOPDetalleComprobantesIngresoEgreso beanDetalle = (BeanOPDetalleComprobantesIngresoEgreso) lstOptions.get(i);
++                        if (StringUtil.equiv(beanDetalle.getIdParametro(),
++                                             Constante.COD_PARAMETRO_NRO_CREDITO_INGRESOS_EGRESOS)) {
++                            numeroReferenciaTransaccion = beanDetalle.getValorParametro();
++                            errorCode = validaCredito(numeroReferenciaTransaccion, codigoCliente);
++                            if (!StringUtil.equiv(errorCode, NO_ERROR)) {
++                                try {
++                                    sessionContext.setRollbackOnly();
++                                } catch (Exception et) {
++                                }
++                                output.put("strError", errorCode);
++                                return output;
++                            }
++                        }
++                    }
++                }
++				// Fin [Req.S17-032] 
++				
+ 				Map mapIngreso = opBNTransaccionesFacadeInterfaceLocal.generarTransaccionFinanciera(numeroTransaccion, 
+ 						 numeroTransaccion, 
+ 						 correlativoOperacion, 
+@@ -1055,7 +952,7 @@
+ 						 null,//numeroCorrelativoCuentaBancaria, 
+ 						 numeroCheque,//numeroReferencia, 
+ 						 codigoSubConcepto,//subConceptoOperacionesAbono, jjurado 13.03.2014 Req.S14-029
+-						 numeroReferenciaBantiq, // [Req. S14-100] jventura 16.02.2016
++						 numeroReferenciaTransaccion, // [Req.S17-032] agarcia 26.05.2017
+ 						 "O",//tipoDocumentoReferencia, 
+ 						 codigoCliente, 
+ 						 nombrePersona, 
+@@ -1121,27 +1018,27 @@
+ 					return output; // Error en generador de transacciones
+ 				}
+ 				
+-            // Inicio [Req. S14-100] jventura 11.02.2016 
+-            if(!StringUtil.isEmpty(numeroReferenciaBantiq)){
+-            
+-               String  numeroLiquidacion = numeroLiquidacionBantiq;
+-
+-               Map<String, Object> mapIntBantiq = btPreLiquidacionFacadeInterfaceLocal.actualizaLiquidacionPago(numeroLiquidacion,
+-                                                                                                                Constante.ESTADO_LIQ_BANTIQ_PAGADO,
+-                                                                                                                numeroTransaccion,
+-                                                                                                               // [CC16-034] dlazo 14.06.2016
+-                                                                                                                beanParametrosAuditoriaGeneral);
+-               errorCode=mapIntBantiq.get("strError").toString();
+-               
+-               if (!NO_ERROR.equals(errorCode)) {
+-                  try{
+-                     sessionContext.setRollbackOnly();
+-                  }catch(Exception et){}
+-                  output.put("strError", errorCode);
+-                  return output; 
+-               }
+-            }
+-            // Fin [Req. S14-100] 
++                // Inicio [Req. S14-100] jventura 11.02.2016 
++                if(!StringUtil.isEmpty(numeroReferenciaBantiq)){
++                
++                   String  numeroLiquidacion = numeroLiquidacionBantiq;
++    
++                   Map<String, Object> mapIntBantiq = btPreLiquidacionFacadeInterfaceLocal.actualizaLiquidacionPago(numeroLiquidacion,
++                                                                                                                    Constante.ESTADO_LIQ_BANTIQ_PAGADO,
++                                                                                                                    numeroTransaccion,
++                                                                                                                   // [CC16-034] dlazo 14.06.2016
++                                                                                                                    beanParametrosAuditoriaGeneral);
++                   errorCode=mapIntBantiq.get("strError").toString();
++                   
++                   if (!NO_ERROR.equals(errorCode)) {
++                      try{
++                         sessionContext.setRollbackOnly();
++                      }catch(Exception et){}
++                      output.put("strError", errorCode);
++                      return output; 
++                   }
++                }
++                // Fin [Req. S14-100] 
+             
+ 				// Obtiene impuestos de acuerdo al tipo de documento
+ 				List lista = (List) cbTipoImpuestoDocumentoInterfaceLocal.findByCodigoTipoDocumento(codigoTipoDocumento);
+@@ -1456,7 +1353,29 @@
+ 		return output; // Error en generador de transacciones
+ 	}
+ 	
+-	/*
++	// Inicio [Req.S17-032] agarcia 26.05.2017
++	private String validaCredito(String numeroReferenciaTransaccion,String codigoCliente) {
++	    CRCuentaCredito crCuentaCredito;
++	    if (!StringUtil.isEmpty(numeroReferenciaTransaccion)){
++            crCuentaCredito = crCuentaCreditoInterfaceLocal.findById(numeroReferenciaTransaccion);
++            if (StringUtil.isEmpty(crCuentaCredito)){
++                return ConstantesErrores.ERROR_1830;
++            }
++            if (!StringUtil.equiv(crCuentaCredito.getClClientes().getClPersonas().getCodigoPersona(), codigoCliente)){
++                return ConstantesErrores.ERROR_1835;
++            }
++            if (!StringUtil.equiv(crCuentaCredito.getCrEstadoCredito().getCodigoEstado(), Constante.ESTADO_CREDITO_VIGENTE)){
++                return ConstantesErrores.ERROR_463;
++            }
++            if (!StringUtil.equiv(crCuentaCredito.getTipoModalidadCredito(), Constante.TIPO_MODALIDAD_CREDITO_PRESTAMOS_CUOTA)){
++                return ConstantesErrores.ERROR_11217;
++            }
++        }
++	    return NO_ERROR;
++    }
++	// Fin [Req.S17-032] 
++	
++    /*
+ 	 * @since 28.11.2010 vperez  adicion para tarjeta de credito
+ 	 */
+ 	public boolean grabarOPDcmpcOPDcmpd(
+@@ -1483,7 +1402,8 @@
+ 												){
+ 		
+ 		boolean retorno = false;
+-		
++		// [Req.S17-032] agarcia 26.05.2017
++		String documentoReferencia = "";
+ 		try {
+ 			
+ 			// Crear registro en la Cabecera de Comprobantes Contables
+@@ -1543,7 +1463,9 @@
+ 			
+ 			
+ 			// Crea detalle de comprobantes por conceptos:
++			// Inicio [Req.S17-032] agarcia 26.05.2017
+ 			if(lstOptions!=null){
++			    OPParametroxSubconcepto opParametroxSubconcepto;
+ 				for(int i=0;i<lstOptions.size();i++){
+ 					BeanOPDetalleComprobantesIngresoEgreso beanDetalle=(BeanOPDetalleComprobantesIngresoEgreso)lstOptions.get(i);
+ 					OPDetalleComprobantesIngresoEgreso opDetalleComprobantesIngresoEgreso=new
+@@ -1551,8 +1473,9 @@
+ 					
+ 					opDetalleComprobantesIngresoEgreso.setId(new OPDetalleComprobantesIngresoEgresoId(numeroCorrelativo,beanDetalle.getIdParametro()));
+ 					opDetalleComprobantesIngresoEgreso.setOpComprobantesIngresoEgreso(opComprobantesIngresoEgreso);
+-					OPParametroxSubconcepto opParametroxSubconcepto=new OPParametroxSubconcepto();
+-					opParametroxSubconcepto.setIdParametro(beanDetalle.getIdParametro());
++					opParametroxSubconcepto = opParametroxSubconceptoInterfaceLocal.findById(beanDetalle.getIdParametro());
++                    documentoReferencia = StringUtil.equiv(beanDetalle.getIdParametro(),
++                                                           Constante.COD_PARAMETRO_NRO_CREDITO_INGRESOS_EGRESOS) ? beanDetalle.getValorParametro() : "";
+ 					opDetalleComprobantesIngresoEgreso.setOpParametroxSubconcepto(opParametroxSubconcepto);
+ 					opDetalleComprobantesIngresoEgreso.setCodigoEmpresa(codigoEmpresa);
+ 					opDetalleComprobantesIngresoEgreso.setValorParametro(beanDetalle.getValorParametro());
+@@ -1564,6 +1487,10 @@
+ 					opDetalleComprobantesIngresoEgresoInterfaceLocal.save(opDetalleComprobantesIngresoEgreso);
+ 				}
+ 			}
++			if (!StringUtil.isEmpty(documentoReferencia)){
++			    opComprobantesIngresoEgreso.setDocumentoReferencia(documentoReferencia);
++			}
++			// Fin [Req.S17-032] agarcia 26.05.2017
+ 			entityManager.flush();
+ 			
+ 			retorno = true;
+@@ -1599,11 +1526,15 @@
+ 	    }
+ 	    return retVal;
+ 	}
++    // Inicio [Req.S17-032] agarcia 26.05.2017
++    public List obtenerParametros(String codSubConcepto,String empresa ,String usuario) throws Exception {
++        return obtenerParametros(codSubConcepto, empresa, usuario, null);
++    }
+     /**
+      * @since 10.09.2010 vperez para el caso de parametros tipo combo 'CL' ahora la busqueda es 
+      *                          por nombre de tabla y columna.
+      */
+-    public List obtenerParametros(String codSubConcepto,String empresa ,String usuario)throws Exception{
++    public List obtenerParametros(String codSubConcepto,String empresa ,String usuario,String correlativoComprobante) throws Exception {
+     	String moduleName="OPBNComprobantesContablesIngresoEgresoFacade.obtenerParametros()";
+     	String nextField="";
+     	try{
+@@ -1666,6 +1597,17 @@
+         				//end
+     				}
+     			}
++    			beanOPParametroxSubconcepto.setValorParametro("");
++    			if (!StringUtil.isEmpty(correlativoComprobante)){
++    			    OPDetalleComprobantesIngresoEgresoId id = new OPDetalleComprobantesIngresoEgresoId(correlativoComprobante, opParametroxSubconcepto.getIdParametro());
++    			    OPDetalleComprobantesIngresoEgreso opDetalleComprobantesIngresoEgreso = opDetalleComprobantesIngresoEgresoInterfaceLocal.findById(id);
++    			    if (!StringUtil.isEmpty(opDetalleComprobantesIngresoEgreso)){
++                        if (StringUtil.equiv(opDetalleComprobantesIngresoEgreso.getEstadoRegistro(),
++                                             Constante.COD_ESTADO_ACTIVO)) {
++                            beanOPParametroxSubconcepto.setValorParametro(opDetalleComprobantesIngresoEgreso.getValorParametro());
++                        }
++    			    }
++    			}
+     			lstBeanOPParametroxSubconcepto.add(beanOPParametroxSubconcepto);
+     		}
+     		
+@@ -1677,6 +1619,7 @@
+     		throw e;
+     	}
+     }
++    // Fin [Req.S17-032]
+     
+     /**
+      * @since 15.09.2010 vperez correccion bug interno.
+diff --git a/FINANCIERONEW/src/financ/operaciones/local/OPBNComprobantesContablesIngresoEgresoFacadeInterfaceLocal.java b/FINANCIERONEW/src/financ/operaciones/local/OPBNComprobantesContablesIngresoEgresoFacadeInterfaceLocal.java
+index 5d4269d..11b569c 100644
+--- a/FINANCIERONEW/src/financ/operaciones/local/OPBNComprobantesContablesIngresoEgresoFacadeInterfaceLocal.java
++++ b/FINANCIERONEW/src/financ/operaciones/local/OPBNComprobantesContablesIngresoEgresoFacadeInterfaceLocal.java
+@@ -48,7 +48,21 @@
+ 	
+ 	
+ 	
+-	public List obtenerParametros(String codSubConcepto,String empresa ,String usuario)throws Exception;
++	public List obtenerParametros(String codSubConcepto,String empresa ,String usuario) throws Exception;
++	
++	/**
++	 * Se sobrecarga el metodo para caragr el valor del parametro cuando se el envia el correlativoComprobante
++	 * @author agarcia
++	 * @since [Req.S17-032] 26.05.2017
++	 * 
++	 * @param codSubConcepto
++	 * @param empresa
++	 * @param usuario
++	 * @param correlativoComprobante
++	 * @return
++	 * @throws Exception
++	 */
++	public List obtenerParametros(String codSubConcepto,String empresa ,String usuario,String correlativoComprobante) throws Exception;
+ 	
+ 	 public List obtenerDocumentosGenerados(
+ 	    		String tipoBusqueda,
+diff --git a/FINANCIERONEW/src/financ/util/Constante.java b/FINANCIERONEW/src/financ/util/Constante.java
+index b06736d..3542e6f 100644
+--- a/FINANCIERONEW/src/financ/util/Constante.java
++++ b/FINANCIERONEW/src/financ/util/Constante.java
+@@ -2558,4 +2558,8 @@
+     public static final String INDICADOR_ANULACION_SI = "S";
+     public final static String TIPO_MOVIMIENTO = "DT";
+     //Fin [S17-031]
++    
++    //Inicio [S17-032] agarcia 25.05.2017
++    public static final String COD_PARAMETRO_NRO_CREDITO_INGRESOS_EGRESOS = "14300040";
++    //Fin [S17-032]
+ }

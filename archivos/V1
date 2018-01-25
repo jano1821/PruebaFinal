@@ -1,0 +1,139 @@
+diff --git a/DELFINWEBNEW/WebRoot/REPORTES/AC00010.jasper b/DELFINWEBNEW/WebRoot/REPORTES/AC00010.jasper
+index d34e1ee..0483a0d 100644
+--- a/DELFINWEBNEW/WebRoot/REPORTES/AC00010.jasper
++++ b/DELFINWEBNEW/WebRoot/REPORTES/AC00010.jasper
+Binary files differ
+diff --git a/DELFINWEBNEW/WebRoot/REPORTES/AC00010A.jasper b/DELFINWEBNEW/WebRoot/REPORTES/AC00010A.jasper
+index c775093..013bc5b 100644
+--- a/DELFINWEBNEW/WebRoot/REPORTES/AC00010A.jasper
++++ b/DELFINWEBNEW/WebRoot/REPORTES/AC00010A.jasper
+Binary files differ
+diff --git a/DELFINWEBNEW/WebRoot/REPORTES/AC00012.jasper b/DELFINWEBNEW/WebRoot/REPORTES/AC00012.jasper
+index 40ae12d..f743091 100644
+--- a/DELFINWEBNEW/WebRoot/REPORTES/AC00012.jasper
++++ b/DELFINWEBNEW/WebRoot/REPORTES/AC00012.jasper
+Binary files differ
+diff --git a/FINANCIERONEW/src/financ/operaciones/facade/OPDetalleReporteEstadoCuentasFacade.java b/FINANCIERONEW/src/financ/operaciones/facade/OPDetalleReporteEstadoCuentasFacade.java
+index 0d88fbd..c3ebc39 100644
+--- a/FINANCIERONEW/src/financ/operaciones/facade/OPDetalleReporteEstadoCuentasFacade.java
++++ b/FINANCIERONEW/src/financ/operaciones/facade/OPDetalleReporteEstadoCuentasFacade.java
+@@ -103,6 +103,10 @@
+ 
+             if (_equiv(opCabeceraReporteEstadoCuentas.getTipoEstadoCuenta(),
+                        financ.util.Constante.TIPO_ESTADO_CUENTA_CREDITO_CUOTAS)) {
++            	// Inicio [MSIS-121] agarcia 04.07.2017
++				propertyParams.addProperty("estadoEnvio", financ.util.Constante.ESTADO_ENVIO_NO_ENVIAR,
++						PropertyParams.OPERADOR_NOT_IN, "estadoEnvioExcluir");
++				// Fin [MSIS-121]
+ 
+                 if (!_isEmpty(codigoPersona)) {
+                     propertyParams.addProperty("nombrePersona", codigoPersona);
+diff --git a/FINANCIERONEW/src/financ/operaciones/facade/OPGenerarMasivoEstadoCuentasFacade.java b/FINANCIERONEW/src/financ/operaciones/facade/OPGenerarMasivoEstadoCuentasFacade.java
+index 0e2c656..ce3c041 100644
+--- a/FINANCIERONEW/src/financ/operaciones/facade/OPGenerarMasivoEstadoCuentasFacade.java
++++ b/FINANCIERONEW/src/financ/operaciones/facade/OPGenerarMasivoEstadoCuentasFacade.java
+@@ -59,6 +59,7 @@
+ import pe.com.tfc.utils.Auditable;
+ import pe.com.tfc.utils.ErrorControladoException;
+ import pe.com.tfc.utils.PropertyParams;
++import pe.com.tfc.utils.StringUtil;
+ import pe.com.tfc.utils.UtilFTP;
+ import pe.com.tfc.utils.enums.FormatosReporte;
+ import sbs.anexos.bean.BeanParametroProceso;
+@@ -399,6 +400,14 @@
+                                                                                  beanParametrosLog);
+ 
+             beanParametrosLog.setIdentificadorProcesoBatch(identificadorProcesoBatch);
++            // Inicio [MSIS-121] agarcia 04.07.2017
++			if (StringUtil.equiv(tipoRegistro, financ.util.Constante.TIPO_ESTADO_CUENTA_CREDITO_CUOTAS)
++					&& StringUtil.equiv(codigoModalidadEECC, financ.util.Constante.MODO_CORREO_ELECTRONICO)) {
++				strError = this.generarLote(fechaValuta, beanParametrosAuditoria, beanParametrosLog, tipoRegistro,
++						financ.util.Constante.MODO_NINGUN_ENVIO);
++			}
++			// Fin [MSIS-121] 
++			
+             //gfernandez 05.10.2013
+ 			strError = this.generarLote(fechaValuta, 
+ 										beanParametrosAuditoria, 
+@@ -945,6 +954,8 @@
+                                                                                                                         departamentos,
+                                                                                                                         productoCP);
+                 } else {
++                	// [MSIS-121] agarcia 04.07.2017
++                	departamentos += ",1";
+                     cantRegistroReporte = opDetalleReporteEstadoCuentasInterfaceLocal.cantRegistroReporte(codigoLote,
+                                                                                                           fechaInicial,
+                                                                                                           fechaFinal,
+@@ -2418,14 +2429,19 @@
+ 					                "b.c_estcre, " +                                
+ 					                "b.c_tipcre  " +                
+ 					              "FROM OPDREEC b where b.n_idlote = ? " +
+-            //fvalle [Ticket-6741] 17.09.2013
++					              // [MSIS-121] agarcia 04.07.2017
++					              " AND b.C_ESTENV != ? " +
++                                  //fvalle [Ticket-6741] 17.09.2013
+ 					              "  and not exists (select '1' from dfin.crdpgad pa " +
+                                   "      where pa.c_deuact = 'S'  " +
+                                   "      and pa.c_estpag = 'S' " +
+                                   "      and pa.c_numcre = b.c_numcre) " +
+ 					              "      ORDER BY 16, 2) a ";
+ 
+-            lstResultado = entityManager.createNativeQuery(query).setParameter(1, codigoLote).getResultList();
++            lstResultado = entityManager.createNativeQuery(query).setParameter(1, codigoLote)
++            		// [MSIS-121] agarcia 04.07.2017
++            		.setParameter(2, financ.util.Constante.ESTADO_ENVIO_NO_ENVIAR)
++            		.getResultList();
+ 
+             String ruta = "";
+ 
+@@ -2919,6 +2935,9 @@
+ 
+         PropertyParams propertyParams = new PropertyParams();
+         propertyParams.addProperty("id.idLote", opCabeceraReporteEstadoCuentas.getIdLote());
++        // [MSIS-121] agarcia 04.07.2017
++        propertyParams.addProperty("opDetalleReporteEstadoCuentas.estadoEnvio", financ.util.Constante.ESTADO_ENVIO_NO_ENVIAR,
++				PropertyParams.OPERADOR_NOT_IN, "estadoEnvioExcluir");
+         propertyParams.setFirstResult(primerRegistroConsultar);
+         propertyParams.setMaxResults(cantidadRegistrosConsultar);
+         propertyParams.setOrderBy("id.idLote", "id.identificadorRegistro");
+diff --git a/FINANCIERONEW/src/financ/operaciones/session/OPCabeceraReporteEstadoCuentasSession.java b/FINANCIERONEW/src/financ/operaciones/session/OPCabeceraReporteEstadoCuentasSession.java
+index 27c9aed..d138c53 100644
+--- a/FINANCIERONEW/src/financ/operaciones/session/OPCabeceraReporteEstadoCuentasSession.java
++++ b/FINANCIERONEW/src/financ/operaciones/session/OPCabeceraReporteEstadoCuentasSession.java
+@@ -120,7 +120,9 @@
+             sbQuery.append("           AND CEEC.C_ESTREG = 'S' ");
+             sbQuery.append("           AND CEEC.C_MEEECC = :codigoModalidadEECC ");
+             sbQuery.append("           AND ('FI' = :codigoModalidadEECC AND CEEC.C_IDRGDI IS NOT NULL ");
+-            sbQuery.append("                OR 'EL' = :codigoModalidadEECC AND CEEC.C_IDCOEL IS NOT NULL)) ");
++            sbQuery.append("                OR 'EL' = :codigoModalidadEECC AND CEEC.C_IDCOEL IS NOT NULL ");
++            // [MSIS-121] agarcia 04.07.2017
++            sbQuery.append("                OR 'NO' = :codigoModalidadEECC )) ");
+ 
+             query = entityManager.createNativeQuery(sbQuery.toString());
+             query.setParameter("strFechaProceso", fechaProceso);
+diff --git a/FINANCIERONEW/src/financ/operaciones/session/OPDetalleReporteEstadoCuentasSession.java b/FINANCIERONEW/src/financ/operaciones/session/OPDetalleReporteEstadoCuentasSession.java
+index 5be79dc..af56882 100644
+--- a/FINANCIERONEW/src/financ/operaciones/session/OPDetalleReporteEstadoCuentasSession.java
++++ b/FINANCIERONEW/src/financ/operaciones/session/OPDetalleReporteEstadoCuentasSession.java
+@@ -202,7 +202,7 @@
+ 							    "                                           tubi.C_CODPRO = '00' and" +
+ 							    "                                           tubi.C_CODDIS = '00' and" +                                          
+ 							    "                                           Rownum = 1)," +
+-							    "                        '') ))  From Dual) In (";
++							    "                        '1') ))  From Dual) In ("; // [MSIS-121] agarcia 04.07.2017
+ 				 
+ 				 for(int i=0;i<aDepartamentos.length;i++){
+ 					 if(i==0)	
+diff --git a/FINANCIERONEW/src/financ/util/Constante.java b/FINANCIERONEW/src/financ/util/Constante.java
+index 59b4a28..1144eda 100644
+--- a/FINANCIERONEW/src/financ/util/Constante.java
++++ b/FINANCIERONEW/src/financ/util/Constante.java
+@@ -2023,6 +2023,8 @@
+     public static final String ESTADO_ENVIO_PROCESO = "PR";
+     public static final String ESTADO_ENVIO_ERROR = "ER";
+     public static final String ESTADO_ENVIO_CORRECTO = "EN";
++    // [MSIS-121] agarcia 04.07.2017
++    public static final String ESTADO_ENVIO_NO_ENVIAR = "NE";
+ 
+     public static final String FORMATO_REPORTE_ESTADO_CUENTA_CREDITOS = "FORMATO_REPORTE_ESTADO_CUENTA_CREDITOS";
+     public static final String FORMATO_REPORTE_ESTADO_CUENTA_AHORRO = "FORMATO_REPORTE_ESTADO_CUENTA_AHORRO";

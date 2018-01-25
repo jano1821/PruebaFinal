@@ -1,0 +1,888 @@
+diff --git a/ADMINISTRATIVONEW/src/admin/util/Constante.java b/ADMINISTRATIVONEW/src/admin/util/Constante.java
+index b0c306e..6afc4c2 100644
+--- a/ADMINISTRATIVONEW/src/admin/util/Constante.java
++++ b/ADMINISTRATIVONEW/src/admin/util/Constante.java
+@@ -1223,4 +1223,9 @@
+     //Inicio [CC17-057] kdelacruz 18.05.2017
+     public static final String CONSTANTE_SEPARADOR_MENSAJE_VALIDAR_TARJETA = "SEPARADOR_NUMERO_TARJETA";
+     //Fin [CC17-057]
++
++    //Inicio [MSIS-57] kdelacruz 12.06.2017
++    public static final String TRANSACCION_PAGO_ANTICIPO_CAJA = "CJ007";
++    public static final String TRANSACCION_PAGO_ANTICIPO = "CJ002";
++    //Fin [MSIS-57]
+ }
+diff --git a/FINANCIERONEW/src/financ/creditos/facade/CRSolicitudDesembolsoCreditoFacade.java b/FINANCIERONEW/src/financ/creditos/facade/CRSolicitudDesembolsoCreditoFacade.java
+index 5a164e5..9ac83fd 100644
+--- a/FINANCIERONEW/src/financ/creditos/facade/CRSolicitudDesembolsoCreditoFacade.java
++++ b/FINANCIERONEW/src/financ/creditos/facade/CRSolicitudDesembolsoCreditoFacade.java
+@@ -27,6 +27,7 @@
+ import admin.alquileres.local.AAMaestraAlquilerInterfaceLocal;
+ import admin.bancos.entity.BNEntidadFinanciera;
+ import admin.bancos.local.BNEntidadFinancieraInterfaceLocal;
++import admin.caja.entity.CJMaestroSolicitud;
+ import admin.caja.local.CJMaestroSolicitudInterfaceLocal;
+ import admin.contab.beans.BeanCBCatalogoErrores;
+ import admin.contab.beans.BeanParametrosAuditoria;
+@@ -249,6 +250,8 @@
+    @EJB
+    private AAMaestraAlquilerInterfaceLocal aaMaestraAlquilerInterfaceLocal;
+    // Fin [Req.S17-023]
++   @EJB
++   private CBTiposMovimientoInterfaceLocal cbTiposMovimientoInterfaceLocal;
+    
+    /** Fin jventura Req.S14-061 05.06.2014 **/
+ 	
+@@ -2166,17 +2169,53 @@
+     							terminal, 
+     							ip);
+     					
+-    					// Asignacion de valores del Concepto y Subconceto de Operacion
+-    	           	    String conceptoOperacion = "";
+-    	           	    CBConceptoOperacion cbConceptoOperacion = null;
+-    	           	    List<DetalleBean> subConceptos = new ArrayList<DetalleBean>();
+-    	           	    DetalleBean detalleBean = new DetalleBean();
+-    	           	    
+-    					if (i==0) {
+-    					    // Inicio [Req.S17-023] kdelacruz 22.05.2017
++    				 // Asignacion de valores del Concepto y Subconceto de Operacion
++                        String conceptoOperacion = "";
++                        CBConceptoOperacion cbConceptoOperacion = null;
++                        List<DetalleBean> subConceptos = new ArrayList<DetalleBean>();
++                        DetalleBean detalleBean = new DetalleBean();
++                        String subConceptoOperacion = null;// [MSIS-57] kdelacruz 12.06.2017
++                        if (i==0) {
++                            // Inicio [Req.S17-023] kdelacruz 22.05.2017
+                             if (_equiv(cpOrdenPago.getCpSubGrupoOrdenPago().getId().getCodigoGrupoOrdenPago(),
+                                        admin.util.Constante.CONSTANTE_GRUPO_PAGO_ANTICIPO)) {
+-                                columna24 = admin.util.Constante.COLUMNA_24_CODIGO_GRUPO_ANTICIPO;
++                                // Inicio [MSIS-57] kdelacruz 12.06.2017
++                                if (!StringUtil.isEmpty(cpOrdenPago.getCodigoReferencia())) {
++                                    CJMaestroSolicitud cjMaestroSolicitud = cjMaestroSolicitudInterfaceLocal.findById(cpOrdenPago.getCodigoReferencia());
++                                    if (!StringUtil.isEmpty(cjMaestroSolicitud)) {
++                                        columna24 = cjMaestroSolicitud.getCjTipoAnticipo().getCodigo().toString();
++                                        CLPersonas clPersonas2 = clPersonasInterfaceLocal.findById(cjMaestroSolicitud.getCodigoPersona());
++                                        CBTiposMovimiento cbTiposMovimiento = cbTiposMovimientoInterfaceLocal.findById(cjMaestroSolicitud.getCodigoMovimiento());
++                                        if (!_isEmpty(clPersonas2) && !_isEmpty(cbTiposMovimiento)) {
++                                            String nombreRazonSocial = CADENA_VACIA;
++                                            String numeroCorrelativo = CADENA_VACIA;
++                                            String descripcionTipoMovimiento = CADENA_VACIA;
++                                            String numeroCheque = CADENA_VACIA;
++                                            String numeroVoucher = CADENA_VACIA;
++                                            String numeroReferenciaGlosa = CADENA_VACIA;
++                                            if (!_isEmpty(clPersonas2.getNombreoRazonSocial())) {
++                                                nombreRazonSocial = clPersonas2.getNombreoRazonSocial();
++                                            }
++                                            if (!_isEmpty(cjMaestroSolicitud.getNumeroCorrelativo())) {
++                                                numeroCorrelativo = cjMaestroSolicitud.getNumeroCorrelativo();
++                                            }
++                                            if (!_isEmpty(cbTiposMovimiento.getDescripcion().toString())) {
++                                                descripcionTipoMovimiento = cbTiposMovimiento.getDescripcion().toString();
++                                            }
++                                            if (!_isEmpty(cjMaestroSolicitud.getNumeroChequ())) {
++                                                numeroCheque = cjMaestroSolicitud.getNumeroChequ();
++                                            }
++                                            if (!_isEmpty(cjMaestroSolicitud.getNumeroVouche())) {
++                                                numeroVoucher = cjMaestroSolicitud.getNumeroVouche();
++                                            }
++                                            if (!_isEmpty(cjMaestroSolicitud.getDescripcionReferencia())) {
++                                                numeroReferenciaGlosa = cjMaestroSolicitud.getDescripcionReferencia();
++                                            }
++                                            descripcionLargaoGlosa = nombreRazonSocial + " - " + numeroCorrelativo + " - " + descripcionTipoMovimiento + " - " + numeroCheque + " - " + numeroVoucher + " - " + numeroReferenciaGlosa;
++                                        }
++                                    }
++                                }
++                                // Fin [MSIS-57]
+                                 codigoMoneda = cpOrdenPago.getCodigoMonedaPago();
+ 
+                                 conceptoOperacion = "CJ002";
+@@ -2208,105 +2247,25 @@
+ 
+                                 montoComprobante = cpOrdenPago.getImportePorPagar();
+ 
+-                                //Generacion de descripcion glosa
+-                                descripcionLargaoGlosa = cbConceptoOperacion.getDescripcion();
+-                                descripcionLargaoGlosa += numeroCreditoCuentaOtro != null ? " Credito N : " + numeroCreditoCuentaOtro : "";
+-                                descripcionLargaoGlosa += " - Ref.: " + cpOrdenPagoProgramacion.getNumeroVoucher();
++                                // Inicio [MSIS-57] kdelacruz 12.06.2017
++                                codigoOperacionFinanciera = "403";
++                                subConceptoOperacion = Constante.ID_TFC + "CJ002901";
++                                conceptoOperacion = "CJ002";
++                                // Fin [MSIS-57] kdelacruz 12.06.2017
+                                 // Fin [Req.S17-023]
+-                             // Inicio [Req.S17-023] agarcia 22.05.2017
++                                // Inicio [Req.S17-023] agarcia 22.05.2017
+                             } else if (_equiv(cpOrdenPago.getCpSubGrupoOrdenPago().getId().getCodigoGrupoOrdenPago(),
+-                                              admin.util.Constante.CODIGO_GRUPO_ORDENES_PAGO_ALQUILERES)){
+-                                   
+-                                    codigoMoneda = cpOrdenPago.getCodigoMonedaPago();
+-                                    String codigoAlquiler = cpOrdenPago.getCodigoReferencia();
+-                                    AAMaestraAlquiler aaMaestraAlquiler = aaMaestraAlquilerInterfaceLocal.findById(codigoAlquiler);
+-                                    if (!StringUtil.isEmpty(aaMaestraAlquiler)){
+-                                        conceptoOperacion = aaMaestraAlquiler.getConceptoOperacion();
+-                                        cbConceptoOperacion = cbConceptoOperacionInterfaceLocal.findById(aaMaestraAlquiler.getConceptoOperacion());
+-                                        detalleBean.setCodigoConcepto(conceptoOperacion);
+-                                        detalleBean.setCodigoSubConcepto(aaMaestraAlquiler.getSubConceptoOperacion());
+-                                    }
+-                                    
+-                                    detalleBean.setMonto(cpOrdenPago.getImportePorPagar());
+-                                    subConceptos.add(detalleBean);
++                                              admin.util.Constante.CODIGO_GRUPO_ORDENES_PAGO_ALQUILERES)) {
+ 
+-                                    // Grupo de Transaccion
+-                                    numeroGrupoTransaccion = numeroTransaccionOperacion;
+-
+-                                    // Indicador de Aplicacion Principal
+-                                    strTransaccionPrincipal = "S";
+-
+-                                    // gliceta 28.03.2011: Automatizacion Desembolso Creditos - Generacion de Asiento Contable
+-                                    numeroTransaccionPrincipal = numeroTransaccionOperacion;
+-
+-                                    montoComprobante = cpOrdenPago.getImportePorPagar();
+-
+-                                    //Generacion de descripcion glosa
+-                                    descripcionLargaoGlosa = cbConceptoOperacion.getDescripcion();
+-                                    descripcionLargaoGlosa += numeroCreditoCuentaOtro != null ? " Alquiler N : " + numeroCreditoCuentaOtro : "";
+-                                    descripcionLargaoGlosa += " - Ref.: " + cpOrdenPagoProgramacion.getNumeroVoucher();
+-                            // Fin [Req.S17-023]
+-                            }else{
+-        						codigoMoneda = cpOrdenPago.getCodigoMonedaPago();
+-        						// ccoz 25.01.2011 : SE CAMBIO EL CONCEPTO DE DT001 A PR065
+-        						conceptoOperacion = "PR065";						
+-        		           	    cbConceptoOperacion = cbConceptoOperacionInterfaceLocal.findById(conceptoOperacion); 
+-        		           	    
+-        						detalleBean.setCodigoConcepto(conceptoOperacion);
+-        						//gfernandez 09.06.2011 Liquidacion de servicio externo
+-        						if(strGrupo.equals("07") && strSubGrupo.equals("01"))
+-                                {
+-        							detalleBean.setCodigoSubConcepto(codigoEmpresa+conceptoOperacion+"002");    
+-                                }
+-        						else if(strGrupo.equals("02") && strSubGrupo.equals("03")) //gfernandez: condicion para concepto globokas. 
+-        						{
+-        							detalleBean.setCodigoSubConcepto(codigoEmpresa+conceptoOperacion+"003");
+-        						}
+-        						else{
+-                                	detalleBean.setCodigoSubConcepto(codigoEmpresa+conceptoOperacion+"001");
+-                                }
+-        						//detalleBean.setCodigoSubConcepto(codigoEmpresa+conceptoOperacion+"001");
+-        						
+-        						detalleBean.setMonto(cpOrdenPago.getImportePorPagar());
+-        						subConceptos.add(detalleBean);
+-        						
+-        						// Grupo de Transaccion
+-        					    numeroGrupoTransaccion = numeroTransaccionOperacion;
+-        					    
+-        					    // Indicador de Aplicacion Principal
+-        		    			strTransaccionPrincipal = "S";
+-        		    			
+-        		    			// gliceta 28.03.2011: Automatizacion Desembolso Creditos - Generacion de Asiento Contable
+-        		    			numeroTransaccionPrincipal = numeroTransaccionOperacion;
+-        		    			
+-        		    			montoComprobante = cpOrdenPago.getImportePorPagar();
+-        		    			
+-        		    			//Generacion de descripcion glosa
+-    			    			descripcionLargaoGlosa = cbConceptoOperacion.getDescripcion();
+-    			                descripcionLargaoGlosa += numeroCreditoCuentaOtro!=null?" Credito N : "+numeroCreditoCuentaOtro:"";
+-    			                descripcionLargaoGlosa += " - Ref.: " + cpOrdenPagoProgramacion.getNumeroVoucher();
+-                            }
+-    					} else {
+-    					    // Inicio [Req.S17-023] kdelacruz 22.05.2017
+-    					    if (_equiv(cpOrdenPago.getCpSubGrupoOrdenPago().getId().getCodigoGrupoOrdenPago(),
+-                                       admin.util.Constante.CONSTANTE_GRUPO_PAGO_ANTICIPO)) {
+-    					        columna24 = admin.util.Constante.COLUMNA_24_CODIGO_GRUPO_ANTICIPO;
+                                 codigoMoneda = cpOrdenPago.getCodigoMonedaPago();
+-
+-                                conceptoOperacion = "CJ002";
+-                                cbConceptoOperacion = cbConceptoOperacionInterfaceLocal.findById(conceptoOperacion);
+-
+-                                detalleBean.setCodigoConcepto(conceptoOperacion);
+-                                //gfernandez 09.06.2011 Liquidacion de servicio externo
+-                                if (strGrupo.equals("07") && strSubGrupo.equals("01")) {
+-                                    detalleBean.setCodigoSubConcepto(codigoEmpresa + conceptoOperacion + "002");
+-                                } else if (strGrupo.equals("02") && strSubGrupo.equals("03")) //gfernandez: condicion para concepto globokas. 
+-                                {
+-                                    detalleBean.setCodigoSubConcepto(codigoEmpresa + conceptoOperacion + "003");
+-                                } else {
+-                                    detalleBean.setCodigoSubConcepto(codigoEmpresa + conceptoOperacion + "901");
++                                String codigoAlquiler = cpOrdenPago.getCodigoReferencia();
++                                AAMaestraAlquiler aaMaestraAlquiler = aaMaestraAlquilerInterfaceLocal.findById(codigoAlquiler);
++                                if (!StringUtil.isEmpty(aaMaestraAlquiler)) {
++                                    conceptoOperacion = aaMaestraAlquiler.getConceptoOperacion();
++                                    cbConceptoOperacion = cbConceptoOperacionInterfaceLocal.findById(aaMaestraAlquiler.getConceptoOperacion());
++                                    detalleBean.setCodigoConcepto(conceptoOperacion);
++                                    detalleBean.setCodigoSubConcepto(aaMaestraAlquiler.getSubConceptoOperacion());
+                                 }
+-                                //detalleBean.setCodigoSubConcepto(codigoEmpresa+conceptoOperacion+"001");
+ 
+                                 detalleBean.setMonto(cpOrdenPago.getImportePorPagar());
+                                 subConceptos.add(detalleBean);
+@@ -2324,169 +2283,276 @@
+ 
+                                 //Generacion de descripcion glosa
+                                 descripcionLargaoGlosa = cbConceptoOperacion.getDescripcion();
+-                                descripcionLargaoGlosa += numeroCreditoCuentaOtro != null ? " Credito N : " + numeroCreditoCuentaOtro : "";
++                                descripcionLargaoGlosa += numeroCreditoCuentaOtro != null ? " Alquiler N : " + numeroCreditoCuentaOtro : "";
+                                 descripcionLargaoGlosa += " - Ref.: " + cpOrdenPagoProgramacion.getNumeroVoucher();
++
++                                // Inicio  [MSIS-57] kdelacruz 12.06.2017
++                                codigoOperacionFinanciera = "403";
++                                subConceptoOperacion = Constante.ID_TFC + "CJ002901";
++                                // Fin [MSIS-57]
+                                 // Fin [Req.S17-023]
+-                            // Inicio [Req.S17-023] agarcia 22.05.2017
+-    					    } else if (_equiv(cpOrdenPago.getCpSubGrupoOrdenPago().getId().getCodigoGrupoOrdenPago(),
+-                                              admin.util.Constante.CODIGO_GRUPO_ORDENES_PAGO_ALQUILERES)){
+-                                   
+-                                    codigoMoneda = cpOrdenPago.getCodigoMonedaPago();
+-                                    String codigoAlquiler = cpOrdenPago.getCodigoReferencia();
+-                                    AAMaestraAlquiler aaMaestraAlquiler = aaMaestraAlquilerInterfaceLocal.findById(codigoAlquiler);
+-                                    if (!StringUtil.isEmpty(aaMaestraAlquiler)){
+-                                        conceptoOperacion = aaMaestraAlquiler.getConceptoOperacion();
+-                                        cbConceptoOperacion = cbConceptoOperacionInterfaceLocal.findById(aaMaestraAlquiler.getConceptoOperacion());
+-                                        detalleBean.setCodigoConcepto(conceptoOperacion);
+-                                        detalleBean.setCodigoSubConcepto(aaMaestraAlquiler.getSubConceptoOperacion());
+-                                    }
+-                                    
+-                                    detalleBean.setMonto(cpOrdenPago.getImportePorPagar());
+-                                    subConceptos.add(detalleBean);
++                            }else{
++                                codigoMoneda = cpOrdenPago.getCodigoMonedaPago();
++                                // ccoz 25.01.2011 : SE CAMBIO EL CONCEPTO DE DT001 A PR065
++                                conceptoOperacion = "PR065";                        
++                                cbConceptoOperacion = cbConceptoOperacionInterfaceLocal.findById(conceptoOperacion); 
++                                
++                                detalleBean.setCodigoConcepto(conceptoOperacion);
++                                //gfernandez 09.06.2011 Liquidacion de servicio externo
++                                if(strGrupo.equals("07") && strSubGrupo.equals("01"))
++                                {
++                                    detalleBean.setCodigoSubConcepto(codigoEmpresa+conceptoOperacion+"002");    
++                                }
++                                else if(strGrupo.equals("02") && strSubGrupo.equals("03")) //gfernandez: condicion para concepto globokas. 
++                                {
++                                    detalleBean.setCodigoSubConcepto(codigoEmpresa+conceptoOperacion+"003");
++                                }
++                                else{
++                                    detalleBean.setCodigoSubConcepto(codigoEmpresa+conceptoOperacion+"001");
++                                }
++                                //detalleBean.setCodigoSubConcepto(codigoEmpresa+conceptoOperacion+"001");
++                                
++                                detalleBean.setMonto(cpOrdenPago.getImportePorPagar());
++                                subConceptos.add(detalleBean);
++                                
++                                // Grupo de Transaccion
++                                numeroGrupoTransaccion = numeroTransaccionOperacion;
++                                
++                                // Indicador de Aplicacion Principal
++                                strTransaccionPrincipal = "S";
++                                
++                                // gliceta 28.03.2011: Automatizacion Desembolso Creditos - Generacion de Asiento Contable
++                                numeroTransaccionPrincipal = numeroTransaccionOperacion;
++                                
++                                montoComprobante = cpOrdenPago.getImportePorPagar();
++                                
++                                //Generacion de descripcion glosa
++                                descripcionLargaoGlosa = cbConceptoOperacion.getDescripcion();
++                                descripcionLargaoGlosa += numeroCreditoCuentaOtro!=null?" Credito N : "+numeroCreditoCuentaOtro:"";
++                                descripcionLargaoGlosa += " - Ref.: " + cpOrdenPagoProgramacion.getNumeroVoucher();
++                            }
++                        } else {
++                            if (i==1) {
++                                codigoMoneda = cpOrdenPagoProgramacion.getCodigoMonedaProgramado();
++                                tipoCambio = cpOrdenPagoProgramacion.getTipoCambio();
+ 
+-                                    // Grupo de Transaccion
+-                                    numeroGrupoTransaccion = numeroTransaccionOperacion;
+-
+-                                    // Indicador de Aplicacion Principal
+-                                    strTransaccionPrincipal = "N";
+-
+-                                    // gliceta 28.03.2011: Automatizacion Desembolso Creditos - Generacion de Asiento Contable
+-                                    numeroTransaccionPrincipal = numeroTransaccionOperacion;
+-
+-                                    montoComprobante = cpOrdenPago.getImportePorPagar();
+-
+-                                    //Generacion de descripcion glosa
+-                                    descripcionLargaoGlosa = cbConceptoOperacion.getDescripcion();
+-                                    descripcionLargaoGlosa += numeroCreditoCuentaOtro != null ? " Alquiler N : " + numeroCreditoCuentaOtro : "";
+-                                    descripcionLargaoGlosa += " - Ref.: " + cpOrdenPagoProgramacion.getNumeroVoucher();
+-                            // Fin [Req.S17-023]
+-                            }else if (i==1) {
+-    							codigoMoneda = cpOrdenPagoProgramacion.getCodigoMonedaProgramado();
+-    							tipoCambio = cpOrdenPagoProgramacion.getTipoCambio();
+-
+-    							// ccoz 25.01.2011: SE CAMBIO EL CONCEPTO DE DT001 A PR066
+-    							conceptoOperacion = "PR066";
+-    	  
+-    			           	    cbConceptoOperacion = cbConceptoOperacionInterfaceLocal.findById(conceptoOperacion); 
+-    			           	    
+-    							detalleBean.setCodigoConcepto(conceptoOperacion);
+-    							detalleBean.setCodigoSubConcepto(codigoEmpresa+conceptoOperacion+"001");
+-    							detalleBean.setMonto(cpOrdenPagoProgramacion.getImporteProgramado());
+-    							subConceptos.add(detalleBean);
+-    							
+-    							// Indicador de Aplicacion Principal
+-    			    			strTransaccionPrincipal = "N";
+-    			    			
+-    			    			montoComprobante = cpOrdenPagoProgramacion.getImporteProgramado();
+-    			    			
+-    			    			//Generacion de descripcion glosa
+-				    			descripcionLargaoGlosa = cbConceptoOperacion.getDescripcion();
+-				                descripcionLargaoGlosa += numeroCreditoCuentaOtro!=null?" Credito N : "+numeroCreditoCuentaOtro:"";
+-				                descripcionLargaoGlosa += " - Ref.: " + cpOrdenPagoProgramacion.getNumeroVoucher();
+-    						}
+-    					}
+-    					//[Req.S17-023] kdelacruz 22.05.2017
+-    					String subConceptoOperacion = null;
+-                        if(_equiv(cpOrdenPago.getCpSubGrupoOrdenPago().getId().getCodigoGrupoOrdenPago(), admin.util.Constante.CONSTANTE_GRUPO_PAGO_ANTICIPO)){
+-                            codigoOperacionFinanciera = "403";
+-                            subConceptoOperacion = Constante.ID_TFC + "CJ002901";
+-                            conceptoOperacion = "CJ002";
++                                // ccoz 25.01.2011: SE CAMBIO EL CONCEPTO DE DT001 A PR066
++                                conceptoOperacion = "PR066";
++          
++                                cbConceptoOperacion = cbConceptoOperacionInterfaceLocal.findById(conceptoOperacion); 
++                                
++                                detalleBean.setCodigoConcepto(conceptoOperacion);
++                                detalleBean.setCodigoSubConcepto(codigoEmpresa+conceptoOperacion+"001");
++                                detalleBean.setMonto(cpOrdenPagoProgramacion.getImporteProgramado());
++                                subConceptos.add(detalleBean);
++                                
++                                // Indicador de Aplicacion Principal
++                                strTransaccionPrincipal = "N";
++                                
++                                montoComprobante = cpOrdenPagoProgramacion.getImporteProgramado();
++                                
++                                //Generacion de descripcion glosa
++                                descripcionLargaoGlosa = cbConceptoOperacion.getDescripcion();
++                                descripcionLargaoGlosa += numeroCreditoCuentaOtro!=null?" Credito N : "+numeroCreditoCuentaOtro:"";
++                                descripcionLargaoGlosa += " - Ref.: " + cpOrdenPagoProgramacion.getNumeroVoucher();
++                            }
+                         }
+-    					
+     					//clarico 17.04.2013
+     					String codigoProducto = crProductoNivelGrupoInterfaceLocal.findGrupoByNumeroCredito(numeroCreditoCuentaOtro, codigoEmpresa);
+-    					mapTxFinanciera = opBNTransaccionesFacadeInterfaceLocal.generarTransaccionFinanciera(
+-    							 numeroTransaccionOperacion,//numeroTransaccion 
+-    							 numeroGrupoTransaccion,//numeroGrupoTransaccion 
+-    							 new Long(correlativoOperacion),//numeroCorrelativoOperacion 
+-    							 codigoOperacionFinanciera,//codigoOperacionFinanciera
+-    							 conceptoOperacion,//codigoTransaccion 
+-    							 strTransaccionPrincipal,//indicadorTransaccionPrincipal 
+-    							 "",//indicadorAplicaCaja
+-    							 "001",//codigoCanalOperacion, 
+-    							 codEntidadManejadoraValores,//codigoEntidadCanalOperacion, 
+-    							 entidad,//descripcionEntidadCanalOperacion,
+-    							 null,//entidadRecaudadora
+-    							 codigoEmpresa,//codigoEmpresa 
+-    							 codigoAgencia,//codigoAgencia 
+-    							 codigoAgencia,//codigoAgenciaOrigen
+-    							 "",//codigoAgenciaCartera
+-    							 usuario,//codigoUsuario 
+-    							 "",//entidadManejadoraValores
+-    							 new java.sql.Date(fechaProceso.getTime()),//fechaProcesoTransaccion 
+-    							 horaProceso,//horaProcesoTransaccion 
+-    							 "S",//estadoRegistro
+-    							 new java.sql.Date(fechaProceso.getTime()),//fechaValuta 
+-    							 null,//fechaAnulacionTransaccion
+-    							 null,//usuarioAnuloTransaccion
+-    							 null,//observacionAnulacion 
+-    							 null,//numeroTransaccionAnulada 
+-    							 null,//origenRegularizacion 
+-    							 null,//tipoRegularizacion 
+-    							 null,//motivoRegularizacion 
+-    							 null,//observacionRegularizacion 
+-    							 cbConceptoOperacion.getIndicadorIngresoEgreso(),//indicadorMovimiento 
+-    							 codigoMoneda,//codigoMoneda 
+-    							 montoComprobante,//montoMovimiento 
+-    							 tipoCambio,//tipoCambio 
+-    							 "TX",//tipoMovimiento 
+-    							 null,//codigoBanco 
+-    							 numeroCuentaBancaria,//numeroCuentaBancaria 
+-    							 numeroCorrelativoCuentaBancaria,//numeroCorrelativoCuentaBancaria 
+-    							 numeroReferencia,//numeroReferencia 
+-    							 subConceptoOperacion,//subConceptoOperacion //[Req.S17-023] kdelacruz 22.05.2017
+-    							 numeroCreditoCuentaOtro,//null,//numeroCreditoCuentaOtro gliceta 04.04.2011: Automatizacion Desembolso de Creditos
+-    							 "P",//tipoDocumentoReferencia 
+-    							 codigoPersona,//codigoPersona 
+-    							 nombreReferencia,//nombreReferencia 
+-    							 descripcionLargaoGlosa,//descripcionLargaoGlosa 
+-    							 null,//paisOrigenTransaccion 
+-    							 null,//paisDestinoTransaccion 
+-    							 null,//ubigeoOrigenTransaccion 
+-    							 null,//ubigeoDestinoTransaccion 
+-    							 null,//indicadorNacionalInternacional 
+-    							 null,//empresaOrigen 
+-    							 null,//empresaDestino 
+-    							 null,//columna01 
+-    							 null,//columna02 
+-    							 null,//columna03 
+-    							 null,//columna04 
+-    							 null,//columna05 
+-    							 null,//columna06 
+-    							 null,//columna07 
+-    							 null,//columna08  
+-    							 null,//columna09  
+-    							 null,//columna10  
+-    							 null,//columna11  
+-    							 null,//columna12  
+-    							 null,//columna13  
+-    							 null,//columna14  
+-    							 null,//columna15  
+-    							 null,//columna16  
+-    							 null,//columna17  
+-    							 null,//columna18  
+-    							 null,//columna19 
+-    							 null,//columna20  
+-    							 null,//columna21  
+-    							 null,//columna22  
+-    							 null,//columna23  
+-    							 columna24,//columna24  
+-    							 null,//columna25  
+-    							 null,//columna26  
+-    							 null,//columna27  
+-    							 codigoProducto,//columna28  //clarico 17.04.2013
+-    							 null,//columna29  
+-    							 null,//columna30  
+-    							 subConceptos,//subConceptos 
+-    							 generarTransaccion,//Genera Transacción Operación OPMTRAN OPMTRAD S 
+-    							 controlEfectivo,//Genera Control Efectivo S 
+-    							 controlLavadoActivos,//Genera Control Lavado Activos S 
+-    							 generarAsiento,//Genera Asiento S 
+-    							 null,//indicadoRegularizacion 
+-    							 usuario,//usuario 
+-    							 terminal,//terminal 
+-    							 ip//ip
+-    							 );
++
++    					// Inicio [MSIS-57] kdelacruz 12.06.2017
++    					if (_equiv(cpOrdenPago.getCpSubGrupoOrdenPago().getId().getCodigoGrupoOrdenPago(),
++                                   admin.util.Constante.CONSTANTE_GRUPO_PAGO_ANTICIPO) || _equiv(cpOrdenPago.getCpSubGrupoOrdenPago().getId().getCodigoGrupoOrdenPago(),
++                                                                                                 admin.util.Constante.CODIGO_GRUPO_ORDENES_PAGO_ALQUILERES)) {
++    					    if(i==0){
++            					mapTxFinanciera = opBNTransaccionesFacadeInterfaceLocal.generarTransaccionFinanciera(
++            							 numeroTransaccionOperacion,//numeroTransaccion 
++            							 numeroGrupoTransaccion,//numeroGrupoTransaccion 
++            							 new Long(correlativoOperacion),//numeroCorrelativoOperacion 
++            							 codigoOperacionFinanciera,//codigoOperacionFinanciera
++            							 conceptoOperacion,//codigoTransaccion 
++            							 strTransaccionPrincipal,//indicadorTransaccionPrincipal 
++            							 "",//indicadorAplicaCaja
++            							 "001",//codigoCanalOperacion, 
++            							 codEntidadManejadoraValores,//codigoEntidadCanalOperacion, 
++            							 entidad,//descripcionEntidadCanalOperacion,
++            							 null,//entidadRecaudadora
++            							 codigoEmpresa,//codigoEmpresa 
++            							 codigoAgencia,//codigoAgencia 
++            							 codigoAgencia,//codigoAgenciaOrigen
++            							 "",//codigoAgenciaCartera
++            							 usuario,//codigoUsuario 
++            							 "",//entidadManejadoraValores
++            							 new java.sql.Date(fechaProceso.getTime()),//fechaProcesoTransaccion 
++            							 horaProceso,//horaProcesoTransaccion 
++            							 "S",//estadoRegistro
++            							 new java.sql.Date(fechaProceso.getTime()),//fechaValuta 
++            							 null,//fechaAnulacionTransaccion
++            							 null,//usuarioAnuloTransaccion
++            							 null,//observacionAnulacion 
++            							 null,//numeroTransaccionAnulada 
++            							 null,//origenRegularizacion 
++            							 null,//tipoRegularizacion 
++            							 null,//motivoRegularizacion 
++            							 null,//observacionRegularizacion 
++            							 cbConceptoOperacion.getIndicadorIngresoEgreso(),//indicadorMovimiento 
++            							 codigoMoneda,//codigoMoneda 
++            							 montoComprobante,//montoMovimiento 
++            							 tipoCambio,//tipoCambio 
++            							 "TX",//tipoMovimiento 
++            							 null,//codigoBanco 
++            							 numeroCuentaBancaria,//numeroCuentaBancaria 
++            							 numeroCorrelativoCuentaBancaria,//numeroCorrelativoCuentaBancaria 
++            							 numeroReferencia,//numeroReferencia 
++            							 subConceptoOperacion,//subConceptoOperacion //[Req.S17-023] kdelacruz 22.05.2017
++            							 numeroCreditoCuentaOtro,//null,//numeroCreditoCuentaOtro gliceta 04.04.2011: Automatizacion Desembolso de Creditos
++            							 "P",//tipoDocumentoReferencia 
++            							 codigoPersona,//codigoPersona 
++            							 nombreReferencia,//nombreReferencia 
++            							 descripcionLargaoGlosa,//descripcionLargaoGlosa 
++            							 null,//paisOrigenTransaccion 
++            							 null,//paisDestinoTransaccion 
++            							 null,//ubigeoOrigenTransaccion 
++            							 null,//ubigeoDestinoTransaccion 
++            							 null,//indicadorNacionalInternacional 
++            							 null,//empresaOrigen 
++            							 null,//empresaDestino 
++            							 null,//columna01 
++            							 null,//columna02 
++            							 null,//columna03 
++            							 null,//columna04 
++            							 null,//columna05 
++            							 null,//columna06 
++            							 null,//columna07 
++            							 null,//columna08  
++            							 null,//columna09  
++            							 null,//columna10  
++            							 null,//columna11  
++            							 null,//columna12  
++            							 null,//columna13  
++            							 null,//columna14  
++            							 null,//columna15  
++            							 null,//columna16  
++            							 null,//columna17  
++            							 null,//columna18  
++            							 null,//columna19 
++            							 null,//columna20  
++            							 null,//columna21  
++            							 null,//columna22  
++            							 null,//columna23  
++            							 columna24,//columna24  
++            							 null,//columna25  
++            							 null,//columna26  
++            							 null,//columna27  
++            							 codigoProducto,//columna28  //clarico 17.04.2013
++            							 null,//columna29  
++            							 null,//columna30  
++            							 subConceptos,//subConceptos 
++            							 generarTransaccion,//Genera Transacción Operación OPMTRAN OPMTRAD S 
++            							 controlEfectivo,//Genera Control Efectivo S 
++            							 controlLavadoActivos,//Genera Control Lavado Activos S 
++            							 generarAsiento,//Genera Asiento S 
++            							 null,//indicadoRegularizacion 
++            							 usuario,//usuario 
++            							 terminal,//terminal 
++            							 ip//ip
++            							 );
++                      					// Fin [MSIS-57] kdelacruz 12.06.2017
++    					    }
++    					}else{
++    					    mapTxFinanciera = opBNTransaccionesFacadeInterfaceLocal.generarTransaccionFinanciera(
++    					                                                                                         numeroTransaccionOperacion,//numeroTransaccion 
++    					                                                                                         numeroGrupoTransaccion,//numeroGrupoTransaccion 
++    					                                                                                         new Long(correlativoOperacion),//numeroCorrelativoOperacion 
++    					                                                                                         codigoOperacionFinanciera,//codigoOperacionFinanciera
++    					                                                                                         conceptoOperacion,//codigoTransaccion 
++    					                                                                                         strTransaccionPrincipal,//indicadorTransaccionPrincipal 
++    					                                                                                         "",//indicadorAplicaCaja
++    					                                                                                         "001",//codigoCanalOperacion, 
++    					                                                                                         codEntidadManejadoraValores,//codigoEntidadCanalOperacion, 
++    					                                                                                         entidad,//descripcionEntidadCanalOperacion,
++    					                                                                                         null,//entidadRecaudadora
++    					                                                                                         codigoEmpresa,//codigoEmpresa 
++    					                                                                                         codigoAgencia,//codigoAgencia 
++    					                                                                                         codigoAgencia,//codigoAgenciaOrigen
++    					                                                                                         "",//codigoAgenciaCartera
++    					                                                                                         usuario,//codigoUsuario 
++    					                                                                                         "",//entidadManejadoraValores
++    					                                                                                         new java.sql.Date(fechaProceso.getTime()),//fechaProcesoTransaccion 
++    					                                                                                         horaProceso,//horaProcesoTransaccion 
++    					                                                                                         "S",//estadoRegistro
++    					                                                                                         new java.sql.Date(fechaProceso.getTime()),//fechaValuta 
++    					                                                                                         null,//fechaAnulacionTransaccion
++    					                                                                                         null,//usuarioAnuloTransaccion
++    					                                                                                         null,//observacionAnulacion 
++    					                                                                                         null,//numeroTransaccionAnulada 
++    					                                                                                         null,//origenRegularizacion 
++    					                                                                                         null,//tipoRegularizacion 
++    					                                                                                         null,//motivoRegularizacion 
++    					                                                                                         null,//observacionRegularizacion 
++    					                                                                                         cbConceptoOperacion.getIndicadorIngresoEgreso(),//indicadorMovimiento 
++    					                                                                                         codigoMoneda,//codigoMoneda 
++    					                                                                                         montoComprobante,//montoMovimiento 
++    					                                                                                         tipoCambio,//tipoCambio 
++    					                                                                                         "TX",//tipoMovimiento 
++    					                                                                                         null,//codigoBanco 
++    					                                                                                         numeroCuentaBancaria,//numeroCuentaBancaria 
++    					                                                                                         numeroCorrelativoCuentaBancaria,//numeroCorrelativoCuentaBancaria 
++    					                                                                                         numeroReferencia,//numeroReferencia 
++    					                                                                                         subConceptoOperacion,//subConceptoOperacion //[Req.S17-023] kdelacruz 22.05.2017
++    					                                                                                         numeroCreditoCuentaOtro,//null,//numeroCreditoCuentaOtro gliceta 04.04.2011: Automatizacion Desembolso de Creditos
++    					                                                                                         "P",//tipoDocumentoReferencia 
++    					                                                                                         codigoPersona,//codigoPersona 
++    					                                                                                         nombreReferencia,//nombreReferencia 
++    					                                                                                         descripcionLargaoGlosa,//descripcionLargaoGlosa 
++    					                                                                                         null,//paisOrigenTransaccion 
++    					                                                                                         null,//paisDestinoTransaccion 
++    					                                                                                         null,//ubigeoOrigenTransaccion 
++    					                                                                                         null,//ubigeoDestinoTransaccion 
++    					                                                                                         null,//indicadorNacionalInternacional 
++    					                                                                                         null,//empresaOrigen 
++    					                                                                                         null,//empresaDestino 
++    					                                                                                         null,//columna01 
++    					                                                                                         null,//columna02 
++    					                                                                                         null,//columna03 
++    					                                                                                         null,//columna04 
++    					                                                                                         null,//columna05 
++    					                                                                                         null,//columna06 
++    					                                                                                         null,//columna07 
++    					                                                                                         null,//columna08  
++    					                                                                                         null,//columna09  
++    					                                                                                         null,//columna10  
++    					                                                                                         null,//columna11  
++    					                                                                                         null,//columna12  
++    					                                                                                         null,//columna13  
++    					                                                                                         null,//columna14  
++    					                                                                                         null,//columna15  
++    					                                                                                         null,//columna16  
++    					                                                                                         null,//columna17  
++    					                                                                                         null,//columna18  
++    					                                                                                         null,//columna19 
++    					                                                                                         null,//columna20  
++    					                                                                                         null,//columna21  
++    					                                                                                         null,//columna22  
++    					                                                                                         null,//columna23  
++    					                                                                                         columna24,//columna24  
++    					                                                                                         null,//columna25  
++    					                                                                                         null,//columna26  
++    					                                                                                         null,//columna27  
++    					                                                                                         codigoProducto,//columna28  //clarico 17.04.2013
++    					                                                                                         null,//columna29  
++    					                                                                                         null,//columna30  
++    					                                                                                         subConceptos,//subConceptos 
++    					                                                                                         generarTransaccion,//Genera Transacción Operación OPMTRAN OPMTRAD S 
++    					                                                                                         controlEfectivo,//Genera Control Efectivo S 
++    					                                                                                         controlLavadoActivos,//Genera Control Lavado Activos S 
++    					                                                                                         generarAsiento,//Genera Asiento S 
++    					                                                                                         null,//indicadoRegularizacion 
++    					                                                                                         usuario,//usuario 
++    					                                                                                         terminal,//terminal 
++    					                                                                                         ip//ip
++    					                                                                                         );
++    					}
+     					
+     					errorCode = mapTxFinanciera.get("strError").toString();
+     					
+diff --git a/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPCuentasPasivasFacade.java b/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPCuentasPasivasFacade.java
+index 3e33987..542e0a0 100644
+--- a/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPCuentasPasivasFacade.java
++++ b/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPCuentasPasivasFacade.java
+@@ -47,6 +47,8 @@
+ import admin.bancos.local.BNEntidadFinancieraInterfaceLocal;
+ import admin.bancos.local.BNOperacionesBancariasFacadeLocal;
+ import admin.bancos.local.BNTransaccionesInterfaceLocal;
++import admin.caja.entity.CJMaestroSolicitud;
++import admin.caja.local.CJMaestroSolicitudInterfaceLocal;
+ import admin.contab.beans.BeanCBCatalogoErrores;
+ import admin.contab.beans.BeanControlErrores;
+ import admin.contab.beans.BeanParametrosAuditoria;
+@@ -519,6 +521,9 @@
+     //[CC17-057] kdelacruz 18.05.2017
+     @EJB
+     private OPDetalleTarjetaInterfaceLocal opDetalleTarjetaInterfaceLocal;
++    
++    @EJB
++    private CJMaestroSolicitudInterfaceLocal cjMaestroSolicitudInterfaceLocal;
+ 
+    @PersistenceContext
+    private EntityManager entityManager;
+@@ -6343,15 +6348,49 @@
+       String columna28 = null;
+       String columna23 = null; // [Req. 14-030] fvalle 25.03.2015
+       // Inicio [Req.S17-023] kdelacruz 18.05.2017
+-      String columna24 = null; 
++      String columna24 = null;
++      String descripcionGlosa = null;// [MSIS-57] kdelacruz 12.06.2017
+       String indicadorAplicacion = CADENA_VACIA;
+-      if(!_isEmpty(genericBean)){
+-          indicadorAplicacion = genericBean.getPropertyString("indicadorAplicacion");
++      if (!_isEmpty(genericBean)) {
++          //Inicio [MSIS-57] kdelacruz 12.06.2017
++          String codigoReferencia = genericBean.getPropertyString("numeroAnticipo");
++          if (!StringUtil.isEmpty(codigoReferencia)) {
++              CJMaestroSolicitud cjMaestroSolicitud = cjMaestroSolicitudInterfaceLocal.findById(codigoReferencia);
++              if (!StringUtil.isEmpty(cjMaestroSolicitud)) {
++                  columna24 = cjMaestroSolicitud.getCjTipoAnticipo().getCodigo().toString();
++                  CLPersonas clPersonas = clPersonasInterfaceLocal.findById(cjMaestroSolicitud.getCodigoPersona());
++                  CBTiposMovimiento cbTiposMovimiento = cbTiposMovimientoInterfaceLocal.findById(cjMaestroSolicitud.getCodigoMovimiento());
++                  if(!_isEmpty(clPersonas) && !_isEmpty(cbTiposMovimiento)){
++                      String nombreRazonSocial = CADENA_VACIA;
++                      String numeroCorrelativo = CADENA_VACIA;
++                      String descripcionTipoMovimiento = CADENA_VACIA;
++                      String numeroCheque = CADENA_VACIA;
++                      String numeroVoucher = CADENA_VACIA;
++                      String numeroReferenciaGlosa = CADENA_VACIA;
++                      if (!_isEmpty(clPersonas.getNombreoRazonSocial())) {
++                          nombreRazonSocial = clPersonas.getNombreoRazonSocial();
++                      }
++                      if (!_isEmpty(cjMaestroSolicitud.getNumeroCorrelativo())) {
++                          numeroCorrelativo = cjMaestroSolicitud.getNumeroCorrelativo();
++                      }
++                      if (!_isEmpty(cbTiposMovimiento.getDescripcion().toString())) {
++                          descripcionTipoMovimiento = cbTiposMovimiento.getDescripcion().toString();
++                      }
++                      if (!_isEmpty(cjMaestroSolicitud.getNumeroChequ())) {
++                          numeroCheque = cjMaestroSolicitud.getNumeroChequ();
++                      }
++                      if (!_isEmpty(cjMaestroSolicitud.getNumeroVouche())) {
++                          numeroVoucher = cjMaestroSolicitud.getNumeroVouche();
++                      }
++                      if (!_isEmpty(cjMaestroSolicitud.getDescripcionReferencia())) {
++                          numeroReferenciaGlosa = cjMaestroSolicitud.getDescripcionReferencia();
++                      }
++                      descripcionGlosa = nombreRazonSocial + " - " + numeroCorrelativo + " - " + descripcionTipoMovimiento + " - " + numeroCheque + " - " + numeroVoucher + " - " + numeroReferenciaGlosa;
++                  }
++              }
++          }
+       }
+-
+-      if(_equiv(indicadorAplicacion, admin.util.Constante.COLUMNA_24_CODIGO_GRUPO_ANTICIPO)){
+-          columna24 = indicadorAplicacion;
+-      }
++      //Fin [MSIS-57]
+       // Fin [Req.S17-023]
+ 
+       //Generacion de la transaccion
+@@ -6632,7 +6671,7 @@
+                 "C",//tipoDocumentoReferencia, 
+                 codigoCliente,//codigoPersona, 
+                 clPersonas.getNombreoRazonSocial(),//nombreReferencia, 
+-                null,//descripcionLargaoGlosa, 
++                descripcionGlosa,//descripcionLargaoGlosa, 
+                 paisOrigen,//paisOrigenTransaccion, 
+                 paisDestino,//paisDestinoTransaccion, 
+                 localidadOrigen,//ubigeoOrigenTransaccion, 
+diff --git a/FINANCIERONEW/src/financ/operaciones/facade/OPBNComprobantesContablesIngresoEgresoFacade.java b/FINANCIERONEW/src/financ/operaciones/facade/OPBNComprobantesContablesIngresoEgresoFacade.java
+index 828f9c4..6a5a131 100644
+--- a/FINANCIERONEW/src/financ/operaciones/facade/OPBNComprobantesContablesIngresoEgresoFacade.java
++++ b/FINANCIERONEW/src/financ/operaciones/facade/OPBNComprobantesContablesIngresoEgresoFacade.java
+@@ -25,6 +25,8 @@
+ import pe.com.tfc.utils.GenericBean;
+ import pe.com.tfc.utils.StringUtil;
+ import admin.bancos.entity.BNTransacciones;
++import admin.caja.entity.CJMaestroSolicitud;
++import admin.caja.local.CJMaestroSolicitudInterfaceLocal;
+ import admin.contab.beans.BeanCBCatalogoCheckConstraint;
+ import admin.contab.beans.BeanParametroProceso;
+ import admin.contab.beans.BeanParametrosAuditoria;
+@@ -52,9 +54,11 @@
+ import admin.contab.local.CBTipoDocumentoInterfaceLocal;
+ import admin.contab.local.CBTipoImpuestoDocumentoInterfaceLocal;
+ import admin.contab.local.CBTipoImpuestoLeyInterfaceLocal;
++import admin.contab.local.CBTiposMovimientoInterfaceLocal;
+ import admin.util.FormatoFecha;
+ import financ.clientes.entity.CLPersonas;
+ import financ.clientes.local.CLPersonaFacadeInterfaceLocal;
++import financ.clientes.local.CLPersonasInterfaceLocal;
+ import financ.creditos.entity.CBRecibosCobranza;
+ import financ.creditos.local.CBAsigRecibosCobranzaInterfaceLocal;
+ import financ.creditos.local.CBRecibosCobranzaInterfaceLocal;
+@@ -184,6 +188,14 @@
+ 	// [S14-100] jventura 10.02.2016
+    @EJB
+    private BTPreLiquidacionFacadeInterfaceLocal btPreLiquidacionFacadeInterfaceLocal;
++   // Inicio [MSIS-57] kdelacruz 12.06.2017
++   @EJB
++   private CLPersonasInterfaceLocal clPersonasInterfaceLocal;
++   @EJB
++   private CJMaestroSolicitudInterfaceLocal cjMaestroSolicitudInterfaceLocal;
++   @EJB
++   private CBTiposMovimientoInterfaceLocal cbTiposMovimientoInterfaceLocal;
++   // Fin [MSIS-57]
+ 
+ 	
+ 	private Context context=null;
+@@ -356,12 +368,48 @@
+ 		String numeroTransaccionPrincipal = "";
+ 		// Inicio [Req.S17-023] kdelacruz 18.05.2017
+ 		String columna24 = null;
++		String descripcionGlosa = Constante.CADENA_VACIA;// [MSIS-57] kdelacruz 12.06.2017
+ 
+ 		String conceptoOperacionFinanciera = Constante.CADENA_VACIA;
+-		String indicadorAplicacion = genericBean.getPropertyString("indicadorAplicacion");
+-		if(StringUtil.equiv(indicadorAplicacion, admin.util.Constante.COLUMNA_24_CODIGO_GRUPO_ANTICIPO)){
+-	          columna24 = indicadorAplicacion;
++		// Inicio [MSIS-57] kdelacruz 12.06.2017
++		String codigoReferencia = genericBean.getPropertyString("codigoReferencia");
++		if(!StringUtil.isEmpty(codigoReferencia)){
++		    CJMaestroSolicitud cjMaestroSolicitud = cjMaestroSolicitudInterfaceLocal.findById(codigoReferencia);
++		    if(!StringUtil.isEmpty(cjMaestroSolicitud)){
++		        columna24 = cjMaestroSolicitud.getCjTipoAnticipo().getCodigo().toString();
++
++		        CLPersonas clPersonas = clPersonasInterfaceLocal.findById(cjMaestroSolicitud.getCodigoPersona());
++                CBTiposMovimiento cbTiposMovimiento = cbTiposMovimientoInterfaceLocal.findById(cjMaestroSolicitud.getCodigoMovimiento());
++		        if(!StringUtil.isEmpty(clPersonas) && !StringUtil.isEmpty(cbTiposMovimiento)){
++		            String nombreRazonSocial = Constante.CADENA_VACIA;
++                    String numeroCorrelativo = Constante.CADENA_VACIA;
++                    String descripcionTipoMovimiento = Constante.CADENA_VACIA;
++                    String numeroChequee = Constante.CADENA_VACIA;
++                    String numeroVoucher = Constante.CADENA_VACIA;
++                    String numeroReferenciaGlosa = Constante.CADENA_VACIA;
++                    if (!StringUtil.isEmpty(clPersonas.getNombreoRazonSocial())) {
++                        nombreRazonSocial = clPersonas.getNombreoRazonSocial();
++                    }
++                    if (!StringUtil.isEmpty(cjMaestroSolicitud.getNumeroCorrelativo())) {
++                        numeroCorrelativo = cjMaestroSolicitud.getNumeroCorrelativo();
++                    }
++                    if (!StringUtil.isEmpty(cbTiposMovimiento.getDescripcion().toString())) {
++                        descripcionTipoMovimiento = cbTiposMovimiento.getDescripcion().toString();
++                    }
++                    if (!StringUtil.isEmpty(cjMaestroSolicitud.getNumeroChequ())) {
++                        numeroChequee = cjMaestroSolicitud.getNumeroChequ();
++                    }
++                    if (!StringUtil.isEmpty(cjMaestroSolicitud.getNumeroVouche())) {
++                        numeroVoucher = cjMaestroSolicitud.getNumeroVouche();
++                    }
++                    if (!StringUtil.isEmpty(cjMaestroSolicitud.getDescripcionReferencia())) {
++                        numeroReferenciaGlosa = cjMaestroSolicitud.getDescripcionReferencia();
++                    }
++                    descripcionGlosa = nombreRazonSocial + " - " + numeroCorrelativo + " - " + descripcionTipoMovimiento + " - " + numeroChequee + " - " + numeroVoucher + " - " + numeroReferenciaGlosa;
++                }
++		    }
+ 	      }
++	      // Fin [MSIS-57]
+ 		if(!StringUtil.isEmpty(genericBean.getPropertyString("conceptoOperacionFinanciera"))){
+ 		    conceptoOperacionFinanciera = genericBean.getPropertyString("conceptoOperacionFinanciera");
+ 		}
+@@ -572,7 +620,7 @@
+ 						 "O",//tipoDocumentoReferencia, 
+ 						 codigoCliente, 
+ 						 nombrePersona, 
+-						 null,//descripcionLargaoGlosa, 
++						 descripcionGlosa,//descripcionLargaoGlosa, // [MSIS-57] kdelacruz 12.06.2017
+ 						 paisOrigen,//paisOrigenTransaccion, 
+ 						 paisDestino,//paisDestinoTransaccion, 
+ 						 localidadOrigen,//ubigeoOrigenTransaccion, 
+diff --git a/FINANCIERONEW/src/financ/operaciones/facade/OPBNTransaccionesFacade.java b/FINANCIERONEW/src/financ/operaciones/facade/OPBNTransaccionesFacade.java
+index 17cdc50..00c04d6 100644
+--- a/FINANCIERONEW/src/financ/operaciones/facade/OPBNTransaccionesFacade.java
++++ b/FINANCIERONEW/src/financ/operaciones/facade/OPBNTransaccionesFacade.java
+@@ -1735,7 +1735,18 @@
+                   descripcionLargaoGlosa = descripcionGlosa;
+               }
+            /** Fin aromero Req.S15-033 01.07.2015 **/
+-           
++           // Inicio [MSIS-57] kdelacruz 12.06.2017
++           if(_equiv(admin.util.Constante.TRANSACCION_NOTA_ABONO, conceptoOperacion.getCodigoOperacion())){
++               descripcionLargaoGlosa = descripcionGlosa;
++           }
++           if(_equiv(admin.util.Constante.TRANSACCION_PAGO_ANTICIPO_CAJA, conceptoOperacion.getCodigoOperacion())){
++               descripcionLargaoGlosa = descripcionGlosa;
++           }
++           if(_equiv(admin.util.Constante.TRANSACCION_PAGO_ANTICIPO, conceptoOperacion.getCodigoOperacion())){
++               descripcionLargaoGlosa = descripcionGlosa;
++           }
++           // Fin [MSIS-57]
++
+          }else{                 
+                 
+                  if("P".equals(tipoDocumentoReferencia)){
+diff --git a/FINANCIERONEW/src/financ/operaciones/facade/OPGestionAnticipoFacade.java b/FINANCIERONEW/src/financ/operaciones/facade/OPGestionAnticipoFacade.java
+index 15fdc69..1ae597c 100644
+--- a/FINANCIERONEW/src/financ/operaciones/facade/OPGestionAnticipoFacade.java
++++ b/FINANCIERONEW/src/financ/operaciones/facade/OPGestionAnticipoFacade.java
+@@ -207,7 +207,7 @@
+             lstImpuestos = (List) mapListaImpuestos.get("lstGeneral");
+             Date fechaValor = null;
+ 
+-            genericBean.addProperty("indicadorAplicacion", Constante.COLUMNA_24_CODIGO_GRUPO_ANTICIPO);
++            genericBean.addProperty("numeroAnticipo", numeroAnticipo); // [MSIS-57] kdelacruz 12.06.2017
+             Map mapDeposito = cpCuentasPasivasFacadeLocal.deposito(Constante.ID_TFC,
+                                                                    beanParametrosAuditoria.getCodigoAgencia(),
+                                                                    strCodCliente,
+@@ -317,7 +317,7 @@
+ 
+             genericBean = new GenericBean();
+             genericBean.addProperty("conceptoOperacionFinanciera", "516");
+-            genericBean.addProperty("indicadorAplicacion", Constante.COLUMNA_24_CODIGO_GRUPO_ANTICIPO);
++            genericBean.addProperty("codigoReferencia", codigoReferencia); // [MSIS-57] kdelacruz 12.06.2017
+             Map<Object, Object> mapa = opBNComprobantesContablesIngresoEgresoFacadeInterfaceLocal.generarXCaja(codigoEntidadManejadoraValor,
+                                                                                                                codigoAgencia,
+                                                                                                                codigoEmpresa,

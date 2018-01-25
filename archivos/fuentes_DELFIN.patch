@@ -1,0 +1,855 @@
+diff --git a/DELFINWEBNEW/WebRoot/FINANCIERO/workflow/WF_T_Contenedor_CNTR.jsp b/DELFINWEBNEW/WebRoot/FINANCIERO/workflow/WF_T_Contenedor_CNTR.jsp
+index 54830e4..ca7a2aa 100644
+--- a/DELFINWEBNEW/WebRoot/FINANCIERO/workflow/WF_T_Contenedor_CNTR.jsp
++++ b/DELFINWEBNEW/WebRoot/FINANCIERO/workflow/WF_T_Contenedor_CNTR.jsp
+@@ -1,5 +1,6 @@
+ <!-- WF_T_Contenedor_CNTR.jsp-->
+ <%--kdelacruz [Req.S17-007] 06.03.2017 - Implementaci�n WorkFlow Legal--%>
++<%--[CC17-067] esalazar 15.06.2017 - Se actualiza enmarcamento de contenido --%>
+ 
+ <%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+ <jsp:directive.page import="financ.util.Constante"/>
+@@ -217,7 +218,8 @@
+       }
+     </style>
+   </head>
+-  <body onhelp="getF1();" class="colorbody" onload="cargar();" style="padding: 0px, 0px, 0px, 0px;overflow:auto;">
++<%-- Inicio [CC17-067] esalazar 15.06.2017 --%>
++  <body onhelp="getF1();" class="colorbody" onload="cargar();" scroll="yes" style="padding: 0px, 0px, 0px, 0px;overflow:auto;">
+     <form name="frmBusqueda" id="frmBusqueda" method="post">
+       <input type="hidden" name="idMaestra" value='<c:out value="${requestScope.idMaestra}"/>'>
+       <input type="hidden" name="idModulo" value='<c:out value="${requestScope.idModulo}"/>'>
+@@ -272,7 +274,12 @@
+         </tr>
+         <tr >
+           <td align="center">
+-            <table border="0" cellpadding="0" cellspacing="0" width="200px" margin-left="20px" margin-right="20px" align="left" >
++
++            <table border="0" cellpadding="0" cellspacing="0" width="100%" align="center">
++              <tr>
++                <td width="200px" valign="top" >
++
++            <table border="0" cellpadding="0" cellspacing="0" width="200px" align="left" >
+                 <tr>
+                   <td height="1" valign="bottom" align="center">
+                     <ul class="tabs">
+@@ -285,18 +292,19 @@
+                   </td>
+                 </tr>
+               </table>
+-              <table border="0" cellpadding="0" cellspacing="0" width="80%" align="left" >
+-                  <tr>
+-                  <td valign="top">
++                  </td>
++                  <td valign="top" width="100%" >
+                     <c:forEach var='beanWFEtapa' items='${requestScope.listBeanWFEtapa}'>
+-                        <div id="tab_<c:out value="${beanWFEtapa.idEtapa}"/>" style=" width: 90%; height: 600px; display: none">
++                        <div id="tab_<c:out value="${beanWFEtapa.idEtapa}"/>" style="height: 600px; display: none">
+                             <iframe frameborder="0" width="100%" height="100%" id="ifrm_<c:out value="${beanWFEtapa.idEtapa}"/>" name="ifrm_<c:out value="${beanWFEtapa.idEtapa}"/>" class="frame" >
+                             </iframe>
+                         </div>
+                     </c:forEach>
+-                  </td>
+-                </tr>
+-              </table>
++              
++                </td>
++              </tr>
++            </table>
++              
+           </td>
+         </tr>
+         </table>
+@@ -317,4 +325,5 @@
+        </table>
+     </form>
+   </body>
++<%-- Fin [CC17-067] --%>
+ </html>
+\ No newline at end of file
+diff --git a/DELFINWEBNEW/WebRoot/FINANCIERO/workflow/seguimientoCartera/CR_C_ConsultaSeguimientoCartera_CNTR.jsp b/DELFINWEBNEW/WebRoot/FINANCIERO/workflow/seguimientoCartera/CR_C_ConsultaSeguimientoCartera_CNTR.jsp
+index f6835db..9c9c269 100644
+--- a/DELFINWEBNEW/WebRoot/FINANCIERO/workflow/seguimientoCartera/CR_C_ConsultaSeguimientoCartera_CNTR.jsp
++++ b/DELFINWEBNEW/WebRoot/FINANCIERO/workflow/seguimientoCartera/CR_C_ConsultaSeguimientoCartera_CNTR.jsp
+@@ -1,5 +1,6 @@
+ <!-- CR_C_ConsultaSeguimientoCartera_CNTR.jsp-->
+ <%--[Req.S17-022] esalazar 29.03.2017 - Implementacion WorkFlow Seguimiento Cartera--%>
++<%--[CC17-067] esalazar 15.06.2017 - Se adecua pantalla para utilizacion de filtros --%>
+ 
+ <%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+ <jsp:directive.page import="financ.util.Constante"/>
+@@ -32,7 +33,7 @@
+             mensajeRespuesta('<c:out value="${codigoError}" />', '<c:out value="${mensajeError}" />');
+             byID(nextfield).focus();
+             cargarPermisos();
+-            onCargarDetalle();
++
+             permiteCambiarAgencia = (indicadorPermisoConsulta == 'S' || indicadorGerenteZonal == 'S');
+             permiteCambiarAsesor  = (indicadorPermisoConsulta == 'S' || indicadorGerenteZonal == 'S' || indicadorGerenteAgencia == 'S');
+ 
+@@ -45,6 +46,61 @@
+                 byID('descripcionAsesor').readOnly = true;
+                 byID('descripcionAsesor').className = 'campodisplayiz';
+                 byID('imgAsesor').style.visibility = "hidden";
++            }
++
++            inicializarFiltros();
++            onCargarDetalle();
++        }
++
++        function inicializarFiltros(){
++            var fechaAsignacionInicial = '<c:out value="${sessionScope.fechaAsignacionInicial}" />';
++            var fechaAsignacionFinal = '<c:out value="${sessionScope.fechaAsignacionFinal}" />';
++            var fechaAtencionInicial = '<c:out value="${sessionScope.fechaAtencionInicial}" />';
++            var fechaAtencionFinal = '<c:out value="${sessionScope.fechaAtencionFinal}" />';
++            var codigoTipoAlerta = '<c:out value="${sessionScope.codigoTipoAlerta}" />';
++            var codigoAgencia = '<c:out value="${sessionScope.codigoAgencia}" />';
++            var descripcionAgencia = '<c:out value="${sessionScope.descripcionAgencia}" />';
++            var codigoAsesor = '<c:out value="${sessionScope.codigoAsesor}" />';
++            var descripcionAsesor = '<c:out value="${sessionScope.descripcionAsesor}" />';
++            var codigoCliente = '<c:out value="${sessionScope.codigoCliente}" />';
++            var nombreCliente = '<c:out value="${sessionScope.nombreCliente}" />';
++            var numeroDocumento = '<c:out value="${sessionScope.numeroDocumento}" />';
++            var codigoEstado = '<c:out value="${sessionScope.codigoEstado}" />';
++            var codigoTipoProducto = '<c:out value="${sessionScope.codigoTipoProducto}" />';
++
++            if(fechaAsignacionInicial && fechaAsignacionInicial != ''){
++                byID('fechaAsignacionInicial').value = fechaAsignacionInicial;
++            }
++            if(fechaAsignacionFinal && fechaAsignacionFinal != ''){
++                byID('fechaAsignacionFinal').value = fechaAsignacionFinal;
++            }
++            if(fechaAtencionInicial && fechaAtencionInicial != ''){
++                byID('fechaAtencionInicial').value = fechaAtencionInicial;
++            }
++            if(fechaAtencionFinal && fechaAtencionFinal != ''){
++                byID('fechaAtencionFinal').value = fechaAtencionFinal;
++            }
++            if(codigoTipoAlerta && codigoTipoAlerta != ''){
++                byID('cboTipoAlerta').value = codigoTipoAlerta;
++            }
++            if(codigoAgencia && codigoAgencia != ''){
++                byID('codigoAgencia').value = codigoAgencia;
++                byID('descripcionAgencia').value = descripcionAgencia;
++            }
++            if(codigoAsesor && codigoAsesor != ''){
++                byID('codigoAsesor').value = codigoAsesor;
++                byID('descripcionAsesor').value = descripcionAsesor;
++            }
++            if(codigoCliente && codigoCliente != ''){
++                byID('codigoCliente').value = codigoCliente;
++                byID('nombreCliente').value = nombreCliente;
++                byID('numeroDocumento').value = numeroDocumento;
++            }
++            if(codigoEstado && codigoEstado != ''){
++                byID('cboEstado').value = codigoEstado;
++            }
++            if(codigoTipoProducto && codigoTipoProducto != ''){
++                byID('cboTipoProducto').value = codigoTipoProducto;
+             }
+         }
+ 
+@@ -138,6 +194,9 @@
+         document.oncontextmenu = function(){return false}
+ 
+         function salir(){
++            var url = path + '/GE_CleanSession_Servlet';
++            var params = "?atributos=fechaAsignacionInicial,fechaAsignacionFinal,fechaAtencionInicial,fechaAtencionFinal,codigoTipoAlerta,codigoAgencia,codigoAsesor,codigoCliente,codigoEstado,codigoTipoProducto,numeroDocumento,nombreCliente,descripcionAgencia,descripcionAsesor"; 
++            ajaxRequest("POST", url + params, false, null);
+             window.location = path + '/GENERAL/Menu.jsp';
+         }
+ 
+@@ -420,8 +479,8 @@
+                             Fecha Asignaci&oacute;n
+                         </td>
+                         <td class="etiqueta" width="240">
+-                            del <input name="fechaAsignacionInicial" id="txtFechaAsignacionInicial" value="<c:out value='${fechaProcesoInicio}' />" style="width: 70px" class="campoobligatorioce"  tabindex="1" onBlur="this.value=vuelveFecha(this.value);validarFecha('fechaAsignacionInicial');" onfocus="this.select(); field='txtFechaAsignacionInicial'; nextfield ='txtFechaAsignacionFinal';">
+-                            al <input name="fechaAsignacionFinal" id="txtFechaAsignacionFinal" value="<c:out value='${fechaProcesoFin}' />" style="width: 70px" class="campoobligatorioce"  tabindex="1" onBlur="this.value=vuelveFecha(this.value);validarFecha('fechaAsignacionFinal');" onfocus="this.select(); field='fechaAsignacionFinal'; nextfield ='fechaAtencionInicial';">
++                            del <input name="fechaAsignacionInicial" id="txtFechaAsignacionInicial" style="width: 70px" class="campoobligatorioce"  tabindex="1" onBlur="this.value=vuelveFecha(this.value);validarFecha('fechaAsignacionInicial');" onfocus="this.select(); field='txtFechaAsignacionInicial'; nextfield ='txtFechaAsignacionFinal';">
++                            al <input name="fechaAsignacionFinal" id="txtFechaAsignacionFinal" style="width: 70px" class="campoobligatorioce"  tabindex="1" onBlur="this.value=vuelveFecha(this.value);validarFecha('fechaAsignacionFinal');" onfocus="this.select(); field='fechaAsignacionFinal'; nextfield ='fechaAtencionInicial';">
+                         </td>
+                         <td class="etiqueta" align="left" width="60" valign="middle">
+                             Agencia
+@@ -434,31 +493,32 @@
+                         <td class="etiqueta" align="left" width="130" valign="middle">
+                             Estado Seguimiento
+                         </td>
+-                        <td > 
+-                            <select name="cboEstado" id="cboEstado" style="width: 120px;" tabindex="4" class="campoobligatorioiz"
+-                                   onfocus="field='cboEstado'; nextfield ='cboTipoProducto';">
+-                                 <c:forEach var='listBeanWFEstado' items='${requestScope.listBeanWFEstado}'>
+-                                    <option value="<c:out value='${listBeanWFEstado.idEstado}'/>" >
+-                                        <c:out value='${listBeanWFEstado.descripcionEstado}' />
+-                                    </option>
+-                                 </c:forEach>
++                        <%-- Inicio [CC17-067] esalazar 15.06.2017 --%>
++                        <td >
++                            <select name="cboEstado" id="cboEstado" style="width: 120px;" tabindex="4" class="campoobligatorioiz" onfocus="field='cboEstado'; nextfield ='cboTipoProducto';" >
++                              <c:forEach var='beanWFEstado' items='${requestScope.listBeanWFEstado}' >
++                                <option value="<c:out value='${beanWFEstado.idEstado}'/>" >
++                                  <c:out value='${beanWFEstado.descripcionEstado}' />
++                                </option>
++                              </c:forEach>
+                             </select>
+                         </td>
++                        <%-- Fin [CC17-067] --%>
+                       </tr>
+                       <tr id="trFiltroActivos2"> 
+                         <td class="etiqueta" align="left" valign="middle">
+                             Fecha Atenci&oacute;n
+                         </td>
+                         <td class="etiqueta">
+-                            del <input name="fechaAtencionInicial" id="txtFechaAsignacionInicial" value="<c:out value='${fechaProcesoInicio}' />" style="width: 70px" class="campoobligatorioce"  tabindex="1" onBlur="this.value=vuelveFecha(this.value);validarFecha('fechaAtencionInicial');" onfocus="this.select(); field='fechaAtencionInicial'; nextfield ='fechaAtencionFinal';">
+-                            al <input name="fechaAtencionFinal" id="txtFechaAsignacionFinal" value="<c:out value='${fechaProcesoFin}' />" style="width: 70px" class="campoobligatorioce"  tabindex="1" onBlur="this.value=vuelveFecha(this.value);validarFecha('fechaAtencionFinal');" onfocus="this.select(); field='fechaAtencionFinal'; nextfield ='cboTipoAlerta';">
++                            del <input name="fechaAtencionInicial" id="txtFechaAsignacionInicial" style="width: 70px" class="campoobligatorioce"  tabindex="1" onBlur="this.value=vuelveFecha(this.value);validarFecha('fechaAtencionInicial');" onfocus="this.select(); field='fechaAtencionInicial'; nextfield ='fechaAtencionFinal';">
++                            al <input name="fechaAtencionFinal" id="txtFechaAsignacionFinal" style="width: 70px" class="campoobligatorioce"  tabindex="1" onBlur="this.value=vuelveFecha(this.value);validarFecha('fechaAtencionFinal');" onfocus="this.select(); field='fechaAtencionFinal'; nextfield ='cboTipoAlerta';">
+                         </td>
+                         <td class="etiqueta" align="left" valign="middle">
+                             Asesor
+                         </td>
+                         <td width="200"> 
+-                            <input type="hidden" name="codigoAsesor" id="codigoAsesor" value="<c:out value='${codigoAsesor}' />" style="width: 80px" class="campoobligatorioiz"  tabindex="1" onfocus="this.select(); field='txtCriterio'; nextfield ='txtFechaSolicitud';" >
+-                            <input name="descripcionAsesor" id="descripcionAsesor" value="<c:out value='${descripcionAsesor}' />" style="width: 160px" class="campoobligatorioiz"  tabindex="1" onfocus="this.select(); field='descripcionAsesor'; nextfield ='nombreCliente';" >
++                            <input type="hidden" name="codigoAsesor" id="codigoAsesor" style="width: 80px" class="campoobligatorioiz"  tabindex="1" onfocus="this.select(); field='txtCriterio'; nextfield ='txtFechaSolicitud';" >
++                            <input name="descripcionAsesor" id="descripcionAsesor" style="width: 160px" class="campoobligatorioiz"  tabindex="1" onfocus="this.select(); field='descripcionAsesor'; nextfield ='nombreCliente';" >
+                             <img id="imgAsesor" style="cursor:hand" title="Buscar Asesor" src="<%=request.getContextPath()%>/UTILS/img/Detalle.gif" onclick="buscarAsesor();">
+                         </td>
+                         <td class="etiqueta" align="left" valign="middle">
+diff --git a/DELFINWEBNEW/WebRoot/FINANCIERO/workflow/seguimientoCartera/etapa/actividades/CR_C_DatosActividades_CNTR.jsp b/DELFINWEBNEW/WebRoot/FINANCIERO/workflow/seguimientoCartera/etapa/actividades/CR_C_DatosActividades_CNTR.jsp
+index ded3a4b..0768001 100644
+--- a/DELFINWEBNEW/WebRoot/FINANCIERO/workflow/seguimientoCartera/etapa/actividades/CR_C_DatosActividades_CNTR.jsp
++++ b/DELFINWEBNEW/WebRoot/FINANCIERO/workflow/seguimientoCartera/etapa/actividades/CR_C_DatosActividades_CNTR.jsp
+@@ -349,8 +349,9 @@
+                         <td class="etiqueta" align="left"  valign="middle" style="width: 3%; padding: 0 0 30px 0" >
+                             Comentarios
+                         </td>
+-                       <td colspan="2"> 
+-                           <textarea name="textoComentario" id="textoComentario" style="width: 1040px;height:70px;"
++                       <td colspan="2">
++                           <%-- [CC17-067] esalazar 15.06.2017 --%>
++                           <textarea name="textoComentario" id="textoComentario" style="width: 100%;height:70px;"
+                            onfocus="this.select(); field='textoComentario'; nextfield='saltoLinea'" <%=campoIz%>
+                            onKeyDown="goblalLimitTextCountDown('textoComentario','numCarac',1000);" onKeyUp="goblalLimitTextCountDown('textoComentario','numCarac',1000);"><c:out value="${requestScope.textoComentario}"/></textarea>
+                            <input type="hidden" name="countdown" size="3" readonly />
+diff --git a/DELFINWEBNEW/WebRoot/FINANCIERO/workflow/seguimientoCartera/etapa/datosSeguimiento/CR_T_DatosSeguimiento_CNTR.jsp b/DELFINWEBNEW/WebRoot/FINANCIERO/workflow/seguimientoCartera/etapa/datosSeguimiento/CR_T_DatosSeguimiento_CNTR.jsp
+index 740c9a0..1f9aa5a 100644
+--- a/DELFINWEBNEW/WebRoot/FINANCIERO/workflow/seguimientoCartera/etapa/datosSeguimiento/CR_T_DatosSeguimiento_CNTR.jsp
++++ b/DELFINWEBNEW/WebRoot/FINANCIERO/workflow/seguimientoCartera/etapa/datosSeguimiento/CR_T_DatosSeguimiento_CNTR.jsp
+@@ -1,6 +1,6 @@
+ <!-- CR_T_DatosSeguimiento_CNTR.jsp-->
+ <%--[Req.S17-022] kdelacruz 29.03.2017 - Implementaci�n WorkFlow Seguimiento Cartera--%>
+-
++<%-- [CC17-067] esalazar 15.06.2017 - Se redise�a formulario (orden de campo) --%>
+ <%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+ <jsp:directive.page import="financ.util.Constante"/>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+@@ -14,8 +14,8 @@
+ 
+     String opcionDe = "T".equals(strComportamiento) ? "class='campoopcionalde'" : "readonly class='campodisplayde'";
+ 
+-    String cboOpcIz = "T".equals(strComportamiento) ? "class='campoopcionaliz'" : "disabled class='campodisplayiz'";
+-    String cboIz = "T".equals(strComportamiento) ? "class='campoobligatorioiz'" : "disabled class='campodisplayiz'";
++    String cboOpcIz = "T".equals(strComportamiento) ? "class='campoopcionaliz'" : "onclick='return false;' class='campodisplayiz'";
++    String cboIz = "T".equals(strComportamiento) ? "class='campoobligatorioiz'" : "onMouseOver=\"this.disabled = true;\" onMouseOut='this.disabled=\"\";' class='campodisplayiz'";
+ %>
+ <html>
+   <head>
+@@ -42,7 +42,7 @@
+         }
+ 
+         function iniciarCalendario(){
+-        	cal1 = new calendar1(byID('fechaAlerta'));
++            cal1 = new calendar1(byID('fechaAlerta'));
+             cal1.year_scroll = true;
+             cal1.time_comp = false;
+ 
+@@ -61,69 +61,69 @@
+         function keyDown(DnEvents){
+             k = window.event.keyCode;
+             if (k == 13){
+-            	if(nextfield == "saltoLinea"){
++                if(nextfield == "saltoLinea"){
+                     return true;
+                 }
+-            	if (byID(nextfield) && !byID(nextfield).readOnly) {
+-	                if(nextfield == "nombreAgencia"){
+-	                    eval('document.forms[0].' + nextfield + '.focus()');
+-	                    return false;
+-	                }
+-	                if(nextfield == "nombreAsignado"){
+-	                	openBusqueda();
+-	                    eval('document.forms[0].' + nextfield + '.focus()');
+-	                    return false;
+-	                }
+-	                if(nextfield == "txtCriterio"){
+-	                    eval('document.forms[0].' + nextfield + '.focus()');
+-	                    return false;
+-	                }
+-	                if(nextfield == "fechaAlerta"){
+-	                    eval('document.forms[0].' + nextfield + '.focus()');
+-	                    return false;
+-	                }
+-	                if(nextfield == "codigoTipoAlerta"){
+-	                	buscarAsesor();
+-	                    eval('document.forms[0].' + nextfield + '.focus()');
+-	                    return false;
+-	                }
+-	                if(nextfield == "fechaAtencion"){
+-	                	byID('fechaAlerta').value=vuelveFecha(byID('fechaAlerta').value);
+-	                	cal1.popup();
+-	                    eval('document.forms[0].' + nextfield + '.focus()');
+-	                    return false;
+-	                }
+-	                if(nextfield == "montoAlerta"){
+-	                	byID('fechaAtencion').value=vuelveFecha(byID('fechaAtencion').value);
+-	                	cal2.popup();
+-	                    eval('document.forms[0].' + nextfield + '.focus()');
+-	                    return false;
+-	                }
+-	                if(nextfield == "codigoCalificacionSBS"){
+-	                    eval('document.forms[0].' + nextfield + '.focus()');
+-	                    return false;
+-	                }
+-	                if(nextfield == "montoProvision"){
+-	                    eval('document.forms[0].' + nextfield + '.focus()');
+-	                    return false;
+-	                }
+-	                if(nextfield == "interesDevengado"){
+-	                    eval('document.forms[0].' + nextfield + '.focus()');
+-	                    return false;
+-	                }
+-	                if(nextfield == "comentario"){
++                if (byID(nextfield) && !byID(nextfield).readOnly) {
++                    if(nextfield == "nombreAgencia"){
+                         eval('document.forms[0].' + nextfield + '.focus()');
+                         return false;
+                     }
+-	                if(nextfield == "tipoProducto"){
++                    if(nextfield == "nombreAsignado"){
++                        openBusqueda();
+                         eval('document.forms[0].' + nextfield + '.focus()');
+                         return false;
+                     }
+-	                if(nextfield == "numeroCredito"){
++                    if(nextfield == "txtCriterio"){
+                         eval('document.forms[0].' + nextfield + '.focus()');
+                         return false;
+                     }
+-            	}
++                    if(nextfield == "fechaAlerta"){
++                        eval('document.forms[0].' + nextfield + '.focus()');
++                        return false;
++                    }
++                    if(nextfield == "codigoTipoAlerta"){
++                        buscarAsesor();
++                        eval('document.forms[0].' + nextfield + '.focus()');
++                        return false;
++                    }
++                    if(nextfield == "fechaAtencion"){
++                        byID('fechaAlerta').value=vuelveFecha(byID('fechaAlerta').value);
++                        cal1.popup();
++                        eval('document.forms[0].' + nextfield + '.focus()');
++                        return false;
++                    }
++                    if(nextfield == "montoAlerta"){
++                        byID('fechaAtencion').value=vuelveFecha(byID('fechaAtencion').value);
++                        cal2.popup();
++                        eval('document.forms[0].' + nextfield + '.focus()');
++                        return false;
++                    }
++                    if(nextfield == "codigoCalificacionSBS"){
++                        eval('document.forms[0].' + nextfield + '.focus()');
++                        return false;
++                    }
++                    if(nextfield == "montoProvision"){
++                        eval('document.forms[0].' + nextfield + '.focus()');
++                        return false;
++                    }
++                    if(nextfield == "interesDevengado"){
++                        eval('document.forms[0].' + nextfield + '.focus()');
++                        return false;
++                    }
++                    if(nextfield == "comentario"){
++                        eval('document.forms[0].' + nextfield + '.focus()');
++                        return false;
++                    }
++                    if(nextfield == "tipoProducto"){
++                        eval('document.forms[0].' + nextfield + '.focus()');
++                        return false;
++                    }
++                    if(nextfield == "numeroCredito"){
++                        eval('document.forms[0].' + nextfield + '.focus()');
++                        return false;
++                    }
++                }
+                 return false;
+             }
+             if (k == 120){
+@@ -250,7 +250,7 @@
+                     return false;
+                 }
+             }else{
+-            	var descripcionEstado = byID('descripcionEstado').value;
++                var descripcionEstado = byID('descripcionEstado').value;
+                 if(isEmpty(descripcionEstado)){
+                     alert(m_10127);
+                     return false;
+@@ -356,7 +356,7 @@
+                 <input type="hidden" name="correlativoSeguimiento" id="correlativoSeguimiento" value="<c:out value="${requestScope.beanCRSeguimientoCartera.correlativoSeguimiento}"/>" >
+                 <input type="hidden" name="strComportamiento" id="strComportamiento" value="<c:out value="${requestScope.strComportamiento}"/>">
+                 <input type="hidden" name="codigoCliente" id="codigoCliente" value="<c:out value="${beanCRSeguimientoCartera.codigoCliente}"/>" >
+-      <input type="hidden" name="tipoPersona" id="tipoPersona" value="<c:out value="${beanCRSeguimientoCartera.tipoPersona}"/>" >
++                <input type="hidden" name="tipoPersona" id="tipoPersona" value="<c:out value="${beanCRSeguimientoCartera.tipoPersona}"/>" >
+             </td>
+         </tr>
+         <tr>
+@@ -364,85 +364,66 @@
+             <table border="2" cellpadding="0" cellspacing="0" width="100%" align="center" class="frame">
+               <tr>
+                 <td height="20" align="center">
+-                  <table width="99%" cellpadding="0" cellspacing="2" border="0">
+-                  <tr>
+-                     <td class="etiqueta" align="left" valign="middle" style="padding: 10px 0">
+-                        Cliente
++                  <table width="99%" cellpadding="4" cellspacing="2" border="0">
++                    <tr>
++                      <td class="etiqueta" width="150px">
++                          Cliente
++                      </td>
++                      <td width="280px"> 
++                         <input type="hidden" name="codigoCliente" id="codigoCliente" value="<c:out value='${requestScope.beanCRSeguimientoCartera.codigoCliente}' />"/>
++                         <input name="txtCriterio" style="width: 220px" <%=campoIz%> tabindex="1" value="<c:out value='${requestScope.beanCRSeguimientoCartera.nombreCliente}' />" onfocus="this.select(); field='codigoCliente'; nextfield ='nombreAsignado';" >
++                         <img  src="<%=request.getContextPath()%>/UTILS/img/Detalle.gif" style="cursor: hand" border=0 onclick="if(!byID('txtCriterio').readOnly){openBusqueda();};">
++                      </td>
++                    <td class="etiqueta">
++                            Tipo Producto
+                     </td>
+-
+-                    <td > 
+-                       <input type="hidden" name="codigoCliente" id="codigoCliente" value="<c:out value='${requestScope.beanCRSeguimientoCartera.codigoCliente}' />"/>
+-                       <input name="txtCriterio" style="width: 75%" <%=campoIz%> tabindex="1" value="<c:out value='${requestScope.beanCRSeguimientoCartera.nombreCliente}' />"
+-                       onfocus="this.select(); field='codigoCliente'; nextfield ='nombreAsignado';" >
+-                       <img  src="<%=request.getContextPath()%>/UTILS/img/Detalle.gif" style="cursor: hand" border=0 onclick="if(!byID('txtCriterio').readOnly){openBusqueda();};">
+-                    </td>
+-
+-                     <td class="etiqueta" align="left" valign="middle" width="100">
+-                        Monto Alerta
+-                    </td>
+-
+-                    <td class="etiqueta" align="left" valign="middle"  width="40%"> 
+-                        <input name="montoAlerta" style="width: 80%" <%=campoDe%> tabindex="1" maxlength="10"
+-                               value="<c:out value='${requestScope.beanCRSeguimientoCartera.montoAlerta}' />"
+-                               onKeyPress="valida_numero(this,'dec')" onblur="this.value=formateador(this.value);"
+-                               onfocus="this.select(); field='montoAlerta'; nextfield ='codigoCalificacionSBS';">
++                    <td>
++                        <select name=tipoProducto id="tipoProducto" style="width: 180px;" tabindex="4" onfocus="nextfield='numeroCredito'" <%=cboIz%>>
++                          <c:forEach var='beanCombo' items='${requestScope.lstProductos}' >
++                            <option value="<c:out value='${beanCombo.codigo}' />" <c:if test="${beanCombo.codigo == beanCRSeguimientoCartera.tipoProducto}">selected</c:if> >
++                              <c:out value='${beanCombo.descripcion}' />
++                            </option>
++                          </c:forEach>
++                        </select>
+                     </td>
+                   </tr>
+                   <tr>
+-                     <td class="etiqueta" align="left" valign="middle" style="padding: 10px 0" width="10%">
++                     <td class="etiqueta">
+                          Agencia
+                      </td>
+-                     <td width="40%">
++                     <td>
+                         <input type="hidden" name="codigoAgencia" id="codigoAgencia" value="<c:out value='${requestScope.beanCRSeguimientoCartera.codigoAgencia}' />"/>
+-                        <input name="nombreAgencia" style="width: 75%" readonly class='campodisplayiz' tabindex="1"  value="<c:out value='${beanCRSeguimientoCartera.descripcionAgencia}' />"
+-                        onfocus="this.select(); field='codigoAgenciaAsignada'; nextfield ='nombreAsignado';">
++                        <input name="nombreAgencia" style="width: 240px" readonly class='campodisplayiz' tabindex="1"  value="<c:out value='${beanCRSeguimientoCartera.descripcionAgencia}' />" onfocus="this.select(); field='codigoAgenciaAsignada'; nextfield ='nombreAsignado';">
+                      </td>
+-
+-                    <td class="etiqueta" align="left" width="100" valign="middle">
+-                            Cal. SBS
+-                    </td>
+-
+-                    <td  width="40%">
+-                            <select name=codigoCalificacionSBS id="codigoCalificacionSBS" style="width: 80%;" tabindex="4" onfocus="nextfield='tipoProducto'" <%=cboIz%>>
+-                              <c:forEach var='beanCombo' items='${requestScope.lstCalificacionSBS}' >
+-                                <option value="<c:out value='${beanCombo.codigo}' />" <c:if test="${beanCombo.codigo == beanCRSeguimientoCartera.codigoCalificacionSBS}">selected</c:if> >
+-                                  <c:out value='${beanCombo.descripcion}' />
+-                                </option>
+-                              </c:forEach>
+-                            </select>
+-                    </td>
++                      <td class="etiqueta" width="140px">
++                          Monto Alerta
++                      </td>
++                      <td> 
++                          <input name="montoAlerta" style="width: 120px" <%=campoDe%> tabindex="1" maxlength="10" value="<c:out value='${requestScope.beanCRSeguimientoCartera.montoAlerta}' />" onKeyPress="valida_numero(this,'dec')" onblur="this.value=formateador(this.value);" onfocus="this.select(); field='montoAlerta'; nextfield ='codigoCalificacionSBS';">
++                      </td>
+                   </tr>
+                   <tr>
+-                    <td class="etiqueta" align="left" valign="middle" style="padding: 10px 0">
+-                         Asesor
++                    <td class="etiqueta">
++                         Responsable de Alerta
+                      </td>
+-
+                      <td >
+                         <input type="hidden" name="usuarioAsignado" id="usuarioAsignado" value="<c:out value='${requestScope.beanCRSeguimientoCartera.usuarioAsignado}' />"/>
+-                        <input name="nombreAsignado" style="width: 75%" <%=campoIz%>  tabindex="1" value="<c:out value='${requestScope.beanCRSeguimientoCartera.nombreUsuarioAsignado}' />"
+-                        onfocus="this.select(); field='usuarioAsignacion'; nextfield ='codigoTipoAlerta';">
++                        <input name="nombreAsignado" style="width: 220px" <%=campoIz%>  tabindex="1" value="<c:out value='${requestScope.beanCRSeguimientoCartera.nombreUsuarioAsignado}' />" onfocus="this.select(); field='usuarioAsignacion'; nextfield ='codigoTipoAlerta';">
+                          <img  src="<%=request.getContextPath()%>/UTILS/img/Detalle.gif" style="cursor: hand" border=0 onclick="if(!byID('nombreAsignado').readOnly){buscarAsesor();};">
+                     </td>
+-                    
+-                    <td class="etiqueta" align="left" valign="middle">
+-                            Tipo Producto
+-                        </td>
+-                        <td  width="40%">
+-                            <select name=tipoProducto id="tipoProducto" style="width: 80%;" tabindex="4" onfocus="nextfield='numeroCredito'" <%=cboIz%>>
+-                              <c:forEach var='beanCombo' items='${requestScope.lstProductos}' >
+-                                <option value="<c:out value='${beanCombo.codigo}' />" <c:if test="${beanCombo.codigo == beanCRSeguimientoCartera.tipoProducto}">selected</c:if> >
+-                                  <c:out value='${beanCombo.descripcion}' />
+-                                </option>
+-                              </c:forEach>
+-                            </select>
+-                        </td>
++                    <td class="etiqueta">
++                        N�mero de Cr�dito
++                    </td>
++                    <td> 
++                         <input id="numeroCredito" name="numeroCredito" style="width: 120px" <%=campoIz%>  tabindex="1" value="<c:out value='${requestScope.beanCRSeguimientoCartera.numeroCredito}' />" onKeyPress="valida_numero(this,'dec')" maxlength="15" onfocus="this.select(); field='montoProvision'; nextfield ='montoProvision';">
++                    </td>
+                   </tr>
+                   <tr>
+-                    <td class="etiqueta" align="left" valign="middle" style="padding: 10px 0">
++                    <td class="etiqueta">
+                           Tipo Alerta
+                     </td>
+-                    <td class="etiqueta" align="left" valign="middle"> 
+-                       <select name=codigoTipoAlerta id="codigoTipoAlerta" style="width: 80%;" tabindex="4" onfocus=" nextfield='fechaAlerta'" <%=cboIz%> >
++                    <td> 
++                       <select name=codigoTipoAlerta id="codigoTipoAlerta" style="width: 240px;" tabindex="4" onfocus=" nextfield='fechaAlerta'" <%=cboIz%> >
+                          <c:forEach var='beanCRTipoAlerta' items='${requestScope.lstBeanCRTipoAlerta}' >
+                            <option value="<c:out value='${beanCRTipoAlerta.idTipoAlerta}' />" <c:if test="${beanCRTipoAlerta.idTipoAlerta == beanCRSeguimientoCartera.codigoTipoAlerta}">selected</c:if> >
+                              <c:out value='${beanCRTipoAlerta.descripcionTipoAlerta}' />
+@@ -450,69 +431,56 @@
+                          </c:forEach>
+                        </select>
+                     </td>
+-
+-                    <td class="etiqueta" align="left" valign="middle">
+-                        N�mero de Cr�dito
+-                    </td>
+-                    <td  width="40%"> 
+-                         <input id="numeroCredito" name="numeroCredito" style="width: 80%" <%=campoIz%>  tabindex="1"
+-                         value="<c:out value='${requestScope.beanCRSeguimientoCartera.numeroCredito}' />"
+-                         onKeyPress="valida_numero(this,'dec')" maxlength="15"
+-                         onfocus="this.select(); field='montoProvision'; nextfield ='montoProvision';">
++                     <td class="etiqueta"A>
++                             Calificaci&oacute;n SBS
++                     </td>
++                     <td>
++                        <select name=codigoCalificacionSBS id="codigoCalificacionSBS" style="width: 180px;" tabindex="4" onfocus="nextfield='tipoProducto'" <%=cboIz%>>
++                          <c:forEach var='beanCombo' items='${requestScope.lstCalificacionSBS}' >
++                            <option value="<c:out value='${beanCombo.codigo}' />" <c:if test="${beanCombo.codigo == beanCRSeguimientoCartera.codigoCalificacionSBS}">selected</c:if> >
++                              <c:out value='${beanCombo.descripcion}' />
++                            </option>
++                          </c:forEach>
++                        </select>
+                      </td>
+                   </tr>
+                   <tr>
+-                    <td class="etiqueta" align="left" valign="middle" style="padding: 10px 0">
++                    <td class="etiqueta">
+                         Fecha Alerta
+                     </td>
+                     <td> 
+-                       <input name="fechaAlerta" style="width: 75%" <%=campoCe%> tabindex="1" value="<c:out value='${requestScope.beanCRSeguimientoCartera.fechaAlerta}' />"
+-                        maxlength="10" onBlur="this.value=vuelveFecha(this.value);validarFecha('fechaAlerta');"
+-                        onfocus="this.select(); field='fechaAlerta'; nextfield ='fechaAtencion';"/>
++                       <input name="fechaAlerta" style="width: 100px" <%=campoCe%> tabindex="1" value="<c:out value='${requestScope.beanCRSeguimientoCartera.fechaAlerta}' />" maxlength="10" onBlur="this.value=vuelveFecha(this.value);validarFecha('fechaAlerta');" onfocus="this.select(); field='fechaAlerta'; nextfield ='fechaAtencion';"/>
+                         <img id="imgFecha" style="cursor:hand" title="Seleccionar Fecha" width="16px" height="16px" src="<%=request.getContextPath()%>/UTILS/img/cal.gif" onclick="if(!byID('fechaAlerta').readOnly){cal1.popup();};">
+                      </td>
+-
+-                    <td class="etiqueta" align="left" valign="middle">
+-                        Monto Prov.
++                    <td class="etiqueta">
++                        Monto de Provisi&oacute;n
+                     </td>
+-                    <td  width="40%"> 
+-                         <input name="montoProvision" style="width: 80%" <%=opcionDe%>  tabindex="1" maxlength="10" 
+-                         value="<c:out value='${requestScope.beanCRSeguimientoCartera.montoProvision}' />"
+-                         onKeyPress="valida_numero(this,'dec')" maxlength="14" onblur="this.value=formateador(this.value);"
+-                         onfocus="this.select(); field='montoProvision'; nextfield ='interesDevengado';">
+-                     </td>
++                    <td> 
++                       <input name="montoProvision" style="width: 120px" <%=opcionDe%>  tabindex="1" maxlength="10"  value="<c:out value='${requestScope.beanCRSeguimientoCartera.montoProvision}' />" onKeyPress="valida_numero(this,'dec')" maxlength="14" onblur="this.value=formateador(this.value);" onfocus="this.select(); field='montoProvision'; nextfield ='interesDevengado';">
++                    </td>
+                   </tr>
+                   <tr>
+-                       <td class="etiqueta" align="left" valign="middle" style="padding: 10px 0">
+-                         Fecha Atencion
++                     <td class="etiqueta">
++                         Fecha Atenci&oacute;n
+                      </td>
+-                     <td class="etiqueta" align="left" valign="middle"> 
+-                        <input name="fechaAtencion" style="width: 75%" <%=campoCe%> tabindex="1" 
+-                        value="<c:out value='${requestScope.beanCRSeguimientoCartera.fechaAtencion}' />"
+-                        maxlength="10" onBlur="this.value=vuelveFecha(this.value);validarFecha('fechaAtencion');"
+-                        onfocus="this.select(); field='fechaAtencion'; nextfield ='montoAlerta';"/>
++                     <td> 
++                        <input name="fechaAtencion" style="width: 100px" <%=campoCe%> tabindex="1"  value="<c:out value='${requestScope.beanCRSeguimientoCartera.fechaAtencion}' />" maxlength="10" onBlur="this.value=vuelveFecha(this.value);validarFecha('fechaAtencion');" onfocus="this.select(); field='fechaAtencion'; nextfield ='montoAlerta';"/>
+                         <img id="imgFecha" style="cursor:hand" title="Seleccionar Fecha" width="16px" height="16px" src="<%=request.getContextPath()%>/UTILS/img/cal.gif" onclick="if(!byID('fechaAtencion').readOnly){cal2.popup();};">
+                      </td>
+-                     
+-                    <td class="etiqueta" align="left" valign="middle" width="100">
+-                       Int. Devengado
+-                    </td>
+-                    <td class="etiqueta" align="left" valign="middle"  width="40%"> 
+-                       <input name="interesDevengado" style="width: 80%" <%=opcionDe%>  tabindex="1" 
+-                         onKeyPress="valida_numero(this,'dec')"  maxlength="10" onblur="this.value=formateador(this.value);"
+-                         value="<c:out value='${requestScope.beanCRSeguimientoCartera.interesDevengado}' />"
+-                         onfocus="this.select(); field='montoProvision'; nextfield ='comentario';">
+-                    </td>
++                     <td class="etiqueta">
++                        Inter&eacute;s Devengado
++                     </td>
++                     <td> 
++                        <input name="interesDevengado" style="width: 120px" <%=opcionDe%>  tabindex="1"  onKeyPress="valida_numero(this,'dec')"  maxlength="10" onblur="this.value=formateador(this.value);" value="<c:out value='${requestScope.beanCRSeguimientoCartera.interesDevengado}' />" onfocus="this.select(); field='montoProvision'; nextfield ='comentario';">
++                     </td>
+                   </tr>
+                   <tr>
+-                        <td class="etiqueta" align="left" valign="middle" style="padding: 10px 0">
+-                            Estado
+-	                    </td>
+-	                    <td >
+-                     <input id="descripcionEstado" name=descripcionEstado style="width: 80%" class="campodisplayiz" readonly  tabindex="1" 
+-                     value="<c:out value='${requestScope.beanWFMaestra.descripcionEstado}' />"
+-                     onfocus="this.select(); field='descripcionEstado'; nextfield ='montoAlerta';">
+-	                    </td>
++                     <td class="etiqueta">
++                         Estado
++                     </td>
++                     <td colspan="3">
++                       <input id="descripcionEstado" name=descripcionEstado style="width: 120px" class="campodisplayiz" readonly  tabindex="1"  value="<c:out value='${requestScope.beanWFMaestra.descripcionEstado}' />" onfocus="this.select(); field='descripcionEstado'; nextfield ='montoAlerta';">
++                     </td>
+                  </tr>
+                 </table>
+                 </td>
+@@ -539,7 +507,7 @@
+                             </tr>
+                             <tr>
+                                <td > 
+-                                   <textarea name="comentario" id="comentario" style="width: 1130px;height:70px;"
++                                   <textarea name="comentario" id="comentario" style="width: 100%;height:70px;"
+                                    onfocus="this.select(); field='comentario'; nextfield ='saltoLinea';" <%=campoIz%>
+                                    onKeyDown="goblalLimitTextCountDown('comentario','numCarac',1000);" onKeyUp="goblalLimitTextCountDown('comentario','numCarac',1000);"><c:out value="${beanCRSeguimientoCartera.comentario}"/></textarea>
+                                    <input type="hidden" name="countdown" size="3" readonly />
+diff --git a/DELFINWEBNEW/WebRoot/FINANCIERO/workflow/seguimientoCartera/etapa/resolucion/CR_C_Resolucion_CNTR.jsp b/DELFINWEBNEW/WebRoot/FINANCIERO/workflow/seguimientoCartera/etapa/resolucion/CR_C_Resolucion_CNTR.jsp
+index ece7e78..63c5705 100644
+--- a/DELFINWEBNEW/WebRoot/FINANCIERO/workflow/seguimientoCartera/etapa/resolucion/CR_C_Resolucion_CNTR.jsp
++++ b/DELFINWEBNEW/WebRoot/FINANCIERO/workflow/seguimientoCartera/etapa/resolucion/CR_C_Resolucion_CNTR.jsp
+@@ -286,8 +286,9 @@
+                         <td class="etiqueta" align="left"  valign="middle" style="width: 3%;padding: 0 0 30px 0" >
+                             Comentarios
+                         </td>
+-                        <td colspan="5"> 
+-                            <textarea name="textoComentario" id="textoComentario" style="width: 1040px;height:70px;"
++                        <td colspan="5">
++                            <%-- [CC17-067] esalazar 15.06.2017 --%>
++                            <textarea name="textoComentario" id="textoComentario" style="width: 100%;height:70px;"
+                             onfocus="this.select(); field='textoComentario'; nextfield='saltoLinea'" <%=campoIz%>
+                             onKeyDown="goblalLimitTextCountDown('textoComentario','numCarac', 1000);" onKeyUp="goblalLimitTextCountDown('textoComentario','numCarac',1000);"><c:out value="${requestScope.textoComentario}"/></textarea>
+                             <input type="hidden" name="countdown" size="3" readonly />
+diff --git a/DELFINWEBNEW/WebRoot/REPORTES/RG00004.jasper b/DELFINWEBNEW/WebRoot/REPORTES/RG00004.jasper
+index a63c42f..f78a710 100644
+--- a/DELFINWEBNEW/WebRoot/REPORTES/RG00004.jasper
++++ b/DELFINWEBNEW/WebRoot/REPORTES/RG00004.jasper
+Binary files differ
+diff --git a/DELFINWEBNEW/WebRoot/REPORTES/RG00004A.jasper b/DELFINWEBNEW/WebRoot/REPORTES/RG00004A.jasper
+index f877c4b..7472957 100644
+--- a/DELFINWEBNEW/WebRoot/REPORTES/RG00004A.jasper
++++ b/DELFINWEBNEW/WebRoot/REPORTES/RG00004A.jasper
+Binary files differ
+diff --git a/DELFINWEBNEW/src/financ/workflow/seguimientoCartera/servlets/CR_C_ConsultaSeguimientoCartera_Servlet.java b/DELFINWEBNEW/src/financ/workflow/seguimientoCartera/servlets/CR_C_ConsultaSeguimientoCartera_Servlet.java
+index a488061..463f85b 100644
+--- a/DELFINWEBNEW/src/financ/workflow/seguimientoCartera/servlets/CR_C_ConsultaSeguimientoCartera_Servlet.java
++++ b/DELFINWEBNEW/src/financ/workflow/seguimientoCartera/servlets/CR_C_ConsultaSeguimientoCartera_Servlet.java
+@@ -1,5 +1,8 @@
+ package financ.workflow.seguimientoCartera.servlets;
+ 
++import financ.clientes.beans.BeanCLPersonas;
++import financ.clientes.facade.CLPersonaFacade;
++import financ.clientes.local.CLPersonaFacadeInterfaceLocal;
+ import financ.seguimientoCartera.beans.BeanCRSeguimientoCartera;
+ import financ.seguimientoCartera.beans.BeanCRTipoAlerta;
+ import financ.seguimientoCartera.facade.CRSeguimientoCarteraFacade;
+@@ -26,6 +29,7 @@
+ import pe.com.tfc.utils.GenericBean;
+ import pe.com.tfc.utils.RequestMapping;
+ import pe.com.tfc.utils.ResponseType;
++import pe.com.tfc.utils.StringUtil;
+ import admin.contab.beans.BeanCBAgencia;
+ import admin.contab.beans.BeanCBUsuarios;
+ import admin.contab.beans.BeanParametrosAuditoria;
+@@ -41,6 +45,7 @@
+  * 
+  * @author esalazar
+  * @since [Req.17-022] 29.03.2017
++ * @since [CC17-067] esalazar 15.06.2017 - Se adecua persistencia de filtros de busqueda
+  */
+ 
+ public class CR_C_ConsultaSeguimientoCartera_Servlet extends GE_BaseMethodInvocation_Servlet {
+@@ -56,7 +61,7 @@
+     private CRSeguimientoCarteraFacadeInterfaceLocal crDetalleSeguimientoFacadeInterfaceLocal;
+     private CRTipoAlertaFacadeInterfaceLocal crTipoAlertaFacadeInterfaceLocal;
+     private SSMenuOpcionRolFacadeInterfaceLocal ssMenuOpcionRolFacadeInterfaceLocal;
+-    
++    private CLPersonaFacadeInterfaceLocal clPersonaFacadeInterfaceLocal;
+ 
+     protected void initEJBs() throws Exception {
+         wfEstadoFacadeInterfaceLocal = lookup(WFEstadoFacade.LocalJNDIName);
+@@ -66,6 +71,7 @@
+         crDetalleSeguimientoFacadeInterfaceLocal = lookup(CRSeguimientoCarteraFacade.LocalJNDIName);
+         crTipoAlertaFacadeInterfaceLocal = lookup(CRTipoAlertaFacade.LocalJNDIName);
+         ssMenuOpcionRolFacadeInterfaceLocal = lookup(SSMenuOpcionRolFacade.LocalJNDIName);
++        clPersonaFacadeInterfaceLocal = lookup(CLPersonaFacade.LocalJNDIName);
+     }
+ 
+     protected void execute(ServletParams servletParams) throws Exception {
+@@ -76,9 +82,7 @@
+         BeanParametrosAuditoria beanParametrosAuditoria = getBeanParametrosAuditoria(servletParams);
+         String idModulo = getParameter(servletParams, "idModulo");
+         String codigoUsuario = getSessionAttribute(servletParams, "strCodUsu", String.class);
+-        String codigoAgencia = getSessionAttribute(servletParams, "strCodAge", String.class);
+         String fechaProceso = getSessionAttribute(servletParams, "strFecPro", String.class);
+-        String codigoAsesor = codigoUsuario;
+ 
+         List<BeanCRTipoAlerta> listBeanCRTipoAlerta = crTipoAlertaFacadeInterfaceLocal.lstTipoAlerta(beanParametrosAuditoria);
+         List<BeanCombo> listTipoAlerta = parseListBeanCombo(listBeanCRTipoAlerta,
+@@ -125,24 +129,89 @@
+         List<BeanWFEtapa> listBeanWFEtapa = wfEtapaFacadeInterfaceLocal.listarTodasEtapa(idModulo,
+                                                                                          beanParametrosAuditoria);
+ 
+-        BeanCBAgencia beanCBAgencia = utilAdminFacadeInterfaceLocal.obtenerAgenciaPorCodigo(Constante.ID_TFC,
+-                                                                                            codigoAgencia,
+-                                                                                            beanParametrosAuditoria);
++        // Inicio [CC17-067] esalazar 15.06.2017
++        String fechaAsignacionInicial = getSessionAttribute(servletParams, "fechaAsignacionInicial", String.class);
++        String fechaAsignacionFinal = getSessionAttribute(servletParams, "fechaAsignacionFinal", String.class);
++        String fechaAtencionInicial = getSessionAttribute(servletParams, "fechaAtencionInicial", String.class);
++        String fechaAtencionFinal = getSessionAttribute(servletParams, "fechaAtencionFinal", String.class);
++        String codigoTipoAlerta = getSessionAttribute(servletParams, "codigoTipoAlerta", String.class);
++        String codigoAgencia = getSessionAttribute(servletParams, "codigoAgencia", String.class);
++        String codigoAsesor = getSessionAttribute(servletParams, "codigoAsesor", String.class);
++        String codigoCliente = getSessionAttribute(servletParams, "codigoCliente", String.class);
++        String codigoEstado = getSessionAttribute(servletParams, "codigoEstado", String.class);
++        String codigoTipoProducto = getSessionAttribute(servletParams, "codigoTipoProducto", String.class);
+ 
+-        BeanCBUsuarios beanCBUsuarios = cbUsuarioFacadeLocal.findByCodigo(codigoAsesor);
++        setSessionAttribute(servletParams, "numeroDocumento", Constante.CADENA_VACIA);
++        setSessionAttribute(servletParams, "nombreCliente", Constante.CADENA_VACIA);
+ 
+-        String fechaProcesoInicio = FormatoFecha.dateToStringDDMMYYYYY(FormatoFecha.getPrimerDiaDelMes(FormatoFecha.stringToUtilDate(fechaProceso)));
+-        String fechaProcesoFin = FormatoFecha.dateToStringDDMMYYYYY(FormatoFecha.getUltimoDiaDelMes(FormatoFecha.stringToUtilDate(fechaProceso)));
++        boolean aplicacionFiltros = !StringUtil.isEmptyArray(new Object[] { fechaAsignacionInicial, fechaAsignacionFinal, fechaAtencionInicial, fechaAtencionFinal, codigoTipoAlerta, codigoAgencia, codigoAsesor, codigoCliente, codigoEstado, codigoTipoProducto });
++
++        if (aplicacionFiltros) {
++            setSessionAttribute(servletParams, "fechaAsignacionInicial", fechaAsignacionInicial);
++            setSessionAttribute(servletParams, "fechaAsignacionFinal", fechaAsignacionFinal);
++            setSessionAttribute(servletParams, "fechaAtencionInicial", fechaAtencionInicial);
++            setSessionAttribute(servletParams, "fechaAtencionFinal", fechaAtencionFinal);
++            setSessionAttribute(servletParams, "codigoTipoAlerta", codigoTipoAlerta);
++            setSessionAttribute(servletParams, "codigoEstado", codigoEstado);
++            setSessionAttribute(servletParams, "codigoTipoProducto", codigoTipoProducto);
++
++            if (!_isEmpty(codigoCliente)) {
++                BeanCLPersonas beanCLPersonas = clPersonaFacadeInterfaceLocal.obtenerBeanCLPersona(codigoCliente,
++                                                                                                   beanParametrosAuditoria);
++                if (!_isEmpty(beanCLPersonas)) {
++                    setSessionAttribute(servletParams, "codigoCliente", codigoCliente);
++                    setSessionAttribute(servletParams,
++                                        "numeroDocumento",
++                                        beanCLPersonas.getStrNumeroDocumentoIdentidad());
++                    setSessionAttribute(servletParams, "nombreCliente", beanCLPersonas.getStrNombreoRazonSocial());
++                }
++            }
++        } else {
++            String fechaProcesoInicio = FormatoFecha.dateToStringDDMMYYYYY(FormatoFecha.getPrimerDiaDelMes(FormatoFecha.stringToUtilDate(fechaProceso)));
++            String fechaProcesoFin = FormatoFecha.dateToStringDDMMYYYYY(FormatoFecha.getUltimoDiaDelMes(FormatoFecha.stringToUtilDate(fechaProceso)));
++
++            codigoAgencia = getSessionAttribute(servletParams, "strCodAge", String.class);
++            codigoAsesor = codigoUsuario;
++            setSessionAttribute(servletParams, "fechaAsignacionInicial", fechaProcesoInicio);
++            setSessionAttribute(servletParams, "fechaAsignacionFinal", fechaProcesoFin);
++            setSessionAttribute(servletParams, "fechaAtencionInicial", fechaProcesoInicio);
++            setSessionAttribute(servletParams, "fechaAtencionFinal", fechaProcesoFin);
++        }
++
++        if (!_isEmpty(codigoAgencia)) {
++            BeanCBAgencia beanCBAgencia = utilAdminFacadeInterfaceLocal.obtenerAgenciaPorCodigo(Constante.ID_TFC,
++                                                                                                codigoAgencia,
++                                                                                                beanParametrosAuditoria);
++            if (!_isEmpty(beanCBAgencia)) {
++                setSessionAttribute(servletParams, "codigoAgencia", codigoAgencia);
++                setSessionAttribute(servletParams, "descripcionAgencia", beanCBAgencia.getDescripcion());
++            }
++        }
++
++        if (!_isEmpty(codigoAsesor)) {
++            BeanCBUsuarios beanCBUsuarios = cbUsuarioFacadeLocal.findByCodigo(codigoAsesor);
++            if (!_isEmpty(beanCBUsuarios)) {
++                setSessionAttribute(servletParams, "codigoAsesor", codigoAsesor);
++                setSessionAttribute(servletParams, "descripcionAsesor", beanCBUsuarios.getNombreCompleto());
++            }
++        }
+ 
+         setRequestAttribute(servletParams, "indicadorPermisoConsulta", indicadorPermisoConsulta);
+         setRequestAttribute(servletParams, "indicadorGerenteZonal", indicadorGerenteZonal);
+         setRequestAttribute(servletParams, "indicadorGerenteAgencia", indicadorGerenteAgencia);
+-        setRequestAttribute(servletParams, "codigoAgencia", codigoAgencia);
+-        setRequestAttribute(servletParams, "descripcionAgencia", beanCBAgencia.getDescripcion());
+-        setRequestAttribute(servletParams, "codigoAsesor", codigoAsesor);
+-        setRequestAttribute(servletParams, "descripcionAsesor", beanCBUsuarios.getNombreCompleto());
+-        setRequestAttribute(servletParams, "fechaProcesoInicio", fechaProcesoInicio);
+-        setRequestAttribute(servletParams, "fechaProcesoFin", fechaProcesoFin);
++
++        if (!aplicacionFiltros) {
++            if (_inList(Constante.ESTADO_REGISTRO_VIGENTE, indicadorPermisoConsultaGyS, indicadorGerenteZonal)) {
++                setSessionAttribute(servletParams, "codigoAgencia", Constante.CADENA_VACIA);
++                setSessionAttribute(servletParams, "descripcionAgencia", Constante.CADENA_VACIA);
++                setSessionAttribute(servletParams, "codigoAsesor", Constante.CADENA_VACIA);
++                setSessionAttribute(servletParams, "descripcionAsesor", Constante.CADENA_VACIA);
++            } else if (_equiv(Constante.ESTADO_REGISTRO_VIGENTE, indicadorGerenteAgencia)) {
++                setSessionAttribute(servletParams, "codigoAsesor", Constante.CADENA_VACIA);
++                setSessionAttribute(servletParams, "descripcionAsesor", Constante.CADENA_VACIA);
++            }
++        }
++        // Fin [CC17-067]
+ 
+         setRequestAttribute(servletParams, "listTipoProducto", listTipoProductoFinal);
+         setRequestAttribute(servletParams, "listTipoAlerta", listTipoAlertaFinal);
+@@ -233,11 +302,24 @@
+         setRequestAttribute(servletParams, "indFin", fin);
+         setRequestAttribute(servletParams, "total", _toStr(totalRegistros));
+ 
++        // Inicio [CC17-067] esalazar 15.06.2017
++        setSessionAttribute(servletParams, "fechaAsignacionInicial", fechaAsignacionInicial);
++        setSessionAttribute(servletParams, "fechaAsignacionFinal", fechaAsignacionFinal);
++        setSessionAttribute(servletParams, "fechaAtencionInicial", fechaAtencionInicial);
++        setSessionAttribute(servletParams, "fechaAtencionFinal", fechaAtencionFinal);
++        setSessionAttribute(servletParams, "codigoTipoAlerta", codigoTipoAlerta);
++        setSessionAttribute(servletParams, "codigoAgencia", codigoAgencia);
++        setSessionAttribute(servletParams, "codigoAsesor", codigoAsesor);
++        setSessionAttribute(servletParams, "codigoCliente", codigoCliente);
++        setSessionAttribute(servletParams, "codigoEstado", codigoEstado);
++        setSessionAttribute(servletParams, "codigoTipoProducto", codigoTipoProducto);
++        // Fin [CC17-067]
++
+         forward(servletParams);
+     }
+ 
+     @RequestMapping(value = "VALIDAR_PERMISO", responseType = ResponseType.XML)
+-    protected void valdiarPermiso(final ServletParams servletParams) throws Exception{
++    protected void valdiarPermiso(final ServletParams servletParams) throws Exception {
+         String identificadorMenuOpcion = getParameter(servletParams, "identificadorMenuOpcion");
+         String codigo = ssMenuOpcionRolFacadeInterfaceLocal.validarPermisoMenuOpcion(identificadorMenuOpcion,
+                                                                                      getBeanParametrosAuditoria(servletParams));

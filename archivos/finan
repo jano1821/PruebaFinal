@@ -1,0 +1,744 @@
+diff --git a/FINANCIERONEW/.classpath b/FINANCIERONEW/.classpath
+index 6a9e136..21e7ae4 100644
+--- a/FINANCIERONEW/.classpath
++++ b/FINANCIERONEW/.classpath
+@@ -1,20 +1,30 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<classpath>
+-	<classpathentry kind="src" path="src"/>
+-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+-	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
+-	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_CORE"/>
+-	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_JAXB2"/>
+-	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_HTTP_CLIENT"/>
+-	<classpathentry combineaccessrules="false" kind="src" path="/ADMINISTRATIVONEW"/>
+-	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE_TOOLS"/>
+-	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_CORE"/>
+-	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_EXTRAS"/>
+-	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_EM"/>
+-	<classpathentry kind="lib" path="/DELFINWEBNEW/WebRoot/WEB-INF/lib/poi-3.0.1-FINAL-20070705.jar"/>
+-	<classpathentry kind="lib" path="classes12.jar"/>
+-	<classpathentry kind="lib" path="com.ibm.mqjms.jar"/>
+-	<classpathentry kind="lib" path="jboss-annotations-ejb3.jar"/>
+-	<classpathentry kind="lib" path="/DELFINWEBNEW/WebRoot/WEB-INF/lib/jasperreports-3.0.0.jar"/>
+-	<classpathentry kind="output" path="classes"/>
+-</classpath>
+\ No newline at end of file
++<?xml version="1.0" encoding="UTF-8"?>
++<classpath>
++	<classpathentry kind="src" path="src"/>
++	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
++	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_CORE"/>
++	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_JAXB2"/>
++	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_HTTP_CLIENT"/>
++	<classpathentry combineaccessrules="false" kind="src" path="/ADMINISTRATIVONEW"/>
++	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE_TOOLS"/>
++	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_CORE"/>
++	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_EXTRAS"/>
++	<classpathentry exported="true" kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_2_EM"/>
++	<classpathentry kind="lib" path="/DELFINWEBNEW/WebRoot/WEB-INF/lib/poi-3.0.1-FINAL-20070705.jar"/>
++	<classpathentry kind="lib" path="classes12.jar"/>
++	<classpathentry kind="lib" path="com.ibm.mqjms.jar"/>
++	<classpathentry kind="lib" path="jboss-annotations-ejb3.jar"/>
++	<classpathentry kind="lib" path="/DELFINWEBNEW/WebRoot/WEB-INF/lib/jasperreports-3.0.0.jar"/>
++	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_07">
++		<attributes>
++			<attribute name="owner.project.facets" value="java"/>
++		</attributes>
++	</classpathentry>
++	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/JBoss 4.2 Runtime">
++		<attributes>
++			<attribute name="owner.project.facets" value="jst.ejb"/>
++		</attributes>
++	</classpathentry>
++	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
++	<classpathentry kind="output" path="classes"/>
++</classpath>
+diff --git a/FINANCIERONEW/.project b/FINANCIERONEW/.project
+index ad8cb28..f16645c 100644
+--- a/FINANCIERONEW/.project
++++ b/FINANCIERONEW/.project
+@@ -6,6 +6,11 @@
+ 	</projects>
+ 	<buildSpec>
+ 		<buildCommand>
++			<name>org.eclipse.wst.common.project.facet.core.builder</name>
++			<arguments>
++			</arguments>
++		</buildCommand>
++		<buildCommand>
+ 			<name>org.eclipse.jdt.core.javabuilder</name>
+ 			<arguments>
+ 			</arguments>
+@@ -32,9 +37,12 @@
+ 		</buildCommand>
+ 	</buildSpec>
+ 	<natures>
++		<nature>org.eclipse.jem.workbench.JavaEMFNature</nature>
++		<nature>org.eclipse.wst.common.modulecore.ModuleCoreNature</nature>
+ 		<nature>com.genuitec.eclipse.ast.deploy.core.deploymentnature</nature>
+ 		<nature>com.genuitec.eclipse.j2eedt.core.ejbnature</nature>
+ 		<nature>org.eclipse.dali.core.persistenceNature</nature>
+ 		<nature>org.eclipse.jdt.core.javanature</nature>
++		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
+ 	</natures>
+ </projectDescription>
+diff --git a/FINANCIERONEW/src/financ/creditos/facade/CRSolicitudDesembolsoCreditoFacade.java b/FINANCIERONEW/src/financ/creditos/facade/CRSolicitudDesembolsoCreditoFacade.java
+index 15705d0..c7ce8b9 100644
+--- a/FINANCIERONEW/src/financ/creditos/facade/CRSolicitudDesembolsoCreditoFacade.java
++++ b/FINANCIERONEW/src/financ/creditos/facade/CRSolicitudDesembolsoCreditoFacade.java
+@@ -23,6 +23,8 @@
+ 
+ import pe.com.tfc.utils.AbstractFacade;
+ import pe.com.tfc.utils.StringUtil;
++import admin.alquileres.entity.AAMaestraAlquiler;
++import admin.alquileres.local.AAMaestraAlquilerInterfaceLocal;
+ import admin.bancos.entity.BNEntidadFinanciera;
+ import admin.bancos.local.BNEntidadFinancieraInterfaceLocal;
+ import admin.caja.local.CJMaestroSolicitudInterfaceLocal;
+@@ -244,7 +246,10 @@
+    private CJMaestroSolicitudInterfaceLocal cjMaestroSolicitudInterfaceLocal;
+    @EJB
+    private OPGestionAnticipoFacadeInterfaceLocal opGestionAnticipoFacadeInterfaceLocal;
++   @EJB
++   private AAMaestraAlquilerInterfaceLocal aaMaestraAlquilerInterfaceLocal;
+    // Fin [Req.S17-023]
++   
+    /** Fin jventura Req.S14-061 05.06.2014 **/
+ 	
+ 	/**
+@@ -543,7 +548,6 @@
+         
+         //[Req. S16-032] stacanga 04.11.2016
+         String indDesembolsoA = null;
+-
+         try {
+ 
+             if (codSolicitud != null && !codSolicitud.equals("") && codigoNroOrden != null && !codigoNroOrden.equals("") && secuencia != null && !secuencia.equals("")) {
+@@ -2209,6 +2213,38 @@
+                                 descripcionLargaoGlosa += numeroCreditoCuentaOtro != null ? " Credito N : " + numeroCreditoCuentaOtro : "";
+                                 descripcionLargaoGlosa += " - Ref.: " + cpOrdenPagoProgramacion.getNumeroVoucher();
+                                 // Fin [Req.S17-023]
++                            } else if (_equiv(cpOrdenPago.getCpSubGrupoOrdenPago().getId().getCodigoGrupoOrdenPago(),
++                                              admin.util.Constante.CODIGO_GRUPO_ORDENES_PAGO_ALQUILERES)){
++                                   
++                                    codigoMoneda = cpOrdenPago.getCodigoMonedaPago();
++                                    String codigoAlquiler = cpOrdenPago.getCodigoReferencia();
++                                    AAMaestraAlquiler aaMaestraAlquiler = aaMaestraAlquilerInterfaceLocal.findById(codigoAlquiler);
++                                    if (!StringUtil.isEmpty(aaMaestraAlquiler)){
++                                        conceptoOperacion = aaMaestraAlquiler.getConceptoOperacion();
++                                        cbConceptoOperacion = cbConceptoOperacionInterfaceLocal.findById(aaMaestraAlquiler.getConceptoOperacion());
++                                        detalleBean.setCodigoConcepto(conceptoOperacion);
++                                        detalleBean.setCodigoSubConcepto(aaMaestraAlquiler.getSubConceptoOperacion());
++                                    }
++                                    
++                                    detalleBean.setMonto(cpOrdenPago.getImportePorPagar());
++                                    subConceptos.add(detalleBean);
++
++                                    // Grupo de Transaccion
++                                    numeroGrupoTransaccion = numeroTransaccionOperacion;
++
++                                    // Indicador de Aplicacion Principal
++                                    strTransaccionPrincipal = "S";
++
++                                    // gliceta 28.03.2011: Automatizacion Desembolso Creditos - Generacion de Asiento Contable
++                                    numeroTransaccionPrincipal = numeroTransaccionOperacion;
++
++                                    montoComprobante = cpOrdenPago.getImportePorPagar();
++
++                                    //Generacion de descripcion glosa
++                                    descripcionLargaoGlosa = cbConceptoOperacion.getDescripcion();
++                                    descripcionLargaoGlosa += numeroCreditoCuentaOtro != null ? " Alquiler N : " + numeroCreditoCuentaOtro : "";
++                                    descripcionLargaoGlosa += " - Ref.: " + cpOrdenPagoProgramacion.getNumeroVoucher();
++                                
+                             }else{
+         						codigoMoneda = cpOrdenPago.getCodigoMonedaPago();
+         						// ccoz 25.01.2011 : SE CAMBIO EL CONCEPTO DE DT001 A PR065
+@@ -2290,6 +2326,37 @@
+                                 descripcionLargaoGlosa += numeroCreditoCuentaOtro != null ? " Credito N : " + numeroCreditoCuentaOtro : "";
+                                 descripcionLargaoGlosa += " - Ref.: " + cpOrdenPagoProgramacion.getNumeroVoucher();
+                                 // Fin [Req.S17-023]
++    					    } else if (_equiv(cpOrdenPago.getCpSubGrupoOrdenPago().getId().getCodigoGrupoOrdenPago(),
++                                              admin.util.Constante.CODIGO_GRUPO_ORDENES_PAGO_ALQUILERES)){
++                                   
++                                    codigoMoneda = cpOrdenPago.getCodigoMonedaPago();
++                                    String codigoAlquiler = cpOrdenPago.getCodigoReferencia();
++                                    AAMaestraAlquiler aaMaestraAlquiler = aaMaestraAlquilerInterfaceLocal.findById(codigoAlquiler);
++                                    if (!StringUtil.isEmpty(aaMaestraAlquiler)){
++                                        conceptoOperacion = aaMaestraAlquiler.getConceptoOperacion();
++                                        cbConceptoOperacion = cbConceptoOperacionInterfaceLocal.findById(aaMaestraAlquiler.getConceptoOperacion());
++                                        detalleBean.setCodigoConcepto(conceptoOperacion);
++                                        detalleBean.setCodigoSubConcepto(aaMaestraAlquiler.getSubConceptoOperacion());
++                                    }
++                                    
++                                    detalleBean.setMonto(cpOrdenPago.getImportePorPagar());
++                                    subConceptos.add(detalleBean);
++
++                                    // Grupo de Transaccion
++                                    numeroGrupoTransaccion = numeroTransaccionOperacion;
++
++                                    // Indicador de Aplicacion Principal
++                                    strTransaccionPrincipal = "N";
++
++                                    // gliceta 28.03.2011: Automatizacion Desembolso Creditos - Generacion de Asiento Contable
++                                    numeroTransaccionPrincipal = numeroTransaccionOperacion;
++
++                                    montoComprobante = cpOrdenPago.getImportePorPagar();
++
++                                    //Generacion de descripcion glosa
++                                    descripcionLargaoGlosa = cbConceptoOperacion.getDescripcion();
++                                    descripcionLargaoGlosa += numeroCreditoCuentaOtro != null ? " Alquiler N : " + numeroCreditoCuentaOtro : "";
++                                    descripcionLargaoGlosa += " - Ref.: " + cpOrdenPagoProgramacion.getNumeroVoucher();
+                             }else if (i==1) {
+     							codigoMoneda = cpOrdenPagoProgramacion.getCodigoMonedaProgramado();
+     							tipoCambio = cpOrdenPagoProgramacion.getTipoCambio();
+diff --git a/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPCuentasPasivasFacade.java b/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPCuentasPasivasFacade.java
+index 59825ad..bc939a2 100644
+--- a/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPCuentasPasivasFacade.java
++++ b/FINANCIERONEW/src/financ/cuentaspasivas/facade/CPCuentasPasivasFacade.java
+@@ -6342,10 +6342,13 @@
+       String columna23 = null; // [Req. 14-030] fvalle 25.03.2015
+       // Inicio [Req.S17-023] kdelacruz 18.05.2017
+       String columna24 = null; 
+-      String indicadorAplicacion = genericBean.getPropertyString("indicadorAplicacion");
++      
++      if (!_isEmpty(genericBean)){
++          String indicadorAplicacion = genericBean.getPropertyString("indicadorAplicacion");
+ 
+-      if(_equiv(indicadorAplicacion, admin.util.Constante.COLUMNA_24_CODIGO_GRUPO_ANTICIPO)){
+-          columna24 = indicadorAplicacion;
++          if(_equiv(indicadorAplicacion, admin.util.Constante.COLUMNA_24_CODIGO_GRUPO_ANTICIPO)){
++              columna24 = indicadorAplicacion;
++          }
+       }
+       // Fin [Req.S17-023]
+ 
+diff --git a/FINANCIERONEW/src/financ/operaciones/facade/OPGestionPagoAlquileresFacade.java b/FINANCIERONEW/src/financ/operaciones/facade/OPGestionPagoAlquileresFacade.java
+new file mode 100644
+index 0000000..d32ab86
+--- /dev/null
++++ b/FINANCIERONEW/src/financ/operaciones/facade/OPGestionPagoAlquileresFacade.java
+@@ -0,0 +1,482 @@
++package financ.operaciones.facade;
++
++import java.sql.Date;
++import java.sql.Timestamp;
++import java.util.ArrayList;
++import java.util.Calendar;
++import java.util.HashMap;
++import java.util.List;
++import java.util.Map;
++import java.util.Vector;
++
++import javax.ejb.EJB;
++import javax.ejb.Stateless;
++
++import pe.com.tfc.utils.AbstractFacade;
++import pe.com.tfc.utils.Auditable;
++import pe.com.tfc.utils.ErrorControladoException;
++import pe.com.tfc.utils.GenericBean;
++import admin.alquileres.entity.AADetallePagoAlquiler;
++import admin.alquileres.entity.AAMaestraAlquiler;
++import admin.alquileres.local.AADetallePagoAlquilerInterfaceLocal;
++import admin.alquileres.local.AAMaestraAlquilerFacadeInterfaceLocal;
++import admin.alquileres.local.AAMaestraAlquilerInterfaceLocal;
++import admin.bancos.entity.BNEntidadFinanciera;
++import admin.bancos.local.BNEntidadFinancieraInterfaceLocal;
++import admin.caja.entity.CJMaestroSolicitud;
++import admin.contab.beans.BeanParametrosAuditoria;
++import admin.contabilidadGeneral.local.CGGenerarAsientoMdbFacadeLocal;
++import admin.cuentasPorPagar.entity.CPOrdenPago;
++import admin.cuentasPorPagar.entity.CPSubGrupoOrdenPago;
++import admin.cuentasPorPagar.entity.CPSubGrupoOrdenPagoId;
++import admin.cuentasPorPagar.local.CPOrdenPagoInterfaceLocal;
++import admin.util.Constante;
++import admin.util.ConstantesErrores;
++import admin.util.FormatoFecha;
++import financ.clientes.entity.CLCuentasClientesOtrasEntidadesFinancieras;
++import financ.clientes.entity.CLPersonas;
++import financ.clientes.local.CLCuentasClientesOtrasEntidadesFinancierasInterfaceLocal;
++import financ.clientes.local.CLPersonasInterfaceLocal;
++import financ.cuentaspasivas.local.CPCuentasPasivasFacadeLocal;
++import financ.cuentaspasivas.local.CPMaestroCuentasInterfaceLocal;
++import financ.operaciones.beans.BeanOPExonerados;
++import financ.operaciones.entity.OPMotivoSolicitudComprobante;
++import financ.operaciones.entity.OPTransaccionesAplicar;
++import financ.operaciones.local.OPBNComprobantesContablesIngresoEgresoFacadeInterfaceLocal;
++import financ.operaciones.local.OPBNCorrelativoTransaccionesFacadeInterfaceLocal;
++import financ.operaciones.local.OPBNTransaccionesFacadeInterfaceLocal;
++import financ.operaciones.local.OPGestionPagoAlquileresFacadeLocal;
++import financ.operaciones.local.OPTransaccionesAplicarInterfaceLocal;
++
++/**
++ * OPGestionPagoAlquileresFacade
++ * 
++ * @author agarcia
++ * @since [S17-023] 22.05.2017
++ */
++@Stateless
++public class OPGestionPagoAlquileresFacade extends AbstractFacade<Auditable> implements OPGestionPagoAlquileresFacadeLocal {
++
++    public static final String LocalJNDIName = OPGestionPagoAlquileresFacade.class.getSimpleName() + "/local";
++
++    @EJB
++    private AADetallePagoAlquilerInterfaceLocal aaDetallePagoAlquilerInterfaceLocal;
++
++    @EJB
++    private OPTransaccionesAplicarInterfaceLocal opTransaccionesAplicarInterfaceLocal;
++
++    @EJB
++    private CLPersonasInterfaceLocal clPersonasInterfaceLocal;
++
++    @EJB
++    private CPOrdenPagoInterfaceLocal cpOrdenPagoInterfaceLocal;
++
++    @EJB
++    private BNEntidadFinancieraInterfaceLocal bnEntidadFinancieraInterfaceLocal;
++
++    @EJB
++    private CLCuentasClientesOtrasEntidadesFinancierasInterfaceLocal clCuentasClientesOtrasEntidadesFinancierasInterfaceLocal;
++
++    @EJB
++    private OPBNCorrelativoTransaccionesFacadeInterfaceLocal opBNCorrelativoTransaccionesFacadeInterfaceLocal;
++
++    @EJB
++    private CPMaestroCuentasInterfaceLocal cpMaestroCuentasInterfaceLocal;
++
++    @EJB
++    private CPCuentasPasivasFacadeLocal cpCuentasPasivasFacadeLocal;
++
++    @EJB
++    private OPBNTransaccionesFacadeInterfaceLocal opBNTransaccionesFacadeInterfaceLocal;
++    
++    @EJB
++    private OPBNComprobantesContablesIngresoEgresoFacadeInterfaceLocal opBNComprobantesContablesIngresoEgresoFacadeInterfaceLocal;
++    
++    @EJB
++    private CGGenerarAsientoMdbFacadeLocal cgGenerarAsientoMdbFacadeLocal;
++    
++    @EJB
++    private AAMaestraAlquilerInterfaceLocal aaMaestraAlquilerInterfaceLocal;
++
++    public void aprobarPago(List<String> codigoPagos,
++                            GenericBean genericBean,
++                            BeanParametrosAuditoria beanParametrosAuditoria) throws Exception {
++        final String modulo = "OPGestionPagoAlquileresFacade.aprobarPago()";
++        final String usuarioInsercion = beanParametrosAuditoria.getUsuarioInsercion();
++        AADetallePagoAlquiler aaDetallePagoAlquiler;
++        AAMaestraAlquiler aaMaestraAlquiler;
++        Double tipoCambio;
++        try {
++            for (String cod : codigoPagos) {
++                aaDetallePagoAlquiler = aaDetallePagoAlquilerInterfaceLocal.findById(cod);
++                if (!_isEmpty(aaDetallePagoAlquiler)) {
++                    aaMaestraAlquiler = aaDetallePagoAlquiler.getAaMaestraAlquiler();
++                    aaDetallePagoAlquiler.setEstado(Constante.COD_DET_ALQUILER_APROBADO);
++                    if (_equiv(aaMaestraAlquiler.getCbTiposMovimiento().getTipoMovimiento(),
++                               Constante.TIPO_FORMA_PAGO_EFECTIVO)) {
++                        tipoCambio = genericBean.getProperty("tipoCambio", Double.class);
++                        registrarTransaccionAplicar(aaMaestraAlquiler, tipoCambio, beanParametrosAuditoria);
++                    } else if (_equiv(aaMaestraAlquiler.getCbTiposMovimiento().getTipoMovimiento(),
++                                      Constante.TIPO_FORMA_PAGO_BOLETA_DEPOSITOS)) {
++                        registrarOrdenPago(aaMaestraAlquiler, beanParametrosAuditoria);
++                    } else if (_equiv(aaMaestraAlquiler.getCbTiposMovimiento().getTipoMovimiento(),
++                                      Constante.TIPO_FORMA_PAGO_ABONO_EN_CUENTA)) {
++                        registrarAbonoCuenta(aaMaestraAlquiler, beanParametrosAuditoria);
++                        aaDetallePagoAlquiler.setEstado(Constante.COD_DET_ALQUILER_CANCELADO);
++                        aaDetallePagoAlquiler.setFechaCancelacion(beanParametrosAuditoria.getFechaProceso());
++                    }
++                    aaDetallePagoAlquiler.setFechaAprobacion(beanParametrosAuditoria.getFechaProceso());
++                    setModificacionAuditoria(aaDetallePagoAlquiler, beanParametrosAuditoria);
++                    aaDetallePagoAlquilerInterfaceLocal.save(aaDetallePagoAlquiler);
++                }
++            }
++        } catch (final Exception e) {
++            throw handlerError(e, usuarioInsercion, modulo);
++        }
++    }
++
++    private void registrarAbonoCuenta(AAMaestraAlquiler aaMaestraAlquiler,
++                                      BeanParametrosAuditoria beanParametrosAuditoria) throws Exception {
++        String conceptoOp = aaMaestraAlquiler.getConceptoOperacion();
++        String subConceptoOp = aaMaestraAlquiler.getSubConceptoOperacion();
++        String strCodCliente;
++        String codigoOperacion = CADENA_VACIA;
++        String conceptoOperacionFinanciera = CADENA_VACIA;
++        String numeroCuenta;
++        Double montoImporte;
++        String codigoFormaPago;
++        String nombrePersona;
++        String numeroDocumento;
++        CLPersonas clPersonas;
++        if (_isEmpty(aaMaestraAlquiler.getNumeroCuentaTFC())) {
++            throw new ErrorControladoException(ConstantesErrores.ERROR_1890);
++        }
++
++        numeroCuenta = aaMaestraAlquiler.getNumeroCuentaTFC();
++        montoImporte = aaMaestraAlquiler.getImporteAlquiler();
++        codigoFormaPago = aaMaestraAlquiler.getCbTiposMovimiento().getTipoMovimiento();
++        clPersonas = clPersonasInterfaceLocal.findById(aaMaestraAlquiler.getCodigoPersona());
++        nombrePersona = clPersonas.getNombreoRazonSocial();
++        numeroDocumento = clPersonas.getNumeroDocumentoIdentidad();
++
++        String numeroTx = generarCorrelativo("OPMTRAD", 15, beanParametrosAuditoria);
++
++        Long numeroCorrelativoOperacion = opBNCorrelativoTransaccionesFacadeInterfaceLocal.generar(Constante.ID_TFC,
++                                                                                                   beanParametrosAuditoria.getCodigoAgencia(),
++                                                                                                   FormatoFecha.dateUtilToSQLDate(beanParametrosAuditoria.getFechaProceso()),
++                                                                                                   beanParametrosAuditoria.getUsuarioInsercion(),
++                                                                                                   beanParametrosAuditoria.getTerminalInsercion(),
++                                                                                                   beanParametrosAuditoria.getIpInsercion());
++        Vector vCheque = new Vector();
++        Vector vVoucher = new Vector();
++        List lstImpuestos = new ArrayList();
++        String claseCuenta = cpMaestroCuentasInterfaceLocal.obtenerClaseCuenta(numeroCuenta);
++        strCodCliente = cpCuentasPasivasFacadeLocal.obtenerTitularPrincipal(numeroCuenta);
++
++        BeanOPExonerados beanOPExonerados = new BeanOPExonerados();
++        beanOPExonerados.setTipoExonerado("PCTA");
++        beanOPExonerados.setEntidadExonerada(claseCuenta);
++        List lstExonerados = new ArrayList();
++        lstExonerados.add(beanOPExonerados);
++
++        //            if (codigoFormaPago.equals("BN")) {
++        //                codigoOperacion = "OP010";
++        //            }
++
++        Map mapListaImpuestos = opBNTransaccionesFacadeInterfaceLocal.calcularImpuestos(Constante.ID_TFC,
++                                                                                        montoImporte,
++                                                                                        codigoOperacion,
++                                                                                        codigoFormaPago,
++                                                                                        FormatoFecha.dateUtilToSQLDate(beanParametrosAuditoria.getFechaProceso()),
++                                                                                        lstExonerados,
++                                                                                        numeroCuenta);
++
++        if ("AHO".equals(claseCuenta)) {
++            conceptoOperacionFinanciera = Constante.COD_OPE_ABO_AHO;
++        }
++
++        lstImpuestos = (List) mapListaImpuestos.get("lstGeneral");
++        Date fechaValor = null;
++
++
++        Map mapDeposito = cpCuentasPasivasFacadeLocal.deposito(Constante.ID_TFC,
++                                                               beanParametrosAuditoria.getCodigoAgencia(),
++                                                               strCodCliente,
++                                                               conceptoOp,
++                                                               subConceptoOp,
++                                                               FormatoFecha.dateUtilToSQLDate(beanParametrosAuditoria.getFechaProceso()),
++                                                               FormatoFecha.obtenerHora(),
++                                                               aaMaestraAlquiler.getCbMoneda().getCodigoMoneda(),
++                                                               montoImporte,
++                                                               montoImporte,
++                                                               numeroCuenta,
++                                                               Double.valueOf(1.0),
++                                                               null,
++                                                               null,
++                                                               "N",
++                                                               codigoFormaPago,
++                                                               "N",
++                                                               null,
++                                                               null,
++                                                               Long.valueOf(numeroTx),
++                                                               numeroCorrelativoOperacion,
++                                                               numeroTx,
++                                                               "S",
++                                                               vCheque,
++                                                               vVoucher,
++                                                               "",
++                                                               "",
++                                                               null,
++                                                               lstImpuestos,
++                                                               beanParametrosAuditoria.getUsuarioInsercion(),
++                                                               beanParametrosAuditoria.getTerminalInsercion(),
++                                                               beanParametrosAuditoria.getIpInsercion(),
++                                                               null,
++                                                               "",
++                                                               "",
++                                                               "",
++                                                               "",
++                                                               null,
++                                                               conceptoOperacionFinanciera,
++                                                               "",
++                                                               nombrePersona,
++                                                               numeroDocumento,
++                                                               fechaValor,
++                                                               "",
++                                                               "",
++                                                               "",
++                                                               null);
++        String error = (String) mapDeposito.get("strError");
++        if (!_equiv(error, Constante.NO_ERROR)) {
++            throw new ErrorControladoException(error);
++        }
++    }
++
++    private void registrarOrdenPago(AAMaestraAlquiler aaMaestraAlquiler, BeanParametrosAuditoria beanParametrosAuditoria) throws Exception {
++        if (_isEmpty(aaMaestraAlquiler.getCodigoCuentaExterna())) {
++            throw new ErrorControladoException(ConstantesErrores.ERROR_1890);
++        }
++
++        String correlativo = generarCorrelativo("CPDORPG", 8, beanParametrosAuditoria);
++        CPOrdenPago cpOrdenPago = new CPOrdenPago();
++        cpOrdenPago.setNumeroOrdenPago(correlativo);
++        cpOrdenPago.setCodigoEmpresa(Constante.ID_TFC);
++        cpOrdenPago.setCodigoAgencia(beanParametrosAuditoria.getCodigoAgencia());
++        CPSubGrupoOrdenPagoId cpSubGrupoOrdenPagoId = new CPSubGrupoOrdenPagoId();
++        cpSubGrupoOrdenPagoId.setCodigoGrupoOrdenPago(Constante.CODIGO_GRUPO_ORDENES_PAGO_ALQUILERES);
++        cpSubGrupoOrdenPagoId.setCodigoSubGrupoOrdenPago(Constante.CODIGO_SUBGRUPO_ORDENES_PAGO_ALQUILERES);
++        CPSubGrupoOrdenPago cpSubGrupoOrdenPago = new CPSubGrupoOrdenPago();
++        cpSubGrupoOrdenPago.setId(cpSubGrupoOrdenPagoId);
++        cpOrdenPago.setCpSubGrupoOrdenPago(cpSubGrupoOrdenPago);
++        cpOrdenPago.setFechaSolicitudOrdenPago(beanParametrosAuditoria.getFechaProceso());
++        cpOrdenPago.setCodigoPersona(aaMaestraAlquiler.getCodigoPersona());
++        cpOrdenPago.setCodigoMonedaPago(aaMaestraAlquiler.getCbMoneda().getCodigoMoneda());
++        cpOrdenPago.setImportePorPagar(aaMaestraAlquiler.getImporteAlquiler());
++        cpOrdenPago.setImportePagado(0D);
++        cpOrdenPago.setImportePorProgramar(aaMaestraAlquiler.getImporteAlquiler());
++        cpOrdenPago.setImporteProgramado(0D);
++        cpOrdenPago.setSaldoPorPagar(aaMaestraAlquiler.getImporteAlquiler());
++        cpOrdenPago.setFechaVencimiento(beanParametrosAuditoria.getFechaProceso());
++        cpOrdenPago.setEstadoOrdenPago(Constante.CODIGO_ESTADO_ORDEN_PAGO_PENDIENTE);
++        cpOrdenPago.setFormaPagoDefecto(Constante.CODIGO_FORMA_PAGO_POR_DEFECTO);
++
++        //        BNEntidadFinanciera entidadFinancieraAbonoTransferencia = new BNEntidadFinanciera();
++        //        entidadFinancieraAbonoTransferencia = bnEntidadFinancieraInterfaceLocal.findById(codigoEntidadFinanciera);
++        //        if (!_isEmpty(entidadFinancieraAbonoTransferencia)) {
++        //            cpOrdenPago.setEntidadFinancieraAbonoTransferencia(entidadFinancieraAbonoTransferencia);
++        //        } 
++        CLCuentasClientesOtrasEntidadesFinancieras clCuentasClientesOtrasEntidadesFinancieras = clCuentasClientesOtrasEntidadesFinancierasInterfaceLocal.findById(aaMaestraAlquiler.getCodigoCuentaExterna());
++        BNEntidadFinanciera entidadFinancieraAbonoTransferencia = bnEntidadFinancieraInterfaceLocal.findById(clCuentasClientesOtrasEntidadesFinancieras.getCodigoEntidadFinanciera());
++        cpOrdenPago.setEntidadFinancieraAbonoTransferencia(entidadFinancieraAbonoTransferencia);
++
++        cpOrdenPago.setIndPermiteCambiarFormaPago(Constante.INDICADOR_CAMBIA_FORMA_PAGO_POR_DEFECTO);
++        cpOrdenPago.setIndPermiteRealizarPagosParciales(Constante.INDICADOR_PERMITE_PAGOS_PARCIALES);
++        cpOrdenPago.setUsuarioInsercion(beanParametrosAuditoria.getUsuarioInsercion());
++        cpOrdenPago.setFechaInsercion(beanParametrosAuditoria.getFechaInsercion());
++        cpOrdenPago.setIpInsercion(beanParametrosAuditoria.getIpInsercion());
++        cpOrdenPago.setTerminalInsercion(beanParametrosAuditoria.getTerminalInsercion());
++        cpOrdenPago.setCodigoBeneficiario(aaMaestraAlquiler.getCodigoPersona());
++        cpOrdenPago.setCorrelativoOrdenDesembolso(cpOrdenPagoInterfaceLocal.maxOrdenPago() + 1L);
++        cpOrdenPago.setCodigoReferencia(aaMaestraAlquiler.getCodigo());
++
++        cpOrdenPagoInterfaceLocal.save(cpOrdenPago);
++        
++//        cjMaestroSolicitud.setConceptoOperacion("CJ002");
++//        cjMaestroSolicitud.setSubConceptoOperacion(Constante.ID_TFC + "CJ002901");
++
++    }
++
++    private void registrarTransaccionAplicar(AAMaestraAlquiler aaMaestraAlquiler,
++                                             Double tipoCambio,
++                                             BeanParametrosAuditoria beanParametrosAuditoria) throws Exception {
++        String correlativo = generarCorrelativo("OPDTRAP", 13, beanParametrosAuditoria);
++        OPTransaccionesAplicar opTransaccionesAplicar = new OPTransaccionesAplicar();
++
++        opTransaccionesAplicar.setNumeroCorrelativo(correlativo);
++        opTransaccionesAplicar.setCodigoEmpresa(beanParametrosAuditoria.getCodigoEmpresa());
++        opTransaccionesAplicar.setCodigoAgencia(beanParametrosAuditoria.getCodigoAgencia());
++        opTransaccionesAplicar.setCodigoAplicacion(Constante.CONSTANTE_MODULO_SISTEMA_PROCEDENCIA_CREDITOS);
++        opTransaccionesAplicar.setTipoMovimiento(Constante.CONSTANTE_TIPO_PAGO_EFECTIVO);
++        OPMotivoSolicitudComprobante opMotivoSolicitudComprobante = new OPMotivoSolicitudComprobante();
++        opMotivoSolicitudComprobante.setCodigoSolicitudComprobante(Constante.COD_MOTIVO_SOLICITUD_PAGO_ALQUILERES);
++        opTransaccionesAplicar.setOpMotivoSolicitudComprobante(opMotivoSolicitudComprobante);
++        opTransaccionesAplicar.setIndicadorIngresoEgreso(Constante.CONSTANTE_INDICADOR_EGRESO);
++        opTransaccionesAplicar.setCodigoMonedaAplicar(aaMaestraAlquiler.getCbMoneda().getCodigoMoneda());
++        opTransaccionesAplicar.setMontoAplicar(aaMaestraAlquiler.getImporteAlquiler());
++        opTransaccionesAplicar.setTipoCambio(tipoCambio);
++        opTransaccionesAplicar.setCodigoPersona(aaMaestraAlquiler.getCodigoPersona());
++        CLPersonas clPersonas = clPersonasInterfaceLocal.findById(aaMaestraAlquiler.getCodigoPersona());
++        opTransaccionesAplicar.setNombrePersona(clPersonas.getNombreoRazonSocial());
++        opTransaccionesAplicar.setFechaGeneracion(beanParametrosAuditoria.getFechaProceso());
++        opTransaccionesAplicar.setFechaProcesarAplicacion(beanParametrosAuditoria.getFechaProceso());
++        opTransaccionesAplicar.setEstadoRegistro(Constante.ESTADO_TRANSACCION_GENERADA);
++        //        opTransaccionesAplicar.setNumeroTransaccionGenerada(null);
++        //        opTransaccionesAplicar.setNumeroComprobanteRelacionado(null);
++        opTransaccionesAplicar.setCodigoCtaReferencia(aaMaestraAlquiler.getCodigo());
++        //        opTransaccionesAplicar.setMotivoCancelacion(null);
++        opTransaccionesAplicar.setIndicadorTipoCambioEspecial(Constante.INDICADOR_NO);
++        opTransaccionesAplicar.setIndicadorCastigoInteres(Constante.INDICADOR_NO);
++        //        opTransaccionesAplicar.setTasaCastigo(new Double(0));
++        //        opTransaccionesAplicar.setFechaAplicacion(null);
++        //        opTransaccionesAplicar.setUsuarioAplicacion(null);
++        //        opTransaccionesAplicar.setObservaciones(null);
++        //        opTransaccionesAplicar.setCuentaRelacionada(null);
++        opTransaccionesAplicar.setConceptoOperacion(aaMaestraAlquiler.getConceptoOperacion());
++        opTransaccionesAplicar.setSubConceptoOperacion(aaMaestraAlquiler.getSubConceptoOperacion());
++        opTransaccionesAplicar.setFechaInsercion(beanParametrosAuditoria.getFechaInsercion());
++        opTransaccionesAplicar.setUsuarioInsercion(beanParametrosAuditoria.getUsuarioInsercion());
++        opTransaccionesAplicar.setTerminalInsercion(beanParametrosAuditoria.getTerminalInsercion());
++        opTransaccionesAplicar.setIpInsercion(beanParametrosAuditoria.getIpInsercion());
++        opTransaccionesAplicar.setCodigoAgenciaAplicacionAbono(beanParametrosAuditoria.getCodigoAgencia());
++        //        opTransaccionesAplicar.setReferencia(strCuentaAbono);
++        opTransaccionesAplicarInterfaceLocal.save(opTransaccionesAplicar);
++
++    }
++    
++    
++    public Map aplicarTransaccion(String codigoEntidadManejadoraValor,
++                                  String correlativoTransaccionXAplicar,
++                                  String codigoAgencia,
++                                  String codigoEmpresa,
++                                  String codigoMoneda,
++                                  String codigoPersona,
++                                  String importe,
++                                  String tipoCambio,
++                                  String codigoReferencia,
++                                  BeanParametrosAuditoria beanParametrosAuditoria) throws Exception {
++        String modulo = "OPGestionPagoAlquileresFacade.aplicarTransaccion()";
++        Map mapDevolucion = new HashMap();
++        String codigoError = "";
++        String documento = "";
++        String conceptoOperacion;
++        String subConceptoOperacion;
++        Long numeroTransaccionCaja = null;
++        Long numeroTransaccionPrincipal = null;
++        String correlativoOperacionCaja = null;
++        Calendar cal = Calendar.getInstance();
++        java.util.Date fecha = cal.getTime();
++        Double importePago = _toDouble(importe);
++        CLPersonas clPersonas;
++        GenericBean genericBean;
++
++        try {
++            clPersonas = new CLPersonas();
++            clPersonas = clPersonasInterfaceLocal.findById(codigoPersona);
++
++            AAMaestraAlquiler aaMaestraAlquiler = aaMaestraAlquilerInterfaceLocal.findById(codigoReferencia);
++            conceptoOperacion = aaMaestraAlquiler.getConceptoOperacion();
++            subConceptoOperacion = aaMaestraAlquiler.getSubConceptoOperacion();
++            
++            genericBean = new GenericBean();
++            genericBean.addProperty("conceptoOperacionFinanciera", "");
++            genericBean.addProperty("indicadorAplicacion", "");
++            Map<Object, Object> mapa = opBNComprobantesContablesIngresoEgresoFacadeInterfaceLocal.generarXCaja(codigoEntidadManejadoraValor,
++                                                                                                               codigoAgencia,
++                                                                                                               codigoEmpresa,
++                                                                                                               codigoMoneda,
++                                                                                                               codigoPersona,
++                                                                                                               clPersonas.getClTipoDocumentoPersona().getCodigoEquivalenciaSbs(),
++                                                                                                               new java.sql.Date(beanParametrosAuditoria.getFechaProceso().getTime()),
++                                                                                                               "E",
++                                                                                                               "EF",
++                                                                                                               "",
++                                                                                                               "",
++                                                                                                               importePago,
++                                                                                                               Double.parseDouble("1.0"),
++                                                                                                               "A",
++                                                                                                               documento,
++                                                                                                               clPersonas.getNombreoRazonSocial(),
++                                                                                                               conceptoOperacion,
++                                                                                                               subConceptoOperacion,
++                                                                                                               null,
++                                                                                                               null,
++                                                                                                               "",
++                                                                                                               "",
++                                                                                                               "",
++                                                                                                               beanParametrosAuditoria.getUsuarioInsercion(),
++                                                                                                               beanParametrosAuditoria.getTerminalInsercion(),
++                                                                                                               beanParametrosAuditoria.getIpInsercion(),
++                                                                                                               new java.sql.Timestamp(fecha.getTime()),
++                                                                                                               documento,
++                                                                                                               codigoAgencia,
++                                                                                                               FormatoFecha.dateUtilToSQLDate(beanParametrosAuditoria.getFechaProceso()),
++                                                                                                               "",
++                                                                                                               "",
++                                                                                                               null,
++                                                                                                               null,
++                                                                                                               "S",
++                                                                                                               "S",
++                                                                                                               "S",
++                                                                                                               "S",
++                                                                                                               null,
++                                                                                                               null,
++                                                                                                               null,
++                                                                                                               null,
++                                                                                                               genericBean);
++            codigoError = (String) mapa.get("strError");
++            String numeroTransaccion = CADENA_VACIA;
++            if (mapa != null && !((String) mapa.get("strError")).equals("000")) {
++                System.out.println("strError" + codigoError);
++                mapDevolucion.put("codigoError", codigoError);
++                return mapDevolucion;
++            } else {
++                numeroTransaccionCaja = new Long(mapa.get("numeroTransaccion") == null ? "0" : mapa.get("numeroTransaccion").toString());
++                mapDevolucion.put("numeroTransaccion", mapa.get("numeroTransaccion"));
++                correlativoOperacionCaja = mapa.get("numeroCorrelativoOperacion") == null ? "0" : mapa.get("numeroCorrelativoOperacion").toString();
++                numeroTransaccionPrincipal = new Long(mapa.get("numeroTransaccionPrincipal") == null ? "0" : mapa.get("numeroTransaccionPrincipal").toString());
++
++                System.out.println("OPDevolucionFacade.insert.numeroTransaccionCaja-->" + numeroTransaccionCaja);
++                OPTransaccionesAplicar opTransaccionesAplicar = new OPTransaccionesAplicar();
++                opTransaccionesAplicar = opTransaccionesAplicarInterfaceLocal.findById(correlativoTransaccionXAplicar);
++                opTransaccionesAplicar.setEstadoRegistro("A");
++                opTransaccionesAplicarInterfaceLocal.update(opTransaccionesAplicar);
++
++                numeroTransaccion = mapa.get("numeroTransaccionPrincipal") != null ? mapa.get("numeroTransaccionPrincipal").toString() : "";
++                if (numeroTransaccion != null && !"".equals(numeroTransaccion)) {
++                    List lstTransacciones2 = new ArrayList();
++                    String transaccionContable = opBNTransaccionesFacadeInterfaceLocal.obtenerNumeroTransaccionContable(new Long(numeroTransaccion),
++                                                                                                                        beanParametrosAuditoria.getUsuarioInsercion());
++                    if (transaccionContable != null && !transaccionContable.equals("")) {
++                        lstTransacciones2.add(new Long(transaccionContable));
++                        cgGenerarAsientoMdbFacadeLocal.generarAsientoContable(beanParametrosAuditoria.getTerminalInsercion(),
++                                                                              beanParametrosAuditoria.getIpInsercion(),
++                                                                              lstTransacciones2,
++                                                                              codigoAgencia,
++                                                                              beanParametrosAuditoria.getUsuarioInsercion(),
++                                                                              Constante.ID_TFC);
++                    }
++                }
++
++                codigoError = "000";
++            }
++
++        } catch (Exception e) {
++            codigoError = "1";
++            throw handlerError(e, beanParametrosAuditoria.getUsuarioInsercion(), modulo);
++        }
++        mapDevolucion.put("codigoError", codigoError);
++        mapDevolucion.put("correlativoOperacionCaja", correlativoOperacionCaja);
++        mapDevolucion.put("numeroTransaccionPrincipal", numeroTransaccionPrincipal);
++        return mapDevolucion;
++    }
++}
+\ No newline at end of file
+diff --git a/FINANCIERONEW/src/financ/operaciones/local/OPGestionPagoAlquileresFacadeLocal.java b/FINANCIERONEW/src/financ/operaciones/local/OPGestionPagoAlquileresFacadeLocal.java
+new file mode 100644
+index 0000000..c52c6ee
+--- /dev/null
++++ b/FINANCIERONEW/src/financ/operaciones/local/OPGestionPagoAlquileresFacadeLocal.java
+@@ -0,0 +1,33 @@
++package financ.operaciones.local;
++
++import java.util.List;
++import java.util.Map;
++
++import javax.ejb.Local;
++
++import pe.com.tfc.utils.GenericBean;
++import admin.contab.beans.BeanParametrosAuditoria;
++
++/**
++ * OPGestionPagoAlquileresFacadeLocal
++ * 
++ * @autor agarcia
++ * @since [S17-023] 22.05.2017
++ */
++
++@Local
++public interface OPGestionPagoAlquileresFacadeLocal {
++
++    void aprobarPago(List<String> codigoPagos, GenericBean genericBean, BeanParametrosAuditoria beanParametrosAuditoria) throws Exception;
++
++    public Map aplicarTransaccion(String codigoEntidadManejadoraValor,
++                                  String correlativoTransaccionXAplicar,
++                                  String codigoAgencia,
++                                  String codigoEmpresa,
++                                  String codigoMoneda,
++                                  String codigoPersona,
++                                  String importe,
++                                  String tipoCambio,
++                                  String codigoReferencia,
++                                  BeanParametrosAuditoria beanParametrosAuditoria) throws Exception;
++}
+\ No newline at end of file

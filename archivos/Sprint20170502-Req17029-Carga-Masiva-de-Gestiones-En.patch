@@ -1,0 +1,2623 @@
+diff --git a/ADMINISTRATIVONEW/src/admin/util/Constante.java b/ADMINISTRATIVONEW/src/admin/util/Constante.java
+index b18fb7d..bc47f21 100644
+--- a/ADMINISTRATIVONEW/src/admin/util/Constante.java
++++ b/ADMINISTRATIVONEW/src/admin/util/Constante.java
+@@ -1123,8 +1123,6 @@
+     public static final String SEGUIMIENTO_CARTERA_COMBO_GENERICO_TIPO_DOCUMENTO = "WFSCTIDOC";
+     //Fin [Req.S17-022]
+     
+-    public static final String CODIGO_PROCESO_CARGA_MASIVA_SEGUIMIENTO_CARTERA = "CRCASEGA";
+-    
+     //Inicio [Req.17-018] acnunez 27.03.2017
+     public static final String COD_AGE_OF_PRIN = "001";
+     public static final String BUSQUEDA_SOLICITADO = "S";
+@@ -1160,5 +1158,14 @@
+     
+     //[Req.17-025] gmeza 09.05.2017
+     public static final String CODIGO_PROCESO_SCORING_COBRANZAS = "COSCOCOB";
++    
++  //Inicio [Req.S17-022] rsanchez 27.03.2017
++    public static final String CODIGO_PROCESO_CARGA_MASIVA_SEGUIMIENTO_CARTERA = "CRCASEGA";
++    //Fin [Req.S17-022]
++    
++    //Inicio [S17-029] rsanchez 02.05.2017
++    public static final String CODIGO_PROCESO_CARGA_MASIVA_ACTIVIDADES_MOVIL = "COCAMAAM";
++    public static final String COMBO_GENERICO_TIPO_DOMICILIO = "TIPDOMVIS";
++    //Fin [S17-029]
+ }
+ 
+diff --git a/ADMINISTRATIVONEW/src/admin/util/ConstantesErrores.java b/ADMINISTRATIVONEW/src/admin/util/ConstantesErrores.java
+index 25c2bd8..595aa24 100644
+--- a/ADMINISTRATIVONEW/src/admin/util/ConstantesErrores.java
++++ b/ADMINISTRATIVONEW/src/admin/util/ConstantesErrores.java
+@@ -867,7 +867,18 @@
+     String ERROR_11199 = "11164"; //Error al insertar archivo.
+     String ERROR_11200 = "11164"; //Error al eliminar archivo.
+     String ERROR_11201 = "11164"; //Error al obtener archivo.
+-    // Fin [Req.S17-030]
++    // Fin [Req.S17-030]
++
++    //Inicio [Req.S17-029] rsanchez 27.04.2017
++    String ERROR_11196 = "11196"; //El nombre del gestor no es vÃ¡lido.
++    String ERROR_11203 = "11203"; //El campo de observaciones no puede ser vacÃ­o.
++    String ERROR_11204 = "11204"; //La descripciÃ³n de respuesta gestiÃ³n no es vÃ¡lida.
++    String ERROR_11205 = "11205"; //La descripciÃ³n de gestiÃ³n realizada no es vÃ¡lida.
++    String ERROR_11206 = "11206"; //El tipo de telefono seÃ±alado no existe.
++    String ERROR_11207 = "11207"; //El Parentesco seÃ±alado no existe.
++    String ERROR_11208 = "11208"; //Motivo de No visita no esta definido.
++    String ERROR_11209 = "11209"; //Tipo de Lugar Visitado no estÃ¡ definido.
++    //Fin [Req.S17-029]
+ 
+ 
+ }
+diff --git a/DELFINWEBNEW/WebRoot/FINANCIERO/cobranzas/CO-C-ReferenciaDomiciliaria_TABLA.jsp b/DELFINWEBNEW/WebRoot/FINANCIERO/cobranzas/CO-C-ReferenciaDomiciliaria_TABLA.jsp
+index b6101aa..3cf5b07 100644
+--- a/DELFINWEBNEW/WebRoot/FINANCIERO/cobranzas/CO-C-ReferenciaDomiciliaria_TABLA.jsp
++++ b/DELFINWEBNEW/WebRoot/FINANCIERO/cobranzas/CO-C-ReferenciaDomiciliaria_TABLA.jsp
+@@ -24,7 +24,10 @@
+         .active-column-0 {width: 100px;} 
+ 		.active-column-1 {width: 120px;}
+ 		.active-column-2 {width: 220px;}
+-
++		//Inicio [S17-029] rsanchez 12.05.2017
++		.active-column-3 {width: 150px;}
++		.active-column-4 {width: 150px;}
++		//Fin [S17-029]
+         .active-grid-column {border-right: 1px solid threedlightshadow; }
+ 		.active-grid-row {border-bottom: 1px solid threedlightshadow; }
+ 	</style>
+@@ -41,7 +44,11 @@
+         var myData = [<%= strLista %>];
+         var myColumns =  ["Contacto",//0
+         				  "Tipo",//1
+-        				  "Direccion"//2
++        				  //Inicio [S17-029] rsanchez 12.05.2017
++        				  "Direccion",//2
++        				  "Codigo Actividad",//3
++        				  "Fuente"//4
++        				  //Fin [S17-029]
+                            ];
+ 
+ 		//	create ActiveWidgets Grid javascript object
+diff --git a/DELFINWEBNEW/WebRoot/FINANCIERO/cobranzas/CO-C-ReferenciasTelefonicas_TABLA.jsp b/DELFINWEBNEW/WebRoot/FINANCIERO/cobranzas/CO-C-ReferenciasTelefonicas_TABLA.jsp
+index 74e5221..b768ff5 100644
+--- a/DELFINWEBNEW/WebRoot/FINANCIERO/cobranzas/CO-C-ReferenciasTelefonicas_TABLA.jsp
++++ b/DELFINWEBNEW/WebRoot/FINANCIERO/cobranzas/CO-C-ReferenciasTelefonicas_TABLA.jsp
+@@ -25,6 +25,10 @@
+ 		.active-column-2 {width: 90px;}
+ 		.active-column-3 {width: 80px;}
+ 		.active-column-4 {width: 90px;}
++		//Inicio [S17-029] rsanchez 12.05.2017
++		.active-column-5 {width: 90px;}
++		.active-column-6 {width: 90px;}
++		//Fin [S17-029]
+ 
+         .active-grid-column {border-right: 1px solid threedlightshadow; }
+ 		.active-grid-row {border-bottom: 1px solid threedlightshadow; }
+@@ -44,7 +48,11 @@
+         				  "Parentesco",//1
+         				  "Activ. Econom.",//2
+         				  "Tipo",//3
+-        				  "Telefono"//4
++        				  //Inicio [S17-029] rsanchez 12.05.2017
++        				  "Telefono",//4
++        				  "Codigo Actividad",//5
++        				  "Fuente"//6
++        				  //Fin [S17-029]
+                            ];
+ 
+ 		//	create ActiveWidgets Grid javascript object
+diff --git a/DELFINWEBNEW/WebRoot/FINANCIERO/cobranzas/CO-C-RegistroGestionCobranza_TABLA.jsp b/DELFINWEBNEW/WebRoot/FINANCIERO/cobranzas/CO-C-RegistroGestionCobranza_TABLA.jsp
+index b89b959..61119d2 100644
+--- a/DELFINWEBNEW/WebRoot/FINANCIERO/cobranzas/CO-C-RegistroGestionCobranza_TABLA.jsp
++++ b/DELFINWEBNEW/WebRoot/FINANCIERO/cobranzas/CO-C-RegistroGestionCobranza_TABLA.jsp
+@@ -32,12 +32,19 @@
+ 		.active-column-7 {width: 150px;}
+ 		.active-column-8 {width: 80px;}
+ 		.active-column-9 {width: 80px;text-align: right;}
+-		<!-- Inicio [CC17-026] gmeza 28.02.2017 -->
++        /*Inicio [CC17-026] gmeza 28.02.2017 */
+ 		.active-column-10 {width: 150px;text-align: left;}
+ 		.active-column-11 {width: 150px;text-align: left;}
+-		.active-column-12{display: none;}
+-		.active-column-13{display: none;}
+-		<!-- Fin [CC17-026] -->
++		.active-column-12 {width: 150px;}
++		.active-column-13 {width: 150px;}
++		/*Fin [CC17-026]*/
++		/*Inicio [S17-029] rsanchez 03.05.2017 */
++		.active-column-14 {width: 150px;}
++        .active-column-15 {width: 150px;}
++        .active-column-16 {width: 150px;}
++        .active-column-17 {width: 150px;}
++        .active-column-18 {width: 150px;}
++        /*Fin [S17-029]*/
+ 
+         .active-grid-column {border-right: 1px solid threedlightshadow; }
+ 		.active-grid-row {border-bottom: 1px solid threedlightshadow; }
+@@ -67,8 +74,15 @@
+         				  "Parentesco",//10
+                           "Nombre Pariente",//11
+         				  "Posic. Cobro",//12
+-        				  "Apt. Incu."//13
++        				  "Apt. Incu.",//13
+         				  //Fin [CC17-026]
++        				  //Inicio [S17-029] rsanchez 03.05.2017
++        				  "Codigo Actividad",//14
++        				  "Cod. Tipo Actividad",//15
++        				  "Foto",//16
++        				  "Mot.No Visita",//17
++        				  "Origen"//18
++        				  //Fin [S17-029]
+                            ];
+ 
+ 		//	create ActiveWidgets Grid javascript object
+diff --git a/DELFINWEBNEW/WebRoot/FINANCIERO/cobranzas/carteraCobranza/cargaMasiva/CO_T_CargaMasivaMovil_CNTR.jsp b/DELFINWEBNEW/WebRoot/FINANCIERO/cobranzas/carteraCobranza/cargaMasiva/CO_T_CargaMasivaMovil_CNTR.jsp
+new file mode 100644
+index 0000000..c6d516b
+--- /dev/null
++++ b/DELFINWEBNEW/WebRoot/FINANCIERO/cobranzas/carteraCobranza/cargaMasiva/CO_T_CargaMasivaMovil_CNTR.jsp
+@@ -0,0 +1,209 @@
++<!-- CO_T_CargaMasivaMovil_CNTR.jsp -->
++<%-- [Req.S17-029] rsanchez 12.05.2017 --%>
++
++<%@ taglib uri="/delfin" prefix="delfinTagHtml"%>
++<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
++<%@ taglib prefix='fmt' uri='http://java.sun.com/jstl/fmt'%>
++
++<html>
++<head>
++    <META HTTP-EQUIV="Pragma" CONTENT="no-cache" />
++    <!-- Titulo del Modulo -->
++    <title>Carga Masiva Actividades Movil</title>
++    <!-- Invocación de Estilos -->
++    <link id="css" href="<%=request.getContextPath()%>/UTILS/css/DELFIN.css" rel="stylesheet" type="text/css">
++    <!-- InvocaciÃ³n de Java Scripts -->
++    <script src="<%=request.getContextPath()%>/UTILS/Script/MsgValidacion.js"></script>
++    <script src="<%=request.getContextPath()%>/UTILS/Script/DELFIN-Utiles.js"></script>
++
++  <script type="text/javascript">
++        var form;
++        var path = '<%=request.getContextPath()%>';
++        var operacionEnProceso = false;
++        
++        function onLoad(){
++            form = document.frmRegistro;
++            form.txtRuta.focus();
++            document.getElementById('hidepage').style.visibility = '';
++            cargarDetalle();
++        }
++
++        function cargarDetalle(){
++            var params = '?action=MOSTRAR_TABLA';
++            params += '&time=' + new Date().getTime();
++            var url = path + '/CO_T_CargaMasivaMovil_Servlet' + params;
++            document.ifrmDetalle.location.replace(url);
++        }
++  
++        function procesar(){
++            if(!operacionEnProceso){
++                if(validar()){
++                    operacionEnProceso = true;
++                    document.getElementById('hidepage').style.visibility = '';
++                    form.submit();
++                }  
++            }else{
++                alert(m_0156);
++            }
++        }
++
++        function validar(){
++            if (form.txtRuta.value == ""){
++                alert(m_9133);
++                return false;
++            }
++            
++            var str = form.txtRuta.value.toUpperCase();
++            var extension = str.substring(str.lastIndexOf('.')+1);
++            if(extension != 'XLS'){
++                form.txtRuta.value = "";
++                alert(m_0394);
++                return false;
++            }
++            return true;
++        }
++
++
++        function salir(){
++            window.location = path + '/GENERAL/Menu.jsp';
++        }
++        
++        function respuestaMultipartOK(){
++            alert(m_0021);
++            salir();
++        }
++        
++        document.onkeydown = keyDown;
++        function keyDown(DnEvents) {
++          k = window.event.keyCode;
++          if (k == 27) {
++            salir();
++            return false;
++          }
++        }
++        
++        function cancelClick(event){
++            event = event || window.event;
++            event.preventDefault ? event.preventDefault() : event.returnValue = false;
++        }
++
++        function buscarCatalogo(nombreCombo){
++            var valor = '';
++            var valor1 ='Codigo';
++            var valor2 ='Descripcion';
++            var nombre="CATALOGOCOMBOGENERICO";
++            var params = '&nombreCombo=' + nombreCombo;
++            params += '&metodoInsertar=insertarCatalogo';
++            var url = path + "/GENERAL/Busqueda.jsp?cboValorBuscar1="+valor1+"&cboValorBuscar2="+valor2+"&txtValorBuscar="+valor+"&tabla="+nombre + params;
++            var opciones = "dialogHeight:330px;dialogWidth:670px;center:yes;help:no;resizable:no;status:no";
++            window.showModalDialog(url,window,opciones);
++        }
++
++        function insertarCatalogo(){
++        } 
++
++  </script>
++</head>
++
++<body class="colorbody" onload="onLoad();">
++    <div id="hidepage" class="hidePage" style="left: 140px; top: 50px; width: 180; height: 25; display:none">
++        <img src="<%=request.getContextPath()%>/UTILS/img/loading.gif"><br/>
++        <center>Validando Formato . . .</center>
++    </div>
++  
++  <form id="frmRegistro" name="frmRegistro" method="post" target="ifrmHidden" enctype="multipart/form-data" action="<%=request.getContextPath()%>/CO_T_CargaMasivaMovil_Servlet">
++      <input type="hidden" id="action" name="action" value="PROCESAR" />
++      <div id="wndHide" ></div>
++      <table cellpadding="0" cellspacing="0" width="100%">
++        <tr>
++          <td class="tituloopcion">
++            CARTERA COBRANZAS - CARGA MASIVA ACTIVIDADES MOVIL
++          </td>
++        </tr>
++        <tr>
++          <td height="4">
++            <img src="<%=request.getContextPath()%>/UTILS/img/t.gif" width="1" height="2">
++          </td>
++        </tr>
++      </table>
++      <table border="0" cellpadding="0" cellspacing="2" width="99.5%" align="center" >
++        <tr>
++          <td>
++            <table border="1" cellpadding="0" cellspacing="0" width="100%" align="center" class="frame">
++              <tr>
++                <td height="20" align="center">
++                  <table width="100%" cellpadding="0" cellspacing="0" border="0">
++                    <tr>
++                      <td align="left" colspan="4" valign="middle">
++                        <delfinTagHtml:boton nombre="BT_Procesar.gif" onclick="JavaScript:procesar();" />
++                        <delfinTagHtml:boton nombre="BT_Salir.gif" onclick="JavaScript:salir();" />
++                      </td>
++                    </tr>
++                  </table>
++                </td>
++              </tr>
++            </table>
++          </td>
++        </tr>
++        <tr>
++          <td height="4">
++            <img src="<%=request.getContextPath()%>/UTILS/img/t.gif" width="1" height="2">
++          </td>
++        </tr>
++        <tr>
++            <td class="tituloframe">CARGA DE ACTIVIDADES</td>
++        </tr>
++        <tr>
++          <td>
++            <table border="2" cellpadding="0" cellspacing="0" width="100%" align="center" class="frame">
++              <tr>
++                <td height="20" align="center">
++                  <table width="99%" cellpadding="0" cellspacing="2" border="0">
++                    <tr>
++                      <td class="etiqueta" align="left" valign="middle">
++                        Archivo
++                      </td>
++                      <td>
++                        <input type="file" id="txtRuta" name="txtRuta" class="campodisplayiz" onkeypress="alert('Debe usar el botÃ³n Examinar'); return false;" style="width:500px;height: 22px;" alt="Examinar"/>
++                      </td>
++                    </tr>
++                  </table>
++                </td>
++              </tr>
++            </table>
++          </td>
++        </tr>
++        <tr>
++          <td height="4">
++            <img src="<%=request.getContextPath()%>/UTILS/img/t.gif" width="1" height="2">
++          </td>
++        </tr>
++        <tr>
++            <td class="tituloframe">CABECERAS COLUMNAS EXCEL</td>
++        </tr>
++        <tr>
++          <td class="tituloframe" align="top" >
++            <table border="0" cellpadding="2" cellspacing="2" width="100%" height="100%" align="center" class="">
++              <tr>
++                <td>
++                  <iframe frameborder="0" width="100%" height="240px" id="ifrmDetalle" name="ifrmDetalle" class="frame" src="<%=request.getContextPath()%>/FINANCIERO/cobranzas/carteraCobranza/cargaMasiva/CO_C_CarteraCobranzaCargaMasiva_TABLA.jsp">
++                  </iframe>
++                </td>
++              </tr>
++            </table>
++          </td>
++        </tr>
++      </table>
++      <table cellpadding="0" cellspacing="0" align="center">
++        <tr>
++          <td height="10">
++            <img src="<%=request.getContextPath()%>/UTILS/img/t.gif" width="1" height="2">
++          </td>
++        </tr>
++      </table>
++      <%@ include file="/GENERAL/Header.jsp" %>
++  </form>
++    <iframe id="ifrmHidden" name="ifrmHidden" style="display: none"></iframe>
++</body>
++</html>
++
+diff --git a/DELFINWEBNEW/WebRoot/FINANCIERO/cobranzas/carteraCobranza/cargaMasiva/CO_T_CargaMasivaMovil_TABLA.jsp b/DELFINWEBNEW/WebRoot/FINANCIERO/cobranzas/carteraCobranza/cargaMasiva/CO_T_CargaMasivaMovil_TABLA.jsp
+new file mode 100644
+index 0000000..8787d92
+--- /dev/null
++++ b/DELFINWEBNEW/WebRoot/FINANCIERO/cobranzas/carteraCobranza/cargaMasiva/CO_T_CargaMasivaMovil_TABLA.jsp
+@@ -0,0 +1,128 @@
++<!-- CO_T_CargaMasivaMovil_TABLA.jsp -->
++<%-- [] rsanchez 26.04.2017 --%>
++<jsp:directive.page import="general.utils.Paginacion" />
++<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
++<%@ taglib prefix='fmt' uri='http://java.sun.com/jstl/fmt'%>
++<%
++    String path =request.getContextPath();
++%>
++<html>
++    <head>
++        <!-- Invocación de Estilos -->
++        <link id="css" href="<%=path%>/UTILS/css/DELFIN.css" rel="stylesheet" type="text/css">
++        <!-- InvocaciÃ³n de JavaScript -->
++        <script src="<%=path%>/UTILS/Script/grid.js"></script>
++        <script src="<%=path%>/UTILS/Script/MsgValidacion.js"></script>
++        <script src="<%=path%>/UTILS/Script/DELFIN-Utiles.js"></script>
++        <style>
++            .active-controls-grid {width: "100%"; height: 100%; font: menu;}
++            .active-column-0 {width: 120px;text-align: left;}
++            .active-column-1  {width: 250px;text-align: left;}
++            .active-column-2  {width: 75px;text-align: center;}
++            .active-column-3  {width: 110px;text-align: left;}
++
++            .active-grid-column {border-right: 1px solid threedlightshadow; }
++            .active-grid-row {border-bottom: 1px solid threedlightshadow; }
++        </style>
++    </head>
++    <body onload="onload();" TOPMARGIN=0 LEFTMARGIN=0 MARGINHEIGHT=0 MARGINWIDTH=0>
++        <script>
++
++        var path;
++        function onload(){
++          path = '<%=path%>';
++          parent.mensajeRespuesta('<c:out value="${codigoError}" />', '<c:out value="${mensajeError}" />');
++          setFoco();
++        }
++
++        var posini;
++        var posfin;
++        var indice = '0';
++        var myData = [<c:out value="${myData}" escapeXml="false"/>];
++
++        var myColumns = ["Columna",
++                         "DescripciÃ³n", 
++                         "Valores"];
++
++        //  create ActiveWidgets Grid javascript object
++        var obj = new Active.Controls.Grid;
++
++        obj.setId("obj");
++        // grid header
++        obj.gridColumn = myColumns;
++        // grid data
++        obj.gridData = myData;
++        //  header methods
++        obj.getColumnCount = function() {return this.gridColumn.length};
++        obj.getColumnText = function(i){return this.gridColumn[i]};
++        //  data methods
++        obj.getDataCount = function() {return this.gridData.length};
++        obj.getDataText = function(i, j){return this.gridData[i][j]};
++        obj.setDataText = function(value, i, j){this.gridData[i][j] = value};
++
++        obj.setRowHeaderWidth("28px");
++        obj.setColumnHeaderHeight("20px");
++
++        var row = new Active.Templates.Row; 
++        row.setEvent("ondblclick", function(){this.action("myAction")});
++        obj.setTemplate("row", row);
++        obj.setAction("myAction", function(src){
++            
++        });
++        //Evento Focus de la grilla 
++        obj.setAction("selectionChanged", mySelect);
++
++        //Evento que reconoce la tecla ENTER
++        var defaultEventHandler = obj.getEvent("onkeydown");
++        var myEventHandler = function(event){
++            if(event.keyCode==13){
++                //
++            }else if(event.keyCode==27){
++                parent.parent.salir();
++                event.returnValue = false;
++            }else if (event.keyCode == 8)event.returnValue = backspace();//Cancela Backspace
++            else if (event.keyCode == 112)parent.ayuda();//F1 ACERCA DE...
++            else if (event.ctrlKey){//Cancela Control
++                event.keyCode = 0;
++                event.returnValue = false; 
++            }else if (window.event && (event.keyCode == 114 || event.keyCode == 116 ||
++                event.keyCode == 117 || event.keyCode == 122)){//Cancela F3,F5,F6 y F11
++                event.keyCode = 505;
++                if(event.keyCode == 505)event.returnValue = false;  
++            }else
++                defaultEventHandler.call(this, event);
++        }
++        obj.setEvent("onkeydown", myEventHandler);
++
++        //Pintado de la grilla
++        document.write(obj);
++
++        function setFoco() {
++            try{
++              if(myData.length == 0){
++                parent.nuevo();
++              }
++              if(myData.length > eval(indice) && indice > -1){
++                  obj.setSelectionIndex(eval(indice));
++              }else if(myData.length > 0){
++                  obj.setSelectionIndex(0);
++              }
++            }catch(error){
++            }
++        }
++        
++        function NumerodeFilas() {
++            return obj.getRowProperty("values").length;
++        }
++
++        function getTableIndex() {
++            return obj.getProperty("selection/index");
++        }
++
++        function mySelect(){
++
++        }
++
++    </script>
++    </body>
++</html>
+\ No newline at end of file
+diff --git a/DELFINWEBNEW/WebRoot/FINANCIERO/cobranzas/carteraCobranza/cargaMasiva/CO_T_CarteraCobranzaCargaMasiva_CNTR.jsp b/DELFINWEBNEW/WebRoot/FINANCIERO/cobranzas/carteraCobranza/cargaMasiva/CO_T_CarteraCobranzaCargaMasiva_CNTR.jsp
+index adcb4a8..b508ab2 100644
+--- a/DELFINWEBNEW/WebRoot/FINANCIERO/cobranzas/carteraCobranza/cargaMasiva/CO_T_CarteraCobranzaCargaMasiva_CNTR.jsp
++++ b/DELFINWEBNEW/WebRoot/FINANCIERO/cobranzas/carteraCobranza/cargaMasiva/CO_T_CarteraCobranzaCargaMasiva_CNTR.jsp
+@@ -102,6 +102,15 @@
+         function insertarCatalogo(){
+         } 
+ 
++        
++        function entel(){
++        	var params = '?action=MOSTRAR_CONTENEDOR';
++	            params += '&time=' + (new Date()).getTime();
++	        var url = path + '/CO_T_CargaMasivaMovil_Servlet' + params;
++	        var attribs = 'dialogHeight:500px;dialogWidth:700px; center:yes; help:no; resizable:no; status:no';
++	        window.showModalDialog(url, window, attribs);
++        }
++
+   </script>
+ </head>
+ 
+@@ -137,6 +146,7 @@
+                       <td align="left" colspan="4" valign="middle">
+                         <delfinTagHtml:boton nombre="BT_Procesar.gif" onclick="JavaScript:procesar();" />
+                         <delfinTagHtml:boton nombre="BT_Salir.gif" onclick="JavaScript:salir();" />
++                        <delfinTagHtml:boton nombre="BT_Procesar.gif" onclick="JavaScript:entel();" />
+                       </td>
+                     </tr>
+                   </table>
+diff --git a/DELFINWEBNEW/WebRoot/WEB-INF/web.xml b/DELFINWEBNEW/WebRoot/WEB-INF/web.xml
+index f37556e..40224ed 100644
+--- a/DELFINWEBNEW/WebRoot/WEB-INF/web.xml
++++ b/DELFINWEBNEW/WebRoot/WEB-INF/web.xml
+@@ -24860,14 +24860,17 @@
+         <url-pattern>/CJ_C_DetalleViaticos_Servlet</url-pattern>
+     </servlet-mapping>
+     <!-- Fin [Req.17-019] -->
+-    <!-- Inicio [Req.17-025] gmeza 09.05.2017 -->
++    <!-- Inicio [S17-029] rsanchez 12.05.2017 -->
+     <servlet>
+-       <servlet-name>CO_C_ScoringCobranzas_Servlet</servlet-name>
+-       <servlet-class>financ.cobranzas.scoringCobranzas.servlets.CO_C_ScoringCobranzas_Servlet</servlet-class>
++        <description>
++        </description>
++        <display-name>CO_T_CargaMasivaMovil_Servlet</display-name>
++        <servlet-name>CO_T_CargaMasivaMovil_Servlet</servlet-name>
++        <servlet-class>financ.cobranzas.carteraCobranza.cargaMasiva.servlets.CO_T_CargaMasivaMovil_Servlet</servlet-class>
+     </servlet>
+     <servlet-mapping>
+-        <servlet-name>CO_C_ScoringCobranzas_Servlet</servlet-name>
+-        <url-pattern>/CO_C_ScoringCobranzas_Servlet</url-pattern>
++        <servlet-name>CO_T_CargaMasivaMovil_Servlet</servlet-name>
++        <url-pattern>/CO_T_CargaMasivaMovil_Servlet</url-pattern>
+     </servlet-mapping>
+-    <!-- Fin [Req.17-025] -->
++    <!-- Fin [S17-029] -->
+ </web-app>
+diff --git a/DELFINWEBNEW/src/financ/cobranzas/carteraCobranza/cargaMasiva/servlets/CO_T_CargaMasivaMovil_Servlet.java b/DELFINWEBNEW/src/financ/cobranzas/carteraCobranza/cargaMasiva/servlets/CO_T_CargaMasivaMovil_Servlet.java
+new file mode 100644
+index 0000000..b5978bb
+--- /dev/null
++++ b/DELFINWEBNEW/src/financ/cobranzas/carteraCobranza/cargaMasiva/servlets/CO_T_CargaMasivaMovil_Servlet.java
+@@ -0,0 +1,130 @@
++package financ.cobranzas.carteraCobranza.cargaMasiva.servlets;
++
++import java.util.ArrayList;
++import java.util.List;
++
++import admin.util.ConstantesErrores;
++import financ.cobranzas.carteraCobranza.cargaMasivaMovil.beans.BeanCOCargaMasivaMovil;
++import financ.cobranzas.carteraCobranza.cargaMasivaMovil.facade.COCargaMasivaMovilFacade;
++import financ.cobranzas.carteraCobranza.cargaMasivaMovil.local.COCargaMasivaMovilFacadeInterfaceLocal;
++import general.servlets.GE_BaseMethodInvocation_Servlet;
++import pe.com.tfc.utils.ErrorControladoException;
++import pe.com.tfc.utils.FormFile;
++import pe.com.tfc.utils.GenericBean;
++import pe.com.tfc.utils.RequestMapping;
++import pe.com.tfc.utils.imports.Importer;
++import pe.com.tfc.utils.imports.impl.ImporterXLS;
++
++/**
++ * CO_T_CargaMasivaMovil_Servlet
++ * 
++ * @autor rsanchez
++ * @since [S17-029] 12.05.2017
++ */
++
++public class CO_T_CargaMasivaMovil_Servlet extends GE_BaseMethodInvocation_Servlet{
++    
++    private static final long serialVersionUID = -3158211527718225410L;
++    private static final String PATH_CARGA_MASIVA_MOVIL = "/FINANCIERO/cobranzas/carteraCobranza/cargaMasiva/";
++    private static final String URL_MOSTRAR_CONTENEDOR = PATH_CARGA_MASIVA_MOVIL + "CO_T_CargaMasivaMovil_CNTR.jsp";
++    private static final String URL_MOSTRAR_TABLA = PATH_CARGA_MASIVA_MOVIL + "CO_T_CargaMasivaMovil_TABLA.jsp";
++
++    private COCargaMasivaMovilFacadeInterfaceLocal coCargaMasivaMovilFacadeInterfaceLocal;
++
++    protected void initEJBs() throws Exception {
++        coCargaMasivaMovilFacadeInterfaceLocal = lookup(COCargaMasivaMovilFacade.LocalJNDIName);
++    }
++
++    @Override
++    protected void execute(ServletParams servletParams) throws Exception {
++    }
++
++    @RequestMapping(value = "MOSTRAR_CONTENEDOR", url = URL_MOSTRAR_CONTENEDOR)
++    protected void mostrarContenedor(ServletParams servletParams) throws Exception {
++        forward(servletParams);
++    }
++
++    @RequestMapping(value = "MOSTRAR_TABLA", url = URL_MOSTRAR_TABLA)
++    protected void mostrarTabla(ServletParams servletParams) throws Exception {
++        List<GenericBean> lstGenericBeans = new ArrayList<GenericBean>();
++
++        addProperty(lstGenericBeans, "Columna A", "Número de Crédito", "", CADENA_VACIA);
++        addProperty(lstGenericBeans, "Columna B", "Nombre del Cliente", "", CADENA_VACIA);
++        addProperty(lstGenericBeans, "Columna C", "Código de Actividad", "", CADENA_VACIA);
++        addProperty(lstGenericBeans, "Columna D", "Tipo de Actividad", "", CADENA_VACIA);
++        addProperty(lstGenericBeans, "Columna E", "Descripción Actividad", "", CADENA_VACIA);
++        addProperty(lstGenericBeans, "Columna F", "Código de Gestor", "", CADENA_VACIA);
++        addProperty(lstGenericBeans, "Columna G", "Fecha y hora de Gestión", "", CADENA_VACIA);
++        addProperty(lstGenericBeans, "Columna H", "Motivo No Visita", "", "OPCIONAL");
++        addProperty(lstGenericBeans, "Columna I", "Latitud", "", "OPCIONAL");
++        addProperty(lstGenericBeans, "Columna J", "Longitud", "", "OPCIONAL");
++        addProperty(lstGenericBeans, "Columna K", "Nombre Item Estado", "", CADENA_VACIA);
++        addProperty(lstGenericBeans, "Columna L", "Valor Item Estado", "", "OPC ESPECIAL");
++
++        StringBuilder sbMyData = new StringBuilder();
++        GenericBean genericBean;
++        String strBoton;
++        for (int i = 0; i < lstGenericBeans.size(); i++) {
++            genericBean = lstGenericBeans.get(i);
++
++            if (!_isEmpty(genericBean.getPropertyString("metodo"))) {
++                strBoton = "<img id='img' style='cursor:hand' title='Mostrar Catalogo' src='" + servletParams.getRequest().getContextPath() + "/UTILS/img/Detalle.gif' onclick=parent." + genericBean.getPropertyString("metodo") + ">";
++            //Inicio [CC17-026] gmeza 28.02.2017    
++            } else if(!_isEmpty(genericBean.getPropertyString("valores"))){
++                strBoton = genericBean.getPropertyString("valores");
++            //Fin [CC17-026]
++            } else {
++                strBoton = CADENA_VACIA;
++            }
++        
++            sbMyData.append("[");
++
++            sbMyData.append("\"" + _toBlankObject(genericBean.getPropertyString("columna")) + "\",");
++            sbMyData.append("\"" + _toBlankObject(genericBean.getPropertyString("descripcion")) + "\",");
++            sbMyData.append("\"" + _toBlankObject(strBoton) + "\"");
++
++            sbMyData.append("]");
++
++            if ((i < lstGenericBeans.size() - 1)) {
++                sbMyData.append(",");
++            }
++        }
++
++        setRequestAttribute(servletParams, "myData", sbMyData.toString());
++        forward(servletParams);
++    }
++
++    private void addProperty(List<GenericBean> lstGenericBeans, String columna, String descripcion, String metodo, String valores) {
++        GenericBean genericBean = new GenericBean();
++        genericBean.addProperty("columna", columna);
++        genericBean.addProperty("descripcion", descripcion);
++        genericBean.addProperty("metodo", metodo);
++        genericBean.addProperty("valores", valores);
++        lstGenericBeans.add(genericBean);
++    }
++
++    @RequestMapping(value = "PROCESAR", url = URL_RESPUESTA_MULTIPART)
++    protected void procesarHandler(ServletParams servletParams) throws Exception {
++        FormFile formFile = getRequestAttribute(servletParams, "txtRuta", FormFile.class);
++        GenericBean genericBean = new GenericBean();
++        Importer<BeanCOCargaMasivaMovil> importer = new ImporterXLS<BeanCOCargaMasivaMovil>(BeanCOCargaMasivaMovil.class);
++        importer.setInitLineNumber(2);
++        List<BeanCOCargaMasivaMovil> lstBeanCOCargaMasivaMovil = (ArrayList<BeanCOCargaMasivaMovil>) importer.importar(formFile.getBytes());
++
++        if (!_isEmpty(importer.getListValidations())) {
++            throw exceptionImporterValidations(servletParams, importer.getListValidations());
++        }
++
++        if (_isEmpty(lstBeanCOCargaMasivaMovil)) {
++            throw new ErrorControladoException(ConstantesErrores.ERROR_1585);
++        }
++
++        coCargaMasivaMovilFacadeInterfaceLocal.enviar(lstBeanCOCargaMasivaMovil,
++                                                      genericBean,
++                                                      getBeanParametrosAuditoria(servletParams));
++
++        setRequestAttribute(servletParams, "codigoError", NO_ERROR);
++        forward(servletParams);
++    }
++
++}
+diff --git a/DELFINWEBNEW/src/financ/cobranzas/servlets/CO_C_ReferenciaDomiciliaria_Servlet.java b/DELFINWEBNEW/src/financ/cobranzas/servlets/CO_C_ReferenciaDomiciliaria_Servlet.java
+index ff78fbc..e9f4184 100644
+--- a/DELFINWEBNEW/src/financ/cobranzas/servlets/CO_C_ReferenciaDomiciliaria_Servlet.java
++++ b/DELFINWEBNEW/src/financ/cobranzas/servlets/CO_C_ReferenciaDomiciliaria_Servlet.java
+@@ -116,7 +116,11 @@
+ 					myData.append("[");
+ 					myData.append(bean.getNombreContacto() == null ? "\"\",": "\"" + bean.getNombreContacto().toUpperCase() + "\",");
+ 					myData.append(bean.getClTipoDireccion() == null ? "\"\",": "\"" + bean.getClTipoDireccion() + "\",");
+-					myData.append(bean.getDireccion() == null ? "\"\"": "\"" + bean.getDireccion().toUpperCase() + "\"");
++					//Inicio [S17-029] rsanchez 12.05.2017
++					myData.append(bean.getDireccion() == null ? "\"\",": "\"" + bean.getDireccion().toUpperCase() + "\",");
++					myData.append(bean.getCodigoActividad() == null ? "\"\",": "\"" + bean.getCodigoActividad() + "\",");
++					myData.append(bean.getCodigoActividad() == null ? "\"DELFIN\"": "\"ENTEL\"");
++					//Fin [S17-029]
+ 					myData.append("]");
+ 	
+ 					if (i < lstBeanCOReferenciaDomiciliaria.size() - 1)
+@@ -139,6 +143,7 @@
+ 			session.setAttribute("total", total + "");
+ 			session.setAttribute("fin", fin);
+ 			session.setAttribute("hid_pagina", hid_pagina);
++			
+ 			session.setAttribute("listadoReferenciaDomiciliaria", myData.toString());
+ 			
+ 		} catch (Exception e) {
+diff --git a/DELFINWEBNEW/src/financ/cobranzas/servlets/CO_C_ReferenciasTelefonicas_Servlet.java b/DELFINWEBNEW/src/financ/cobranzas/servlets/CO_C_ReferenciasTelefonicas_Servlet.java
+index 8ffb897..dd7738b 100644
+--- a/DELFINWEBNEW/src/financ/cobranzas/servlets/CO_C_ReferenciasTelefonicas_Servlet.java
++++ b/DELFINWEBNEW/src/financ/cobranzas/servlets/CO_C_ReferenciasTelefonicas_Servlet.java
+@@ -118,7 +118,11 @@
+ 					myData.append(bean.getClTipoRelacionFamiliar() == null ? "\"\",": "\"" + bean.getClTipoRelacionFamiliar() + "\",");
+ 					myData.append(bean.getActividadEconomica() == null ? "\"\",": "\"" + bean.getActividadEconomica().toUpperCase() + "\",");
+ 					myData.append(bean.getClTipoTelefono() == null ? "\"\",": "\"" + bean.getClTipoTelefono()+ "\",");
+-					myData.append(bean.getNumeroTelefono() == null ? "\"\"": "\"" + bean.getNumeroTelefono() + "\"");
++					//Inicio [S17-029] rsanchez 12.05.2017
++					myData.append(bean.getNumeroTelefono() == null ? "\"\",": "\"" + bean.getNumeroTelefono()+ "\",");
++					myData.append(bean.getCodigoActividad() == null ? "\"\",": "\"" + bean.getCodigoActividad()+ "\",");
++					myData.append(bean.getCodigoActividad() == null ? "\"DELFIN\"": "\"ENTEL\"");
++					//Fin [S17-029]
+ 					myData.append("]");
+ 	
+ 					if (i < lstBeanCOReferenciaTelefonica.size() - 1)
+diff --git a/DELFINWEBNEW/src/financ/cobranzas/servlets/CO_C_RegistroGestionCobranza_Servlet.java b/DELFINWEBNEW/src/financ/cobranzas/servlets/CO_C_RegistroGestionCobranza_Servlet.java
+index d79680b..8adf14c 100644
+--- a/DELFINWEBNEW/src/financ/cobranzas/servlets/CO_C_RegistroGestionCobranza_Servlet.java
++++ b/DELFINWEBNEW/src/financ/cobranzas/servlets/CO_C_RegistroGestionCobranza_Servlet.java
+@@ -129,7 +129,14 @@
+ 						myData.append(bean.getNombrePariente() == null ? "\"\",": "\"" + bean.getNombrePariente()+ "\",");
+ 						//Fin [CC17-026]
+ 						myData.append(bean.getPosibilidadCobro() != null ? "\""+ bean.getPosibilidadCobro()+ "\","	: "\"\",");
+-						myData.append(bean.getAptoIncautacion() != null ? "\""+ bean.getAptoIncautacion()+ "\""	: "\"\"");
++						myData.append(bean.getAptoIncautacion() != null ? "\""+ bean.getAptoIncautacion()+ "\","	: "\"\",");
++						//Inicio [S17-029] rsanchez 03.05.2017
++						myData.append(bean.getCodigoActividad() != null ? "\"" + bean.getCodigoActividad() + "\"," : "\"\",");
++						myData.append(bean.getCodigoTipoActividad() != null ? "\"" + bean.getCodigoTipoActividad() + "\"," : "\"\",");
++						myData.append(bean.getFoto() != null ? "\"" + bean.getFoto() + "\"," : "\"\",");
++						myData.append(bean.getMotivoNoVisita() != null ? "\"" + bean.getMotivoNoVisita() + "\"," : "\"\",");
++						myData.append(bean.getCodigoActividad() != null ? "\"ENTEL\"," : "\"DELFIN\"");
++						//Fin [S17-029]
+ 						myData.append("]");
+ 		
+ 						if (i < lstBeanCORegistroGestionCobranza.size() - 1)
+diff --git a/FINANCIERONEW/src/financ/cobranzas/beans/BeanCOReferenciaDomiciliaria.java b/FINANCIERONEW/src/financ/cobranzas/beans/BeanCOReferenciaDomiciliaria.java
+index eeff7cb..62f7226 100644
+--- a/FINANCIERONEW/src/financ/cobranzas/beans/BeanCOReferenciaDomiciliaria.java
++++ b/FINANCIERONEW/src/financ/cobranzas/beans/BeanCOReferenciaDomiciliaria.java
+@@ -36,6 +36,9 @@
+     private String terminalModificacion;
+     private String ipModificacion;
+     private Long canReg;
++    //[S17-029] rsanchez 12.05.2017
++    private String codigoActividad;
++    
+ 	public String getIdReferenciaDomiciliaria() {
+ 		return idReferenciaDomiciliaria;
+ 	}
+@@ -174,5 +177,13 @@
+ 	public void setCanReg(Long canReg) {
+ 		this.canReg = canReg;
+ 	}
+-
++	//Inicio [S17-029] rsanchez 12.05.2017
++    public String getCodigoActividad() {
++        return codigoActividad;
++    }
++    
++    public void setCodigoActividad(String codigoActividad) {
++        this.codigoActividad = codigoActividad;
++    }
++    //Fin [S17-029]
+ }
+diff --git a/FINANCIERONEW/src/financ/cobranzas/beans/BeanCOReferenciaTelefonica.java b/FINANCIERONEW/src/financ/cobranzas/beans/BeanCOReferenciaTelefonica.java
+index 6d54d92..5f97de0 100644
+--- a/FINANCIERONEW/src/financ/cobranzas/beans/BeanCOReferenciaTelefonica.java
++++ b/FINANCIERONEW/src/financ/cobranzas/beans/BeanCOReferenciaTelefonica.java
+@@ -35,6 +35,9 @@
+     private String terminalModificacion;
+     private String ipModificacion;
+     private Long canReg;
++    //[S17-029] rsanchez 12.05.2017
++    private String codigoActividad;
++    
+ 	public String getIdReferenciaTelefonica() {
+ 		return idReferenciaTelefonica;
+ 	}
+@@ -167,4 +170,17 @@
+ 	public void setCanReg(Long canReg) {
+ 		this.canReg = canReg;
+ 	}
++    
++	//Inicio [S17-029] rsanchez 12.05.2017
++    
++    public String getCodigoActividad() {
++        return codigoActividad;
++    }
++    
++    public void setCodigoActividad(String codigoActividad) {
++        this.codigoActividad = codigoActividad;
++    }
++    
++    //Fin [S17-029]
++	
+ }
+diff --git a/FINANCIERONEW/src/financ/cobranzas/beans/BeanCORegistroGestionCobranza.java b/FINANCIERONEW/src/financ/cobranzas/beans/BeanCORegistroGestionCobranza.java
+index da0ddaa..15ab177 100644
+--- a/FINANCIERONEW/src/financ/cobranzas/beans/BeanCORegistroGestionCobranza.java
++++ b/FINANCIERONEW/src/financ/cobranzas/beans/BeanCORegistroGestionCobranza.java
+@@ -53,6 +53,18 @@
+ 	private String ipModificacion;
+ 	private Long canReg;
+ 	private String numeroCuentaCredito;
++	//Inicio [S17-029] rsanchez 12.05.2017
++	private String codigoActividad;
++	private String codigoTipoActividad;
++	private String latitud;
++	private String longitud;
++	private String foto;
++	private String tipoDireccionVisitada;
++	private String motivoNoVisita;
++	private String NombreEstado;
++	private BeanCOReferenciaDomiciliaria beanCOReferenciaDomiciliaria;
++	private BeanCOReferenciaTelefonica beanCOReferenciaTelefonica;
++	//Fin [S17-029]
+ 	
+ 	public Long getCanReg() {
+ 		return canReg;
+@@ -284,4 +296,85 @@
+         this.descripcionParentesco = descripcionParentesco;
+     }
+     //Fin [CC17-026]
++    //Inicio [S17-029] rsanchez 12.05.2017
++    public String getCodigoActividad() {
++        return codigoActividad;
++    }
++    
++    public void setCodigoActividad(String codigoActividad) {
++        this.codigoActividad = codigoActividad;
++    }
++    
++    public String getCodigoTipoActividad() {
++        return codigoTipoActividad;
++    }
++    
++    public void setCodigoTipoActividad(String codigoTipoActividad) {
++        this.codigoTipoActividad = codigoTipoActividad;
++    }
++    
++    public String getLatitud() {
++        return latitud;
++    }
++    
++    public void setLatitud(String latitud) {
++        this.latitud = latitud;
++    }
++    
++    public String getLongitud() {
++        return longitud;
++    }
++    
++    public void setLongitud(String longitud) {
++        this.longitud = longitud;
++    }
++    
++    public String getFoto() {
++        return foto;
++    }
++    
++    public void setFoto(String foto) {
++        this.foto = foto;
++    }
++    
++    public String getTipoDireccionVisitada() {
++        return tipoDireccionVisitada;
++    }
++    
++    public void setTipoDireccionVisitada(String tipoDireccionVisitada) {
++        this.tipoDireccionVisitada = tipoDireccionVisitada;
++    }
++    
++    public String getMotivoNoVisita() {
++        return motivoNoVisita;
++    }
++    
++    public void setMotivoNoVisita(String motivoNoVisita) {
++        this.motivoNoVisita = motivoNoVisita;
++    }
++    
++    public String getNombreEstado() {
++        return NombreEstado;
++    }
++    
++    public void setNombreEstado(String nombreEstado) {
++        NombreEstado = nombreEstado;
++    }
++    
++    public BeanCOReferenciaDomiciliaria getBeanCOReferenciaDomiciliaria() {
++        return beanCOReferenciaDomiciliaria;
++    }
++    
++    public void setBeanCOReferenciaDomiciliaria(BeanCOReferenciaDomiciliaria beanCOReferenciaDomiciliaria) {
++        this.beanCOReferenciaDomiciliaria = beanCOReferenciaDomiciliaria;
++    }
++    
++    public BeanCOReferenciaTelefonica getBeanCOReferenciaTelefonica() {
++        return beanCOReferenciaTelefonica;
++    }
++    
++    public void setBeanCOReferenciaTelefonica(BeanCOReferenciaTelefonica beanCOReferenciaTelefonica) {
++        this.beanCOReferenciaTelefonica = beanCOReferenciaTelefonica;
++    }
++    //Fin [S17-029]
+ }
+diff --git a/FINANCIERONEW/src/financ/cobranzas/carteraCobranza/cargaMasiva/mdb/COCarteraCobranzaCargaMasivaMDB.java b/FINANCIERONEW/src/financ/cobranzas/carteraCobranza/cargaMasiva/mdb/COCarteraCobranzaCargaMasivaMDB.java
+index ecf3b78..77bccff 100644
+--- a/FINANCIERONEW/src/financ/cobranzas/carteraCobranza/cargaMasiva/mdb/COCarteraCobranzaCargaMasivaMDB.java
++++ b/FINANCIERONEW/src/financ/cobranzas/carteraCobranza/cargaMasiva/mdb/COCarteraCobranzaCargaMasivaMDB.java
+@@ -11,12 +11,12 @@
+ import javax.jms.MessageListener;
+ import javax.jms.ObjectMessage;
+ 
++import admin.contab.beans.BeanParametrosAuditoria;
++import admin.email.beans.BeanMensajeriaHandlerProcess;
+ import financ.cobranzas.carteraCobranza.cargaMasiva.beans.BeanCRCarteraAsignacionCobranzaExcel;
+ import financ.cobranzas.carteraCobranza.cargaMasiva.local.COCarteraCobranzaCargaMasivaFacadeInterfaceLocal;
+ import pe.com.tfc.utils.GenericBean;
+ import pe.com.tfc.utils.StringUtil;
+-import admin.contab.beans.BeanParametrosAuditoria;
+-import admin.email.beans.BeanMensajeriaHandlerProcess;
+ 
+ /**
+  * COCarteraCobranzaCargaMasivaMDB
+diff --git a/FINANCIERONEW/src/financ/cobranzas/carteraCobranza/cargaMasivaMovil/beans/BeanCOCargaMasivaMovil.java b/FINANCIERONEW/src/financ/cobranzas/carteraCobranza/cargaMasivaMovil/beans/BeanCOCargaMasivaMovil.java
+new file mode 100644
+index 0000000..bd0d1e8
+--- /dev/null
++++ b/FINANCIERONEW/src/financ/cobranzas/carteraCobranza/cargaMasivaMovil/beans/BeanCOCargaMasivaMovil.java
+@@ -0,0 +1,177 @@
++package financ.cobranzas.carteraCobranza.cargaMasivaMovil.beans;
++
++import java.io.Serializable;
++import java.util.Date;
++
++import admin.contab.entity.CBUsuario;
++import financ.clientes.entity.CLPersonas;
++import financ.creditos.entity.CRCuentaCredito;
++import pe.com.tfc.utils.imports.annotations.ImporterProperty;
++
++/**
++ * BeanCOCargaMasivaMovil
++ * 
++ * @autor rsanchez
++ * @since [Req.S17-029] 12.05.2017
++ */
++
++public class BeanCOCargaMasivaMovil implements Serializable{
++
++    private static final long serialVersionUID = -1238595069030470571L;
++    
++    @ImporterProperty(position = 1, optional = false, length = 15, description = "NÃºmero de CrÃ©dito")
++    private String numeroCredito;
++    @ImporterProperty(position = 2, optional = false, description = "Nombre de Cliente")
++    private String nombreCliente;
++    @ImporterProperty(position = 3, optional = false, description = "Codigo Actividad")
++    private String codigoActividad;
++    @ImporterProperty(position = 4, optional = false, description = "Codigo Tipo de Actividad")
++    private String codigoTipoActividad;
++    @ImporterProperty(position = 5, optional = false, description = "Nombre de Estado")
++    private String nombreEstado;
++    @ImporterProperty(position = 6, optional = false, description = "Nombre de Gestor")
++    private String nombreGestor;
++    @ImporterProperty(position = 7, optional = false, description = "Fecha de GestiÃ³n")
++    private Date fechaGestion;
++    @ImporterProperty(position = 8, optional = true, description = "Motivo No Visita")
++    private String motivoNoVisita;
++    @ImporterProperty(position = 9, optional = true, description = "Latitud")
++    private String latitud;
++    @ImporterProperty(position = 10, optional = true, description = "Longitud")
++    private String longitud;
++    @ImporterProperty(position = 11, optional = false, description = "Descripcion Item Estado")
++    private String itemEstado;
++    @ImporterProperty(position = 12, optional = true, description = "Valor Item Estado")
++    private String valorItemEstado;
++    
++    private CRCuentaCredito cuentaCredito;
++    private CLPersonas cliente;
++    private CBUsuario usuarioGestor;
++    
++    public String getNumeroCredito() {
++        return numeroCredito;
++    }
++    
++    public void setNumeroCredito(String numeroCredito) {
++        this.numeroCredito = numeroCredito;
++    }
++    
++    public String getNombreCliente() {
++        return nombreCliente;
++    }
++    
++    public void setNombreCliente(String nombreCliente) {
++        this.nombreCliente = nombreCliente;
++    }
++    
++    public String getCodigoActividad() {
++        return codigoActividad;
++    }
++    
++    public void setCodigoActividad(String codigoActividad) {
++        this.codigoActividad = codigoActividad;
++    }
++    
++    public String getCodigoTipoActividad() {
++        return codigoTipoActividad;
++    }
++    
++    public void setCodigoTipoActividad(String codigoTipoActividad) {
++        this.codigoTipoActividad = codigoTipoActividad;
++    }
++    
++    public String getNombreEstado() {
++        return nombreEstado;
++    }
++    
++    public void setNombreEstado(String nombreEstado) {
++        this.nombreEstado = nombreEstado;
++    }
++    
++    public String getNombreGestor() {
++        return nombreGestor;
++    }
++    
++    public void setNombreGestor(String nombreGestor) {
++        this.nombreGestor = nombreGestor;
++    }
++    
++    public Date getFechaGestion() {
++        return fechaGestion;
++    }
++    
++    public void setFechaGestion(Date fechaGestion) {
++        this.fechaGestion = fechaGestion;
++    }
++    
++    public String getMotivoNoVisita() {
++        return motivoNoVisita;
++    }
++    
++    public void setMotivoNoVisita(String motivoNoVisita) {
++        this.motivoNoVisita = motivoNoVisita;
++    }
++    
++    public String getLatitud() {
++        return latitud;
++    }
++    
++    public void setLatitud(String latitud) {
++        this.latitud = latitud;
++    }
++    
++    public String getLongitud() {
++        return longitud;
++    }
++    
++    public void setLongitud(String longitud) {
++        this.longitud = longitud;
++    }
++    
++    public String getItemEstado() {
++        return itemEstado;
++    }
++    
++    public void setItemEstado(String itemEstado) {
++        this.itemEstado = itemEstado;
++    }
++    
++    public String getValorItemEstado() {
++        return valorItemEstado;
++    }
++    
++    public void setValorItemEstado(String valorItemEstado) {
++        this.valorItemEstado = valorItemEstado;
++    }
++
++    
++    public CRCuentaCredito getCuentaCredito() {
++        return cuentaCredito;
++    }
++
++    
++    public void setCuentaCredito(CRCuentaCredito cuentaCredito) {
++        this.cuentaCredito = cuentaCredito;
++    }
++
++    
++    public CLPersonas getCliente() {
++        return cliente;
++    }
++
++    
++    public void setCliente(CLPersonas cliente) {
++        this.cliente = cliente;
++    }
++
++    
++    public CBUsuario getUsuarioGestor() {
++        return usuarioGestor;
++    }
++
++    
++    public void setUsuarioGestor(CBUsuario usuarioGestor) {
++        this.usuarioGestor = usuarioGestor;
++    }
++    
++}
+diff --git a/FINANCIERONEW/src/financ/cobranzas/carteraCobranza/cargaMasivaMovil/facade/COCargaMasivaMovilFacade.java b/FINANCIERONEW/src/financ/cobranzas/carteraCobranza/cargaMasivaMovil/facade/COCargaMasivaMovilFacade.java
+new file mode 100644
+index 0000000..de47183
+--- /dev/null
++++ b/FINANCIERONEW/src/financ/cobranzas/carteraCobranza/cargaMasivaMovil/facade/COCargaMasivaMovilFacade.java
+@@ -0,0 +1,389 @@
++package financ.cobranzas.carteraCobranza.cargaMasivaMovil.facade;
++
++import java.util.ArrayList;
++import java.util.List;
++
++import javax.ejb.EJB;
++import javax.ejb.Stateless;
++
++import admin.contab.beans.BeanParametrosAuditoria;
++import admin.contab.beans.BeanParametrosLog;
++import admin.contab.entity.CBCatalogoComboGenerico;
++import admin.contab.entity.CBUsuario;
++import admin.contab.local.CBCatalogoComboGenericoInterfaceLocal;
++import admin.contab.local.CBUsuarioInterfaceLocal;
++import admin.util.ConstantesErrores;
++import financ.clientes.entity.CLPersonas;
++import financ.clientes.local.CLPersonasInterfaceLocal;
++import financ.clientes.local.CLTipoRelacionFamiliarInterfaceLocal;
++import financ.clientes.local.CLTipoTelefonoInterfaceLocal;
++import financ.cobranzas.beans.BeanCOReferenciaDomiciliaria;
++import financ.cobranzas.beans.BeanCOReferenciaTelefonica;
++import financ.cobranzas.beans.BeanCORegistroGestionCobranza;
++import financ.cobranzas.carteraCobranza.cargaMasivaMovil.beans.BeanCOCargaMasivaMovil;
++import financ.cobranzas.carteraCobranza.cargaMasivaMovil.local.COCargaMasivaMovilFacadeInterfaceLocal;
++import financ.cobranzas.entity.COGestionRealizada;
++import financ.cobranzas.entity.CORespuestaGestion;
++import financ.cobranzas.local.COGestionRealizadaInterfaceLocal;
++import financ.cobranzas.local.COReferenciaTelefonicaFacadeInterfaceLocal;
++import financ.cobranzas.local.CORegistroGestionCobranzaFacadeInterfaceLocal;
++import financ.cobranzas.local.CORespuestaGestionInterfaceLocal;
++import financ.cobranzas.local.CRCarteraAsignacionCobranzaInterfaceLocal;
++import financ.creditos.entity.CRCuentaCredito;
++import financ.creditos.local.CRCuentaCreditoInterfaceLocal;
++import financ.util.Constante;
++import pe.com.tfc.utils.AbstractHandlerProcess;
++import pe.com.tfc.utils.ErrorControladoException;
++import pe.com.tfc.utils.GenericBean;
++import pe.com.tfc.utils.PropertyParams;
++
++/**
++ * COCargaMasivaMovilFacade
++ * 
++ * @author [Req.S17-029] rsanchez
++ * @since 12.05.2017
++ */
++@Stateless
++public class COCargaMasivaMovilFacade
++                extends AbstractHandlerProcess implements COCargaMasivaMovilFacadeInterfaceLocal {
++
++    public static final String LocalJNDIName = COCargaMasivaMovilFacade.class.getSimpleName() + "/local";
++
++    @EJB
++    private CRCarteraAsignacionCobranzaInterfaceLocal crCarteraAsignacionCobranzaInterfaceLocal;
++    @EJB
++    private CRCuentaCreditoInterfaceLocal crCuentaCreditoInterfaceLocal;
++    @EJB
++    private CLPersonasInterfaceLocal clPersonasInterfaceLocal;
++    @EJB
++    private CBUsuarioInterfaceLocal cbUsuarioInterfaceLocal;
++    @EJB
++    private COGestionRealizadaInterfaceLocal coGestionRealizadaInterfaceLocal;
++    @EJB
++    private CORespuestaGestionInterfaceLocal coRespuestaGestionInterfaceLocal;
++    @EJB
++    private CLTipoRelacionFamiliarInterfaceLocal clTipoRelacionFamiliarInterfaceLocal;
++    @EJB
++    private CLTipoTelefonoInterfaceLocal clTipoTelefonoInterfaceLocal;
++    @EJB
++    private CBCatalogoComboGenericoInterfaceLocal cbCatalogoComboGenericoInterfaceLocal;
++    @EJB
++    private CORegistroGestionCobranzaFacadeInterfaceLocal coRegistroGestionCobranzaFacadeInterfaceLocal;
++    
++    
++    @EJB
++    private COReferenciaDomiciliariaFacadeInterfaceLocal coReferenciaDomiciliariaFacadeInterfaceLocal;
++    
++    @EJB
++    private COReferenciaTelefonicaFacadeInterfaceLocal coReferenciaTelefonicaFacadeInterfaceLocal;
++
++    public void enviar(final List<BeanCOCargaMasivaMovil> lstBeanCOCargaMasivaMovil,
++                       final GenericBean genericBean,
++                       final BeanParametrosAuditoria beanParametrosAuditoria) throws Exception {
++        final String modulo = "COCargaMasivaMovilFacade.enviar()";
++        String myQueue;
++        try {
++            myQueue = "myQueueCARGAMASIVAMOVIL";
++            enviar(lstBeanCOCargaMasivaMovil, myQueue, genericBean, beanParametrosAuditoria);
++        } catch (final Exception e) {
++            throw handlerError(e, beanParametrosAuditoria.getUsuarioInsercion(), modulo);
++        }
++    }
++
++    public void procesar(final List<BeanCOCargaMasivaMovil> lstBeanCOCargaMasivaMovil,
++                         final GenericBean genericBean,
++                         final BeanParametrosAuditoria beanParametrosAuditoria) {
++        int correctos = 0;
++        int conError = 0;
++        int total = 0;
++        List<String> lstErrores;
++
++        String llave = null;
++        BeanParametrosLog beanParametrosLog = null;
++        try {
++            if (_isEmpty(lstBeanCOCargaMasivaMovil)) {
++                return;
++            }
++
++            beanParametrosLog = inicioProceso(admin.util.Constante.CODIGO_PROCESO_CARGA_MASIVA_ACTIVIDADES_MOVIL,
++                                              beanParametrosAuditoria);
++
++            List<BeanCORegistroGestionCobranza> lstBeanCORegistroGestionCobranza = new ArrayList<BeanCORegistroGestionCobranza>();
++
++            BeanCORegistroGestionCobranza beanCORegistroGestionCobranza = null;
++            BeanCOReferenciaTelefonica beanCOReferenciaTelefonica;
++            BeanCOReferenciaDomiciliaria beanCOReferenciaDomiciliaria;
++
++            for (int i = 0; i < lstBeanCOCargaMasivaMovil.size();) {
++
++                if (_equiv(lstBeanCOCargaMasivaMovil.get(i).getNombreEstado(), Constante.REGISTRO_GESTION)) {
++
++                    beanCORegistroGestionCobranza = obtenerBeanRegistroGestion(i, lstBeanCOCargaMasivaMovil);
++                    lstBeanCORegistroGestionCobranza.add(beanCORegistroGestionCobranza);
++                    i = i + 5;
++                }
++
++                if (i < lstBeanCOCargaMasivaMovil.size() && _equiv(lstBeanCOCargaMasivaMovil.get(i).getNombreEstado(),
++                                                                   Constante.REFERENCIA_DOMICILIARIA)) {
++                    beanCOReferenciaDomiciliaria = obtenerBeanReferenciaDomiciliaria(i, lstBeanCOCargaMasivaMovil);
++                    beanCORegistroGestionCobranza.setBeanCOReferenciaDomiciliaria(beanCOReferenciaDomiciliaria);
++                    i = i + 3;
++                }
++
++                if (i < lstBeanCOCargaMasivaMovil.size() && _equiv(lstBeanCOCargaMasivaMovil.get(i).getNombreEstado(),
++                                                                   Constante.REFERENCIA_TELEFONICA)) {
++                    beanCOReferenciaTelefonica = obtenerBeanReferenciaTelefonica(i, lstBeanCOCargaMasivaMovil);
++                    beanCORegistroGestionCobranza.setBeanCOReferenciaTelefonica(beanCOReferenciaTelefonica);
++                    i = i + 5;
++                }
++                if (i < lstBeanCOCargaMasivaMovil.size() && _equiv(lstBeanCOCargaMasivaMovil.get(i).getNombreEstado(),
++                                                                   Constante.VISITA_NO_REALIZADA)) {
++                    beanCORegistroGestionCobranza = obtenerBeanRegistroGestion(i, lstBeanCOCargaMasivaMovil);
++                    lstBeanCORegistroGestionCobranza.add(beanCORegistroGestionCobranza);
++                    i++;
++                }
++            }
++
++            total = lstBeanCORegistroGestionCobranza.size();
++
++            for (BeanCORegistroGestionCobranza beanCORegistroGestion : lstBeanCORegistroGestionCobranza) {
++                try {
++                    llave = beanCORegistroGestion.getNumeroCredito() + "_" + beanCORegistroGestion.getCodigoActividad() + "_" + financ.util.FormatoFecha.dateUtilToStringFormat(beanCORegistroGestion.getFechaGestion(),
++                                                                                                                                                                                "dd/MM/yyyy hh:mm");
++                    lstErrores = validarRegistro(beanCORegistroGestion);
++                    if (!_isEmpty(lstErrores)) {
++                        conError++;
++                        for (String codigoError : lstErrores) {
++                            registraErrorEnProceso(beanParametrosLog,
++                                                   correctos,
++                                                   conError,
++                                                   total,
++                                                   llave,
++                                                   codigoError,
++                                                   null,
++                                                   admin.util.Constante.TIPO_ERROR_CONTROLADO,
++                                                   beanParametrosAuditoria);
++                        }
++                        continue;
++                    }
++                } catch (Exception e) {
++                    conError++;
++                    registraErrorEnProceso(beanParametrosLog,
++                                           correctos,
++                                           conError,
++                                           total,
++                                           llave,
++                                           ConstantesErrores.ERROR_NO_CONTROLADO,
++                                           e.getMessage(),
++                                           admin.util.Constante.TIPO_ERROR_NO_CONTROLADO,
++                                           beanParametrosAuditoria);
++                    continue;
++                }
++                correctos++;
++                if ((correctos + conError) % 200 == 0) {
++                    actualizaProceso(beanParametrosLog, correctos, conError, total, beanParametrosAuditoria);
++                }
++            }
++
++            if (conError == 0) {
++                for (BeanCORegistroGestionCobranza beanCORegistroGestion : lstBeanCORegistroGestionCobranza) {
++                    coRegistroGestionCobranzaFacadeInterfaceLocal.insertarRegistroCobranza(genericBean,
++                                                                                           beanCORegistroGestion,
++                                                                                           beanParametrosAuditoria);
++                    coReferenciaDomiciliariaFacadeInterfaceLocal.insertarReferenciaDomiciliaria(genericBean,
++                                                                                                beanCORegistroGestion,
++                                                                                                beanParametrosAuditoria);
++                    coReferenciaTelefonicaFacadeInterfaceLocal.insertarReferenciaTelefonica(genericBean,
++                                                                                            beanCORegistroGestion,
++                                                                                            beanParametrosAuditoria);
++                }
++                entityManager.flush();
++            }
++
++            actualizaProceso(beanParametrosLog, correctos, conError, total, beanParametrosAuditoria);
++            if (conError > 0) {
++                finalizaProcesoConError(beanParametrosLog, beanParametrosAuditoria);
++            } else {
++                finalizaProceso(beanParametrosLog);
++            }
++        } catch (Exception e) {
++            conError = total;
++            correctos = 0;
++            registraErrorEnProceso(beanParametrosLog,
++                                   correctos,
++                                   conError,
++                                   total,
++                                   CADENA_VACIA,
++                                   ConstantesErrores.ERROR_NO_CONTROLADO,
++                                   e.getMessage(),
++                                   admin.util.Constante.TIPO_ERROR_NO_CONTROLADO,
++                                   beanParametrosAuditoria);
++
++            finalizaProcesoConError(beanParametrosLog, beanParametrosAuditoria);
++        }
++    }
++
++    private List<String> validarRegistro(BeanCORegistroGestionCobranza beanCORegistroGestion) throws ErrorControladoException {
++
++        List<String> lstErrores = new ArrayList<String>();
++
++        //VALIDANDO NUMERO CREDITO
++        CRCuentaCredito crCuentaCredito = crCuentaCreditoInterfaceLocal.findById(beanCORegistroGestion.getNumeroCredito());
++        if (_isEmpty(crCuentaCredito)) {
++            lstErrores.add(ConstantesErrores.ERROR_414);
++        }
++
++        //VALIDANDO NOMBRE CLIENTE
++        CLPersonas clPersona = (CLPersonas) clPersonasInterfaceLocal.findById(crCuentaCredito.getClClientes().getCodigoCliente());
++        if (_isEmpty(clPersona)) {
++            lstErrores.add(ConstantesErrores.ERROR_1834);
++        }
++
++        //VALIDANDO NOMBRE GESTOR
++        CBUsuario cbUsuario = cbUsuarioInterfaceLocal.findById(beanCORegistroGestion.getUsuarioGestion());
++        if (_isEmpty(cbUsuario)) {
++            lstErrores.add(ConstantesErrores.ERROR_983);
++        }
++
++        //VALIDANDO OBSERVACIONES
++        if (beanCORegistroGestion.getObservacion() == "") {
++            lstErrores.add(ConstantesErrores.ERROR_11203);
++        }
++
++        //VALIDANDO GESTION REALIZADA
++        List<COGestionRealizada> lstCOGestionRealizada = coGestionRealizadaInterfaceLocal.findByDescripcion(beanCORegistroGestion.getCoGestionRealizada());
++        if(!_equiv(beanCORegistroGestion.getNombreEstado(), Constante.VISITA_NO_REALIZADA)){
++            if (_isEmpty(lstCOGestionRealizada)) {
++                lstErrores.add(ConstantesErrores.ERROR_11205);
++            }
++        }
++
++        //VALIDANDO RESPUESTA GESTION
++        List<CORespuestaGestion> lstCORespuestaGestion = coRespuestaGestionInterfaceLocal.findByDescripcion(beanCORegistroGestion.getCoRespuestaGestion());
++        if(!_equiv(beanCORegistroGestion.getNombreEstado(), Constante.VISITA_NO_REALIZADA)){
++            if (_isEmpty(lstCORespuestaGestion)) {
++                 lstErrores.add(ConstantesErrores.ERROR_11204);
++             }
++        }
++
++        //VALIDANDO LUGAR VISITADO
++        PropertyParams propertyParams = new PropertyParams();
++        propertyParams.addProperty("descripcionOpcion", _toUpper(beanCORegistroGestion.getTipoDireccionVisitada()));
++        propertyParams.addProperty("nombreCombo", "TIPDOMVIS");
++        propertyParams.addProperty("estadoRegistro", Constante.ESTADO_REGISTRO_VIGENTE);
++        List<CBCatalogoComboGenerico> lstCBCatalogoComboGenericos = cbCatalogoComboGenericoInterfaceLocal.findByProperties(propertyParams);
++        if(!_equiv(beanCORegistroGestion.getNombreEstado(), Constante.VISITA_NO_REALIZADA)){
++            if (_isEmpty(lstCBCatalogoComboGenericos)) {
++                lstErrores.add(ConstantesErrores.ERROR_11209);
++            }
++        }
++        
++        //VALIDANDO PARENTESCO
++        if (!_isEmpty(beanCORegistroGestion.getBeanCOReferenciaTelefonica())) {
++            if (!_inList(beanCORegistroGestion.getBeanCOReferenciaTelefonica().getClTipoRelacionFamiliar(), null, "-")) {
++                List lsClTipoTelefonos = clTipoRelacionFamiliarInterfaceLocal.findByDescripcion(beanCORegistroGestion.getBeanCOReferenciaTelefonica().getClTipoRelacionFamiliar());
++                if (_isEmpty(lsClTipoTelefonos)) {
++                    lstErrores.add(ConstantesErrores.ERROR_11207);
++                }
++            }
++        }
++
++        //VALIDANDO TIPO TELEFONO
++        if(!_isEmpty(beanCORegistroGestion.getBeanCOReferenciaTelefonica())){
++            if (!_inList(beanCORegistroGestion.getBeanCOReferenciaTelefonica().getClTipoTelefono(), null, "-")) {
++                List lsClTipoTelefonos = clTipoTelefonoInterfaceLocal.findByDescripcion(beanCORegistroGestion.getBeanCOReferenciaTelefonica().getClTipoTelefono());
++                if (_isEmpty(lsClTipoTelefonos)) {
++                    lstErrores.add(ConstantesErrores.ERROR_11206);
++                }
++            }
++        }
++        
++        //VALIDANDO MOTIVO NO VISITA
++        propertyParams = new PropertyParams();
++        propertyParams.addProperty("descripcionOpcion", beanCORegistroGestion.getMotivoNoVisita());
++        propertyParams.addProperty("nombreCombo", "MOTNOVIS");
++        propertyParams.addProperty("estadoRegistro", Constante.ESTADO_REGISTRO_VIGENTE);
++        lstCBCatalogoComboGenericos = cbCatalogoComboGenericoInterfaceLocal.findByProperties(propertyParams);
++        if (!_isEmpty(beanCORegistroGestion.getMotivoNoVisita())) {
++            if (_isEmpty(lstCBCatalogoComboGenericos)) {
++                lstErrores.add(ConstantesErrores.ERROR_11208);
++            }
++        }
++        return lstErrores;
++    }
++
++    private BeanCORegistroGestionCobranza obtenerBeanRegistroGestion(int i,
++                                                                     List<BeanCOCargaMasivaMovil> lstBeanCOCargaMasivaMovil) {
++
++        BeanCORegistroGestionCobranza beanCORegistroGestionCobranza = new BeanCORegistroGestionCobranza();
++
++        beanCORegistroGestionCobranza.setNumeroCredito(lstBeanCOCargaMasivaMovil.get(i).getNumeroCredito());
++        beanCORegistroGestionCobranza.setNombrePersona(lstBeanCOCargaMasivaMovil.get(i).getNombreCliente());
++        beanCORegistroGestionCobranza.setCodigoActividad(lstBeanCOCargaMasivaMovil.get(i).getCodigoActividad());
++        beanCORegistroGestionCobranza.setCodigoTipoActividad(lstBeanCOCargaMasivaMovil.get(i).getCodigoTipoActividad());
++        beanCORegistroGestionCobranza.setUsuarioGestion(lstBeanCOCargaMasivaMovil.get(i).getNombreGestor());
++        beanCORegistroGestionCobranza.setFechaGestion(lstBeanCOCargaMasivaMovil.get(i).getFechaGestion());
++
++        if (_equiv(lstBeanCOCargaMasivaMovil.get(i).getNombreEstado(), Constante.REGISTRO_GESTION)) {
++
++            beanCORegistroGestionCobranza.setLatitud(lstBeanCOCargaMasivaMovil.get(i).getLatitud());
++            beanCORegistroGestionCobranza.setLongitud(lstBeanCOCargaMasivaMovil.get(i).getLongitud());
++
++            beanCORegistroGestionCobranza.setNombreEstado(Constante.REGISTRO_GESTION);
++            beanCORegistroGestionCobranza.setObservacion(lstBeanCOCargaMasivaMovil.get(i++).getValorItemEstado());
++            beanCORegistroGestionCobranza.setCoGestionRealizada(lstBeanCOCargaMasivaMovil.get(i++).getValorItemEstado());
++            beanCORegistroGestionCobranza.setCoRespuestaGestion(lstBeanCOCargaMasivaMovil.get(i++).getValorItemEstado());
++            beanCORegistroGestionCobranza.setTipoDireccionVisitada(lstBeanCOCargaMasivaMovil.get(i++).getValorItemEstado());
++            beanCORegistroGestionCobranza.setFoto(lstBeanCOCargaMasivaMovil.get(i++).getValorItemEstado());
++
++        } else if (_equiv(lstBeanCOCargaMasivaMovil.get(i).getNombreEstado(), Constante.VISITA_NO_REALIZADA)) {
++            beanCORegistroGestionCobranza.setNombreEstado(Constante.VISITA_NO_REALIZADA);
++            beanCORegistroGestionCobranza.setCoGestionRealizada(Constante.NO_SE_VISITO);
++            beanCORegistroGestionCobranza.setMotivoNoVisita(lstBeanCOCargaMasivaMovil.get(i).getMotivoNoVisita());
++            beanCORegistroGestionCobranza.setObservacion(lstBeanCOCargaMasivaMovil.get(i).getValorItemEstado());
++        }
++        return beanCORegistroGestionCobranza;
++    }
++
++    private BeanCOReferenciaDomiciliaria obtenerBeanReferenciaDomiciliaria(int i,
++                                                                           List<BeanCOCargaMasivaMovil> lstBeanCOCargaMasivaMovil) {
++        BeanCOReferenciaDomiciliaria beanCOReferenciaDomiciliaria = new BeanCOReferenciaDomiciliaria();
++        beanCOReferenciaDomiciliaria.setClPersonas(lstBeanCOCargaMasivaMovil.get(i).getNumeroCredito());
++        beanCOReferenciaDomiciliaria.setNombreContacto(lstBeanCOCargaMasivaMovil.get(i++).getValorItemEstado());
++        beanCOReferenciaDomiciliaria.setDireccion(lstBeanCOCargaMasivaMovil.get(i++).getValorItemEstado());
++        beanCOReferenciaDomiciliaria.setClTipoDireccion(lstBeanCOCargaMasivaMovil.get(i++).getValorItemEstado());
++
++        String[] lstCamposReferenciaDomiciliaria = { beanCOReferenciaDomiciliaria.getClPersonas(), beanCOReferenciaDomiciliaria.getNombreContacto(), beanCOReferenciaDomiciliaria.getDireccion(), beanCOReferenciaDomiciliaria.getClTipoDireccion() };
++
++        for (String campo : lstCamposReferenciaDomiciliaria) {
++            if (!_isEmpty(campo)) {
++                return beanCOReferenciaDomiciliaria;
++            }
++        }
++        return null;
++    }
++
++    private BeanCOReferenciaTelefonica obtenerBeanReferenciaTelefonica(int i,
++                                                                       List<BeanCOCargaMasivaMovil> lstBeanCOCargaMasivaMovil) {
++
++        BeanCOReferenciaTelefonica beanCOReferenciaTelefonica = new BeanCOReferenciaTelefonica();
++
++        beanCOReferenciaTelefonica.setClPersonas(lstBeanCOCargaMasivaMovil.get(i).getNumeroCredito());
++        beanCOReferenciaTelefonica.setNombreContacto(lstBeanCOCargaMasivaMovil.get(i++).getValorItemEstado());
++        beanCOReferenciaTelefonica.setActividadEconomica(lstBeanCOCargaMasivaMovil.get(i++).getValorItemEstado());
++        beanCOReferenciaTelefonica.setClTipoRelacionFamiliar(lstBeanCOCargaMasivaMovil.get(i++).getValorItemEstado());
++        beanCOReferenciaTelefonica.setClTipoTelefono(lstBeanCOCargaMasivaMovil.get(i++).getValorItemEstado());
++        beanCOReferenciaTelefonica.setNumeroTelefono(lstBeanCOCargaMasivaMovil.get(i++).getValorItemEstado());
++
++        String[] lstCamposReferenciaTelefonica = { beanCOReferenciaTelefonica.getClPersonas(), beanCOReferenciaTelefonica.getNombreContacto(), beanCOReferenciaTelefonica.getClTipoRelacionFamiliar(), beanCOReferenciaTelefonica.getClTipoTelefono(), beanCOReferenciaTelefonica.getNumeroTelefono() };
++
++        for (String campo : lstCamposReferenciaTelefonica) {
++            if (!_isEmpty(campo)) {
++                return beanCOReferenciaTelefonica;
++            }
++        }
++
++        return null;
++    }
++
++}
+diff --git a/FINANCIERONEW/src/financ/cobranzas/carteraCobranza/cargaMasivaMovil/local/COCargaMasivaMovilFacadeInterfaceLocal.java b/FINANCIERONEW/src/financ/cobranzas/carteraCobranza/cargaMasivaMovil/local/COCargaMasivaMovilFacadeInterfaceLocal.java
+new file mode 100644
+index 0000000..742d6bb
+--- /dev/null
++++ b/FINANCIERONEW/src/financ/cobranzas/carteraCobranza/cargaMasivaMovil/local/COCargaMasivaMovilFacadeInterfaceLocal.java
+@@ -0,0 +1,43 @@
++package financ.cobranzas.carteraCobranza.cargaMasivaMovil.local;
++
++import java.util.List;
++
++import javax.ejb.Local;
++
++import admin.contab.beans.BeanParametrosAuditoria;
++import financ.cobranzas.carteraCobranza.cargaMasivaMovil.beans.BeanCOCargaMasivaMovil;
++import pe.com.tfc.utils.GenericBean;
++
++
++@Local
++public interface COCargaMasivaMovilFacadeInterfaceLocal {
++
++    /**
++     * Enviar
++     * 
++     * @author rsanchez
++     * @since [S17-029] 12.05.2017
++     * @param lstBeanCOCargaMasivaMovil
++     * @param genericBean
++     * @param beanParametrosAuditoria
++     * @throws Exception
++     */
++    public void enviar(final List<BeanCOCargaMasivaMovil> lstBeanCOCargaMasivaMovil,
++                       final GenericBean genericBean,
++                       final BeanParametrosAuditoria beanParametrosAuditoria) throws Exception;
++
++    /**
++     * Procesar
++     * 
++     * @author rsanchez
++     * @since [S17-029] 12.05.2017
++     * @param lstBeanCOCargaMasivaMovil
++     * @param genericBean
++     * @param beanParametrosAuditoria
++     * @throws Exception
++     */
++    public void procesar(final List<BeanCOCargaMasivaMovil> lstBeanCOCargaMasivaMovil,
++                         final GenericBean genericBean,
++                         final BeanParametrosAuditoria beanParametrosAuditoria);
++    
++}
+diff --git a/FINANCIERONEW/src/financ/cobranzas/carteraCobranza/cargaMasivaMovil/mdb/COCargaMasivaMovilMDB.java b/FINANCIERONEW/src/financ/cobranzas/carteraCobranza/cargaMasivaMovil/mdb/COCargaMasivaMovilMDB.java
+new file mode 100644
+index 0000000..ce8bb3e
+--- /dev/null
++++ b/FINANCIERONEW/src/financ/cobranzas/carteraCobranza/cargaMasivaMovil/mdb/COCargaMasivaMovilMDB.java
+@@ -0,0 +1,66 @@
++package financ.cobranzas.carteraCobranza.cargaMasivaMovil.mdb;
++
++import java.util.List;
++
++import javax.ejb.ActivationConfigProperty;
++import javax.ejb.EJB;
++import javax.ejb.EJBException;
++import javax.ejb.MessageDriven;
++import javax.jms.JMSException;
++import javax.jms.Message;
++import javax.jms.MessageListener;
++import javax.jms.ObjectMessage;
++
++import admin.contab.beans.BeanParametrosAuditoria;
++import admin.email.beans.BeanMensajeriaHandlerProcess;
++import financ.cobranzas.carteraCobranza.cargaMasivaMovil.beans.BeanCOCargaMasivaMovil;
++import financ.cobranzas.carteraCobranza.cargaMasivaMovil.local.COCargaMasivaMovilFacadeInterfaceLocal;
++import pe.com.tfc.utils.GenericBean;
++import pe.com.tfc.utils.StringUtil;
++
++/**
++ * COCargaMasivaMovilMDB
++ * 
++ * @author [Req.S17-029] rsanchez
++ * @since 12.05.2017
++ */
++
++@MessageDriven(mappedName = "jms/Queue", activationConfig = { @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge"), @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"), @ActivationConfigProperty(propertyName = "destination", propertyValue = "queue/myQueueCARGAMASIVAMOVIL") })
++public class COCargaMasivaMovilMDB implements MessageListener{
++
++    @EJB
++    private COCargaMasivaMovilFacadeInterfaceLocal coCargaMasivaMovilFacadeInterfaceLocal;
++
++    public void onMessage(final Message message) {
++        BeanParametrosAuditoria beanParametrosAuditoria = new BeanParametrosAuditoria();
++        List<BeanCOCargaMasivaMovil> lstBeanCOCargaMasivaMovil = null;
++        GenericBean genericBean = null;
++        BeanMensajeriaHandlerProcess beanMensajeriaHandlerProcess;
++        try {
++
++            if (message.getJMSRedelivered()) {
++                return;
++            }
++            if (message instanceof ObjectMessage) {
++                beanMensajeriaHandlerProcess = (BeanMensajeriaHandlerProcess) ((ObjectMessage) message).getObject();
++                beanParametrosAuditoria = beanMensajeriaHandlerProcess.getBeanParametrosAuditoria();
++                lstBeanCOCargaMasivaMovil = (List<BeanCOCargaMasivaMovil>) beanMensajeriaHandlerProcess.getListTransaccion();
++                genericBean = (GenericBean) beanMensajeriaHandlerProcess.getGenericBean();
++            }
++
++            if (!StringUtil.isEmpty(lstBeanCOCargaMasivaMovil)) {
++                coCargaMasivaMovilFacadeInterfaceLocal.procesar(lstBeanCOCargaMasivaMovil,
++                                                                          genericBean,
++                                                                          beanParametrosAuditoria);
++            }
++
++        } catch (final Exception e) {
++            throw new EJBException(e);
++        }
++        try {
++            message.acknowledge();
++        } catch (final JMSException e) {
++        }
++    }
++
++}
+diff --git a/FINANCIERONEW/src/financ/cobranzas/entity/COReferenciaDomiciliaria.java b/FINANCIERONEW/src/financ/cobranzas/entity/COReferenciaDomiciliaria.java
+index b322557..19d0f2c 100644
+--- a/FINANCIERONEW/src/financ/cobranzas/entity/COReferenciaDomiciliaria.java
++++ b/FINANCIERONEW/src/financ/cobranzas/entity/COReferenciaDomiciliaria.java
+@@ -1,3 +1,4 @@
++
+ package financ.cobranzas.entity;
+ 
+ import java.util.Date;
+@@ -15,18 +16,20 @@
+ import financ.clientes.entity.CLPersonas;
+ import financ.clientes.entity.CLTipoDireccion;
+ import financ.clientes.entity.CLViasDireccion;
++import pe.com.tfc.utils.Auditable;
+ 
+ /**
+  * Entity COReferenciaDomiciliaria
+  * 
+  * @author jgonzales
+  * @since 13.08.2012
++ * @since [S17-029] rsanchez 12.05.2017
+  */
+ @Entity
+ @Table(name="CODREDO"
+     ,schema="DFIN"
+ )
+-public class COReferenciaDomiciliaria  implements java.io.Serializable {
++public class COReferenciaDomiciliaria  extends Auditable {
+   
+ 
+      /**
+@@ -47,53 +50,9 @@
+      private String numeroPiso;
+      private Date fechaRegistro;
+      private String codigoEmpresa;
+-     private String estadoRegistro;
+-     private Date fechaInsercion;
+-     private String usuarioInsercion;
+-     private String terminalInsercion;
+-     private String ipInsercion;
+-     private Date fechaModificacion;
+-     private String usuarioModificacion;
+-     private String terminalModificacion;
+-     private String ipModificacion;
+-
+-
+-    /** default constructor */
+-    public COReferenciaDomiciliaria() {
+-    }
+-
+-	/** minimal constructor */
+-    public COReferenciaDomiciliaria(String idReferenciaDomiciliaria) {
+-        this.idReferenciaDomiciliaria = idReferenciaDomiciliaria;
+-    }
+-    
+-    /** full constructor */
+-    public COReferenciaDomiciliaria(String idReferenciaDomiciliaria, CLPersonas clPersonas, CLViasDireccion clViasDireccion, CLTipoDireccion clTipoDireccion, String nombreContacto, String direccion, Short codigoUbigeo, String numeroVia, String manzana, String lote, String numeroPiso, Date fechaRegistro, String codigoEmpresa, String estadoRegistro, Date fechaInsercion, String usuarioInsercion, String terminalInsercion, String ipInsercion, Date fechaModificacion, String usuarioModificacion, String terminalModificacion, String ipModificacion) {
+-        this.idReferenciaDomiciliaria = idReferenciaDomiciliaria;
+-        this.clPersonas = clPersonas;
+-        this.clViasDireccion = clViasDireccion;
+-        this.clTipoDireccion = clTipoDireccion;
+-        this.nombreContacto = nombreContacto;
+-        this.direccion = direccion;
+-        this.codigoUbigeo = codigoUbigeo;
+-        this.numeroVia = numeroVia;
+-        this.manzana = manzana;
+-        this.lote = lote;
+-        this.numeroPiso = numeroPiso;
+-        this.fechaRegistro = fechaRegistro;
+-        this.codigoEmpresa = codigoEmpresa;
+-        this.estadoRegistro = estadoRegistro;
+-        this.fechaInsercion = fechaInsercion;
+-        this.usuarioInsercion = usuarioInsercion;
+-        this.terminalInsercion = terminalInsercion;
+-        this.ipInsercion = ipInsercion;
+-        this.fechaModificacion = fechaModificacion;
+-        this.usuarioModificacion = usuarioModificacion;
+-        this.terminalModificacion = terminalModificacion;
+-        this.ipModificacion = ipModificacion;
+-    }
+-
+-   
++     //Inicio [S17-029] rsanchez 12.05.2017
++     private String codigoActividad;
++     
+     @Id 
+     
+     @Column(name="C_IDREDO", unique=true, nullable=false, length=15)
+@@ -225,103 +184,16 @@
+     public void setCodigoEmpresa(String codigoEmpresa) {
+         this.codigoEmpresa = codigoEmpresa;
+     }
+-    
+-    @Column(name="C_ESTREG", length=1)
++    //Inicio [S17-029] rsanchez 12.05.2017
++    @Column(name="C_CODACT", length=13)
++    public String getCodigoActividad() {
++        return codigoActividad;
++    }
+ 
+-    public String getEstadoRegistro() {
+-        return this.estadoRegistro;
++    public void setCodigoActividad(String codigoActividad) {
++        this.codigoActividad = codigoActividad;
+     }
+     
+-    public void setEstadoRegistro(String estadoRegistro) {
+-        this.estadoRegistro = estadoRegistro;
+-    }
+-    @Temporal(TemporalType.DATE)
+-    @Column(name="A_FECINS", length=7)
+-
+-    public Date getFechaInsercion() {
+-        return this.fechaInsercion;
+-    }
+     
+-    public void setFechaInsercion(Date fechaInsercion) {
+-        this.fechaInsercion = fechaInsercion;
+-    }
+-    
+-    @Column(name="A_USUINS", length=15)
+-
+-    public String getUsuarioInsercion() {
+-        return this.usuarioInsercion;
+-    }
+-    
+-    public void setUsuarioInsercion(String usuarioInsercion) {
+-        this.usuarioInsercion = usuarioInsercion;
+-    }
+-    
+-    @Column(name="A_TERINS", length=30)
+-
+-    public String getTerminalInsercion() {
+-        return this.terminalInsercion;
+-    }
+-    
+-    public void setTerminalInsercion(String terminalInsercion) {
+-        this.terminalInsercion = terminalInsercion;
+-    }
+-    
+-    @Column(name="A_IPEINS", length=20)
+-
+-    public String getIpInsercion() {
+-        return this.ipInsercion;
+-    }
+-    
+-    public void setIpInsercion(String ipInsercion) {
+-        this.ipInsercion = ipInsercion;
+-    }
+-    @Temporal(TemporalType.DATE)
+-    @Column(name="A_FECMOD", length=7)
+-
+-    public Date getFechaModificacion() {
+-        return this.fechaModificacion;
+-    }
+-    
+-    public void setFechaModificacion(Date fechaModificacion) {
+-        this.fechaModificacion = fechaModificacion;
+-    }
+-    
+-    @Column(name="A_USUMOD", length=15)
+-
+-    public String getUsuarioModificacion() {
+-        return this.usuarioModificacion;
+-    }
+-    
+-    public void setUsuarioModificacion(String usuarioModificacion) {
+-        this.usuarioModificacion = usuarioModificacion;
+-    }
+-    
+-    @Column(name="A_TERMOD", length=30)
+-
+-    public String getTerminalModificacion() {
+-        return this.terminalModificacion;
+-    }
+-    
+-    public void setTerminalModificacion(String terminalModificacion) {
+-        this.terminalModificacion = terminalModificacion;
+-    }
+-    
+-    @Column(name="A_IPEMOD", length=20)
+-
+-    public String getIpModificacion() {
+-        return this.ipModificacion;
+-    }
+-    
+-    public void setIpModificacion(String ipModificacion) {
+-        this.ipModificacion = ipModificacion;
+-    }
+-   
+-
+-
+-
+-
+-
+-
+-
+-
+-}
+\ No newline at end of file
++    //Fin [S17-029]
++}
+diff --git a/FINANCIERONEW/src/financ/cobranzas/entity/COReferenciaTelefonica.java b/FINANCIERONEW/src/financ/cobranzas/entity/COReferenciaTelefonica.java
+index 67a5079..359efa7 100644
+--- a/FINANCIERONEW/src/financ/cobranzas/entity/COReferenciaTelefonica.java
++++ b/FINANCIERONEW/src/financ/cobranzas/entity/COReferenciaTelefonica.java
+@@ -15,6 +15,7 @@
+ import financ.clientes.entity.CLPersonas;
+ import financ.clientes.entity.CLTipoRelacionFamiliar;
+ import financ.clientes.entity.CLTipoTelefono;
++import pe.com.tfc.utils.Auditable;
+ 
+ /**
+  * Entity COReferenciaTelefonica
+@@ -26,12 +27,9 @@
+ @Table(name="CODRETE"
+     ,schema="DFIN"
+ )
+-public class COReferenciaTelefonica  implements java.io.Serializable {
++public class COReferenciaTelefonica  extends Auditable {
+ 
+ 
+-     /**
+-	 * 
+-	 */
+ 	private static final long serialVersionUID = -6082226804006072480L;
+ 	
+ 	private String idReferenciaTelefonica;
+@@ -46,52 +44,9 @@
+      private String detalleReferenciaTelefonica;
+      private Date fechaRegistro;
+      private String codigoEmpresa;
+-     private String estadoRegistro;
+-     private Date fechaInsercion;
+-     private String usuarioInsercion;
+-     private String terminalInsercion;
+-     private String ipInsercion;
+-     private Date fechaModificacion;
+-     private String usuarioModificacion;
+-     private String terminalModificacion;
+-     private String ipModificacion;
+-
+-
+-    /** default constructor */
+-    public COReferenciaTelefonica() {
+-    }
+-
+-	/** minimal constructor */
+-    public COReferenciaTelefonica(String idReferenciaTelefonica) {
+-        this.idReferenciaTelefonica = idReferenciaTelefonica;
+-    }
+-    
+-    /** full constructor */
+-    public COReferenciaTelefonica(String idReferenciaTelefonica, CLTipoRelacionFamiliar clTipoRelacionFamiliar, CLPersonas clPersonas, CLTipoTelefono clTipoTelefono, String nombreContacto, String actividadEconomica, String codigoPais, Short codigoUbigeo, String numeroTelefono, String detalleReferenciaTelefonica, Date fechaRegistro, String codigoEmpresa, String estadoRegistro, Date fechaInsercion, String usuarioInsercion, String terminalInsercion, String ipInsercion, Date fechaModificacion, String usuarioModificacion, String terminalModificacion, String ipModificacion) {
+-        this.idReferenciaTelefonica = idReferenciaTelefonica;
+-        this.clTipoRelacionFamiliar = clTipoRelacionFamiliar;
+-        this.clPersonas = clPersonas;
+-        this.clTipoTelefono = clTipoTelefono;
+-        this.nombreContacto = nombreContacto;
+-        this.actividadEconomica = actividadEconomica;
+-        this.codigoPais = codigoPais;
+-        this.codigoUbigeo = codigoUbigeo;
+-        this.numeroTelefono = numeroTelefono;
+-        this.detalleReferenciaTelefonica = detalleReferenciaTelefonica;
+-        this.fechaRegistro = fechaRegistro;
+-        this.codigoEmpresa = codigoEmpresa;
+-        this.estadoRegistro = estadoRegistro;
+-        this.fechaInsercion = fechaInsercion;
+-        this.usuarioInsercion = usuarioInsercion;
+-        this.terminalInsercion = terminalInsercion;
+-        this.ipInsercion = ipInsercion;
+-        this.fechaModificacion = fechaModificacion;
+-        this.usuarioModificacion = usuarioModificacion;
+-        this.terminalModificacion = terminalModificacion;
+-        this.ipModificacion = ipModificacion;
+-    }
+-
+-   
++     //[S17-029] rsanchez 12.05.2017
++     private String codigoActividad;
++     
+     @Id 
+     
+     @Column(name="C_IDRETE", unique=true, nullable=false, length=15)
+@@ -214,102 +169,18 @@
+         this.codigoEmpresa = codigoEmpresa;
+     }
+     
+-    @Column(name="C_ESTREG", length=1)
++    //Inicio [S17-029] rsanchez 12.05.2017
++    @Column(name="C_CODACT", length=13)
++    public String getCodigoActividad() {
++        return codigoActividad;
++    }
+ 
+-    public String getEstadoRegistro() {
+-        return this.estadoRegistro;
++    
++    public void setCodigoActividad(String codigoActividad) {
++        this.codigoActividad = codigoActividad;
+     }
+     
+-    public void setEstadoRegistro(String estadoRegistro) {
+-        this.estadoRegistro = estadoRegistro;
+-    }
+-    @Temporal(TemporalType.DATE)
+-    @Column(name="A_FECINS", length=7)
+-
+-    public Date getFechaInsercion() {
+-        return this.fechaInsercion;
+-    }
+     
+-    public void setFechaInsercion(Date fechaInsercion) {
+-        this.fechaInsercion = fechaInsercion;
+-    }
+     
+-    @Column(name="A_USUINS", length=15)
+-
+-    public String getUsuarioInsercion() {
+-        return this.usuarioInsercion;
+-    }
+-    
+-    public void setUsuarioInsercion(String usuarioInsercion) {
+-        this.usuarioInsercion = usuarioInsercion;
+-    }
+-    
+-    @Column(name="A_TERINS", length=30)
+-
+-    public String getTerminalInsercion() {
+-        return this.terminalInsercion;
+-    }
+-    
+-    public void setTerminalInsercion(String terminalInsercion) {
+-        this.terminalInsercion = terminalInsercion;
+-    }
+-    
+-    @Column(name="A_IPEINS", length=20)
+-
+-    public String getIpInsercion() {
+-        return this.ipInsercion;
+-    }
+-    
+-    public void setIpInsercion(String ipInsercion) {
+-        this.ipInsercion = ipInsercion;
+-    }
+-    @Temporal(TemporalType.DATE)
+-    @Column(name="A_FECMOD", length=7)
+-
+-    public Date getFechaModificacion() {
+-        return this.fechaModificacion;
+-    }
+-    
+-    public void setFechaModificacion(Date fechaModificacion) {
+-        this.fechaModificacion = fechaModificacion;
+-    }
+-    
+-    @Column(name="A_USUMOD", length=15)
+-
+-    public String getUsuarioModificacion() {
+-        return this.usuarioModificacion;
+-    }
+-    
+-    public void setUsuarioModificacion(String usuarioModificacion) {
+-        this.usuarioModificacion = usuarioModificacion;
+-    }
+-    
+-    @Column(name="A_TERMOD", length=30)
+-
+-    public String getTerminalModificacion() {
+-        return this.terminalModificacion;
+-    }
+-    
+-    public void setTerminalModificacion(String terminalModificacion) {
+-        this.terminalModificacion = terminalModificacion;
+-    }
+-    
+-    @Column(name="A_IPEMOD", length=20)
+-
+-    public String getIpModificacion() {
+-        return this.ipModificacion;
+-    }
+-    
+-    public void setIpModificacion(String ipModificacion) {
+-        this.ipModificacion = ipModificacion;
+-    }
+-   
+-
+-
+-
+-
+-
+-
+-
+-
++    //Fin [S17-029]
+ }
+\ No newline at end of file
+diff --git a/FINANCIERONEW/src/financ/cobranzas/entity/CORegistroGestionCobranza.java b/FINANCIERONEW/src/financ/cobranzas/entity/CORegistroGestionCobranza.java
+index 20c6239..8bbf45e 100644
+--- a/FINANCIERONEW/src/financ/cobranzas/entity/CORegistroGestionCobranza.java
++++ b/FINANCIERONEW/src/financ/cobranzas/entity/CORegistroGestionCobranza.java
+@@ -50,12 +50,20 @@
+ 	private String suministroLuz;
+ 	private String posibilidadCobro;
+ 	private String aptoIncautacion;
+-	private String observacion;
++	private String observacion; 
+ 	private CRZonalesCobranza crZonalesCobranza;
+ 	private CORegionesCobranza coRegionesCobranza;
+ 	private Date fechaRegistro;
+ 	private String codigoEmpresa;
+-
++	//Inicio [S17-029] rsanchez 12.05.2017
++	private String codigoActividad;
++	private String codigoTipoActividad;
++	private String latitud;
++	private String longitud;
++	private String foto;
++	private String tipoDireccionVisitada;
++	private String motivoNoVisita; 
++	//Fin [S17-029]
+ 	@Id
+ 	@Column(name = "C_IDREGS", unique = true, nullable = false, length = 15)
+ 	public String getIdRegistroGestionCobranza() {
+@@ -261,4 +269,71 @@
+         this.nombrePariente = nombrePariente;
+     }
+     //Fin [CC17-026]
++
++    //Inicio [S17-029] rsanchez 12.05.2017
++    @Column(name = "C_CODACT", length = 13)
++    public String getCodigoActividad() {
++        return codigoActividad;
++    }
++    
++    public void setCodigoActividad(String codigoActividad) {
++        this.codigoActividad = codigoActividad;
++    }
++    
++    @Column(name = "C_CODTAC", length = 6)
++    public String getCodigoTipoActividad() {
++        return codigoTipoActividad;
++    }
++    
++    public void setCodigoTipoActividad(String codigoTipoActividad) {
++        this.codigoTipoActividad = codigoTipoActividad;
++    }
++
++    @Column(name = "C_LATTUD", length = 10)
++    public String getLatitud() {
++        return latitud;
++    }
++
++    public void setLatitud(String latitud) {
++        this.latitud = latitud;
++    }
++
++    @Column(name = "C_LONGTD", length = 10)
++    public String getLongitud() {
++        return longitud;
++    }
++
++    public void setLongitud(String longitud) {
++        this.longitud = longitud;
++    }
++
++    @Column(name = "C_FOTOGE", length = 30)
++    public String getFoto() {
++        return foto;
++    }
++    
++    public void setFoto(String foto) {
++        this.foto = foto;
++    }
++
++    @Column(name = "C_TIDIVI", length = 15)
++    public String getTipoDireccionVisitada() {
++        return tipoDireccionVisitada;
++    }
++    
++    public void setTipoDireccionVisitada(String tipoDireccionVisitada) {
++        this.tipoDireccionVisitada = tipoDireccionVisitada;
++    }
++
++    @Column(name = "C_MONOVI", length = 20)
++    public String getMotivoNoVisita() {
++        return motivoNoVisita;
++    }
++
++    public void setMotivoNoVisita(String motivoNoVisita) {
++        this.motivoNoVisita = motivoNoVisita;
++    }
++    
++    //Fin [S17-029]
++    
+ }
+\ No newline at end of file
+diff --git a/FINANCIERONEW/src/financ/cobranzas/facade/COReferenciaDomiciliariaFacade.java b/FINANCIERONEW/src/financ/cobranzas/facade/COReferenciaDomiciliariaFacade.java
+index 61b81f3..0441303 100644
+--- a/FINANCIERONEW/src/financ/cobranzas/facade/COReferenciaDomiciliariaFacade.java
++++ b/FINANCIERONEW/src/financ/cobranzas/facade/COReferenciaDomiciliariaFacade.java
+@@ -11,6 +11,7 @@
+ import admin.contab.beans.BeanParametrosAuditoria;
+ import admin.contab.local.CBControlErroresFacadeInterfaceLocal;
+ import admin.contab.local.CBCorrelativoInterfaceLocal;
++import admin.util.FormatoFecha;
+ import financ.clientes.entity.CLPersonas;
+ import financ.clientes.entity.CLTipoDireccion;
+ import financ.clientes.entity.CLViasDireccion;
+@@ -18,19 +19,25 @@
+ import financ.clientes.local.CLTipoDireccionInterfaceLocal;
+ import financ.clientes.local.CLViasDireccionInterfaceLocal;
+ import financ.cobranzas.beans.BeanCOReferenciaDomiciliaria;
++import financ.cobranzas.beans.BeanCORegistroGestionCobranza;
+ import financ.cobranzas.entity.COReferenciaDomiciliaria;
+-import financ.cobranzas.local.COReferenciaDomiciliariaFacadeInterfaceLocal;
+ import financ.cobranzas.local.COReferenciaDomiciliariaInterfaceLocal;
+ import financ.cobranzas.remote.COReferenciaDomiciliariaFacadeInterfaceRemote;
++import financ.creditos.entity.CRCuentaCredito;
++import financ.creditos.local.CRCuentaCreditoInterfaceLocal;
++import financ.util.Constante;
++import pe.com.tfc.utils.AbstractFacade;
++import pe.com.tfc.utils.GenericBean;
+ 
+ /**
+  * COReferenciaDomiciliariaFacade facade.
+  * @author jgonzales
+  * @since 15.08.2012
++ * @since [S17-029] rsanchez 12.05.2017
+  */
+ @TransactionAttribute(TransactionAttributeType.REQUIRED)
+ @Stateless
+-public class COReferenciaDomiciliariaFacade implements COReferenciaDomiciliariaFacadeInterfaceLocal, 
++public class COReferenciaDomiciliariaFacade extends AbstractFacade<COReferenciaDomiciliaria> implements COReferenciaDomiciliariaFacadeInterfaceLocal, 
+ 	COReferenciaDomiciliariaFacadeInterfaceRemote {
+ 
+ 	private static String NO_ERROR = "000";
+@@ -52,6 +59,9 @@
+ 	
+ 	@EJB
+ 	private CBCorrelativoInterfaceLocal cbCorrelativoInterfaceLocal;
++	
++	@EJB
++	private CRCuentaCreditoInterfaceLocal crCuentaCreditoInterfaceLocal;
+ 		
+ 	public String grabar(BeanCOReferenciaDomiciliaria beanCOReferenciaDomiciliaria, BeanParametrosAuditoria beanParametrosAuditoria) throws Exception{
+ 		String strDescripcionError="";
+@@ -213,7 +223,8 @@
+ 					beanCOReferenciaDomiciliaria.setManzana(coReferenciaDomiciliaria.getManzana());
+ 					beanCOReferenciaDomiciliaria.setLote(coReferenciaDomiciliaria.getLote());
+ 					beanCOReferenciaDomiciliaria.setNumeroPiso(coReferenciaDomiciliaria.getNumeroPiso());
+-					
++					//[S17-029] rsanchez 12.05.2017
++					beanCOReferenciaDomiciliaria.setCodigoActividad(coReferenciaDomiciliaria.getCodigoActividad());
+ 					beanCOReferenciaDomiciliaria.setFechaRegistro(coReferenciaDomiciliaria.getFechaRegistro());
+ 					beanCOReferenciaDomiciliaria.setCodigoEmpresa(coReferenciaDomiciliaria.getCodigoEmpresa());
+ 					beanCOReferenciaDomiciliaria.setEstadoRegistro(coReferenciaDomiciliaria.getEstadoRegistro());
+@@ -246,4 +257,54 @@
+ 		return lstBeanCOReferenciaDomiciliaria;	
+ 	}
+ 	
++	//Inicio [S17-029] rsanchez 12.05.2017
++	public void insertarReferenciaDomiciliaria(GenericBean genericBean,
++                                                BeanCORegistroGestionCobranza beanCORegistroGestionCobranza,
++                                                BeanParametrosAuditoria beanParametrosAuditoria) throws Exception{
++        
++	    final String modulo = "COReferenciaDomiciliariaFacade.insertarReferenciaDomiciliaria()";
++        final String usuario = beanParametrosAuditoria.getUsuarioInsercion();
++	    
++	    try {
++	        if(_isEmpty(beanCORegistroGestionCobranza.getBeanCOReferenciaDomiciliaria())){
++	            return;
++	        }
++	        
++	        BeanCOReferenciaDomiciliaria beanCOReferenciaDomiciliaria = beanCORegistroGestionCobranza.getBeanCOReferenciaDomiciliaria();
++
++	        if (_isEmpty(beanCOReferenciaDomiciliaria.getDireccion())) {
++	            return;
++	        }
++
++	        String idReferenciaDomiciliaria = generarCorrelativo("CODREDO", 15, beanParametrosAuditoria);
++
++	        COReferenciaDomiciliaria coReferenciaDomiciliaria = new COReferenciaDomiciliaria();
++	        CRCuentaCredito crCuentaCredito = crCuentaCreditoInterfaceLocal.findById(beanCOReferenciaDomiciliaria.getClPersonas());
++	        CLPersonas clPersona = (CLPersonas) clPersonaFacadeInterfaceLocal.findById(crCuentaCredito.getClClientes().getCodigoCliente());
++	        List<CLTipoDireccion> lstClTipoDireccion = clTipoDireccionInterfaceLocal.findByDescripcion(beanCOReferenciaDomiciliaria.getClTipoDireccion());
++	        
++	        coReferenciaDomiciliaria.setCodigoActividad(beanCORegistroGestionCobranza.getCodigoActividad());
++	        coReferenciaDomiciliaria.setClPersonas(clPersona);
++	        coReferenciaDomiciliaria.setIdReferenciaDomiciliaria(idReferenciaDomiciliaria);
++	        coReferenciaDomiciliaria.setNombreContacto(beanCOReferenciaDomiciliaria.getNombreContacto());
++	        if(!_isEmpty(lstClTipoDireccion)){
++	            coReferenciaDomiciliaria.setClTipoDireccion(lstClTipoDireccion.get(0));
++
++	        }
++	        coReferenciaDomiciliaria.setDireccion(beanCOReferenciaDomiciliaria.getDireccion());
++	        coReferenciaDomiciliaria.setCodigoActividad(beanCORegistroGestionCobranza.getCodigoActividad());
++
++	        coReferenciaDomiciliaria.setCodigoEmpresa(Constante.ID_TFC);
++	        coReferenciaDomiciliaria.setEstadoRegistro(Constante.CODIGO_REGISTRO_VIGENTE);
++	        coReferenciaDomiciliaria.setFechaRegistro(FormatoFecha.dateToDateDDMMYYYYhhmmss(beanParametrosAuditoria.getFechaInsercion()));
++
++	        setInsercionAuditoria(coReferenciaDomiciliaria, beanParametrosAuditoria);
++
++	        coReferenciaDomiciliariaInterfaceLocal.save(coReferenciaDomiciliaria);
++
++        } catch (Exception e) {
++            throw handlerError(e, usuario, modulo);
++        }
++    }
++	//Fin [S17-029]
+ }
+diff --git a/FINANCIERONEW/src/financ/cobranzas/facade/COReferenciaTelefonicaFacade.java b/FINANCIERONEW/src/financ/cobranzas/facade/COReferenciaTelefonicaFacade.java
+index bacccf0..f69a710 100644
+--- a/FINANCIERONEW/src/financ/cobranzas/facade/COReferenciaTelefonicaFacade.java
++++ b/FINANCIERONEW/src/financ/cobranzas/facade/COReferenciaTelefonicaFacade.java
+@@ -11,6 +11,7 @@
+ import admin.contab.beans.BeanParametrosAuditoria;
+ import admin.contab.local.CBControlErroresFacadeInterfaceLocal;
+ import admin.contab.local.CBCorrelativoInterfaceLocal;
++import admin.util.FormatoFecha;
+ import financ.clientes.entity.CLPersonas;
+ import financ.clientes.entity.CLTipoRelacionFamiliar;
+ import financ.clientes.entity.CLTipoTelefono;
+@@ -18,19 +19,27 @@
+ import financ.clientes.local.CLTipoRelacionFamiliarInterfaceLocal;
+ import financ.clientes.local.CLTipoTelefonoInterfaceLocal;
+ import financ.cobranzas.beans.BeanCOReferenciaTelefonica;
++import financ.cobranzas.beans.BeanCORegistroGestionCobranza;
+ import financ.cobranzas.entity.COReferenciaTelefonica;
+ import financ.cobranzas.local.COReferenciaTelefonicaFacadeInterfaceLocal;
+ import financ.cobranzas.local.COReferenciaTelefonicaInterfaceLocal;
+ import financ.cobranzas.remote.COReferenciaTelefonicaFacadeInterfaceRemote;
++import financ.creditos.entity.CRCuentaCredito;
++import financ.creditos.local.CRCuentaCreditoInterfaceLocal;
++import financ.util.Constante;
++import pe.com.tfc.utils.AbstractFacade;
++import pe.com.tfc.utils.GenericBean;
++import pe.com.tfc.utils.StringUtil;
+ 
+ /**
+  * COReferenciaTelefonicaFacade facade.
+  * @author jgonzales
+  * @since 15.08.2012
++ * @since [S17-029] rsanchez 12.05.2017
+  */
+ @TransactionAttribute(TransactionAttributeType.REQUIRED)
+ @Stateless
+-public class COReferenciaTelefonicaFacade implements COReferenciaTelefonicaFacadeInterfaceLocal, 
++public class COReferenciaTelefonicaFacade extends AbstractFacade<COReferenciaTelefonica> implements COReferenciaTelefonicaFacadeInterfaceLocal, 
+ 	COReferenciaTelefonicaFacadeInterfaceRemote {
+ 
+ 	private static String NO_ERROR = "000";
+@@ -52,7 +61,14 @@
+ 	
+ 	@EJB
+ 	private CBCorrelativoInterfaceLocal cbCorrelativoInterfaceLocal;
+-		
++	
++	//Inicio [S17-029] rsanchez 12.05.2017
++	@EJB
++	private COReferenciaTelefonicaInterfaceLocal coReferenciaTelefonicaInterfaceLocal;
++	
++	@EJB
++	private CRCuentaCreditoInterfaceLocal crCuentaCreditoInterfaceLocal;
++	//Fin [S17-029]
+ 	public String grabar(BeanCOReferenciaTelefonica beanCOReferenciaTelefonica, BeanParametrosAuditoria beanParametrosAuditoria) throws Exception{
+ 		String strDescripcionError="";
+ 		try{
+@@ -199,18 +215,24 @@
+ 				for(int i=0;i<lstCOReferenciaTelefonica.size();i++){
+ 					coReferenciaDomiciliaria = (COReferenciaTelefonica)lstCOReferenciaTelefonica.get(i);
+ 					beanCOReferenciaTelefonica = new BeanCOReferenciaTelefonica();
+-					
+ 					beanCOReferenciaTelefonica.setIdReferenciaTelefonica(coReferenciaDomiciliaria.getIdReferenciaTelefonica());
+-					beanCOReferenciaTelefonica.setClTipoRelacionFamiliar(coReferenciaDomiciliaria.getClTipoRelacionFamiliar().getDescripcion());
++                    //Inicio [S17-029] rsanchez 12.05.2017
++					if (!StringUtil.isEmpty(coReferenciaDomiciliaria.getClTipoRelacionFamiliar())) {
++                        beanCOReferenciaTelefonica.setClTipoRelacionFamiliar(coReferenciaDomiciliaria.getClTipoRelacionFamiliar().getDescripcion());
++                    }
+ 					beanCOReferenciaTelefonica.setClPersonas(coReferenciaDomiciliaria.getClPersonas().getCodigoPersona());
+-					beanCOReferenciaTelefonica.setClTipoTelefono(coReferenciaDomiciliaria.getClTipoTelefono().getDescripcion());
++					if(!StringUtil.isEmpty(coReferenciaDomiciliaria.getClTipoTelefono())){
++		                   beanCOReferenciaTelefonica.setClTipoTelefono(coReferenciaDomiciliaria.getClTipoTelefono().getDescripcion());
++					}
++					//Fin [S17-029]
+ 					beanCOReferenciaTelefonica.setNombreContacto(coReferenciaDomiciliaria.getNombreContacto());
+ 					beanCOReferenciaTelefonica.setActividadEconomica(coReferenciaDomiciliaria.getActividadEconomica());
+ 					beanCOReferenciaTelefonica.setCodigoPais(coReferenciaDomiciliaria.getCodigoPais());
+ 					beanCOReferenciaTelefonica.setCodigoUbigeo(coReferenciaDomiciliaria.getCodigoUbigeo());
+ 					beanCOReferenciaTelefonica.setNumeroTelefono(coReferenciaDomiciliaria.getNumeroTelefono());
+ 					beanCOReferenciaTelefonica.setDetalleReferenciaTelefonica(coReferenciaDomiciliaria.getDetalleReferenciaTelefonica());
+-					
++					//[S17-029] rsanchez 12.05.2017
++					beanCOReferenciaTelefonica.setCodigoActividad(coReferenciaDomiciliaria.getCodigoActividad());
+ 					beanCOReferenciaTelefonica.setFechaRegistro(coReferenciaDomiciliaria.getFechaRegistro());
+ 					beanCOReferenciaTelefonica.setCodigoEmpresa(coReferenciaDomiciliaria.getCodigoEmpresa());
+ 					beanCOReferenciaTelefonica.setEstadoRegistro(coReferenciaDomiciliaria.getEstadoRegistro());
+@@ -243,4 +265,64 @@
+ 		return lstBeanCOReferenciaTelefonica;	
+ 	}
+ 	
++	//Inicio [S17-029] rsanchez 12.05.2017
++	public void insertarReferenciaTelefonica(GenericBean genericBean,
++                                              BeanCORegistroGestionCobranza beanCORegistroGestionCobranza,
++                                              BeanParametrosAuditoria beanParametrosAuditoria) throws Exception {
++
++	    final String modulo = "COReferenciaTelefonicaFacade.insertarReferenciaTelefonica()";
++	    final String usuario = beanParametrosAuditoria.getUsuarioInsercion();
++	    
++	    try {
++	        
++	        if(_isEmpty(beanCORegistroGestionCobranza.getBeanCOReferenciaTelefonica())){
++	            return;
++	        }
++	        
++	        BeanCOReferenciaTelefonica beanCOReferenciaTelefonica = beanCORegistroGestionCobranza.getBeanCOReferenciaTelefonica();
++
++	        if (_isEmpty(beanCOReferenciaTelefonica.getNumeroTelefono())) {
++	            return;
++	        }
++
++	        String idReferenciaTelefonica = generarCorrelativo("CODRETE", 15, beanParametrosAuditoria);
++
++	        COReferenciaTelefonica coReferenciaTelefonica = new COReferenciaTelefonica();
++	        
++	        List<CLTipoTelefono> lstClTipoTelefono = clTipoTelefonoInterfaceLocal.findByDescripcion(beanCOReferenciaTelefonica.getClTipoTelefono());
++
++	        List<CLTipoRelacionFamiliar> lstClTipoRelacionFamiliar = clTipoRelacionFamiliarInterfaceLocal.findByDescripcion(beanCOReferenciaTelefonica.getClTipoRelacionFamiliar());
++
++	        CRCuentaCredito crCuentaCredito = crCuentaCreditoInterfaceLocal.findById(beanCOReferenciaTelefonica.getClPersonas());
++	        CLPersonas clPersona = (CLPersonas) clPersonaFacadeInterfaceLocal.findById(crCuentaCredito.getClClientes().getCodigoCliente());
++
++	        coReferenciaTelefonica.setCodigoActividad(beanCORegistroGestionCobranza.getCodigoActividad());
++	        coReferenciaTelefonica.setClPersonas(clPersona);
++	        coReferenciaTelefonica.setIdReferenciaTelefonica(idReferenciaTelefonica);
++	        coReferenciaTelefonica.setNombreContacto(beanCOReferenciaTelefonica.getNombreContacto());
++	        if(!_isEmpty(lstClTipoRelacionFamiliar)){
++	            coReferenciaTelefonica.setClTipoRelacionFamiliar(lstClTipoRelacionFamiliar.get(0));
++	        }
++	        coReferenciaTelefonica.setActividadEconomica(beanCOReferenciaTelefonica.getActividadEconomica());
++	        coReferenciaTelefonica.setCodigoActividad(beanCORegistroGestionCobranza.getCodigoActividad());
++
++	        if(!_isEmpty(lstClTipoTelefono)){
++	            coReferenciaTelefonica.setClTipoTelefono(lstClTipoTelefono.get(0));
++	        }
++	        coReferenciaTelefonica.setNumeroTelefono(beanCOReferenciaTelefonica.getNumeroTelefono());
++
++	        coReferenciaTelefonica.setCodigoEmpresa(Constante.ID_TFC);
++	        coReferenciaTelefonica.setEstadoRegistro(Constante.CODIGO_REGISTRO_VIGENTE);
++	        coReferenciaTelefonica.setFechaRegistro(FormatoFecha.dateToDateDDMMYYYYhhmmss(beanParametrosAuditoria.getFechaInsercion()));
++
++	        setInsercionAuditoria(coReferenciaTelefonica, beanParametrosAuditoria);
++
++	        coReferenciaTelefonicaInterfaceLocal.save(coReferenciaTelefonica);
++        } catch (Exception e) {
++            throw handlerError(e, usuario, modulo);
++        }
++        
++        
++    }
++	//Fin [S17-029]
+ }
+diff --git a/FINANCIERONEW/src/financ/cobranzas/facade/CORegistroGestionCobranzaFacade.java b/FINANCIERONEW/src/financ/cobranzas/facade/CORegistroGestionCobranzaFacade.java
+index a819f25..237cb6a 100644
+--- a/FINANCIERONEW/src/financ/cobranzas/facade/CORegistroGestionCobranzaFacade.java
++++ b/FINANCIERONEW/src/financ/cobranzas/facade/CORegistroGestionCobranzaFacade.java
+@@ -13,10 +13,10 @@
+ import javax.persistence.EntityManager;
+ import javax.persistence.PersistenceContext;
+ 
+-import pe.com.tfc.utils.AbstractFacade;
+ import admin.contab.beans.BeanParametrosAuditoria;
+ import admin.contab.local.CBControlErroresFacadeInterfaceLocal;
+ import admin.contab.local.CBCorrelativoInterfaceLocal;
++import admin.util.FormatoFecha;
+ import financ.clientes.entity.CLDireccionPersonas;
+ import financ.clientes.entity.CLPersonas;
+ import financ.clientes.entity.CLTipoRelacionFamiliar;
+@@ -42,6 +42,8 @@
+ import financ.creditos.entity.CRCuentaCredito;
+ import financ.creditos.local.CRCuentaCreditoInterfaceLocal;
+ import financ.util.Constante;
++import pe.com.tfc.utils.AbstractFacade;
++import pe.com.tfc.utils.GenericBean;
+ 
+ /**
+  * CORegistroGestionCobranzaFacade facade.
+@@ -395,6 +397,13 @@
+ 					}
+ 					beanCORegistroGestionCobranza.setNombrePariente(coRegistroGestionCobranza.getNombrePariente());
+ 					//Fin [CC17-026]
++					
++					//Inicio [Req.S17-029] rsanchez 12.05.2017
++					beanCORegistroGestionCobranza.setCodigoActividad(coRegistroGestionCobranza.getCodigoActividad());
++					beanCORegistroGestionCobranza.setCodigoTipoActividad(coRegistroGestionCobranza.getCodigoTipoActividad());
++					beanCORegistroGestionCobranza.setFoto(coRegistroGestionCobranza.getFoto());
++					beanCORegistroGestionCobranza.setMotivoNoVisita(coRegistroGestionCobranza.getMotivoNoVisita());
++					//Fin [Req.S17-029]
+ 					beanCORegistroGestionCobranza.setSuministroLuz(coRegistroGestionCobranza.getSuministroLuz());
+ 					beanCORegistroGestionCobranza.setPosibilidadCobro(coRegistroGestionCobranza.getPosibilidadCobro());
+ 					beanCORegistroGestionCobranza.setAptoIncautacion(coRegistroGestionCobranza.getAptoIncautacion());
+@@ -464,4 +473,61 @@
+         return fechaProgramacion;
+     }
+     //Fin [CC17-026]
++    //Inicio [S17-029] rsanchez 12.05.2017
++    public void insertarRegistroCobranza(GenericBean genericBean,
++                                          BeanCORegistroGestionCobranza beanCORegistroGestionCobranza,
++                                          BeanParametrosAuditoria beanParametrosAuditoria) throws Exception{
++        
++        final String modulo = "CORegistroGestionCobranzaFacade.insertarRegistroCobranza()";
++        final String usuario = beanParametrosAuditoria.getUsuarioInsercion();
++        
++        try {
++            String idRegistroCobranza = generarCorrelativo("CODREGS", 15, beanParametrosAuditoria);
++
++            CORegistroGestionCobranza coRegistroGestionCobranza = new CORegistroGestionCobranza();
++            CRCuentaCredito crCuentaCredito = crCuentaCreditoInterfaceLocal.findById(beanCORegistroGestionCobranza.getNumeroCredito());
++            CLPersonas clPersona = (CLPersonas) clPersonaFacadeInterfaceLocal.findById(crCuentaCredito.getClClientes().getCodigoCliente());
++
++            coRegistroGestionCobranza.setIdRegistroGestionCobranza(idRegistroCobranza);
++            coRegistroGestionCobranza.setCrCuentaCredito(crCuentaCredito);
++            coRegistroGestionCobranza.setClPersonas(clPersona);
++            coRegistroGestionCobranza.setCodigoActividad(beanCORegistroGestionCobranza.getCodigoActividad());
++            coRegistroGestionCobranza.setCodigoTipoActividad(beanCORegistroGestionCobranza.getCodigoTipoActividad());
++            coRegistroGestionCobranza.setUsuarioGestion(beanCORegistroGestionCobranza.getUsuarioGestion());
++            coRegistroGestionCobranza.setFechaGestion(FormatoFecha.dateToDateDDMMYYYYhhmmss(beanCORegistroGestionCobranza.getFechaGestion()));
++            coRegistroGestionCobranza.setLatitud(beanCORegistroGestionCobranza.getLatitud());
++            coRegistroGestionCobranza.setLongitud(beanCORegistroGestionCobranza.getLongitud());
++
++            COGestionRealizada coGestionRealizada = new COGestionRealizada();
++
++            if (_equiv(beanCORegistroGestionCobranza.getNombreEstado(), Constante.REGISTRO_GESTION)) {
++                coGestionRealizada = coGestionRealizadaInterfaceLocal.findByDescripcion(beanCORegistroGestionCobranza.getCoGestionRealizada()).get(0);
++                coRegistroGestionCobranza.setCoGestionRealizada(coGestionRealizada);
++                CORespuestaGestion coRespuestaGestion = coRespuestaGestionInterfaceLocal.findByDescripcion(beanCORegistroGestionCobranza.getCoRespuestaGestion()).get(0);
++                coRegistroGestionCobranza.setCoRespuestaGestion(coRespuestaGestion);
++                coRegistroGestionCobranza.setFoto(beanCORegistroGestionCobranza.getFoto());
++                coRegistroGestionCobranza.setTipoDireccionVisitada(beanCORegistroGestionCobranza.getTipoDireccionVisitada());
++                coRegistroGestionCobranza.setObservacion(beanCORegistroGestionCobranza.getObservacion());
++
++            } else if (_equiv(beanCORegistroGestionCobranza.getNombreEstado(), Constante.VISITA_NO_REALIZADA)) {
++                coGestionRealizada = coGestionRealizadaInterfaceLocal.findById(Constante.NO_SE_VISITO);
++                coRegistroGestionCobranza.setCoGestionRealizada(coGestionRealizada);
++                coRegistroGestionCobranza.setMotivoNoVisita(beanCORegistroGestionCobranza.getMotivoNoVisita());
++                coRegistroGestionCobranza.setObservacion(beanCORegistroGestionCobranza.getObservacion());
++            }
++
++            coRegistroGestionCobranza.setCodigoEmpresa(Constante.ID_TFC);
++            coRegistroGestionCobranza.setEstadoRegistro(Constante.CODIGO_REGISTRO_VIGENTE);
++            coRegistroGestionCobranza.setFechaRegistro(FormatoFecha.dateToDateDDMMYYYYhhmmss(beanParametrosAuditoria.getFechaInsercion()));
++
++            setInsercionAuditoria(coRegistroGestionCobranza, beanParametrosAuditoria);
++
++            coRegistroGestionCobranzaInterfaceLocal.save(coRegistroGestionCobranza);
++        } catch (Exception e) {
++            throw handlerError(e, usuario, modulo);
++        }
++
++        
++    }
++    //Fin [S17-029]
+ }
+diff --git a/FINANCIERONEW/src/financ/cobranzas/local/COReferenciaDomiciliariaFacadeInterfaceLocal.java b/FINANCIERONEW/src/financ/cobranzas/local/COReferenciaDomiciliariaFacadeInterfaceLocal.java
+index 5331b08..0fac6e8 100644
+--- a/FINANCIERONEW/src/financ/cobranzas/local/COReferenciaDomiciliariaFacadeInterfaceLocal.java
++++ b/FINANCIERONEW/src/financ/cobranzas/local/COReferenciaDomiciliariaFacadeInterfaceLocal.java
+@@ -4,6 +4,8 @@
+ import javax.ejb.Local;
+ import admin.contab.beans.BeanParametrosAuditoria;
+ import financ.cobranzas.beans.BeanCOReferenciaDomiciliaria;
++import financ.cobranzas.beans.BeanCORegistroGestionCobranza;
++import pe.com.tfc.utils.GenericBean;
+ 
+ /**
+  * Local interface for COReferenciaDomiciliariaFacade.
+@@ -18,4 +20,18 @@
+ 	public String modificar(BeanCOReferenciaDomiciliaria beanCOReferenciaDomiciliaria, BeanParametrosAuditoria beanParametrosAuditoria)throws Exception;
+ 	public String eliminar(BeanCOReferenciaDomiciliaria beanCOReferenciaDomiciliaria) throws Exception;
+ 	public List<BeanCOReferenciaDomiciliaria> obtenerNivelesGrupoProductoCredito(String strListaCobranza,String strEstadoRegistro, String posicionInicial, String strCodigoUsuario) throws Exception;
++	/**
++     * Insertar Referencia Domiciliaria
++     * 
++     * @author rsanchez
++     * @since [Req.S17-029] 12.05.2017
++     * @param genericBean
++     * @param beanCORegistroGestionCobranza
++     * @param beanParametrosAuditoria
++     * @return
++     * @throws Exception
++     */
++	public void insertarReferenciaDomiciliaria(GenericBean genericBean,
++                                               BeanCORegistroGestionCobranza beanCORegistroGestionCobranza,
++                                               BeanParametrosAuditoria beanParametrosAuditoria) throws Exception;
+ }
+diff --git a/FINANCIERONEW/src/financ/cobranzas/local/COReferenciaTelefonicaFacadeInterfaceLocal.java b/FINANCIERONEW/src/financ/cobranzas/local/COReferenciaTelefonicaFacadeInterfaceLocal.java
+index 140a40e..af61e9c 100644
+--- a/FINANCIERONEW/src/financ/cobranzas/local/COReferenciaTelefonicaFacadeInterfaceLocal.java
++++ b/FINANCIERONEW/src/financ/cobranzas/local/COReferenciaTelefonicaFacadeInterfaceLocal.java
+@@ -4,6 +4,8 @@
+ import javax.ejb.Local;
+ import admin.contab.beans.BeanParametrosAuditoria;
+ import financ.cobranzas.beans.BeanCOReferenciaTelefonica;
++import financ.cobranzas.beans.BeanCORegistroGestionCobranza;
++import pe.com.tfc.utils.GenericBean;
+ 
+ /**
+  * Local interface for COReferenciaTelefonicaFacade.
+@@ -19,4 +21,18 @@
+ 	public String modificar(BeanCOReferenciaTelefonica beanCOReferenciaTelefonica, BeanParametrosAuditoria beanParametrosAuditoria)throws Exception;
+ 	public String eliminar(BeanCOReferenciaTelefonica beanCOReferenciaTelefonica) throws Exception;
+ 	public List<BeanCOReferenciaTelefonica> obtenerNivelesGrupoProductoCredito(String strListaCobranza,String strEstadoRegistro, String posicionInicial, String strCodigoUsuario) throws Exception;
++	/**
++     * Insertar Referencia Telefonica
++     * 
++     * @author rsanchez
++     * @since [Req.S17-029] 12.05.2017
++     * @param genericBean
++     * @param beanCORegistroGestionCobranza
++     * @param beanParametrosAuditoria
++     * @return
++     * @throws Exception
++     */
++	public void insertarReferenciaTelefonica(GenericBean genericBean,
++                                             BeanCORegistroGestionCobranza beanCORegistroGestionCobranza,
++                                             BeanParametrosAuditoria beanParametrosAuditoria) throws Exception;
+ }
+diff --git a/FINANCIERONEW/src/financ/cobranzas/local/CORegistroGestionCobranzaFacadeInterfaceLocal.java b/FINANCIERONEW/src/financ/cobranzas/local/CORegistroGestionCobranzaFacadeInterfaceLocal.java
+index f81f358..130a6f2 100644
+--- a/FINANCIERONEW/src/financ/cobranzas/local/CORegistroGestionCobranzaFacadeInterfaceLocal.java
++++ b/FINANCIERONEW/src/financ/cobranzas/local/CORegistroGestionCobranzaFacadeInterfaceLocal.java
+@@ -7,6 +7,7 @@
+ 
+ import admin.contab.beans.BeanParametrosAuditoria;
+ import financ.cobranzas.beans.BeanCORegistroGestionCobranza;
++import pe.com.tfc.utils.GenericBean;
+ 
+ /**
+  * Local interface for CORegistroGestionCobranzaFacade.
+@@ -44,4 +45,18 @@
+      */
+ 	public Date findUltimaFechaProgramacionByPersona(String strCodigoPersona,
+                                                      BeanParametrosAuditoria beanParametrosAuditoria) throws Exception;
++	/**
++     * Insertar Registro Cobranza
++     * 
++     * @author rsanchez
++     * @since [Req.S17-029] 12.05.2017
++     * @param genericBean
++     * @param beanCORegistroGestionCobranza
++     * @param beanParametrosAuditoria
++     * @return
++     * @throws Exception
++     */
++    public void insertarRegistroCobranza(GenericBean genericBean,
++                                         BeanCORegistroGestionCobranza beanCORegistroGestionCobranza,
++                                         BeanParametrosAuditoria beanParametrosAuditoria) throws Exception;
+ }
+diff --git a/FINANCIERONEW/src/financ/util/Constante.java b/FINANCIERONEW/src/financ/util/Constante.java
+index 2a8162e..0deca4b 100644
+--- a/FINANCIERONEW/src/financ/util/Constante.java
++++ b/FINANCIERONEW/src/financ/util/Constante.java
+@@ -2545,4 +2545,13 @@
+     public static final String NOTA_DE_CARGO_CTA = "CE031";
+     public static final String COMA = ",";
+     // Fin [T-9420] dlazo
++    
++    //Inicio [Req.S17-029] rsanchez 12.05.2017
++    public static final String REGISTRO_GESTION = "REGISTRO DE GESTION";
++    public static final String REFERENCIA_TELEFONICA = "REFERENCIA TELEFONICA";
++    public static final String REFERENCIA_DOMICILIARIA = "REFERENCIA DOMICILIARIA";
++    public static final String VISITA_NO_REALIZADA = "VISITA NO REALIZADA";
++    public static final String NO_SE_VISITO = "No se visitó";
++    //Fin [Req.S17-029]
++    
+ }

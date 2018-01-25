@@ -1,0 +1,70 @@
+diff --git a/FINANCIERONEW/src/financ/seguimientoCartera/facade/CRCargaAlertaFacade.java b/FINANCIERONEW/src/financ/seguimientoCartera/facade/CRCargaAlertaFacade.java
+index 71719f3..20d7b1e 100644
+--- a/FINANCIERONEW/src/financ/seguimientoCartera/facade/CRCargaAlertaFacade.java
++++ b/FINANCIERONEW/src/financ/seguimientoCartera/facade/CRCargaAlertaFacade.java
+@@ -231,25 +231,19 @@
+             } else {
+                 beanCRSeguimientoCartera.setCodigoCliente(clCliente.getCodigoCliente());
+ 
+-                List<CRCuentaCredito> lstCRCuentaCredito = new ArrayList<CRCuentaCredito>();
+-                lstCRCuentaCredito = crCuentaCreditoInterfaceLocal.findAllByCodigoClienteEstadoCredito(clCliente.getCodigoCliente(),
+-                                                                                                       Constante.ESTADO_CREDITO_VIGENTE);
+-                if (_isEmpty(lstCRCuentaCredito)) {
++                // Inicio [CC17-067] esalazar 15.06.2017
++                CRCuentaCredito crCuentaCredito = crCuentaCreditoInterfaceLocal.findById(beanCRSeguimientoCartera.getNumeroCredito());
++                if (_isEmpty(crCuentaCredito)) {
+                     throw new ErrorControladoException(ConstantesErrores.ERROR_11174);
+                 } else {
+-                    //Pertenencia y vigencia del n�mero de cr�dito al cliente especificado
+-                    String numeroCredito = null;
+-                    for (final CRCuentaCredito crCuentaCredito : lstCRCuentaCredito) {
+-                        if (_equiv(crCuentaCredito.getNumeroCredito(), beanCRSeguimientoCartera.getNumeroCredito())) {
+-                            numeroCredito = beanCRSeguimientoCartera.getNumeroCredito();
+-                        }
+-                    }
+-                    if (_isEmpty(numeroCredito)) {
++                    if (!_equiv(crCuentaCredito.getClClientes().getClPersonas().getCodigoPersona(),
++                                clPersonas.getCodigoPersona())) {
+                         throw new ErrorControladoException(ConstantesErrores.ERROR_11186);
+                     }
+-                    codigoAgencia = lstCRCuentaCredito.get(0).getCodigoAgencia();
++                    codigoAgencia = crCuentaCredito.getCodigoAgencia();
+                     beanCRSeguimientoCartera.setCodigoAgencia(codigoAgencia);
+                 }
++                // Fin [CC17-067]
+             }
+         }
+ 
+@@ -318,25 +312,19 @@
+             } else {
+                 beanCRCargaAlerta.setCodigoCliente(clCliente.getCodigoCliente());
+ 
+-                List<CRCuentaCredito> lstCRCuentaCredito = new ArrayList<CRCuentaCredito>();
+-                lstCRCuentaCredito = crCuentaCreditoInterfaceLocal.findAllByCodigoClienteEstadoCredito(clCliente.getCodigoCliente(),
+-                                                                                                       Constante.ESTADO_CREDITO_VIGENTE);
+-                if (_isEmpty(lstCRCuentaCredito)) {
++                // Inicio [CC17-067] esalazar 15.06.2017
++                CRCuentaCredito crCuentaCredito = crCuentaCreditoInterfaceLocal.findById(beanCRCargaAlerta.getNumeroCredito());
++                if (_isEmpty(crCuentaCredito)) {
+                     lstErrores.add(ConstantesErrores.ERROR_11174);
+                 } else {
+-                    //Pertenencia y vigencia del n�mero de cr�dito al cliente especificado
+-                    String numeroCredito = null;
+-                    for (final CRCuentaCredito crCuentaCredito : lstCRCuentaCredito) {
+-                        if (_equiv(crCuentaCredito.getNumeroCredito(), beanCRCargaAlerta.getNumeroCredito())) {
+-                            numeroCredito = beanCRCargaAlerta.getNumeroCredito();
+-                        }
+-                    }
+-                    if (_isEmpty(numeroCredito)) {
++                    if (!_equiv(crCuentaCredito.getClClientes().getClPersonas().getCodigoPersona(),
++                                clPersona.getCodigoPersona())) {
+                         lstErrores.add(ConstantesErrores.ERROR_11186);
+                     }
+-                    codigoAgencia = lstCRCuentaCredito.get(0).getCodigoAgencia();
++                    codigoAgencia = crCuentaCredito.getCodigoAgencia();
+                     beanCRCargaAlerta.setCodigoAgencia(codigoAgencia);
+                 }
++                // Fin [CC17-067]
+             }
+         }
+ 

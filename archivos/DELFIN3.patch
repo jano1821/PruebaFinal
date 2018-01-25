@@ -1,0 +1,2492 @@
+diff --git a/DELFINWEBNEW/.classpath b/DELFINWEBNEW/.classpath
+index 6c42886..0f38d04 100644
+--- a/DELFINWEBNEW/.classpath
++++ b/DELFINWEBNEW/.classpath
+@@ -1,35 +1,46 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<classpath>
+-	<classpathentry kind="src" path="src"/>
+-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+-	<classpathentry kind="con" path="com.genuitec.eclipse.j2eedt.core.J2EE14_CONTAINER"/>
+-	<classpathentry combineaccessrules="false" kind="src" path="/ADMINISTRATIVONEW"/>
+-	<classpathentry combineaccessrules="false" kind="src" path="/FINANCIERONEW"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/JasperBabylon-1.0.0.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/barbecue-1.5-beta1.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/bsh-2.0b4.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-beanutils-1.7.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-codec-1.3.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-collections-2.1.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-dbcp-1.2.1.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-digester-1.7.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-fileupload-1.1.1.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-httpclient-3.1.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-io-1.3.1.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-javaflow-20060411.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-logging-1.0.2.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-logging-api-1.0.2.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-math-1.0.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-pool-1.3.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-vfs-1.0.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/iReport.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jakarta-bcel-20050813.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/poi-3.0.1-FINAL-20070705.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jsonplugin-0.34.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/itext-1.3.1.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jasperreports-3.0.0-applet.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jasperreports-3.0.0.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jasperreports-extensions-1.3.1.jar"/>
+-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jasperreports-flash-2.0.5.jar"/>
+-	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
+-</classpath>
++<?xml version="1.0" encoding="UTF-8"?>
++<classpath>
++	<classpathentry kind="src" path="src"/>
++	<classpathentry kind="con" path="com.genuitec.eclipse.j2eedt.core.J2EE14_CONTAINER"/>
++	<classpathentry combineaccessrules="false" kind="src" path="/ADMINISTRATIVONEW"/>
++	<classpathentry combineaccessrules="false" kind="src" path="/FINANCIERONEW"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/JasperBabylon-1.0.0.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/barbecue-1.5-beta1.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/bsh-2.0b4.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-beanutils-1.7.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-codec-1.3.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-collections-2.1.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-dbcp-1.2.1.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-digester-1.7.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-fileupload-1.1.1.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-httpclient-3.1.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-io-1.3.1.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-javaflow-20060411.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-logging-1.0.2.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-logging-api-1.0.2.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-math-1.0.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-pool-1.3.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-vfs-1.0.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/iReport.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jakarta-bcel-20050813.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/poi-3.0.1-FINAL-20070705.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jsonplugin-0.34.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/itext-1.3.1.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jasperreports-3.0.0-applet.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jasperreports-3.0.0.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jasperreports-extensions-1.3.1.jar"/>
++	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jasperreports-flash-2.0.5.jar"/>
++	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_07">
++		<attributes>
++			<attribute name="owner.project.facets" value="java"/>
++		</attributes>
++	</classpathentry>
++	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/JBoss 4.2 Runtime">
++		<attributes>
++			<attribute name="owner.project.facets" value="jst.web"/>
++		</attributes>
++	</classpathentry>
++	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
++	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
++	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
++</classpath>
+diff --git a/DELFINWEBNEW/.project b/DELFINWEBNEW/.project
+index d6944cb..ba099d1 100644
+--- a/DELFINWEBNEW/.project
++++ b/DELFINWEBNEW/.project
+@@ -6,6 +6,11 @@
+ 	</projects>
+ 	<buildSpec>
+ 		<buildCommand>
++			<name>org.eclipse.wst.common.project.facet.core.builder</name>
++			<arguments>
++			</arguments>
++		</buildCommand>
++		<buildCommand>
+ 			<name>org.eclipse.wst.jsdt.core.javascriptValidator</name>
+ 			<arguments>
+ 			</arguments>
+@@ -42,9 +47,12 @@
+ 		</buildCommand>
+ 	</buildSpec>
+ 	<natures>
++		<nature>org.eclipse.jem.workbench.JavaEMFNature</nature>
++		<nature>org.eclipse.wst.common.modulecore.ModuleCoreNature</nature>
+ 		<nature>com.genuitec.eclipse.ast.deploy.core.deploymentnature</nature>
+ 		<nature>com.genuitec.eclipse.j2eedt.core.webnature</nature>
+ 		<nature>org.eclipse.jdt.core.javanature</nature>
+ 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
++		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
+ 	</natures>
+ </projectDescription>
+diff --git a/DELFINWEBNEW/.tern-project b/DELFINWEBNEW/.tern-project
+new file mode 100644
+index 0000000..66ea919
+--- /dev/null
++++ b/DELFINWEBNEW/.tern-project
+@@ -0,0 +1,14 @@
++{
++  "plugins": {
++    "guess-types": {
++      
++    },
++    "outline": {
++      
++    }
++  },
++  "libs": [
++    "ecma5",
++    "browser"
++  ]
++}
+\ No newline at end of file
+diff --git a/DELFINWEBNEW/WebRoot/FINANCIERO/cuentasPasivas/CP-T-AperturaPlataformaDPF_CNTR.jsp b/DELFINWEBNEW/WebRoot/FINANCIERO/cuentasPasivas/CP-T-AperturaPlataformaDPF_CNTR.jsp
+index 4e451b5..a5e0459 100644
+--- a/DELFINWEBNEW/WebRoot/FINANCIERO/cuentasPasivas/CP-T-AperturaPlataformaDPF_CNTR.jsp
++++ b/DELFINWEBNEW/WebRoot/FINANCIERO/cuentasPasivas/CP-T-AperturaPlataformaDPF_CNTR.jsp
+@@ -545,6 +545,17 @@
+ 											class="campodisplayde" readonly value="<%= strDepositoCuentaContable %>"  >
+ 										</td>
+ 		    						</tr>
++		    						
++                                    <%-- Inicio [Req.17-033] acnunez 15.06.2017--%>
++                                    <tr>
++                                        <td  class="etiqueta">Fecha Valor Dep.</td>
++	                                        <td>
++	                                             <input type="text" id="txtFecValorDeposito" name="txtFecValorDeposito" class="campoopcionalce" style="width: 100" onFocus="this.select();" onBlur="this.value=vuelveFecha(this.value);if(this.value!=''){validarFecha(this.id);}">
++	                                        </td>
++	                                        <td>
++                                        </td>
++                                    </tr>
++                                    <%-- Fin [Req.17-033]--%>
+ 		    						<tr>
+ 		    							<td  class="etiqueta"></td>
+ 										<td colspan="2">
+diff --git a/DELFINWEBNEW/WebRoot/UTILS/Script/MsgValidacion.js b/DELFINWEBNEW/WebRoot/UTILS/Script/MsgValidacion.js
+index 4c8baac..e723dc9 100644
+--- a/DELFINWEBNEW/WebRoot/UTILS/Script/MsgValidacion.js
++++ b/DELFINWEBNEW/WebRoot/UTILS/Script/MsgValidacion.js
+@@ -10,54 +10,54 @@
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ // de validacion de pantallas (generales)
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-var m_0001   = "No ingres� alg�n campo obligatorio, por favor revise";
+-var m_7008   = "No ingres� alg�n campo obligatorio, por favor revise";
+-var m_7009   = "No ingres� alg�n campo obligatorio, por favor revise";
+-var m_7010   = "No ingres� alg�n campo obligatorio, por favor revise";
+-var m_7011   = "No ingres� alg�n campo obligatorio, por favor revise";
+-var m_7012   = "No ingres� alg�n campo obligatorio, por favor revise";
+-var m_8305   = "No ingres� alg�n campo obligatorio, por favor revise";
+-var m_0007   = "N�mero inv�lido";
+-var m_7333   = "Rango inv�lido";
+-var m_0005   = "Rango de fechas inv�lido";
+-var m_0006   = "Fecha inv�lida";
+-var m_2232   = "Fecha inv�lida";
+-var m_2233   = "Fecha inv�lida"; 
+-var m_8434   = "Fecha inv�lida";
+-var m_8435   = "Hora inv�lida";
++var m_0001   = "No ingres� alg�n campo obligatorio, por favor revise";
++var m_7008   = "No ingres� alg�n campo obligatorio, por favor revise";
++var m_7009   = "No ingres� alg�n campo obligatorio, por favor revise";
++var m_7010   = "No ingres� alg�n campo obligatorio, por favor revise";
++var m_7011   = "No ingres� alg�n campo obligatorio, por favor revise";
++var m_7012   = "No ingres� alg�n campo obligatorio, por favor revise";
++var m_8305   = "No ingres� alg�n campo obligatorio, por favor revise";
++var m_0007   = "N�mero inv�lido";
++var m_7333   = "Rango inv�lido";
++var m_0005   = "Rango de fechas inv�lido";
++var m_0006   = "Fecha inv�lida";
++var m_2232   = "Fecha inv�lida";
++var m_2233   = "Fecha inv�lida"; 
++var m_8434   = "Fecha inv�lida";
++var m_8435   = "Hora inv�lida";
+ var m_0096   = "La fecha no puede ser mayor a la fecha de Proceso";
+ var m_0164   = "La fecha de Inicio no puede ser menor a la fecha del sistema";
+ var m_0165   = "La fecha de fin debe ser mayor a la fecha de Inicio";
+ var m_0178   = "La fecha hasta debe ser mayor a la fecha desde";
+ var m_7013   = "Fecha no permitida(Mayor al plazo)";
+ var m_0173   = "La fecha de fin debe ser mayor a la fecha de vigencia";
+-var m_8734   = "D�as hasta debe ser mayor o igual a D�as desde";
+-var m_0012   = "El plazo ingresado est� fuera del rango";
++var m_8734   = "D�as hasta debe ser mayor o igual a D�as desde";
++var m_0012   = "El plazo ingresado est� fuera del rango";
+ var m_0151   = "Plazo no puede ser menor o igual a cero";
+ var m_0162   = "Plazo maximo debe ser mayor al plazo minimo";
+ var m_0091   = "Los rangos de los plazos se cruzan con uno existente";
+ var m_0097   = "La rangos de fechas se cruzan";
+ var m_0020   = "El fin no puede ser menor al inicio";
+ var m_0060   = "No hay Registros Anteriores";
+-var m_0061   = "No hay m�s Registros";
++var m_0061   = "No hay m�s Registros";
+ var m_0080   = "Se produjo un error";
+-var m_0107   = "Ingrese n�mero de d�a o n�mero meses o n�mero de a�os";
+-var m_0008   = "El valor excede al m�ximo permitido";
++var m_0107   = "Ingrese n�mero de d�a o n�mero meses o n�mero de a�os";
++var m_0008   = "El valor excede al m�ximo permitido";
+ var m_0152   = "El valor no puede ser menor a cero";
+-var m_0150   = "El monto ingresado est� fuera del rango";
+-var m_0159   = "Monto m�ximo debe ser mayor al monto m�nimo";
++var m_0150   = "El monto ingresado est� fuera del rango";
++var m_0159   = "Monto m�ximo debe ser mayor al monto m�nimo";
+ var m_0046   = "Monto no puede ser menor o igual a cero";
+-var m_8010   = "La operaci�n ya est� cerrada";
+-var m_0180   = "La Operaci�n no est� permitida para el registro seleccionado";
++var m_8010   = "La operaci�n ya est� cerrada";
++var m_0180   = "La Operaci�n no est� permitida para el registro seleccionado";
+ var m_0192   = "Solamente puede seleccionar el primer registro";
+-var m_0174   = "La direcci�n de email es incorrecta";
++var m_0174   = "La direcci�n de email es incorrecta";
+ var m_0177   = "Debe seleccionar imagen";
+ var m_9112   = "Debe seleccionar un archivo";
+ var m_0179   = "Debe de seleccionar un cajero";
+-var m_0166   = "El d�a final no debe ser menor al d�a Inicial";
++var m_0166   = "El d�a final no debe ser menor al d�a Inicial";
+ var m_0167   = "No ha seleccionado ningun registro";
+-var m_0168   = "No ha ingresado ningun filtro de selecci�n";
+-var m_0172   = "El d�a debe ser mayor a cero";
++var m_0168   = "No ha ingresado ningun filtro de selecci�n";
++var m_0172   = "El d�a debe ser mayor a cero";
+ var m_8108   = "No se ha ingresado detalles para el registro";
+ var m_8662   = "Debe de ingresar el sector economico.";
+ var m_8885   = "La fecha del documento no puede ser menor a la fecha de registro";
+@@ -65,14 +65,14 @@
+ // de grabacion de transaccion
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ var m_0182   = "Acceso denegado";
+-var m_8570   = "La operaci�n se realiz� satisfactoriamente";
+-var m_0156   = "Grabaci�n en proceso, por favor espere";
+-var m_0144   = "La sesi�n ha terminado, debe ingresar de nuevo al sistema";
+-var m_0003   = "No se pudo crear el registro, se present� un error";
+-var m_0004   = "No se pudo realizar la transacci�n, se present� un error";
+-var m_0010   = "La operaci�n se realiz� satisfactoriamente";
+-var m_0011   = "La operaci�n se realiz� satisfactoriamente";
+-var m_9104   = "La operaci�n se realiz� satisfactoriamente con observaciones";
++var m_8570   = "La operaci�n se realiz� satisfactoriamente";
++var m_0156   = "Grabaci�n en proceso, por favor espere";
++var m_0144   = "La sesi�n ha terminado, debe ingresar de nuevo al sistema";
++var m_0003   = "No se pudo crear el registro, se present� un error";
++var m_0004   = "No se pudo realizar la transacci�n, se present� un error";
++var m_0010   = "La operaci�n se realiz� satisfactoriamente";
++var m_0011   = "La operaci�n se realiz� satisfactoriamente";
++var m_9104   = "La operaci�n se realiz� satisfactoriamente con observaciones";
+ 
+ //[Req. 13-125] cchalco 24.01.2014
+ var m_0021   = "El proceso ha sido iniciado correctamente, supervisar el estado en el Monitoreo de Procesos";
+@@ -80,34 +80,34 @@
+ var m_0041   = "Asiento Contable grabado satisfactoriamente";
+ var m_0044   = "Asiento contable anulado satisfactoriamente";
+ var m_0045   = "No se pudo anular el asiento contable";
+-var m_0048   = "La operaci�n ha sido anulada satisfactoriamente";
+-var m_0050   = "La Agencia se cerr� satisfactoriamente";
++var m_0048   = "La operaci�n ha sido anulada satisfactoriamente";
++var m_0050   = "La Agencia se cerr� satisfactoriamente";
+ var m_0054   = "No se puede realizar el cierre cuando hay diferencias";
+ var m_0055   = "El cierre de Caja ya ha sido ejecutado";
+-var m_0070   = "La generaci�n de saldos se realiz� satisfactoriamente";
++var m_0070   = "La generaci�n de saldos se realiz� satisfactoriamente";
+ var m_0074   = "Cuenta registrada satisfactoriamente : ";
+-var m_0105   = "Se presentaron problemas con la petici�n";
++var m_0105   = "Se presentaron problemas con la petici�n";
+ var m_0106   = "No es posible crear una instancia XMLHTTP";
+-var m_0114   = "No se puede anular un asiento autom�tico";
++var m_0114   = "No se puede anular un asiento autom�tico";
+ var m_0115   = "No se puede reactivar la solicitud";
+ var m_0116   = "No se puede anular la solicitud";
+-var m_0127   = "No se puede anular, transacci�n ha sido generada por un m�dulo operativo";
+-var m_0145   = "Transacci�n debe anularse desde la CUENTA ORIGEN";
+-var m_0206   = "Anulaci�n ya fue extornada";
+-var m_0210   = "Solamente puede reactivar cr�ditos anulados en el mes del proceso";
++var m_0127   = "No se puede anular, transacci�n ha sido generada por un m�dulo operativo";
++var m_0145   = "Transacci�n debe anularse desde la CUENTA ORIGEN";
++var m_0206   = "Anulaci�n ya fue extornada";
++var m_0210   = "Solamente puede reactivar cr�ditos anulados en el mes del proceso";
+ var m_0213   = "No puede anular un recibo ya cobrado";
+ //hpajuelo 16.02.2012 Validaciones Don Prestamo
+ var m_0237   = "No se puede anular el registro, su estado no lo permite";
+-var m_0238   = "No se puede enviar a facturaci�n, su estado no lo permite";
++var m_0238   = "No se puede enviar a facturaci�n, su estado no lo permite";
+ 
+ //hpajuelo 23.05.2012 Validacion Don Prestamo
+ var m_0286   = "Monto a registrar no puede ser mayor al saldo del requerimiento";
+ 
+-var m_8020   = "El proceso de importaci�n ha terminado en forma correcta"; 
+-var m_8102   = "El registro ya est� anulado";
+-var m_8103   = "El registro ya est� procesado";
+-var m_8567   = "Anulaci�n de pago realizada satisfactoriamente";
+-//jlazo 06.10.2010 Nueva validaci�n para las rendiciones
++var m_8020   = "El proceso de importaci�n ha terminado en forma correcta"; 
++var m_8102   = "El registro ya est� anulado";
++var m_8103   = "El registro ya est� procesado";
++var m_8567   = "Anulaci�n de pago realizada satisfactoriamente";
++//jlazo 06.10.2010 Nueva validaci�n para las rendiciones
+ var m_0013   = "Exiten rendiciones pendientes de aprobar para el anticipo seleccionado";
+ var m_0014   = "Debe seleccionar el ultimo registro de anticipo con estado APROBADO";
+ //
+@@ -115,11 +115,11 @@
+ // de validacion de reglas
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ //
+-var m_0031   = "No se puede realizar operaciones sobre una transacci�n anulada";
++var m_0031   = "No se puede realizar operaciones sobre una transacci�n anulada";
+ var m_0032   = "No se puede anular, el cheque ya ha sido cobrado";
+ var m_0033   = "El cheque ya ha sido cobrado";
+-var m_0098   = "No se puede anular esta operaci�n";
+-/* [Req. 12-132] rfloresg 22.01.2013 Nuevo mensaje de validaci�n*/
++var m_0098   = "No se puede anular esta operaci�n";
++/* [Req. 12-132] rfloresg 22.01.2013 Nuevo mensaje de validaci�n*/
+ var m_0312   = "Para agregar un nuevo registro, debe seleccionar el estado VIGENTE.";
+ 
+ //
+@@ -127,9 +127,9 @@
+ //
+ var m_9103   = "El total de los conceptos no coincide con el monto total";
+ var m_0009   = "El monto ingresado es menor que el importe a pagar";
+-var m_0035   = "Ingres� monto en debito y cr�dito en la cuenta contable ";
+-var m_0036   = "No ingres� monto en d�bito o cr�dito de la cuenta contable";
+-var m_0047   = "No ingres� monto de operaci�n";
++var m_0035   = "Ingres� monto en debito y cr�dito en la cuenta contable ";
++var m_0036   = "No ingres� monto en d�bito o cr�dito de la cuenta contable";
++var m_0047   = "No ingres� monto de operaci�n";
+ var m_0064   = "Monto excede al saldo del cheque";
+ var m_0077   = "Cheque sin saldo";
+ var m_0078   = "Los totales no son iguales";
+@@ -137,75 +137,75 @@
+ var m_0138   = "El porcentaje no puede exceder del 100%";
+ var m_0161   = "Margen de garantia no puede exceder del 100%";
+ var m_0169   = "Tasa compensatoria no puede exceder del 100%";
+-var m_9109   = "Tasa compensatoria m�nima no puede exceder a la m�xima";
++var m_9109   = "Tasa compensatoria m�nima no puede exceder a la m�xima";
+ var m_9110   = "Rango de Tarifas de Interes no se encuentra dentro del rango del producto"; //fvalle 15.11.2010 Se agrega mensaje de valadacion TEA Compensatoria
+ var m_0170   = "Tasa moratoria no puede exceder del 100%";
+-var m_9111   = "Tasa moratoria m�nima no puede exceder a la m�xima";
++var m_9111   = "Tasa moratoria m�nima no puede exceder a la m�xima";
+ var m_0171   = "El porcentaje debe ser mayor a Cero";
+ var m_0175   = "El porcentaje acumulado no puede exceder del 100%";
+ var m_0196   = "El monto total del sistema debe ser cero";
+ var m_0215   = "El importe a pagar debe ser menor o igual al total a pagar";
+ var m_0216   = "El monto ingresado debe ser menor o igual a la deuda";
+ var m_0218   = "El monto Aprobado debe ser mayor a cero";
+-var m_7006   = "Debe ingresar un monto de operaci�n!";
++var m_7006   = "Debe ingresar un monto de operaci�n!";
+ var m_8661   = "Importe sustentado debe ser menor o igual al saldo del vale";
+-//jlazo 22/10/2010 se agregan dos nuevos mensajes de validaci�n
++//jlazo 22/10/2010 se agregan dos nuevos mensajes de validaci�n
+ var m_8665   = "El Saldo del Anticipo es menor o igual a 0.00";
+ var m_8666   = "No se puede rendir debido a que el saldo es menor o igual a 0.00";
+ var m_9950   = "El Monto del Fondo debe ser mayor que cero"; //fvalle 18.11.2010 Mensaje Control Fondo >0
+ 
+ //cierre de mes
+-var m_0023   = "Se detect� un mes con estado REAPERTURA, no se puede continuar";
++var m_0023   = "Se detect� un mes con estado REAPERTURA, no se puede continuar";
+ var m_0024   = "Mes en estado REAPERTURA";
+-var m_0025   = "El cierre se realiz� satisfactoriamente";
+-var m_0026   = "No se ha encontrado el mes en estado APERTURA, o hay m�s de uno";
+-var m_0027   = "El �nico mes que puede ser REAPERTURADO ya lo est�";
++var m_0025   = "El cierre se realiz� satisfactoriamente";
++var m_0026   = "No se ha encontrado el mes en estado APERTURA, o hay m�s de uno";
++var m_0027   = "El �nico mes que puede ser REAPERTURADO ya lo est�";
+ var m_0028   = "No hay meses que puedan ser reaperturados";
+-var m_0029   = "La reapertura de mes se realiz� satisfactoriamente";
++var m_0029   = "La reapertura de mes se realiz� satisfactoriamente";
+ var m_0126   = "No se ha inicializado el cierre de mes";
+ //
+ //preguntas/confirmacion
+ //
+-var m_0022   = "�Est� seguro de Iniciar el Proceso?";
++var m_0022   = "�Est� seguro de Iniciar el Proceso?";
+ var m_0040   = "Desea grabar el asiento como: ";
+-var m_8537   = "�Est� seguro de anular ?";
+-var m_8538   = "�Est� seguro de aprobar ?";
+-var m_7305   = "�Est� seguro de registrar la operaci�n ?";
+-var m_0002   = "�Est� seguro de eliminar el registro?";
+-var m_0043   = "�Est� seguro de anular el asiento contable ?";
+-var m_0056   = "�Est� seguro de anular la operaci�n ?";
+-var m_0073   = "�Est� seguro de Continuar ?";
+-var m_0086   = "�Desea modificar el producto ?";
+-var m_0111   = "�Est� seguro de anular el desembolso de cr�dito ?";
+-var m_0113   = "�Est� seguro de quitar el compromiso ?";
+-var m_0142   = "�Est� seguro de eliminar las cuotas ?";
+-var m_0143   = "�Est� seguro de eliminar la asignaci�n de este abogado ?";
+-var m_0190   = "�Est� seguro de desactivar el registro ?";
+-var m_0200   = "�Desea confirmar el dep�sito ?";
+-var m_0202   = "�Est� seguro de anular la solicitud de cr�dito ?";
+-var m_0205   = "�Est� seguro activar el cr�dito ?";
+-var m_0207   = "El cr�dito posee cuotas canceladas �Est� seguro de anular ?";
+-var m_0214   = "�Est� seguro de anular el recibo ?";
+-var m_0223   = "�Est� seguro de eliminar los cr�ditos ?";
+-var m_7103   = "�Est� seguro de registrar la solicitud de exclusi�n ?";
+-var m_7203   = "�Est� seguro de registrar la solicitud de autorizaci�n ?";
+-var m_8024   = "�Est� seguro de cerrar la asignaci�n mensual ?";
+-var m_8533   = "�Est� seguro de limipar los c�digos ?";
+-var m_8552   = "�Est� seguro de cerrar el registro ?";
+-var m_8553   = "�Est� seguro que desea quitar la asignaci�n ?";
+-var m_8565   = "�Est� seguro de anular el pago del cr�dito ?";
+-var m_8569   = "�Est� seguro de anular la exclusi�n ?";
+-var m_8654   = "�Est� seguro de eliminar este centro de costo ?";
+-var m_8657   = "�Est� seguro de eliminar el presupuesto anual ?";
+-var m_8658   = "�Est� seguro de iniciar el proceso ?";
+-var m_8663   = "Est� seguro que desea eliminar el bien?";
+-var m_9119   = "�Est� seguro de anular la garant�a ?";
+-var m_8721   = "�Est� seguro de eliminar este registro ?";
++var m_8537   = "�Est� seguro de anular ?";
++var m_8538   = "�Est� seguro de aprobar ?";
++var m_7305   = "�Est� seguro de registrar la operaci�n ?";
++var m_0002   = "�Est� seguro de eliminar el registro?";
++var m_0043   = "�Est� seguro de anular el asiento contable ?";
++var m_0056   = "�Est� seguro de anular la operaci�n ?";
++var m_0073   = "�Est� seguro de Continuar ?";
++var m_0086   = "�Desea modificar el producto ?";
++var m_0111   = "�Est� seguro de anular el desembolso de cr�dito ?";
++var m_0113   = "�Est� seguro de quitar el compromiso ?";
++var m_0142   = "�Est� seguro de eliminar las cuotas ?";
++var m_0143   = "�Est� seguro de eliminar la asignaci�n de este abogado ?";
++var m_0190   = "�Est� seguro de desactivar el registro ?";
++var m_0200   = "�Desea confirmar el dep�sito ?";
++var m_0202   = "�Est� seguro de anular la solicitud de cr�dito ?";
++var m_0205   = "�Est� seguro activar el cr�dito ?";
++var m_0207   = "El cr�dito posee cuotas canceladas �Est� seguro de anular ?";
++var m_0214   = "�Est� seguro de anular el recibo ?";
++var m_0223   = "�Est� seguro de eliminar los cr�ditos ?";
++var m_7103   = "�Est� seguro de registrar la solicitud de exclusi�n ?";
++var m_7203   = "�Est� seguro de registrar la solicitud de autorizaci�n ?";
++var m_8024   = "�Est� seguro de cerrar la asignaci�n mensual ?";
++var m_8533   = "�Est� seguro de limipar los c�digos ?";
++var m_8552   = "�Est� seguro de cerrar el registro ?";
++var m_8553   = "�Est� seguro que desea quitar la asignaci�n ?";
++var m_8565   = "�Est� seguro de anular el pago del cr�dito ?";
++var m_8569   = "�Est� seguro de anular la exclusi�n ?";
++var m_8654   = "�Est� seguro de eliminar este centro de costo ?";
++var m_8657   = "�Est� seguro de eliminar el presupuesto anual ?";
++var m_8658   = "�Est� seguro de iniciar el proceso ?";
++var m_8663   = "Est� seguro que desea eliminar el bien?";
++var m_9119   = "�Est� seguro de anular la garant�a ?";
++var m_8721   = "�Est� seguro de eliminar este registro ?";
+ 
+ //
+ //seleccion/registro/ingreso
+ //
+-var m_8765   = "El registro ya est� activo";
++var m_8765   = "El registro ya est� activo";
+ var m_0016   = "Primero debe seleccionar el producto";
+ var m_0018   = "Debe ingresar un solo titular";
+ var m_0019   = "Debe ingresar al menos un titular";
+@@ -213,110 +213,110 @@
+ var m_0030   = "La cuenta origen y destino no pueden ser iguales";
+ var m_0037   = "Selecccione un registro para ingresar el detalle";
+ var m_0038   = "Cuenta contable no tiene centros de costos aociados";
+-var m_0039   = "Cuenta contable no tiene c�digos auxiliares asociados";
+-var m_0042   = "Ambas cuentas no pueden tener el mismo c�digo";
+-var m_0065   = "El representante no puede ser una persona jur�dica";
++var m_0039   = "Cuenta contable no tiene c�digos auxiliares asociados";
++var m_0042   = "Ambas cuentas no pueden tener el mismo c�digo";
++var m_0065   = "El representante no puede ser una persona jur�dica";
+ var m_0066   = "El representante no puede ser una persona natural menor de edad";
+-var m_0067   = "Ya ingres� titular";
+-var m_0068   = "Ya ingres� representante";
++var m_0067   = "Ya ingres� titular";
++var m_0068   = "Ya ingres� representante";
+ var m_0069   = "Representante no puede ser el mismo titular";
+-var m_0079   = "S�lo puede haber un periodo vigente por empresa";
++var m_0079   = "S�lo puede haber un periodo vigente por empresa";
+ var m_0082   = "No se puede grabar una cabecera de asiento sin detalles de asiento";
+-var m_0083   = "S�lo puede ingresar hasta un m�ximo de 300 items";
++var m_0083   = "S�lo puede ingresar hasta un m�ximo de 300 items";
+ var m_0084   = "No se ha ingresado el tipo de cambio";
+ var m_0085   = "No se ha definido TEA para el producto";
+-var m_0087   = "Ya se insert� un producto con el mismo nombre";
+-var m_0088   = "Ya se insert� un producto con la misma abreviatura";
+-var m_0089   = "Ya se insert� un producto con las mismas caracter�sticas";
+-var m_0090   = "Existe un producto que tiene los mismos par�metros";
++var m_0087   = "Ya se insert� un producto con el mismo nombre";
++var m_0088   = "Ya se insert� un producto con la misma abreviatura";
++var m_0089   = "Ya se insert� un producto con las mismas caracter�sticas";
++var m_0090   = "Existe un producto que tiene los mismos par�metros";
+ var m_0092   = "Existe un tarifario con los mismos rangos";
+ var m_0094   = "En cuentas mancomunadas deben haber al menos dos titulares";
+-var m_9105   = "La fecha de emisi�n no puede ser mayor a la fecha de Proceso ni menor a la fecha de la solicitud";
+-var m_9106   = "La fecha de carta o dep�sito no puede ser mayor a la fecha de proceso ni menor a la fecha de la solicitud";
+-var m_0099   = "El n�mero de cr�dito no est� relacionado a una l�nea de cr�dito";
+-var m_0100   = "la l�nea de cr�dito relacionada ya se encuentra bloqueada";
++var m_9105   = "La fecha de emisi�n no puede ser mayor a la fecha de Proceso ni menor a la fecha de la solicitud";
++var m_9106   = "La fecha de carta o dep�sito no puede ser mayor a la fecha de proceso ni menor a la fecha de la solicitud";
++var m_0099   = "El n�mero de cr�dito no est� relacionado a una l�nea de cr�dito";
++var m_0100   = "la l�nea de cr�dito relacionada ya se encuentra bloqueada";
+ var m_0101   = "No se pude modificar el tipo de cambio cuando ya se han registrado CHEQUES, si requeire modificar el tipo de cambio vuelva a realizar la apertura";
+ var m_0102   = "No se pude modificar el tipo de cambio cuando ya se han registrado VOUCHERS, si requeire modificar el tipo de cambio vuelva a realizar la apertura";
+ var m_0103   = "No se pude modificar el tipo de cambio cuando ya se han registrado TRANSFERENCIAS, si requeire modificar el tipo de cambio vuelva a realizar la apertura";
+-var m_0104   = "El n�umero de cuotas de gracia no puede ser mayor o igual que el n�mero de cuotas";
++var m_0104   = "El n�umero de cuotas de gracia no puede ser mayor o igual que el n�mero de cuotas";
+ var m_0108   = "Elija un tipo calendario financiero o natural";
+ var m_0109   = "No se puede modificar porque se encuentra en modo consulta";
+ var m_0110   = "Ya se ha registrado un domicilio principal";
+ var m_0120   = "El porcentaje avalado no puede exceder del 100%";
+-var m_0124   = "Persona ya fue registrada en la solicitud de cr�dito";
++var m_0124   = "Persona ya fue registrada en la solicitud de cr�dito";
+ var m_9107   = "Persona ya fue registrada";
+-var m_0125   = "No se ha registrado el n�mero de garant�a";
+-var m_0136   = "N� de documento de identidad ya se encuentra registrado";
+-var m_0134   = "No se ha definido par�metros para el c�lculo de monto cuota";
++var m_0125   = "No se ha registrado el n�mero de garant�a";
++var m_0136   = "N� de documento de identidad ya se encuentra registrado";
++var m_0134   = "No se ha definido par�metros para el c�lculo de monto cuota";
+ var m_0135   = "Debe seleccionar un cheque para realizar el desembolso";
+ var m_9108   = "Debe ingresar los datos de la transferencia para realizar el desembolso";
+ var m_0137   = "Debe seleccionar una agencia";
+-var m_0139   = "Ya se seleccion� el n�mero de cr�dito";
+-var m_0140   = "Ya se seleccion� el concepto de operaci�n";
+-var m_0141   = "Ya se seleccion� el concepto contable";
+-var m_0146   = "Debes ingresar s�lo una direcci�n principal";
+-var m_0147   = "Debes ingresar s�lo un tel�fono principal";
+-var m_0148   = "Tipo de relaci�n s�lo se permite una vez";
++var m_0139   = "Ya se seleccion� el n�mero de cr�dito";
++var m_0140   = "Ya se seleccion� el concepto de operaci�n";
++var m_0141   = "Ya se seleccion� el concepto contable";
++var m_0146   = "Debes ingresar s�lo una direcci�n principal";
++var m_0147   = "Debes ingresar s�lo un tel�fono principal";
++var m_0148   = "Tipo de relaci�n s�lo se permite una vez";
+ var m_0154   = "Ya existe registrada una persona con este el mismo tipo y nro. de documento";
+ var m_0155   = "Debe registrar a la persona antes de ingresar la firma";
+ var m_0157   = "El usuario no tiene los permisos para anular el registro";
+-var m_0158   = "Moneda origen y moneda destino de conversi�n deben ser diferentes";
+-var m_0160   = "El n�mero de cuota debe ser mayor a cero";
+-var m_0075   = " en estado ACTIVA, no es necesario hacer un dep�sito en caja";
+-var m_0076   = " en estado APERTURA, debe hacer un dep�sito en caja";
+-var m_0176   = "La persona no tiene asignado un c�digo SBS";
++var m_0158   = "Moneda origen y moneda destino de conversi�n deben ser diferentes";
++var m_0160   = "El n�mero de cuota debe ser mayor a cero";
++var m_0075   = " en estado ACTIVA, no es necesario hacer un dep�sito en caja";
++var m_0076   = " en estado APERTURA, debe hacer un dep�sito en caja";
++var m_0176   = "La persona no tiene asignado un c�digo SBS";
+ var m_0181   = "Debe seleccionar un Producto";
+ var m_0183   = "La frecuencia mensual debe ser mayor que cero y menor que 31 dias, solo Mensual";
+ var m_0184   = "La frecuencia quincenal debe ser mayor que cero y menor que 16 dias, solo quincenal";
+ var m_0185   = "Falta ingresar el dia corte mensual o semanal o quincenal";
+-var m_0186   = "ERROR!!: D�a corte mensual o semanal o quincenal";
+-var m_0187   = "Error: S�lo quincenal o mensual";
+-var m_0188   = "Error: S�lo quincenal o semanal";
+-var m_0189   = "Error: S�lo mensual o semanal";
++var m_0186   = "ERROR!!: D�a corte mensual o semanal o quincenal";
++var m_0187   = "Error: S�lo quincenal o mensual";
++var m_0188   = "Error: S�lo quincenal o semanal";
++var m_0189   = "Error: S�lo mensual o semanal";
+ var m_0191   = "El cliente presenta historial crediticio";
+-var m_0194   = "N�mero de experto no es v�lido";
+-var m_0195   = "La cantidad de d�gitos para el tipo de documento no es v�lida";
+-var m_0197   = "El cr�dito no cumple con los requisitos para esta operaci�n";
++var m_0194   = "N�mero de experto no es v�lido";
++var m_0195   = "La cantidad de d�gitos para el tipo de documento no es v�lida";
++var m_0197   = "El cr�dito no cumple con los requisitos para esta operaci�n";
+ var m_0198   = "No hay llaves asignadas";
+ var m_0199   = "La fecha de Pago no puede ser mayor a la fecha de Proceso";
+-var m_0201   = "No tiene l�mites operativos para ese monto";
+-var m_0203   = "El monto de dep�sito debe ser menor o igual al saldo";
+-var m_0204   = "Solamente puede activar la ultima anulaci�n de cr�dito";
+-var m_0208   = "El n�mero de serie debe tener 3 d�gitos";
+-var m_0209   = "El n�mero del documento debe tener 7 d�gitos";
+-var m_0211   = "El importe a condonar no debe ser mayor al m�ximo a pagar";
++var m_0201   = "No tiene l�mites operativos para ese monto";
++var m_0203   = "El monto de dep�sito debe ser menor o igual al saldo";
++var m_0204   = "Solamente puede activar la ultima anulaci�n de cr�dito";
++var m_0208   = "El n�mero de serie debe tener 3 d�gitos";
++var m_0209   = "El n�mero del documento debe tener 7 d�gitos";
++var m_0211   = "El importe a condonar no debe ser mayor al m�ximo a pagar";
+ var m_0212   = "Primero debe de ingresar la fecha de pago para calcular los montos a condonar";
+ var m_0217   = "Debe seleccionar al menos una letra.";
+ var m_0219   = "La fecha de aprobacion no puede ser menor a la fecha de la solicitud";
+-var m_0220   = "La fecha de desembolso no puede ser menor a la fecha de aprobaci�n";
++var m_0220   = "La fecha de desembolso no puede ser menor a la fecha de aprobaci�n";
+ var m_0221   = "La fecha de la solicitud no puede ser menor a la fecha de desembolso";
+-var m_0222   = "Debe seleccionar al menos un cr�dito";
+-var m_0224   = "Los cr�ditos filtrados son de una moneda diferente a la moneda de la solicitud";
+-var m_0225   = "Fecha de emisi�n no pueder ser mayor a la fecha del proceso";
+-var m_0226   = "Fecha de vencimiento no puede ser menor a la fecha de emisi�n";
++var m_0222   = "Debe seleccionar al menos un cr�dito";
++var m_0224   = "Los cr�ditos filtrados son de una moneda diferente a la moneda de la solicitud";
++var m_0225   = "Fecha de emisi�n no pueder ser mayor a la fecha del proceso";
++var m_0226   = "Fecha de vencimiento no puede ser menor a la fecha de emisi�n";
+ var m_0227   = "El valor de la cuota debe ser mayor a cero";
+ var m_2228   = "Debe de ingresar los datos de cuenta por transferencia";
+ var m_2229   = "Fecha de vencimiento debe ser mayor o igual a la fecha de Giro";
+ var m_2230   = "Fecha de pago debe ser mayor o igual a la fecha vencimiento";
+ var m_2231   = "Alguna(s) Letra(s) posee(n) dias negativos";
+ var m_7001   = "Debe seleccionar una moneda!";
+-var m_7002   = "Debe seleccionar una operaci�n!";
++var m_7002   = "Debe seleccionar una operaci�n!";
+ var m_7003   = "Debe ingresar las observaciones!";
+ var m_7004   = "Debe seleccionar un tipo de documento de identidad!";
+-var m_7005   = "Debe ingresar un n�mero de documento de identidad!";
+-var m_7007   = "No existe la persona asociada con el n�mero de documento";
+-var m_7104   = "La persona debe haber realizado operaciones con un m�nimo de 24 meses";
++var m_7005   = "Debe ingresar un n�mero de documento de identidad!";
++var m_7007   = "No existe la persona asociada con el n�mero de documento";
++var m_7104   = "La persona debe haber realizado operaciones con un m�nimo de 24 meses";
+ var m_7105   = "La persona registra operaciones inusuales o sospechosas";
+ var m_7201   = "Debe ingresar la persona asociada con la solicitud";
+-var m_7202   = "Debe ingresar el motivo de solicitud de autorizaci�n";
+-var m_7101   = "Debe ingresar la persona asociada con la exclusi�n";
+-var m_7102   = "Debe ingresar el motivo de exclusi�n";
++var m_7202   = "Debe ingresar el motivo de solicitud de autorizaci�n";
++var m_7101   = "Debe ingresar la persona asociada con la exclusi�n";
++var m_7102   = "Debe ingresar el motivo de exclusi�n";
+ var m_7204   = "La persona se encuentra registrada en la Lista OFAC";
+ var m_7205   = "La persona se encuentra registrada en la base negativa";
+ var m_7206   = "La persona no se encuentra registrada en la lista de incidencias sospechosas";
+-var m_7207   = "La solicitud de cr�dito no ha sido registrada";
++var m_7207   = "La solicitud de cr�dito no ha sido registrada";
+ var m_7301   = "Debe ingresar la persona asociada con la incidencia";
+-var m_7302   = "Debe ingresar la persona que realiza el tr�mite";
++var m_7302   = "Debe ingresar la persona que realiza el tr�mite";
+ var m_7303   = "Debe ingresar un monto relacionado!";
+ var m_7304   = "Debe seleccionar un motivo de incidencia";
+ var m_7306   = "Debe ingresar por lo menos un motivo de incidencia";
+@@ -325,20 +325,20 @@
+ var m_7332   = "El periodo debe ser mayor que cero";
+ var m_8012   = "Ya se ha registrado un compromiso de pago";
+ var m_8014   = "No se ha registrado una visita";
+-var m_8025   = "La asignaci�n mensual se encuentra cerrada";
++var m_8025   = "La asignaci�n mensual se encuentra cerrada";
+ var m_8100   = "El expediente aun no ha sido enviado";
+-var m_8106   = "Las �reas de origen y recepci�n son iguales";
+-var m_8107   = "Las agencias de origen y recepci�n son iguales";
++var m_8106   = "Las �reas de origen y recepci�n son iguales";
++var m_8107   = "Las agencias de origen y recepci�n son iguales";
+ var m_8109   = "No se ha registrado el movimiento de expediente";
+-var m_8112   = "El usuario no tiene una �rea de origen asignada";
+-var m_8307   = "Debe selecccionar tipo de tel�fono de referencia";
+-var m_8308   = "Debe ingresar n�mero de telfono de referencia";
++var m_8112   = "El usuario no tiene una �rea de origen asignada";
++var m_8307   = "Debe selecccionar tipo de tel�fono de referencia";
++var m_8308   = "Debe ingresar n�mero de telfono de referencia";
+ var m_8309   = "Debe seleccionar estado civil del titular";
+ var m_8310   = "Debe seleccionar ubigeo";
+-var m_8311   = "Use la opci�n b�squeda para rellenar descripci�n de ubigeo";
++var m_8311   = "Use la opci�n b�squeda para rellenar descripci�n de ubigeo";
+ var m_8312   = "Debe seleccionar tipo Jr/Av/Calle";
+ var m_8313   = "Debe ingresar Jr/Av/Calle";
+-var m_8314   = "Debe n�mero de Jr/Av/Calle";
++var m_8314   = "Debe n�mero de Jr/Av/Calle";
+ var m_8316   = "Debe seleccionar tipo de vivienda";
+ var m_8317   = "Debe seleccionar indicador si conocen al vecino";
+ var m_8318   = "No se ha asignado ningun tipo de base";
+@@ -350,67 +350,67 @@
+ var m_8355   = "No existen registros a modificar";
+ var m_8362   = "Ingrese fecha de inicio de corte";
+ var m_8363   = "Ingrese fecha de fin de corte";
+-var m_8364   = "Exportaci�n concluy� de manera correcta";
++var m_8364   = "Exportaci�n concluy� de manera correcta";
+ var m_8366   = "Debe seleccionar tipo local";
+ var m_8367   = "Debe seleccionar zona laboral";
+-var m_8368   = "Debe seleccionar n�mero de empleados";
+-var m_8369   = "Debe seleccionar n�mero de operarios";
++var m_8368   = "Debe seleccionar n�mero de empleados";
++var m_8369   = "Debe seleccionar n�mero de operarios";
+ var m_8370   = "Debe seleccionar total de personal";
+-var m_8371   = "No seleccion� material del vivienda";
+-var m_8372   = "No ingres� observaci�n de material de vivienda";
+-var m_8373   = "No seleccion� material de techo";
+-var m_8374   = "No ingres� observaci�n de material de techo";
+-var m_8375   = "No seleccion� tipo piso vivienda";
+-var m_8376   = "No seleccion� si posee agua";
+-var m_8377   = "No seleccion� suministro de agua";
+-var m_8378   = "No seleccion� indicador vivienda electricidad";
+-var m_8379   = "No ingres� observaci�n de vivienda electricidad";
+-var m_8380   = "No seleccion� tipo de propiedad";
+-var m_8382   = "No seleccion� tipo piso";
+-var m_8383   = "No seleccion� si cuenta con pistas";
+-var m_8384   = "No seleccion� si cuenta con veredas";
+-var m_8385   = "No seleccion� si permiti� el ingreso";
+-var m_8386   = "No ingres� n�mero de personas que habitan la casa";
+-var m_8387   = "No ingres� carga familiar";
+-var m_8388   = "No ingres� a�os de residencia";
+-var m_8389   = "Ingrese descripci�n del producto";
++var m_8371   = "No seleccion� material del vivienda";
++var m_8372   = "No ingres� observaci�n de material de vivienda";
++var m_8373   = "No seleccion� material de techo";
++var m_8374   = "No ingres� observaci�n de material de techo";
++var m_8375   = "No seleccion� tipo piso vivienda";
++var m_8376   = "No seleccion� si posee agua";
++var m_8377   = "No seleccion� suministro de agua";
++var m_8378   = "No seleccion� indicador vivienda electricidad";
++var m_8379   = "No ingres� observaci�n de vivienda electricidad";
++var m_8380   = "No seleccion� tipo de propiedad";
++var m_8382   = "No seleccion� tipo piso";
++var m_8383   = "No seleccion� si cuenta con pistas";
++var m_8384   = "No seleccion� si cuenta con veredas";
++var m_8385   = "No seleccion� si permiti� el ingreso";
++var m_8386   = "No ingres� n�mero de personas que habitan la casa";
++var m_8387   = "No ingres� carga familiar";
++var m_8388   = "No ingres� a�os de residencia";
++var m_8389   = "Ingrese descripci�n del producto";
+ var m_8390   = "Ingrese cantidad del inmueble, maquinaria y equipo!";
+ var m_8391   = "Seleccione estado del inmueble a ingresar";
+-var m_8392   = "Opci�n no permitida!";
++var m_8392   = "Opci�n no permitida!";
+ var m_8393   = "Debe seleccionar empresa";
+ var m_8394   = "Debe indicar nombre comercial";
+-var m_8395   = "Debe seleccionar c�digo CIIU";
+-var m_8396   = "Use menu de navegaci�n para obtener descripcionde CIIU";
+-var m_8397   = "Debe seleccionar tipo Ocupaci�n";
++var m_8395   = "Debe seleccionar c�digo CIIU";
++var m_8396   = "Use menu de navegaci�n para obtener descripcionde CIIU";
++var m_8397   = "Debe seleccionar tipo Ocupaci�n";
+ var m_8398   = "Debe seleccionar tipo dependencia!";
+ var m_8399   = "Debe seleccionar cargo";
+ var m_8400   = "Debe seleccionar nombre jefe inmediato";
+-var m_8401   = "Debe seleccionar origen de la informaci�n";
+-var m_8402   = "Ingrese valor de b�squeda";
++var m_8401   = "Debe seleccionar origen de la informaci�n";
++var m_8402   = "Ingrese valor de b�squeda";
+ var m_8403   = "Debe ingresar nombre del vendedor";
+-var m_8404   = "Use la opci�n b�squeda para rellenar oficina";
+-var m_8405   = "Debe ingresar c�digo oficina";
++var m_8404   = "Use la opci�n b�squeda para rellenar oficina";
++var m_8405   = "Debe ingresar c�digo oficina";
+ var m_8406   = "Debe seleccionar vigencia del trabajador";
+ var m_8407   = "Debe seleccionar usuario a asignar";
+-var m_8408   = "Use opci�n de b�squeda para obtener descripci�n de usuario";
++var m_8408   = "Use opci�n de b�squeda para obtener descripci�n de usuario";
+ var m_8409   = "Debe seleccionar base para poder asignar usuarios";
+ var m_8410   = "No se encontro descripcion de base";
+ var m_8412   = "Debe registrar formulario de operaciones";
+ var m_8413   = "El saldo final del sistema debe ser cero";
+-var m_8414   = "No se puede leer el archivo, formato inv�lido";
+-var m_8420   = "S�lo puede escoger hasta un m�ximo de 20 items";
++var m_8414   = "No se puede leer el archivo, formato inv�lido";
++var m_8420   = "S�lo puede escoger hasta un m�ximo de 20 items";
+ var m_8421   = "No coinciden las monedas escogidas";
+-var m_8422   = "S�lo se pueden registrar �rdenes o provisiones";
++var m_8422   = "S�lo se pueden registrar �rdenes o provisiones";
+ var m_8426   = "El archivo ya se encuentra registrado";
+ var m_8430   = "No existen registros";
+-var m_8431   = "Ingrese valor de b�squeda";
++var m_8431   = "Ingrese valor de b�squeda";
+ var m_8432   = "No ha seleccionado ninguna solicitud";
+ var m_8433   = "No ha seleccionado inspector";
+-var m_8436   = "Ingrese cantidad en maquinaria/equipo/veh�culo";
+-var m_8437   = "Ingrese descripci�n en maquinaria/equipo/veh�culo";
+-var m_8438   = "Ingrese estado en maquinaria/equipo/veh�culo";
+-var m_8439   = "Ingrese descripci�n en l�neas de comercializaci�n";
+-var m_8440   = "Ingrese raz�n social en principales proveedores!";
++var m_8436   = "Ingrese cantidad en maquinaria/equipo/veh�culo";
++var m_8437   = "Ingrese descripci�n en maquinaria/equipo/veh�culo";
++var m_8438   = "Ingrese estado en maquinaria/equipo/veh�culo";
++var m_8439   = "Ingrese descripci�n en l�neas de comercializaci�n";
++var m_8440   = "Ingrese raz�n social en principales proveedores!";
+ var m_8510   = "Desea aplicar desembolso";
+ var m_8511   = "Seleccione Dpto./piso/interior";
+ var m_8512   = "Ingrese Dpto./piso/interior";
+@@ -420,7 +420,7 @@
+ var m_8516   = "Ingrese etapa/sector/zona";
+ var m_8518   = "No ha ingresado el detalle a desembolsar";
+ var m_8519   = "No ha ingresado fundamento para el rechazo de las inspecciones";
+-var m_0193   = "Ya se gener� inspecci�n para la solicitud de cr�dito";
++var m_0193   = "Ya se gener� inspecci�n para la solicitud de cr�dito";
+ var m_8520   = m_0193+"...desea continuar ?";
+ 
+ //[Req. 16-023] kdelacruz 26.06.2016
+@@ -433,10 +433,10 @@
+ var m_8530   = "Seleccione al menos una letra";
+ var m_8532   = "El producto se encuentra en modo consulta.";
+ var m_8535   = "El tipo de Solicitud no posee Cronograma";
+-var m_8536   = "No ha realizado ninguna rectificaci�n";
++var m_8536   = "No ha realizado ninguna rectificaci�n";
+ var m_8539   = "El fideicomiso debe ser de tipo cartera variable.";
+ var m_8540   = "El fideicomiso debe estar en estado Aprobado.";
+-var m_8541   = "La fecha de revisi�n debe ser mayor a la fecha convenio";
++var m_8541   = "La fecha de revisi�n debe ser mayor a la fecha convenio";
+ var m_8542   = "No se puede generar el archivo, el registro fue anulado";
+ var m_8550   = "Monto a depositar no coincide con monto depositado";
+ var m_8551   = "Cuenta no se encuentra bloqueada";
+@@ -446,34 +446,34 @@
+ var m_8557   = "El registro aun no ha sido atendida";
+ var m_8558   = "El registro ya ha sido atendido";
+ var m_8559   = "No le corresponde atender al registro";
+-var m_8560   = "Debe seleccionar el canal de atenci�n";
++var m_8560   = "Debe seleccionar el canal de atenci�n";
+ var m_8561   = "Debe seleccionar el motivo";
+ var m_8562   = "Debe seleccionar el cliente";
+ var m_8563   = "Debe seleccionar el credito";   
+ var m_8564   = "Proceso ya ha finalizado";   
+ var m_8566   = "Solo puede anular el ultimo pago realizado";
+ var m_8568   = "Ingreso mensual tiene que ser mayor a cero";
+-var m_8571   = "Debe ingresar la funci�n p�blica";
+-var m_8572   = "Plazo m�nimo de refinanciaci�n debe ser menor que el plazo m�ximo";
+-var m_8573   = "Plazo m�nimo de reprogramaci�n debe ser menor que el plazo m�ximo";
++var m_8571   = "Debe ingresar la funci�n p�blica";
++var m_8572   = "Plazo m�nimo de refinanciaci�n debe ser menor que el plazo m�ximo";
++var m_8573   = "Plazo m�nimo de reprogramaci�n debe ser menor que el plazo m�ximo";
+ var m_8574   = "Debe ingresar entidad financiera y Nro. de referencia";
+ var m_8575   = "Fecha inicio de uso hasta debe ser mayor o igual a la fecha inicio de uso desde";
+-var m_8576   = "Fecha de adquisici�n hasta debe ser mayor o igual a la Fecha de Adquisici�n desde";
++var m_8576   = "Fecha de adquisici�n hasta debe ser mayor o igual a la Fecha de Adquisici�n desde";
+ var m_8577   = "Fecha de movimiento hasta debe ser mayor o igual a la fecha de movimiento desde";
+-var m_8578   = "El estado del lote no permite su aplicaci�n";
++var m_8578   = "El estado del lote no permite su aplicaci�n";
+ var m_8579   = "Falta agregar"; //no pasar
+ var m_8580   = "Importe hasta debe ser mayor o igual a importe desde";
+ var m_8581   = "Fecha de vale hasta debe ser mayor o igual a la fecha de vale desde";
+ var m_8582   = "Fecha de vencimiento hasta debe ser mayor o igual a la fecha de vencimiento desde";
+-var m_8583   = "Fecha de emisi�n hasta debe ser mayor o igual a la fecha de emisi�n desde";
++var m_8583   = "Fecha de emisi�n hasta debe ser mayor o igual a la fecha de emisi�n desde";
+ var m_8584   = "Fecha de contable hasta debe ser mayor o igual a la fecha de contable desde";
+ var m_8585   = "Saldo hasta debe ser mayor o igual a saldo desde";
+ var m_8586   = "Fecha hasta debe ser mayor o igual a la fecha desde";
+ var m_8587   = "Valor residual hasta debe ser mayor o igual  a valor residual desde";
+ var m_8588   = "Fecha de anticipo hasta debe ser mayor o igual a la fecha de anticipo desde";
+-var m_8589   = "N� de documento hasta debe ser mayor o igual a N� de documento desde";
++var m_8589   = "N� de documento hasta debe ser mayor o igual a N� de documento desde";
+ var m_8590   = "Importe MC debe ser mayor a cero";
+-var m_8591   = "Fecha emisi�n debe ser menor o igual a fecha de proceso";
++var m_8591   = "Fecha emisi�n debe ser menor o igual a fecha de proceso";
+ var m_8592   = "Importe por cobrar debe ser menor o igual a saldo por cobrar";
+ var m_8593   = "Fecha de cobranza debe ser menor o igual a fecha de proceso";
+ var m_8594   = "Importe por cobrar debe ser mayor a cero";
+@@ -481,30 +481,30 @@
+ var m_8597   = "Importe sustentado debe ser igual a total sustento";
+ var m_8598   = "Valor compra moneda compra debe ser mayor a cero";
+ var m_8600   = "Total compra moneda compra debe ser mayor a cero";
+-var m_8601   = "No se puede grabar una cabecera de orden sin distribuci�n de centro de costo";
++var m_8601   = "No se puede grabar una cabecera de orden sin distribuci�n de centro de costo";
+ var m_8602   = "No se puede grabar una cabecera de orden sin detalle";
+ var m_8603   = "El saldo pendiente por distribuir debe ser igual a cero";
+-var m_8606   = "No se puede grabar una cabecera de provisi�n sin distribuci�n de centro de costo";
+-var m_8607   = "No se puede grabar una cabecera de provisi�n sin detalle";
++var m_8606   = "No se puede grabar una cabecera de provisi�n sin distribuci�n de centro de costo";
++var m_8607   = "No se puede grabar una cabecera de provisi�n sin detalle";
+ var m_8608   = "Importe MC debe ser igual a total de precio de items";
+-var m_8609   = "Escoja como m�nimo un documento para imprimir.";
+-var m_8610   = "Debe ingresar los datos correctos del Detalle de Provisi�n";
++var m_8609   = "Escoja como m�nimo un documento para imprimir.";
++var m_8610   = "Debe ingresar los datos correctos del Detalle de Provisi�n";
+ var m_8612   = "El importe debe ser menor o igual al Saldo por pagar";
+ var m_8613   = "No se puede imprimir un documento con estado definitivo";
+-var m_8614   = "Fecha de adquisici�n no puede ser mayor a fecha de proceso";
++var m_8614   = "Fecha de adquisici�n no puede ser mayor a fecha de proceso";
+ var m_8615   = "Fecha de inicio de uso no puede ser mayor a fecha de proceso";
+-var m_8616   = "Fecha de adquisici�n no puede ser mayor a fecha de inicio de uso";
++var m_8616   = "Fecha de adquisici�n no puede ser mayor a fecha de inicio de uso";
+ var m_8617   = "El valor historico moneda cuenta debe ser mayor a 0";
+ var m_8618   = "El activo fijo esta Depreciado, NO se puede ANULAR";
+ var m_8619   = "Este activo no tiene asociada una obra en curso";
+-var m_8621   = "No ha seleccionado ning�n documento";
++var m_8621   = "No ha seleccionado ning�n documento";
+ var m_8623   = "Ya fue ingresado anteriormente";
+ var m_8624   = "Seleccione registros de una misma moneda";
+ var m_8625   = "Uno o mas registros no cuentan con saldo";
+ var m_8626   = "Verifique el estado de los registros seleccionados";
+ var m_8627   = "Uno o mas registros no pertenecen al mismo proveedor";
+ var m_8634   = "Se debe seleccionar uno o varios anticipos";
+-var m_8635   = "La persona seleccionada no pertenece a un �rea laboral";
++var m_8635   = "La persona seleccionada no pertenece a un �rea laboral";
+ var m_8638   = "Ingrese tipo de cambio";
+ var m_8639   = "El proveedor ingresado ya existe";
+ var m_8640   = "El importe debe ser igual al precio de compra";
+@@ -516,54 +516,54 @@
+ var m_8646   = "Valor tasa interes maximo debe ser mayor a la tasa interes minimo";
+ var m_8647   = "Valor tasa interes no se encuentra en el rango permitido";
+ var m_8648   = "Importe sustentado debe ser menor o igual a importe vale";
+-var m_8649   = "El importe de la nota de cr�dito no puede ser mayor a los importes de los documentos relacionados";
++var m_8649   = "El importe de la nota de cr�dito no puede ser mayor a los importes de los documentos relacionados";
+ var m_8650   = "La fecha de inicio de uso debe ser el primer dia del mes";
+ var m_8651   = "El tipo de cambio de los documentos seleccionados deben ser iguales";
+-var m_8652   = "La fecha de emisi�n de los documentos seleccionados deben ser iguales";
++var m_8652   = "La fecha de emisi�n de los documentos seleccionados deben ser iguales";
+ var m_8653   = "El tipo de moneda del documento seleccionado debe ser en DOLARES";
+ var m_8655   = "La moneda de los documentos relacionados no coincide con el documento";
+ var m_8656   = "Debe ingresar al menos un registro";
+ var m_8659   = "Debe ingresar los datos correctos del ingreso de referencia";
+-var m_8660   = "El estado de la rendici�n debe ser APROBADO";
+-var m_8664   = "Se agregar�n todos los art�culos relacionados a los documentos del cr�dito, conforme a los archivos recibidos desde el RETAIL";
++var m_8660   = "El estado de la rendici�n debe ser APROBADO";
++var m_8664   = "Se agregar�n todos los art�culos relacionados a los documentos del cr�dito, conforme a los archivos recibidos desde el RETAIL";
+ var m_8705   = "Longitud del password debe ser <= 50";
+-var m_8706   = "Longitud m�nima debe ser menor o igual que la longitud m�xima";
+-var m_8707   = "Longitud m�xima debe ser mayor que longitud m�nima y a su vez menor que la longitud del password";
+-var m_8708   = "Cantidad de n�meros obligatorios tiene que ser <= a la longitud del password";
++var m_8706   = "Longitud m�nima debe ser menor o igual que la longitud m�xima";
++var m_8707   = "Longitud m�xima debe ser mayor que longitud m�nima y a su vez menor que la longitud del password";
++var m_8708   = "Cantidad de n�meros obligatorios tiene que ser <= a la longitud del password";
+ var m_8709   = "Cantidad de caracteres obligatorios tiene que ser <= a la longitud del password";
+-var m_8710   = "Cantidad n�mero obligatorio + oantidad de caracteres obligatorios tiene que ser <= a la longitud del password";
++var m_8710   = "Cantidad n�mero obligatorio + oantidad de caracteres obligatorios tiene que ser <= a la longitud del password";
+ var m_8711   = "Hora de ingreso no debe ser mayor a la hora de salida";
+ var m_8712   = "Es la primera vez que ingresa proceda a cambiar su clave";
+ var m_8713   = "Clave ha vencido, proceda a cambiarlo";
+ var m_8714   = "Verifique posible caso de homonimia";
+-var m_9116   = "No existe detalle para el tipo de garant�a";
+-var m_9117   = "No existe garantia procesada, registre o consulte una garant�a";
++var m_9116   = "No existe detalle para el tipo de garant�a";
++var m_9117   = "No existe garantia procesada, registre o consulte una garant�a";
+ var m_9118   = "Debe ingresar creditos a cancelar";
+ var m_9120   = "Debe seleccionar un registro";
+ var m_9121   = "Error las claves ingresadas son distintas, vuelva a ingresar nuevamente.";
+ var m_9122   = "Debe ingresar la clave de usuario";
+-var m_RE101  = "Debe seleccionar la desici�n";
++var m_RE101  = "Debe seleccionar la desici�n";
+ var m_RE102  = "Debe ingresar el comentario";
+ var m_RE103  = m_0010;
+ var m_RE104  = m_0003;
+ var m_RE105  = "Error en la conexion al servidor";
+ var m_RE106  = "Debe seleccionar un criterio de busqueda";
+ var m_RE107  = "Debe seleccionar un giro";
+-var m_RE108  = "No se puede registrar la operaci�n. El registro fue modificado anteriormente";
+-var m_9126   = "El estado de la solicitud no permite su aprobaci�n";   
++var m_RE108  = "No se puede registrar la operaci�n. El registro fue modificado anteriormente";
++var m_9126   = "El estado de la solicitud no permite su aprobaci�n";   
+ var m_9127   = "Debe seleccionar al menos una solicitud";   
+-var m_9128   = "El estado de la solicitud no permite su anulaci�n";  
++var m_9128   = "El estado de la solicitud no permite su anulaci�n";  
+ var m_8715   = "Seleccione un registro";
+-var m_8716   = "Ingrese el a�o de presupuesto anual";
+-var m_8717   = "Se generar� el presupuesto para el siguiente a�o";
+-var m_9113   = "Se va a generar el nuevo presupuesto para el a�o";
++var m_8716   = "Ingrese el a�o de presupuesto anual";
++var m_8717   = "Se generar� el presupuesto para el siguiente a�o";
++var m_9113   = "Se va a generar el nuevo presupuesto para el a�o";
+ var m_9114   = " a partir del presupuesto anual de ";
+-var m_8718   = "Ingrese un n�mero de a�o";
++var m_8718   = "Ingrese un n�mero de a�o";
+ var m_8719   = "El total de presupuesto de centros de costo no debe ser mayor al monto por distribuir";
+ var m_8720   = "El importe a presupuestar debe ser igual al total presupuestado";
+-var m_8722   = "Existen cambios en distribuci�n por centro de costos. Desea grabarlos ?";
++var m_8722   = "Existen cambios en distribuci�n por centro de costos. Desea grabarlos ?";
+ var m_8724   = "El nuevo importe presupuestado no debe ser menor que cero";
+-var m_8725   = "El importe de modificaci�n debe ser igual con el importe total de modificaci�n";
++var m_8725   = "El importe de modificaci�n debe ser igual con el importe total de modificaci�n";
+ var m_8726   = "El total de presupuesto de centros de costo no debe ser mayor al monto por distribuir";
+ var m_8727   = "No se puede cambiar la cuenta contable de destino";
+ var m_8728   = "El importe a transferir no debe ser mayor que el importe presupuestado";
+@@ -575,12 +575,12 @@
+ var m_8736   = "Debe seleccionar registros de un mismo cliente";
+ var m_8737   = "Uno o mas registro no cuentan con saldo";
+ var m_8738   = "Fecha pago debe ser mayor o igual a fecha proceso";
+-var m_8739   = "El factor de revaluaci�n ingresado est� fuera del rango";
++var m_8739   = "El factor de revaluaci�n ingresado est� fuera del rango";
+ var m_8742   = "No hay ningun activo fijo seleccionado";
+-var m_8743   = "El documento est� en estado Cancelado";
++var m_8743   = "El documento est� en estado Cancelado";
+ var m_8744   = "El valor revaluado debe ser mayor a cero";
+ var m_8745   = "Campo debe ser mayor a cero";
+-var m_8746   = "Solo est� permitido anular el ultimo movimiento";
++var m_8746   = "Solo est� permitido anular el ultimo movimiento";
+ var m_8747   = "El estado del registro no permite ser pagado";
+ var m_8748   = "Se requieren datos complementarios";
+ var m_8749   = "Solo uno de los campos puede ser cero";
+@@ -599,8 +599,8 @@
+ var m_8762   = "El importe a transferir no puede ser mayor al importe presupuestado del mes de octubre";
+ var m_8763   = "El importe a transferir no puede ser mayor al importe presupuestado del mes de noviembre";
+ var m_8764   = "El importe a transferir no puede ser mayor al importe presupuestado del mes de diciembre";
+-var m_8767   = "N�mero de solicitud ya ingresado";
+-var m_8768   = "S�lo puede haber una evaluaci�n activa";
++var m_8767   = "N�mero de solicitud ya ingresado";
++var m_8768   = "S�lo puede haber una evaluaci�n activa";
+ var m_8770   = "Caja no ha sido cuadrada";
+ var m_8771   = "La suma de los porcentajes deben ser igual a 100%";
+ var m_8772   = "Persona ya fue ingresado anteriormente";
+@@ -610,17 +610,17 @@
+ var m_8853   = "Suma de descuentos no coincide con el importe permitido";
+ var m_8854   = "Suma de descuentos no coincide con el porcentaje permitido";
+ var m_8855   = "El monto a condonar excede el permitido";
+-var m_8858   = "Cantidad en a�os no debe pasar de 6";
++var m_8858   = "Cantidad en a�os no debe pasar de 6";
+ var m_8860   = "Monto solicitado no cuadra con el ingresado en Activo fijo y/o Capital de trabajo";
+-var m_8861   = "Operaci�n no es cargo transferencia ni abono transferencia";
+-var m_8862   = "Entidad financiera ya est� registrada";
+-var m_8863   = "Persona ya est� registrada.";
+-var m_8880   = "Devoluci�n excede al importe por pagar";
++var m_8861   = "Operaci�n no es cargo transferencia ni abono transferencia";
++var m_8862   = "Entidad financiera ya est� registrada";
++var m_8863   = "Persona ya est� registrada.";
++var m_8880   = "Devoluci�n excede al importe por pagar";
+ var m_8881   = "Existen operaciones pendientes por aplicar";
+-var m_8882   = "Evaluaci�n No Financiera sin registrar";
+-var m_8883   = "S�lo se puede registrar como m�ximo 3 or�genes de fondos";
+-var m_8884   = "Debe de registrar al menos 1 or�gen de fondo";
+-var m_8886   = "No ha seleccionado ning�n registro para Env�o a Venta";
++var m_8882   = "Evaluaci�n No Financiera sin registrar";
++var m_8883   = "S�lo se puede registrar como m�ximo 3 or�genes de fondos";
++var m_8884   = "Debe de registrar al menos 1 or�gen de fondo";
++var m_8886   = "No ha seleccionado ning�n registro para Env�o a Venta";
+ var m_8887   = "Uno o mas registros no cuentan con Precio Venta";
+ var m_8888   = "Tipo de documento no corresponde para la venta de bienes adjudicados";
+ var m_8889   = "El registro seleccionado no tiene documento de venta";
+@@ -628,13 +628,13 @@
+ var m_8891   = "Tipo de documento no corresponde para la venta de seguros";
+ 
+ //asolis
+-var m_9129 = "No puede registrar la operaci�n sin antes Calificar al Solicitante!";  
+-var m_9130 = "Ingrese el N�mero de Documento de Identidad!";
+-var m_9131 = "Inv�lido Tipo Documento para Tipo Persona";
+-var m_9132 = "No se puede cargar el archivo.S�lo se permite la carga una vez al d�a!";
+-var m_9133 = "No seleccion� el archivo a cargar.!";
++var m_9129 = "No puede registrar la operaci�n sin antes Calificar al Solicitante!";  
++var m_9130 = "Ingrese el N�mero de Documento de Identidad!";
++var m_9131 = "Inv�lido Tipo Documento para Tipo Persona";
++var m_9132 = "No se puede cargar el archivo.S�lo se permite la carga una vez al d�a!";
++var m_9133 = "No seleccion� el archivo a cargar.!";
+ var m_9134 = "Debe consultar al Solicitante .Verifique.";
+-var m_9135 = "Ha ingresado un N�mero de Documento diferente al consultado,vuelva a consultar nuevamente.";
++var m_9135 = "Ha ingresado un N�mero de Documento diferente al consultado,vuelva a consultar nuevamente.";
+ var m_9136 = "Ha seleccionado un Tipo de Documento diferente al consultado,vuelva a consultar nuevamente.";
+ var m_9137 = "No puede visualizar el reporte sin antes grabar los datos del Solicitante!";  
+ var m_9138 = "Existen problemas para cargar el archivo.!"; 
+@@ -642,26 +642,26 @@
+ var m_9115 = "Archivo copiado al sistema, se inicia su procesamiento";
+ 
+ //fvalle 04.10.2010  Mensajes de Control para el registro de un Detalle de Cargo por Producto 
+-var m_9100 = "El Monto de la Solicitud de Credito m�ximo no puede ser menor al m�nimo.!"; 
+-var m_9101 = "Debe ingresar el Monto M�nimo de la Solicitud de Credito !"; 
+-var m_9102 = "Debe ingresar el Monto M�ximo de la Solicitud de Credito !"; 
++var m_9100 = "El Monto de la Solicitud de Credito m�ximo no puede ser menor al m�nimo.!"; 
++var m_9101 = "Debe ingresar el Monto M�nimo de la Solicitud de Credito !"; 
++var m_9102 = "Debe ingresar el Monto M�ximo de la Solicitud de Credito !"; 
+ 
+ //
+ 
+-var m_8839 = "Desea Anular la operaci�n";
+-var m_8840 = "�Desea Anular el Pago?";
+-var m_8841 = "�Desea Anular el Cobro?";
+-var m_8842 = "Seleccion� documentos anulados a imprimir.";
+-var m_8843 = "Importe m�ximo debe ser igual a cero.";
+-var m_8844 = "Porcentaje m�ximo debe ser igual a cero.";
++var m_8839 = "Desea Anular la operaci�n";
++var m_8840 = "�Desea Anular el Pago?";
++var m_8841 = "�Desea Anular el Cobro?";
++var m_8842 = "Seleccion� documentos anulados a imprimir.";
++var m_8843 = "Importe m�ximo debe ser igual a cero.";
++var m_8844 = "Porcentaje m�ximo debe ser igual a cero.";
+ var m_8845 = "Esta seguro de aplicar condonaciones a todas las agencias?";
+ var m_8846 = "No se puede mover un reclamo reconsiderado.";
+ var m_8847 = "No se puede modificar una consulta/reclamo anulado.";
+ var m_8848 = "Desea anular la consulta/reclamo?";
+ var m_8849 = "Agencia ingresada anteriormente.";
+ // Inicio [Ticket 9199] gAlmerco 21.09.2015: Incidencia Producto Carta Fianza
+-var m_9951 = "Importe m�ximo debe ser mayor al Importe m�nimo.";
+-var m_9952 = "Capacidad m�xima debe ser mayor al Capacidad m�nima.";
++var m_9951 = "Importe m�ximo debe ser mayor al Importe m�nimo.";
++var m_9952 = "Capacidad m�xima debe ser mayor al Capacidad m�nima.";
+ // Fin [Ticket 9199] gAlmerco 21.09.2015
+ 
+ var m_8850 = "Debe registrar el activo fijo previamente";
+@@ -670,22 +670,22 @@
+ var m_8853 = "Suma de descuentos no coincide con el importe permitido";
+ var m_8854 = "Suma de descuentos no coincide con el porcentaje permitido";
+ var m_8855 = "El monto a condonar excede el permitido";
+-var m_8856 = "Pa�s Origen debe ser igual a Pa�s de Residencia.";
+-var m_8857 = "No ingres� alg�n campo obligatorio en detalle de ventas";
+-var m_8858 = "Cantidad en a�os no debe pasar de 6.";
++var m_8856 = "Pa�s Origen debe ser igual a Pa�s de Residencia.";
++var m_8857 = "No ingres� alg�n campo obligatorio en detalle de ventas";
++var m_8858 = "Cantidad en a�os no debe pasar de 6.";
+ 
+ var m_8860 = "Monto solicitado no cuadra con el ingresado en Activo fijo y/o Capital de trabajo";
+-var m_8861 = "Operaci�n no es Cargo Transferencia ni Abono Transferencia.";
+-var m_8862 = "Entidad Financiera ya est� registrada.";
+-var m_8863 = "Persona ya est� registrada.";
++var m_8861 = "Operaci�n no es Cargo Transferencia ni Abono Transferencia.";
++var m_8862 = "Entidad Financiera ya est� registrada.";
++var m_8863 = "Persona ya est� registrada.";
+ 
+ 
+-var m_8880 = "Devoluci�n excede al importe por pagar";
++var m_8880 = "Devoluci�n excede al importe por pagar";
+ 
+ var m_8881 = "Existen operaciones pendientes por aplicar";
+-var m_8882 = "Evaluaci�n No Financiera sin registrar";
+-var m_8883 = "S�lo se puede registrar como m�ximo 3 or�genes de fondos";
+-var m_8884 = "Debe de registrar al menos 1 or�gen de fondo";
++var m_8882 = "Evaluaci�n No Financiera sin registrar";
++var m_8883 = "S�lo se puede registrar como m�ximo 3 or�genes de fondos";
++var m_8884 = "Debe de registrar al menos 1 or�gen de fondo";
+ 
+ var m_8773 = "Propiedad no permite inspeccion domiciliaria."
+   /**
+@@ -693,34 +693,34 @@
+   */
+ var m_8892 = "Seleccione una Abono del listado.";
+ var m_8893 = "Seleccione una Afianza Solidaria del listado.";
+-var m_8894 = "S�rvase primero en activar el Afianzamiento.";
+-var m_8895 = "No ingres� alg�n campo obligatorio para el registro de abono.";
++var m_8894 = "S�rvase primero en activar el Afianzamiento.";
++var m_8895 = "No ingres� alg�n campo obligatorio para el registro de abono.";
+ var m_8896 = "Sirvase a ingresar los campos obligatorios.";
+ var m_8897 = "El afianzamiento ya fue activado.";
+ var m_8898 = "Ya no puede realizar la modificado.";
+ var m_8899 = "Esta fuera del rango permitido, se esta calculando con el minimo porcentaje permitido.";    
+ var m_8900 = "El valor ingresado supera el maximo Monto de Afianzamiento permitido.";  
+-var m_8901 = "No ingres� alg�n campo obligatorio."; 
++var m_8901 = "No ingres� alg�n campo obligatorio."; 
+ var m_8902 = "Monto del Credito por cobrar sobre pasa al monto a Pagar."; 
+ var m_8903 = "El monto ingresado sobrepasa el permitido.";  
+-var m_8904 = "La Entidad T�cnica debe ser ingresada.";
++var m_8904 = "La Entidad T�cnica debe ser ingresada.";
+ var m_8905 = "Seleccione una Solicitud de Afianzamiento del listado.";
+ //csanchez 21.12.2011 Validacion para ingreso de CIIU - Inico
+-var m_0240   = "Persona Jur�dica no tiene asociado CIIU.";
+-var m_0239   = "Persona Jur�dica no tiene asociado Giro de Negocio.";
++var m_0240   = "Persona Jur�dica no tiene asociado CIIU.";
++var m_0239   = "Persona Jur�dica no tiene asociado Giro de Negocio.";
+ var m_0241   = "El giro del negocio se encuentra inactivo";
+ 
+ // ccoz 15.01.2011: Automatizacion Desembolso Creditos - Validacion de cheques
+ var m_6666 = "Uno de los cheques NO esta en estado POR PAGAR";
+ 
+ // Agregado gliceta 08.09.2010: Seguimiento de Riesgos
+-var m_9000 = "�Desea agregar Indicadores de Seguimiento de Riesgo?";
++var m_9000 = "�Desea agregar Indicadores de Seguimiento de Riesgo?";
+ var m_9001 = "Exito al registrar Indicadores de Riesgo";
+ var m_9002 = "Debe seleccionar una Cargo Funcional";
+ 
+ // gliceta 28.12.2010: Automatizacion Desembolso Creditos - Aliados
+-var m_9003 = "�Esta seguro de registrar Ordenes de Pago?";
+-var m_9004 = "�Esta seguro de anular Solicitudes de Liquidacion?";
++var m_9003 = "�Esta seguro de registrar Ordenes de Pago?";
++var m_9004 = "�Esta seguro de anular Solicitudes de Liquidacion?";
+ 
+ //gliceta 12.09.2011: Transferencia entre Cuentas Personales
+ var m_0153 = "No puede transferir un monto superior al disponible";
+@@ -731,46 +731,46 @@
+ var m_0119 = "Ingrese Operador (S/R) en la fila: ";
+ var m_0121 = "No puede eliminar un Concepto Padre!";
+ var m_0123 = "Concepto de Encaje No Registrado!";
+-var m_0128 = "Periodos Inicial y Final deben corresponder al mismo a�o y mes!";
++var m_0128 = "Periodos Inicial y Final deben corresponder al mismo a�o y mes!";
+ var m_0129 = "Periodo Final debe ser mayor a Periodo Inicial!";
+ 
+ //Cmoreno 16/11/2010 Globokas
+ var m_9123 = "Se genero Archivo";
+ var m_9124 = "Ingrese fecha para Generar Archivo";
+-var m_9125 = "No seleccion� el archivo a cargar.! y/o no hay operaciones realizadas en esta fecha ";
++var m_9125 = "No seleccion� el archivo a cargar.! y/o no hay operaciones realizadas en esta fecha ";
+ 
+ //mnieves 13.12.2010 Incidencia - Pago de Factura
+-var m_0015 = "Cr�dito se encuentra en estado CANCELADO";
++var m_0015 = "Cr�dito se encuentra en estado CANCELADO";
+ 
+ //jpantoja
+-var m_0017 = "El estado de la solicitud de incautaci�n es diferente a Registrado";
+-var m_0049 = "No se han agregado productos a la solicitud de incautaci�n";
++var m_0017 = "El estado de la solicitud de incautaci�n es diferente a Registrado";
++var m_0049 = "No se han agregado productos a la solicitud de incautaci�n";
+ var m_0051 = "No puede seleccionar una Garantia o Seguro ya registrada";
+ var m_0052 = "Debe seleccionar el archivo excel";
+ 
+ //mnieves 12.04.2011
+-var m_0053 = "El cliente se encuentra en la Lista PEP (Persona Expuesta Pol�ticamente). Confirme la informaci�n de acuerdo al procedimiento vigente y solicite el llenado del Formato PEP01.";
++var m_0053 = "El cliente se encuentra en la Lista PEP (Persona Expuesta Pol�ticamente). Confirme la informaci�n de acuerdo al procedimiento vigente y solicite el llenado del Formato PEP01.";
+ 
+ //jpantoja 11.05.2011 agregar variable
+-var m_0057 = "No se permite agregar m�s productos";
++var m_0057 = "No se permite agregar m�s productos";
+ 
+-//jpantoja 25.05.2011 agregar mensajes Liquidacion y Comisi�n de Cobros 
+-var m_0058 = "Estado del registro no permite realizar la operaci�n";
+-var m_0059 = "Monto de Liquidaci�n debe ser igual al Monto Contable";
+-var m_0071 = "No se puede registrar comisi�n porque no cuenta con transacciones";
++//jpantoja 25.05.2011 agregar mensajes Liquidacion y Comisi�n de Cobros 
++var m_0058 = "Estado del registro no permite realizar la operaci�n";
++var m_0059 = "Monto de Liquidaci�n debe ser igual al Monto Contable";
++var m_0071 = "No se puede registrar comisi�n porque no cuenta con transacciones";
+ 
+ //gfernandez 25.05.2011 
+-//gliceta 13.01.2012: IM13926 - Anulaci�n asignaci�n de estados financieros
++//gliceta 13.01.2012: IM13926 - Anulaci�n asignaci�n de estados financieros
+ var m_0063 = "Solicitud tiene bloqueos enviados. No se permite desasociar.";
+ var m_0245 = "Evaluacion tiene bloqueos enviados. No se permite modificar.";//gliceta 10.01.2012: Req. 11-206 - Solicitudes Gestionadas
+ var m_0262 = "Evaluacion tiene bloqueos enviados. No se permite desactivar.";//gliceta 10.01.2012: Req. 11-206 - Solicitudes Gestionadas
+ 
+ //gfernandez 11.07.2011
+-var m_0062 = "Solo puede seleccionar una campa�a a la vez.";
++var m_0062 = "Solo puede seleccionar una campa�a a la vez.";
+ //stacanga 15.07.2011
+-var m_0072 = "�Est� seguro de eliminar los registros seleccionados?";
++var m_0072 = "�Est� seguro de eliminar los registros seleccionados?";
+ //drequejo 27.06.2011 [Sol. 11-097] Orden de reembolso
+-var m_0300 = "Operaci�n debe estar en estado pendiente y no anulada";
++var m_0300 = "Operaci�n debe estar en estado pendiente y no anulada";
+ var m_0301 = "Numero de serie no registrado para el tipo de documento";
+ var m_0302 = "Numero de documento no registrado para el tipo de documento";
+ var m_0303 = "No se permite modificar los documentos con tipo de documento 'Orden de Reembolso'";
+@@ -779,47 +779,47 @@
+ var m_0306 = "No puede registrar un documento con tipo 'Orden de Reembolso'";
+ var m_0307 = "No se permite regularizar documentos con 'Orden de Reembolso'";
+ // drequejo 24.08.2011 [Sol 11-155] Servicio de Cobranza de Cuotas Banco de la Nacion
+-var m_0149 = "Solo puede aplicar a los lotes en estado de Confirmaci�n";
++var m_0149 = "Solo puede aplicar a los lotes en estado de Confirmaci�n";
+ //jpantoja 08.09.2011 Arbol Decisional
+-var m_0163 = "El producto no cuenta con �rbol decisional";
+-//jpantoja 15.09.2011 Registro Excepci�n
+-var m_0093 = "Ya se gener� la excepci�n";
++var m_0163 = "El producto no cuenta con �rbol decisional";
++//jpantoja 15.09.2011 Registro Excepci�n
++var m_0093 = "Ya se gener� la excepci�n";
+ 
+-//stacanga 30.09.2011 Fecha de conciliaci�n
+-var m_0095 = "Ingrese la fecha de conciliaci�n";
++//stacanga 30.09.2011 Fecha de conciliaci�n
++var m_0095 = "Ingrese la fecha de conciliaci�n";
+ //stacanga 14.10.2011
+-var m_0228 = "Existen Conciliaciones YA enviadas a tesorer�a";
++var m_0228 = "Existen Conciliaciones YA enviadas a tesorer�a";
+ var m_0229 = "Existen Conciliaciones YA recaudadas";
+-var m_0230 = "Estado de Conciliaci�n NO permite anular";
++var m_0230 = "Estado de Conciliaci�n NO permite anular";
+ 
+ //stacanga 19.10.2011
+ var m_0231 = "Existen Conciliaciones que no han sido recaudadas";
+ //erios 25.10.2011
+ var m_0232 = "Debe definir Grupo Reporte, antes de asignar Agencia.";
+ //drequejo 26.10.2011
+-var m_0233 = "Solo puede consultar el detalle para los lotes de tipo Recepci�n";
++var m_0233 = "Solo puede consultar el detalle para los lotes de tipo Recepci�n";
+ 
+ //gliceta 28.09.2011: Bienes Adjudicados
+ var m_0234 = "Solo puede registrar un Bien para Incautaciones de Electrodomesticos";
+ var m_0235 = "Existen Productos que ya fueron afectados al Credito";
+ //erios 06.12.2011
+-var m_0236 = "Ya se seleccion� el N�mero de Cuenta Cr�dito";
++var m_0236 = "Ya se seleccion� el N�mero de Cuenta Cr�dito";
+ //gliceta 10.01.2012: Req. 11-206 - Solicitudes Gestionadas
+ var m_0243 = "Solo se pueden rechazar PreSolicitudes en estado Apertura.";
+ var m_0246 = "No se puede anular una PreSolicitud.";
+-var m_0248 = "Complete informaci�n de Arbol Decisional.";
+-var m_0249 = "Cliente no tiene asignado evaluaci�n por Arbol Decisional.";
++var m_0248 = "Complete informaci�n de Arbol Decisional.";
++var m_0249 = "Cliente no tiene asignado evaluaci�n por Arbol Decisional.";
+ var m_0250 = "Cliente no tiene asignado Relacion Laboral.";
+-var m_0252 = "No puede calificar con un Titular y C�nyuge de Garante.";
+-var m_0253 = "N�mero de Documento ya ingresado.";
++var m_0252 = "No puede calificar con un Titular y C�nyuge de Garante.";
++var m_0253 = "N�mero de Documento ya ingresado.";
+ var m_0254 = "Falta consultar Datos del Titular.";
+ var m_0255 = "Falta consultar Datos del Conyuge de Titular.";
+ var m_0256 = "Falta consultar Datos del Garante.";
+ var m_0257 = "Falta consultar Datos del Conyuge de Garante.";
+ var m_0258 = "NO SE TIENE ASIGNADA EVALUACION POR ARBOL DECISIONAL.";
+ var m_0259 = "El valor del Ingreso Neto debe ser mayor a Cero.";
+-var m_0263 = "C�nyuge del Titular casado(a) con otra persona que no es el Titular.";
+-var m_0264 = "C�nyuge del Garante casado(a) con otra persona que no es el Garante.";
++var m_0263 = "C�nyuge del Titular casado(a) con otra persona que no es el Titular.";
++var m_0264 = "C�nyuge del Garante casado(a) con otra persona que no es el Garante.";
+ //jpantoja 06.03.2012
+ var m_0260 = "La cuenta SBS nueva es distinta a la cuenta SBS actual, si desea reemplazar la cuenta SBS active la casilla \"Reemplazar todas las cuentas SBS actuales\" ";
+ var m_0261 = "Debe ingresar el campo \"Cta Contable del Balance\"";
+@@ -829,38 +829,38 @@
+ var m_0247 = "La Tasa ingresada no se encuentra en el rango definido en el Producto";
+ 
+ //stacanga 09.02.2012
+-var m_0251 = "Fecha es menor a la del mes del a�o en curso";
++var m_0251 = "Fecha es menor a la del mes del a�o en curso";
+ 
+ //mnieves 24.02.2012
+ var m_0081 = "No se puede eliminar un registro generado por otro usuario.";
+ 
+ // drequejo 17.05.2012
+-var m_0285 = "Lote no contiene registros para la generaci�n del archivo.";
++var m_0285 = "Lote no contiene registros para la generaci�n del archivo.";
+ 
+ //jpena 23.05.2012
+-var m_0287 = "�Est� seguro de confirmar el env�o?";
+-var m_0288 = "El estado del lote debe ser GENERADO para confirmar env�o";
++var m_0287 = "�Est� seguro de confirmar el env�o?";
++var m_0288 = "El estado del lote debe ser GENERADO para confirmar env�o";
+ 
+ //rgutierrez 26.04.2012
+-var m_0270 = "No se puede eliminar una operaci�n en libros.";
++var m_0270 = "No se puede eliminar una operaci�n en libros.";
+ //jpantoja 26.04.2012
+-var m_0272 = "Long. M�nima debe ser menor que Long. M�xima";
++var m_0272 = "Long. M�nima debe ser menor que Long. M�xima";
+ var m_0275 = "Los campos Total Seleccionado deben ser iguales";
+ var m_0276 = "No se puede seleccionar operaciones de abonos y cargos al mismo tiempo";  
+ 
+ // drequejo 29.05.2012
+-var m_0289 = "Debe ingresar una Gu�a de Despacho para enviar";
+-var m_0290 = "Solo puede imprimir movimientos que est�n en estado Enviado o Recibido";
++var m_0289 = "Debe ingresar una Gu�a de Despacho para enviar";
++var m_0290 = "Solo puede imprimir movimientos que est�n en estado Enviado o Recibido";
+ 
+ //gliceta 16.04.2012: Req. 12-058 - Cumplimiento Normativo
+ var m_0265 = "Debe seleccionar una Firma.";
+-var m_0266 = "Ingrese Area responsable de Elaboraci�n.";
+-var m_0267 = "Ingrese Area responsable de Revisi�n.";
+-var m_0268 = "Ingrese Area responsable de Env�o.";
+-var m_0269 = "�Est� seguro de anular el Informe de Cumplimiento?";
++var m_0266 = "Ingrese Area responsable de Elaboraci�n.";
++var m_0267 = "Ingrese Area responsable de Revisi�n.";
++var m_0268 = "Ingrese Area responsable de Env�o.";
++var m_0269 = "�Est� seguro de anular el Informe de Cumplimiento?";
+ var m_0271 = "Los Dias de Alerta Previa debe estar en el rango 0-1.";
+-var m_0279 = "Ingrese Inicio del Periodo en d�as, del 1-7.";
+-var m_0280 = "Ingrese Inicio del Periodo en d�as, del 1-15.";
++var m_0279 = "Ingrese Inicio del Periodo en d�as, del 1-7.";
++var m_0280 = "Ingrese Inicio del Periodo en d�as, del 1-15.";
+ var m_0281 = "Ingrese Inicio del Periodo en meses, del 1-2.";
+ var m_0282 = "Ingrese Inicio del Periodo en meses, del 1-3.";
+ var m_0283 = "Ingrese Inicio del Periodo en meses, del 1-4.";
+@@ -872,9 +872,9 @@
+ //evargas 09.07.2012
+ var m_0130 = "Debe de elegir al menos un subconcepto.";
+ //rgutierrez 28.06.2012
+-var m_0291="Est� seguro que desea regresar al estado \"Pendiente\" a los asientos seleccionados?"
++var m_0291="Est� seguro que desea regresar al estado \"Pendiente\" a los asientos seleccionados?"
+ var m_0292="Uno de los registros seleccionados ya tiene un asiento asignado."
+-var m_0293="Est� seguro que desea realizar la contabilizaci�n de los asientos seleccionados?";
++var m_0293="Est� seguro que desea realizar la contabilizaci�n de los asientos seleccionados?";
+ //rgutierrez 27.07.2012
+ var m_0298="No se puede modificar el actual asiento contable.";
+ 
+@@ -886,31 +886,31 @@
+ var m_2238 = "Ya existe distribucion por Centro de Costo.";
+ var m_2239 = "No necesita distribucion por Centro de Costos.";
+ var m_0274 = "Cuenta Contable seleccionada ya se encuentra inscrita.";
+-var m_0131 = "Archivo inv�lido. Extensi�n incorrecta.";
++var m_0131 = "Archivo inv�lido. Extensi�n incorrecta.";
+ 
+ //fvalle 26.07.2012 Requerimiento 12-101 - Bloqueo Pago Parcial Recibo Externo 
+ var m_0297 = "El importe a pagar debe ser igual al importe facturado.";
+ 
+ //jchilon 26.07.2012 --Visitas Post Desembolso
+-var m_0294 = "Fecha de Calificaci�n no puede ser mayor a 7 d�as de antiguedad.";
+-var m_0295 = "Fecha de Calificaci�n debe ser menor a: ";
++var m_0294 = "Fecha de Calificaci�n no puede ser mayor a 7 d�as de antiguedad.";
++var m_0295 = "Fecha de Calificaci�n debe ser menor a: ";
+ var m_0296 = "Fecha de Nueva visita debe ser mayor a: ";
+ 
+ //gfernandez 26.07.2012
+ var m_2240 = "Calculo de meses de provisiones excede el rango permitido.";
+-var m_2241 = "Monto Depreciaci�n sin IGV no coincide con el monto total de la Cartera Vendida.";
+-var m_2242 = "Debe realizar la afectaci�n  para el producto existente.";
+-var m_2243 = "Solo puede eliminar un Bien para Incautaciones de Electrodom�sticos";
++var m_2241 = "Monto Depreciaci�n sin IGV no coincide con el monto total de la Cartera Vendida.";
++var m_2242 = "Debe realizar la afectaci�n  para el producto existente.";
++var m_2243 = "Solo puede eliminar un Bien para Incautaciones de Electrodom�sticos";
+ 
+ //jgonzales 07.09.2012
+-var m_2244 = "Fecha de Compromiso no puede ser menor a fecha de Gesti�n";
+-var m_2245 = "El cliente no tiene asociado un cr�dito";
++var m_2244 = "Fecha de Compromiso no puede ser menor a fecha de Gesti�n";
++var m_2245 = "El cliente no tiene asociado un cr�dito";
+ var m_2246 = "Hay uno o mas registros no pertenecientes a su cartera";
+-var m_0299 = "Fecha de programaci�n no puede ser menor a fecha del sistema";
++var m_0299 = "Fecha de programaci�n no puede ser menor a fecha del sistema";
+ 
+ //evargas 09.10.2012
+ var m_2247 = "La fecha de vencimiento debe ser mayor a la fecha de registro";
+-var m_2248 = "La fecha de vcto. tasaci�n debe ser mayor a la fecha tasaci�n";
++var m_2248 = "La fecha de vcto. tasaci�n debe ser mayor a la fecha tasaci�n";
+ 
+ //jchilon 20.11.2012 Req 12-050
+ var m_0309 = "El Indicador de Actividad Comercial no es el indicado";
+@@ -920,19 +920,19 @@
+ //gfernanadez 10.12.2012
+ var m_0308 = "Seleccione un factor de riesgo";
+ 
+-/*[Req. 12-132] rfloresg 22.01.2013 Nuevo mensaje de validaci�n*/
+-var m_0313   = "No ha realizado ning�n cambio.";
++/*[Req. 12-132] rfloresg 22.01.2013 Nuevo mensaje de validaci�n*/
++var m_0313   = "No ha realizado ning�n cambio.";
+ 
+ 
+ //jgonzales 04.04.2013
+ var m_0343 = "No se puede registrar una visita con estado Pendiente.";
+-var m_0344 = "La solicitud no tiene asociada una evaluaci�n financiera o la evaluaci�n est� desactivada.";
++var m_0344 = "La solicitud no tiene asociada una evaluaci�n financiera o la evaluaci�n est� desactivada.";
+ 
+ //fvalle 19.04.2013 Req. 13-028 Recaudacion Masiva Ent. Externas
+ 
+-var m_0345 = "�Est� seguro de confirmar el lote?";
++var m_0345 = "�Est� seguro de confirmar el lote?";
+ var m_0346 = "El estado del lote debe ser RECEPCIONADO para confirmar";
+-var m_0347 = "Se enviar� a generar todos los planos de Recaudaci�n de Bancos excepto el perteneciente al Banco de la Naci�n.";
++var m_0347 = "Se enviar� a generar todos los planos de Recaudaci�n de Bancos excepto el perteneciente al Banco de la Naci�n.";
+ 
+ //jmedina 31/05/2013 Mensaje de prestamos que ya se encuentran registrados - Ticket 5952 
+ var m_0349 = "Los siguientes prestamos ya se encuentran registrados: ";
+@@ -940,25 +940,25 @@
+ //gfernandez 10.05.2013
+ var m_0348 = "EL PRODUCTO SELECCIONADO NO CORRESPONDE AL PERFIL BANCARIZADO DEL CLIENTE.";
+ 
+-//[Req.13-057] stacanga 12.06.2013 C�digo para validar datos.
+-var m_0350 = "Debe ingresar todos los datos para la Orden Cheque Electr�nico";
++//[Req.13-057] stacanga 12.06.2013 C�digo para validar datos.
++var m_0350 = "Debe ingresar todos los datos para la Orden Cheque Electr�nico";
+ 
+ // gAlmerco 27.06.2013 [Ticket 6118]
+ var m_0351 = "No se ha configurado la constante de limite de ratio Cuota RCC/Excedente RCC.";
+ 
+ //gfernandez 07.06.2013
+-var m_1450 = "La solicitud no ha sido enviada al proceso de inspecci�n.";
++var m_1450 = "La solicitud no ha sido enviada al proceso de inspecci�n.";
+ 
+ 
+ //[Ticket 6522] esalazar 19.08.2013
+-var m_0355 = "No se asignaron titulares de la Garant�a";
+-var m_0356 = "No se puede vincular Garant�a con Solicitud de Cr�dito. Aval NO puede ser igual al Titular de la Solicitud Cr�dito";
+-var m_0357 = "No se puede vincular Garant�a al Cr�dito. Aval NO puede ser igual al Titular del Cr�dito";
++var m_0355 = "No se asignaron titulares de la Garant�a";
++var m_0356 = "No se puede vincular Garant�a con Solicitud de Cr�dito. Aval NO puede ser igual al Titular de la Solicitud Cr�dito";
++var m_0357 = "No se puede vincular Garant�a al Cr�dito. Aval NO puede ser igual al Titular del Cr�dito";
+ 
+ //ajimenez 28.05.2013 [13-038-II]
+ var m_0352 = "Esta seguro que desea procesar la conciliacion de documentos con 1% ?";
+ 
+-//[Req. 13-065]: Mejoras al M�dulo de Garant�as
++//[Req. 13-065]: Mejoras al M�dulo de Garant�as
+ // fvalle 23.08.2013
+ var m_0353 = "El reporte ya se encuentra en estado ENVIADO.";
+ var m_0354 = "Esta seguro de Enviar el Reporte?";
+@@ -967,33 +967,33 @@
+ var m_0360 = "No se puede ENVIAR un reporte con el estado actual.";
+ 
+ //esalazar 29.08.2013
+-var m_0361 = "Garant�a cuenta con vinculaciones vigentes.";
++var m_0361 = "Garant�a cuenta con vinculaciones vigentes.";
+ 
+ // galmerco 10.10.2013
+ var m_0362 = "Debe ingresar el Numero de Cuenta de Destino";
+ var m_0363 = "Debe ingresar la Entidad Financiera";
+ 
+ //[Req. 13-132]cchalco 05.12.2013
+-var m_0364 = "Campo del cliente vac�o";
++var m_0364 = "Campo del cliente vac�o";
+ 
+ //[Req. 13-142]jdiaz 03.01.2014
+-var m_0365 = "Documento no posee n�mero de transacci�n";
++var m_0365 = "Documento no posee n�mero de transacci�n";
+ 
+ //[Req. 13-149] esalazar 04.02.2014
+ var m_0370 = "Autorizacion de Usuario a Proceso se encuentra Inactivo.";
+ 
+ //[Req. 13-147] esalazar 07.01.2014
+-var m_0366 = "Su usuario no tiene permiso para acceder a esta opci�n.";
++var m_0366 = "Su usuario no tiene permiso para acceder a esta opci�n.";
+ 
+ //[Req. 14-030] jventura 29.04.2014
+-var m_0390 = "Conciliaci�n liberada con �xito";
++var m_0390 = "Conciliaci�n liberada con �xito";
+ 
+ //[Req. 13-147] esalazar 07.01.2014
+ var m_0372 = "Se debe registrar o grabar  primero al Cliente";
+ 
+ // Inicio [Req. 13-135] jchilon 07.05.2014: Envio estado cuenta por email.
+-var m_0369 = "Falta Registrar Modalidad de Env�o del Estado de Cuenta!";
+-var m_0375 = "Confirmar Modalidad de Env�o de Estado de Cuenta!";
++var m_0369 = "Falta Registrar Modalidad de Env�o del Estado de Cuenta!";
++var m_0375 = "Confirmar Modalidad de Env�o de Estado de Cuenta!";
+ // Fin [Req. 13-135] jchilon
+ 
+ //[Req. 14-061] jventura 15.05.2014
+@@ -1003,21 +1003,21 @@
+ //[Req. 14-027] fvalle 16.05.2014
+ var m_0379 = "Seleccione creditos de una misma moneda que la del Desembolso.";
+ 
+-//[Req.13-127] jchilon 13.02.2014 Depositos en Garant�a
++//[Req.13-127] jchilon 13.02.2014 Depositos en Garant�a
+ var m_0367   = "No olvidar ingresar al otro titular de la Cuenta Mancomunada o verifique la cuenta";
+-var m_0368   = "Existen m�s personas aparte de los titulares";
++var m_0368   = "Existen m�s personas aparte de los titulares";
+ 
+ //Inicio [Req. 14-057] cchalco 15.04.2014
+-var m_0371 = "N�mero de Lote inv�lido";
+-var m_0373 = "Codigo de Asignaci�n de L�nea de Cr�dito inv�lido";
++var m_0371 = "N�mero de Lote inv�lido";
++var m_0373 = "Codigo de Asignaci�n de L�nea de Cr�dito inv�lido";
+ var m_0376 = "Ingrese Cliente Comercial";
+ var m_0377 = "Seleccione el Tipo de Negocio Comercial"; 
+ //Fin [Req. 14-057] cchalco
+ 
+ //[Ticket 8416] jtomasto 01.09.2014
+ //[CC17-012] gmeza 31.01.2017
+-var m_0394 = "Extensi�n de archivo debe ser XLS";
+-var m_0395 = "Proceder� a REGISTRAR un DPF de PERSONA JUR�DICA. \n Est� SEGURO de PROCEDER?";
++var m_0394 = "Extensi�n de archivo debe ser XLS";
++var m_0395 = "Proceder� a REGISTRAR un DPF de PERSONA JUR�DICA. \n Est� SEGURO de PROCEDER?";
+ 
+ //Inicio [Req.14-121] aromero 09.09.2014
+ var m_0410   = "Ya existe planillas cargadas";
+@@ -1028,7 +1028,7 @@
+ //Inicio [Req. 14-115] fvalle, esalazar, jvilcapaza 05.09.2014
+ var m_0396 = "El monto deducido supera al monto disponible a desembolsar."; 
+ var m_0389 = "Se debe guardar Solicitud para aplicar Comisiones y Gastos.";
+-var m_0390 = "No se ha registrado Detalle de Evaluaci�n DPS.";
++var m_0390 = "No se ha registrado Detalle de Evaluaci�n DPS.";
+ var m_0391 = "No se ha registrado Detalle de Comisiones/Gastos no Financiados.";
+ var m_0413 = "El estado de la solicitud no permite vincular Garantias.";
+ //[Req. 14-122] dfujimoto
+@@ -1039,8 +1039,8 @@
+ var m_0418 = "No puede realizarse el abono a mas de una cuenta.";
+ 
+ // Inicio [CC 16-047] stacanga 22.09.2016
+-var m_0419 = "Existe alg�n registro en la lista de Conceptos Deducibles al Desembolso con Importe en 0.00";
+-var m_0420 = "Existe alg�n registro en la lista de Dep�sitos en Cuenta Efectivo con Importe en 0.00";
++var m_0419 = "Existe alg�n registro en la lista de Conceptos Deducibles al Desembolso con Importe en 0.00";
++var m_0420 = "Existe alg�n registro en la lista de Dep�sitos en Cuenta Efectivo con Importe en 0.00";
+ // Fin [CC 16-047] stacanga
+ 
+ var m_0424 = "El valor del Monto Asegurado no puede exceder al valor del Precio Venta";
+@@ -1050,37 +1050,37 @@
+ var m_0425 = "Ingrese No Registro";
+ //Fin [Ticket 8830] dlazo 16.12.2014
+ //Inicio [Req. 14-140] jjurado 18.12.2014
+-var m_0428 = "Debe seleccionar Los proceso Generaci�n de Saldos Contables y Ajuste de Saldos de Balance";
++var m_0428 = "Debe seleccionar Los proceso Generaci�n de Saldos Contables y Ajuste de Saldos de Balance";
+ //Fin [Req. 14-140]
+ 
+ //Inicio [Req.Ext-001] jchilon 18.12.2014 - Agendas Comerciales 
+ var m_0426 = "Se listan todas las asignaciones ya finalizadas.";
+-var m_0427 = "Est� seguro de asignar este registro al analista ";
+-var m_0429 = "Se listaran s�lo los regitros pendientes";
++var m_0427 = "Est� seguro de asignar este registro al analista ";
++var m_0429 = "Se listaran s�lo los regitros pendientes";
+ //Fin [Req.Ext-001] jchilon 18.12.2014
+ 
+ // Inicio [Req. 14-115] Fase III jvilcapaza 19.02.2015
+ var m_0384 = "No se ha definido Titular Principal";
+-var m_0385 = "Existe m�s de un Titular Principal.";
+-var m_0436 = "Opci�n v�lida solamente para Productos de Cr�dito Hipotecarios";
++var m_0385 = "Existe m�s de un Titular Principal.";
++var m_0436 = "Opci�n v�lida solamente para Productos de Cr�dito Hipotecarios";
+ var m_0437 = "Monto minimo es mayor al monto maximo del valor de la vivienda";
+-var m_0439 = "S�lo  se permite agregar un Titular de Cr�dito";
++var m_0439 = "S�lo  se permite agregar un Titular de Cr�dito";
+ // Fin  [Req. 14-115] Fase III
+ // [Req.14-150] dfujimoto 05.03.2015
+ var m_0462 = "No se puede realizar el Retiro. Monto a retirar debe ser menor que el saldo disponible.";
+ 
+ //Inicio [Req. 14-150] jaramirez 02.03.2015
+-var m_0438 = "El monto del dep�sito no es igual a la suma de montos de los dep�sitos realizados";
++var m_0438 = "El monto del dep�sito no es igual a la suma de montos de los dep�sitos realizados";
+ var m_0464 = "No se ha agregado un empleador";
+-var m_0465 = "No se ha agregado una operaci�n Bancaria";
++var m_0465 = "No se ha agregado una operaci�n Bancaria";
+ var m_0466 = "Debe Ingresar Fecha Valor";
+-var m_0467 = "No se ingres� ning�n fichero";
++var m_0467 = "No se ingres� ning�n fichero";
+ var m_0468 = "No se ha agregado el total del Deposito";
+-var m_0469 = "Ya se agrego una operaci�n bancaria";
+-var m_0470 = "No se necesita agregar Operaci�n Bancaria";
+-var m_0471 = "Es necesario agregar un codigo de Operaci�n";
+-var m_0472 = "El n�mero de remuneraciones no puede ser cero";
+-var m_0473 = "La moneda de la cuenta no es igual a la moneda del Dep�sito";
++var m_0469 = "Ya se agrego una operaci�n bancaria";
++var m_0470 = "No se necesita agregar Operaci�n Bancaria";
++var m_0471 = "Es necesario agregar un codigo de Operaci�n";
++var m_0472 = "El n�mero de remuneraciones no puede ser cero";
++var m_0473 = "La moneda de la cuenta no es igual a la moneda del Dep�sito";
+ var m_0474 = "El archivo cargado tiene errores";
+ var m_0475 = "No se ha cargado el archivo";
+ var m_0476 = "La fecha Valor no puede ser mayor a la fecha de Proceso";
+@@ -1092,8 +1092,8 @@
+ //Inicio [Req. 15-009] framirez 04.03.2015
+ var m_0440 = "Al menos uno de los registros seleccionados se encuentra en estado Anulado."
+ var m_0442 = "Ingresar motivo de Anulacion";
+-var m_0443 = "Monto retenci�n no puede ser menor a cero";
+-var m_0444 = "Monto retenci�n debe ser menor al monto de pago";
++var m_0443 = "Monto retenci�n no puede ser menor a cero";
++var m_0444 = "Monto retenci�n debe ser menor al monto de pago";
+ var m_0445 = "Total de saldo a pagar es menor igual a cero. Verificar documentos";
+ //Fin [Req. 15-009]
+ 
+@@ -1105,7 +1105,7 @@
+ var m_0451 = "El tipo de cuenta debe de ser de AHORROS";
+ 
+ var m_0453 = "El monto gravamen no puede ser mayor que el valor referencial";
+-var m_0454 = "el formato de la Fecha de inscripci�n es invalido. \nSe sugiere: dd/MM/yyyy";
++var m_0454 = "el formato de la Fecha de inscripci�n es invalido. \nSe sugiere: dd/MM/yyyy";
+ var m_0455 = "La cuenta seleccionada ya posee un bloqueo";
+ var m_0456 = "Debe seleccionar una direccion";
+ // Fin [Req. 15-037]
+@@ -1119,10 +1119,10 @@
+ // Inicio [Req. 15-030] fvalle 25.03.2015 
+ var m_0478 = "Sin Estado";
+ var m_0479 = "Cuenta ya se encuentra en el estado solicitado.";
+-var m_0480 = "�Desea activar la cuenta seleccionada?";
+-var m_0481 = "�Desea desactivar la cuenta seleccionada?";
+-var m_0482 = "�Est� seguro de Actualizar la condici�n de D�bito Autom�tico?";
+-var m_7055 = "El cr�dito se encuentra en estado cancelado, no se puede activar d�bito autom�tico.";
++var m_0480 = "�Desea activar la cuenta seleccionada?";
++var m_0481 = "�Desea desactivar la cuenta seleccionada?";
++var m_0482 = "�Est� seguro de Actualizar la condici�n de D�bito Autom�tico?";
++var m_7055 = "El cr�dito se encuentra en estado cancelado, no se puede activar d�bito autom�tico.";
+ // Fin [Req. 15-030] fvalle 25.03.2015 
+ 
+ //Inicio [CC5-041] aromero 06.08.2015
+@@ -1132,39 +1132,39 @@
+ 
+ //Inicio [Req. 15-031] jtomasto 24.04.2015
+ var m_9999 = "Falta ingresar cantidad de talonarios.";
+-var m_9998 = "No se ingres� rango Inicial.";
+-var m_9997 = "No se ingres� rango Final.";
++var m_9998 = "No se ingres� rango Inicial.";
++var m_9997 = "No se ingres� rango Final.";
+ var m_0500 = "No se puede eliminar una cabecera asignada.";
+ var m_0701 = "Deseas Anular el lote seleccionado?";
+ var m_0702 = "La cabecera ya ha sido eliminada.";
+-var m_0703 = "�Est� seguro de activar el talonario?";
+-var m_0704 = "�Est� seguro que desea anular la(s) orden(es) de pago?.";
++var m_0703 = "�Est� seguro de activar el talonario?";
++var m_0704 = "�Est� seguro que desea anular la(s) orden(es) de pago?.";
+ var m_0705 = "No se ha ingresado lista de talonarios.";
+-var m_0706 = "No se ha seleccionado �rden(es) de pago para imprimir.";
+-var m_0707 = "No se ha seleccionado ningun registro para la anulaci�n de la solicitud de �rdenes de pago";
+-var m_0708 = "�Est� seguro que desea anular la solicitud de �rdenes de pago?";
+-var m_0709 = "No se ha seleccionado ningun registro para la anulaci�n de las �rdenes de pago";
+-var m_0710 = 'No se ha ingresado la glosa de la anulaci�n';
++var m_0706 = "No se ha seleccionado �rden(es) de pago para imprimir.";
++var m_0707 = "No se ha seleccionado ningun registro para la anulaci�n de la solicitud de �rdenes de pago";
++var m_0708 = "�Est� seguro que desea anular la solicitud de �rdenes de pago?";
++var m_0709 = "No se ha seleccionado ningun registro para la anulaci�n de las �rdenes de pago";
++var m_0710 = 'No se ha ingresado la glosa de la anulaci�n';
+ //Fin [Req. 15-031]
+ 
+ //Inicio [CC15-030] dlazo 11.08.2015
+-var m_0490 = "Debe ingresar un N�mero de Cuenta de Ahorros (Soles o D�lares).";
+-var m_0491 = "Debe ingresar D�a de Cargo.";
+-var m_0493 = "Carga se v�lido con �xito.";
++var m_0490 = "Debe ingresar un N�mero de Cuenta de Ahorros (Soles o D�lares).";
++var m_0491 = "Debe ingresar D�a de Cargo.";
++var m_0493 = "Carga se v�lido con �xito.";
+ var m_0496 = "Debe seleccionar institucion";
+ var m_0497 = "Debe elegir un archivo";
+ var m_0498 = "Debe elegir un archivo formato CSV";
+-var m_0499 = "Debe ingresar nombre de Instituci�n";
++var m_0499 = "Debe ingresar nombre de Instituci�n";
+ var m_0484 = "Importe no valido.";
+ var m_0486 = "Debe ingresar datos de cliente correctamente.";
+ var m_0485 = "Debe ingresar datos de institucion correctamente.";
+ // Fin [CC15-030] dlazo 11.08.2015
+ var m_0716 = 'Debe ingresar nombre de cliente que realiza el retiro';
+-var m_0717 = 'Debe ingresar cliente que realiza operaci�n.'
++var m_0717 = 'Debe ingresar cliente que realiza operaci�n.'
+ //Fin [CC15-059] aromero 19.10.2015
+ var m_9953 = "Debe ingresar fecha inicial.";
+ var m_9954 = "Debe ingresar fecha final.";
+-var m_9955 = "No ingreso n�mero de cuenta.";
++var m_9955 = "No ingreso n�mero de cuenta.";
+ // Fin [CC15-059] aromero 
+ 
+ //Inicio [Ticket 9236] aromero 16.09.2015
+@@ -1172,8 +1172,8 @@
+ //Fin [Ticket 9236] aromero 16.09.2015
+ 
+ //Inicio [CC15-063] lnarvaez 16.10.2015
+-var m_9959 = "�Est� seguro de Activar la garant�a(s)?";
+-var m_9960 = "�Est� seguro de Liberar la garant�a(s)?";
++var m_9959 = "�Est� seguro de Activar la garant�a(s)?";
++var m_9960 = "�Est� seguro de Liberar la garant�a(s)?";
+ // Fin [CC15-063]
+ 
+ //Inicio [CC15-075] dlazo 30.11.2015
+@@ -1182,14 +1182,14 @@
+ // Fin [CC15-075] dlazo 30.11.2015
+ 
+ //Inicio  [ticket 9169] aromero 07.08.2015
+-var m_0489="No existe l�mite para lavado de Activos. ";
+-var m_0492="Monto de transacci�n tiene que ser mayor a cero.";
++var m_0489="No existe l�mite para lavado de Activos. ";
++var m_0492="Monto de transacci�n tiene que ser mayor a cero.";
+ //Fin  [ticket 9169]  aromero 07.08.2015
+ // [Ticket 7836] aromero 27.10.2015
+ var m_9956 = "Debe seleccionar cuenta de ahorros para abono en cuenta.";
+ 
+ //[Ticket 9353] dlazo 21.12.2015
+-var m_0712 = "Texto excede el m�ximo de caracteres permitidos (500 caracteres).";
++var m_0712 = "Texto excede el m�ximo de caracteres permitidos (500 caracteres).";
+ 
+ // Inicio [Req.S15-062] dlazo 09.02.2016
+ var m_0713 = 'Fecha inicial con formato incorrecto.';
+@@ -1197,7 +1197,7 @@
+ var m_0715 = 'No existen registros cargados';
+ //Fin  [Req.S15-062] dlazo 09.02.2016
+ //[CC16-004] jventura 21.11.2015
+-var m_10013 = "La baja del producto cr�dito de riesgos implicar� la baja de sus asociaciones en bancas, en caso las tuviera. �Est� seguro de continuar?";
++var m_10013 = "La baja del producto cr�dito de riesgos implicar� la baja de sus asociaciones en bancas, en caso las tuviera. �Est� seguro de continuar?";
+ 
+ //[CC15-049] aromero 14.01.2016
+ var m_9961 = "Debe seleccionar un tarifario de castigo.";
+@@ -1205,42 +1205,42 @@
+ //[CC16-013] cllanos 22.03.2016
+ var m_10016 = "Los montos de saldos, cargos y comisiones deben ser igual a cero";
+ //Inicio [CC16-026] cllanos 30.03.2016
+-var m_10017 = "La nueva tasa debe contener m�ximo dos decimales";
++var m_10017 = "La nueva tasa debe contener m�ximo dos decimales";
+ var m_10018 = "La nueva tasa debe ser mayor a cero";
+ var m_10019 = "La nueva tasa debe ser diferente a la originial";
+ // Fin [CC16-026]
+ 
+ //Inicio [Req. S16-017] dlazo Producto Bantiq
+-var m_0431 = '�Esta seguro de anular el Lote?';
+-var m_0721 = '�Desea procesar Migraci�n de Asientos?';
++var m_0431 = '�Esta seguro de anular el Lote?';
++var m_0721 = '�Desea procesar Migraci�n de Asientos?';
+ var m_0722 = 'El Lote seleccionado se encuentra anulado';
+ //Fin [Req. S16-017] dlazo Producto Bantiq
+ 
+ // Inicio [Req. S14-055] jvilcapaza 18.02.2016 - Creditos y Operaciones
+ var m_0382 = "Seleccione Empresa Seguro."; // 0382
+-var m_0383 = "Edad m�xima debe ser Mayor a la edad m�nima."; //0383
++var m_0383 = "Edad m�xima debe ser Mayor a la edad m�nima."; //0383
+ var m_0384 = "No se ha definido Titular Principal"; //0384
+-var m_0385 = "Existe m�s de un Titular Principal."; //0385
+-var m_0386 = "No se puede eliminar, la P�liza fue registrada con anterioridad."; // 0386
+-var m_0387 = "No podr� ser Desembolsado, bloqueos NO LEVANTADOS �Desea verlos?";
+-var m_0388 = "No podr� ser aprobado, bloqueos NO  LEVANTADOS �Desea verlos?";
+-var m_10015 = "El Producto Cr�dito seleccionado incluye:";
+-var m_10020 = "No podr� ser aprobado, bloqueos no levantados";
++var m_0385 = "Existe m�s de un Titular Principal."; //0385
++var m_0386 = "No se puede eliminar, la P�liza fue registrada con anterioridad."; // 0386
++var m_0387 = "No podr� ser Desembolsado, bloqueos NO LEVANTADOS �Desea verlos?";
++var m_0388 = "No podr� ser aprobado, bloqueos NO  LEVANTADOS �Desea verlos?";
++var m_10015 = "El Producto Cr�dito seleccionado incluye:";
++var m_10020 = "No podr� ser aprobado, bloqueos no levantados";
+ // Fin [Req. S14-055]
+ // Inicio[Req.S14-138] acnunez 01.06.2016 para verificar la eleccion del usuario
+-var m_0723 = "�Esta seguro de Continuar sin Validar PIN?";
+-var m_0724 = "�Esta seguro de continuar con la Validacion de PIN?";
++var m_0723 = "�Esta seguro de Continuar sin Validar PIN?";
++var m_0724 = "�Esta seguro de continuar con la Validacion de PIN?";
+ // Fin [Req.S14-138] acnunez 01.06.2016
+ 
+ //[Req. S14-100] fValle 09.12.2014 - Producto Bantiq
+-var m_0431 = "�Esta seguro de anular el Lote?"
++var m_0431 = "�Esta seguro de anular el Lote?"
+ // Inicio [Req.14-020] gmeza 02.03.2016
+ var m_9963  = "La suma de productos con montos Directos es mayor al Riesgo Maximo de la Propuesta de Credito.";
+ var m_9964  = "La suma de productos con montos Indirectos es mayor al Riesgo Maximo de la Propuesta de Credito.";
+ var m_9965  = "La suma de Montos de Riesgos Directos e Indirectos de los Productos Seleccionados excede al Riesgo Maximo de la Propuesta de Credito.";
+ var m_9966  = "Si cambia de Ruta se eliminaran los Productos configurados, Desea Continuar?";
+ var m_9967  = "Desea eliminar Clasificacion?";
+-var m_9968  = "Desea eliminar Garant�a?";
++var m_9968  = "Desea eliminar Garant�a?";
+ var m_9969  = "Debe seleccionar una persona";
+ var m_9970  = "No se ha definido un Cliente.";
+ var m_9971  = "No se ha definido un Plazo.";
+@@ -1252,17 +1252,17 @@
+ var m_9977  = "No se ha definido Riesgo Indirecto.";
+ var m_9978  = "El Riesgo Maximo no puede ser mayor que el Riesgo del Grupo Economico.";
+ var m_9979  = "El Riesgo Directo e Indirecto no puede ser mayor que el Monto de la Propuesta.";
+-var m_9980  = "Se guardaran Criterios de Evaluacion para esta Propuesta de Cr�dito, desea continuar?";
++var m_9980  = "Se guardaran Criterios de Evaluacion para esta Propuesta de Cr�dito, desea continuar?";
+ var m_9981  = "No se ha definido Flujo de Niveles para Ruta seleccionada.";
+ var m_9982  = "No se ha Ingresado Comentario.";
+ var m_9983  = "Importe a Aplicar debe estar en el rango";
+ var m_9984  = "Porcentaje a Aplicar debe estar en el rango";
+ var m_9985  = "No existen definidos Productos Delfin para Producto";
+ var m_9986  = "No existe definido Producto Delfin para Soles";
+-var m_9987  = "No existe definido Producto Delfin para D�lares";
++var m_9987  = "No existe definido Producto Delfin para D�lares";
+ var m_9988  = "Debe registrar Producto primero.";
+ var m_9989  = "Desea eliminar Aceptante por Producto?";
+-var m_9990  = "Se guardaran Criterios de Evaluacion para esta Propuesta de Cr�dito, desea continuar?";
++var m_9990  = "Se guardaran Criterios de Evaluacion para esta Propuesta de Cr�dito, desea continuar?";
+ var m_9991  = "Desea eliminar Garantia por Producto?";
+ var m_9992  = "Debe ingresar un Cliente para la Propuesta.";
+ var m_9993  = "Si cambia de Producto se eliminaran las Tasas y Comisiones configuradas, Desea Continuar?";
+@@ -1277,27 +1277,27 @@
+ var m_10002 = "Desea eliminar Producto?";
+ var m_10003 = "Importe a Aplicar no se encuentra en el rango. Desea continuar?";
+ var m_10004 = "Tasa no se encuentra en el rango. Desea continuar?";
+-var m_10005 = "Periodo debe ser de 6 d�gitos(AAAAMM)";
+-var m_10006 = "Monto Propuesta no puede ser mayor que Riesgo M�ximo";
++var m_10005 = "Periodo debe ser de 6 d�gitos(AAAAMM)";
++var m_10006 = "Monto Propuesta no puede ser mayor que Riesgo M�ximo";
+ var m_10007 = 'Para realizar una busqueda de Clientes es necesario el ingreso del Funcionario de Negocios';
+ var m_10008 = "";
+ var m_10009 = "";
+ var m_10010 = "";
+ var m_10011 = "";
+ var m_10012 = "";
+-var m_10021 = 'Nivel de complejidad es mayor al permitido. Nivel M�ximo: ';
++var m_10021 = 'Nivel de complejidad es mayor al permitido. Nivel M�ximo: ';
+ // Fin [Req.14-020]
+ //[Req. S16-016] jventura 07.03.2016
+-var m_10014 = "�Est� seguro de Compartir la garant�a(s)?";
++var m_10014 = "�Est� seguro de Compartir la garant�a(s)?";
+ 
+ //Inicio [Req. S16-003] dlazo 11.02.2016
+ var m_9141 = 'Para reaperturar el registro, es necesario que se encuentre cerrado.';
+-var m_0718 = '�Est� seguro de eliminar el documento?';
+-var m_0719 = '�Desea anular la solicitud?';
++var m_0718 = '�Est� seguro de eliminar el documento?';
++var m_0719 = '�Desea anular la solicitud?';
+ var m_0720 = 'Debe elegir un archivo con formato(.CSV, .DOC, .DOCX, .XLS, .XLSX, .JPG, .PNG)';
+ // Fin [Req. S16-003] dlazo 11.02.2016
+ //[Req.16-022] gmeza 30.06.2016
+-var m_10023 = "Est� seguro de desactivar los registros seleccionados?";
++var m_10023 = "Est� seguro de desactivar los registros seleccionados?";
+ //Inicio [Req.S16-024] kdelacruz 10.08.2016
+ var m_10026 = "No se puede descargar archivos del Lote con estado Registrado";
+ var m_10027 = "No se puede reenviar correos del Lote con estado Registrado";
+@@ -1306,73 +1306,73 @@
+ //Inicio [Req. 16-023] 22.07.2016 agarcia
+ var m_10022 = 'La fecha de entrega del bien no puede ser menor a la fecha de registro.';
+ var m_10024 = 'El cronograma de pagos se ha modificado por concepto de Seguro del Bien.';
+-var m_10025 = 'Se debe asignar una nueva fecha de entrega del bien, ya que se encuentra fuera del rango seg�n' +
++var m_10025 = 'Se debe asignar una nueva fecha de entrega del bien, ya que se encuentra fuera del rango seg�n' +
+ 			  ' nuevo cronograma de solicitud.';
+-var m_10028 = 'Operaci�n NO PROCEDE por falta de fecha de entrega del bien.';
++var m_10028 = 'Operaci�n NO PROCEDE por falta de fecha de entrega del bien.';
+ //Fin [Req. 16-023]
+ 
+ //Inicio [CC16-047] 24.08.2016 agarcia
+ var m_10029 = 'Cuenta de ahorros ya ha sido seleccionada';
+-var m_10030 = 'Total dep�sito en cuenta de ahorros debe ser igual al total a desembolsar';
++var m_10030 = 'Total dep�sito en cuenta de ahorros debe ser igual al total a desembolsar';
+ //Fin [CC16-047] agarcia
+ 
+-//Inicio [CC16-044] DLAZO 29.08.2016 Registro de Tipo de cambio negociado por bandas y nivelaci�n de cuentas 7 y 8
+-var m_10031 = 'No se ha definido rango para negociaci�n.';
++//Inicio [CC16-044] DLAZO 29.08.2016 Registro de Tipo de cambio negociado por bandas y nivelaci�n de cuentas 7 y 8
++var m_10031 = 'No se ha definido rango para negociaci�n.';
+ var m_10032 = 'No se ha definido rango para empleado.';
+-var m_10033 = 'Existen rangos definidos cruzados para negociaci�n.';
++var m_10033 = 'Existen rangos definidos cruzados para negociaci�n.';
+ var m_10034 = 'Ingrese tipo de cambio mayor a cero.';
+ var m_10035 = 'Existen rangos definidos cruzados para empleado.';
+-var m_10036 = 'Rango no v�lido para negociaci�n.';
+-var m_10037 = 'Rango no v�lido para empleado';
++var m_10036 = 'Rango no v�lido para negociaci�n.';
++var m_10037 = 'Rango no v�lido para empleado';
+ var m_10038 = 'Rango final debe ser mayor o igual a rango inicial.';
+ var m_10039 = 'Rango final debe ser mayor a cero.';
+-var m_10041 = '�Est� seguro de registrar el rango de factor de cambio?';
+-var m_10043 = '�Desea eliminar el rango?';
++var m_10041 = '�Est� seguro de registrar el rango de factor de cambio?';
++var m_10043 = '�Desea eliminar el rango?';
+ //Fin [CC16-044] DLAZO 29.08.2016
+ //[CC16-045] gmeza 31.08.2016
+-var m_10040 = 'Ya existe compensaci�n para fecha�de proceso.';
++var m_10040 = 'Ya existe compensaci�n para fecha�de proceso.';
+ //Inicio[Req.S16-021]acnunez 14.09.2016
+ var m_10042 = 'No se puede vincular mas de un documento al regsitro del activo';
+ //Fin[S16-021]
+ 
+-//Inicio [S16-034] DLAZO 07.10.2016 Implementaci�n del balance sectorial institucional
++//Inicio [S16-034] DLAZO 07.10.2016 Implementaci�n del balance sectorial institucional
+ var m_10047 = 'Seleccione cuenta contable';
+ var m_10048 = 'Seleccione sector';
+ var m_10049 = 'No existe cuadre de saldo inicial.';
+ var m_10050 = 'No existe cuadre de saldo final.';
+-var m_10051 = 'A�o debe ser mayor o igual a 2016.';
+-var m_10052 = 'Es necesario sectorizaci�n de cuenta Contable.';
++var m_10051 = 'A�o debe ser mayor o igual a 2016.';
++var m_10052 = 'Es necesario sectorizaci�n de cuenta Contable.';
+ var m_10053 = 'Sector ya existe para esta cuenta.';
+-var m_10054 = 'C�digo no sectorizado no es v�lido para sectorizaci�n de cuenta.';
++var m_10054 = 'C�digo no sectorizado no es v�lido para sectorizaci�n de cuenta.';
+ //Fin [S16-034]
+ 
+ // [CC16-057] agarcia 19.10.2016
+-var m_10044 = 'S�lo se puede realizar cambio de empleador para cuentas CTS.';
++var m_10044 = 'S�lo se puede realizar cambio de empleador para cuentas CTS.';
+ //Inicio [Req S16-002] agarcia 03.11.2016
+-var m_10046 = 'No se puede seleccionar m�s de un documento.';
++var m_10046 = 'No se puede seleccionar m�s de un documento.';
+ 
+ // [Ticket 9521] 25.10.2016 agarcia
+-var m_10045 = 'Longitud del campo #var1# supera el m�ximo permitido.';
++var m_10045 = 'Longitud del campo #var1# supera el m�ximo permitido.';
+ //[T-9543] gmeza 14.11.2016
+-var m_10055 = 'Datos no v�lidos';
++var m_10055 = 'Datos no v�lidos';
+ // Inicio [Req.S16-002] 22.11.2016 kdelacruz Documentos Electronicos
+ var m_10057 = 'El Proceso a concluido, favor de verificar.';
+-var m_10058 = 'Verificar la respuesta de SUNAT a trav�s del portal DFACTURE.';
++var m_10058 = 'Verificar la respuesta de SUNAT a trav�s del portal DFACTURE.';
+ //Fin [Req.S16-002] kdelacruz 
+ 
+-//[Req.S16-037] kdelacruz 01.12.2016 Adecuaci�n del registro de Centro de Costos
++//[Req.S16-037] kdelacruz 01.12.2016 Adecuaci�n del registro de Centro de Costos
+ var m_10061 = "Falta ingresar Gastos e Inversiones";
+ 
+ //[Req.16-043] gmeza 23.11.2016
+-var m_10056 = 'Riesgo Directo m�s Riesgo Indirecto debe ser mayor a cero.';
++var m_10056 = 'Riesgo Directo m�s Riesgo Indirecto debe ser mayor a cero.';
+ 
+ //Inicio [S16-041] agarcia 29.11.2016
+ var m_10059 = 'Solo se permite un registro #var1#';
+ var m_10060 = 'Se debe registrar o grabar primero #var1#';
+-var m_10062 = 'Se debe agregar al menos un Acuerdo de Comit�';
++var m_10062 = 'Se debe agregar al menos un Acuerdo de Comit�';
+ var m_10064 = 'El item pertenece a otra Ficha.';
+ var m_10065 = 'La fecha #var1# no puede ser menor a la fecha de registro.';
+-var m_10067 = 'Cantidad de caracteres num�ricos excede al permitido (12 caracteres)';
++var m_10067 = 'Cantidad de caracteres num�ricos excede al permitido (12 caracteres)';
+ // Fin [Req. S16-041]
+ //Inicio [CC17-002] gmeza 16.01.2017
+ var m_10073 = 'Debe seleccionar Distrito Judicial primero';
+@@ -1380,24 +1380,24 @@
+ var m_10075 = 'Campo debe ser de 4 caracteres';
+ var m_10076 = 'Campo debe ser de 1 a 4 caracteres';
+ var m_10077 = 'Campo debe ser de 2 caracteres';
+-var m_10078 = 'Fecha Admisi�n no debe ser igual a la Fecha del Proceso';
+-var m_10079 = 'Fecha Admisi�n no debe ser igual a la Fecha de Interposicion';
+-var m_10080 = 'Fecha Proceso no debe ser mayor de Fecha Admisi�n';
++var m_10078 = 'Fecha Admisi�n no debe ser igual a la Fecha del Proceso';
++var m_10079 = 'Fecha Admisi�n no debe ser igual a la Fecha de Interposicion';
++var m_10080 = 'Fecha Proceso no debe ser mayor de Fecha Admisi�n';
+ var m_10081 = 'Porcentaje debe estar entre 1 y 100 %';
+ var m_10082 = 'Monto petitorio debe ser mayor a 0';
+ //Fin [CC17-002]
+ 
+ //Inicio [S16-039] agarcia 11.01.2017
+ var m_10083 = 'Cantidad de meses a evaluar no permitida.';
+-var m_10084 = 'Ud. ha realizado modificaciones, se perder�n los cambios. �Desea continuar?';
+-var m_10085 = '�Est� seguro de eliminar el registro seleccionado?';
++var m_10084 = 'Ud. ha realizado modificaciones, se perder�n los cambios. �Desea continuar?';
++var m_10085 = '�Est� seguro de eliminar el registro seleccionado?';
+ var m_10086 = 'Importe no puede ser negativo.';
+ var m_10087 = 'Existe un monto negativo en #var1#.';
+-var m_10088 = 'Se debe registrar la Evaluaci�n Econ�mica primero.';
+-var m_10089 = 'Opci�n no disponible.';
+-var m_10090 = 'Solo se puede asignar una solicitud a esta evaluaci�n.';
+-var m_10091 = 'Tel�fono en Referencias solo permite d�gitos.';
+-var m_10092 = 'Advertencia: El cliente esta registrado con V�nculo Laboral NO Formal.';
++var m_10088 = 'Se debe registrar la Evaluaci�n Econ�mica primero.';
++var m_10089 = 'Opci�n no disponible.';
++var m_10090 = 'Solo se puede asignar una solicitud a esta evaluaci�n.';
++var m_10091 = 'Tel�fono en Referencias solo permite d�gitos.';
++var m_10092 = 'Advertencia: El cliente esta registrado con V�nculo Laboral NO Formal.';
+ var GL_SEPARADOR_COL_GRILLAS = ";";
+ var GL_SEPARADOR_ROW_GRILLAS = "-/-";
+ //Fin [S16-039]
+@@ -1414,10 +1414,10 @@
+ var m_10066  = 'Debe ingresar al menos un documento relacionado';
+ 
+ //Inicio [S17-006] agarcia 02.02.2017
+-var m_10093 = 'N�mero de cr�dito no existe.';
+-var m_10094 = "No procede aprobaci�n del cronograma pago manual. Estado no lo permite";
+-var m_10095 = "Opci�n solamente valida para cr�ditos cuotas";
+-var m_10096 = "No se permite operaci�n. Rol de usuario no v�lido";
++var m_10093 = 'N�mero de cr�dito no existe.';
++var m_10094 = "No procede aprobaci�n del cronograma pago manual. Estado no lo permite";
++var m_10095 = "Opci�n solamente valida para cr�ditos cuotas";
++var m_10096 = "No se permite operaci�n. Rol de usuario no v�lido";
+ //Fin [S17-006]
+ 
+ //Inicio [Req.16-035] acnunez 09.02.2017
+@@ -1426,8 +1426,8 @@
+ var m_10099 = 'No se puede modificar bloqueos generados automaticamente';
+ //Fin [Req.16-035]
+ //Inicio [CC17-026] gmeza 28.02.2017
+-var m_10112 = 'Fecha de Programaci�n no puede ser vac�o. Se debe realizar Programaci�n primero.';
+-var m_10113 = 'Fecha de Gesti�n debe ser mayor o igual a Fecha de Programaci�n.';
++var m_10112 = 'Fecha de Programaci�n no puede ser vac�o. Se debe realizar Programaci�n primero.';
++var m_10113 = 'Fecha de Gesti�n debe ser mayor o igual a Fecha de Programaci�n.';
+ //Fin [CC17-026]
+ //Inicio [Req.S17-007] kdelacruz 07.03.2017
+ var m_10116 = 'Debe seleccionar un registro';
+@@ -1439,21 +1439,21 @@
+ var m_10111 = "El Voucher ya se encuentra en proceso de Confirmacion";
+ //Fin [Req.17-010]
+ 
+-// Inicio [S17-009] kdelacruz 22.02.2017 Control de Otorgamiento de Excepci�n de Tasas
+-var m_10100 = 'S�lo se permite solicitar tasa preferencial cuando la solicitud de cuenta se encuentra en estado APERTURADA';
+-var m_10101 = 'S�lo se puede anular solicitud de tasa preferencial cuando su estado sea GENERADO';
+-var m_10102 = '�Est� seguro de anular la solicitud de tasa preferencial?';
+-var m_10103 = '�Est� seguro de asignarse la solicitud?';
++// Inicio [S17-009] kdelacruz 22.02.2017 Control de Otorgamiento de Excepci�n de Tasas
++var m_10100 = 'S�lo se permite solicitar tasa preferencial cuando la solicitud de cuenta se encuentra en estado APERTURADA';
++var m_10101 = 'S�lo se puede anular solicitud de tasa preferencial cuando su estado sea GENERADO';
++var m_10102 = '�Est� seguro de anular la solicitud de tasa preferencial?';
++var m_10103 = '�Est� seguro de asignarse la solicitud?';
+ var m_10104 = 'Estado de solicitud de tasa prefeencial debe ser GENERADO';
+ var m_10105 = 'La solicitud de tasa preferencial ya se encuentra asignada';
+ var m_10107 = 'Solicitud de tasa preferencial no se encuentra asignada';
+ var m_10108 = 'Solicitud de tasa preferencial se encuentra resuelta';
+-var m_10109 = 'No se envi� operaci�n financiera';
++var m_10109 = 'No se envi� operaci�n financiera';
+ var m_10114 = 'Producto financiero no permite asignar tasa preferencial';
+ var m_10115 = 'Existe solicitud de tasa preferencial VIGENTE';
+ var m_10116 = 'Debe seleccionar una cuenta';
+-var m_10117 = 'Solicitud de cr�dito fue enviado a resoluci�n. No procede anulaci�n de solicitud de tasa preferencial';
+-var m_10118 = 'Solicitud de cr�dito fue enviado a resoluci�n. No procede generaci�n de solicitud de tasa preferencial';
++var m_10117 = 'Solicitud de cr�dito fue enviado a resoluci�n. No procede anulaci�n de solicitud de tasa preferencial';
++var m_10118 = 'Solicitud de cr�dito fue enviado a resoluci�n. No procede generaci�n de solicitud de tasa preferencial';
+ var m_10121 = 'Producto financiero no permite margen de tasa preferencial menor o igual a cero';
+ var m_10122 = 'Producto financiero no permite margen de tasa preferencial mayor a cero';
+ // Fin [S17-009]
+@@ -1464,14 +1464,14 @@
+ //Inicio [Req.S17-022] kdelacruz 04.04.2017
+ var m_10127 = 'Se debe registrar el Seguimiento';
+ var m_10128 = 'La actividad ya fue enviada';
+-var m_10131 = '�Est� seguro de continuar con el Proceso?';
++var m_10131 = '�Est� seguro de continuar con el Proceso?';
+ var m_10133 = 'Debe grabar primero la actividad';
+ var m_10136 = 'Debe adjuntar un archivo';
+ //Fin [Req.S17-022]
+ 
+ //Inicio [Req.17-018] acnunez 28.03.2017
+ var m_10124 = 'Este estado no permite Modificacion';
+-var m_10125	= 'Por favor Registre L�mite para Caja Chica.';
++var m_10125	= 'Por favor Registre L�mite para Caja Chica.';
+ var m_10129 = 'No se puede Modificar la Rendicion en este Estado';
+ var m_10130 = 'No se Puede Realizar Ninguna accion con este Estado';
+ var m_10132 = 'Solo se Puede Cancelar un monto cero con Tipo de Pago en Efectivo';
+@@ -1480,39 +1480,39 @@
+ var m_10137	= "Detalle no disponible para esta solicitud";
+ //Fin [Req.17-021]
+ //Inicio [S17-017] agarcia 04.04.2017 
+-var m_10126 = 'Destino de evaluaci�n crediticia no enviada.';
+-var m_10134 = 'Opci�n no disponible en Evaluaci�n Hipotecaria.';
++var m_10126 = 'Destino de evaluaci�n crediticia no enviada.';
++var m_10134 = 'Opci�n no disponible en Evaluaci�n Hipotecaria.';
+ var m_10135 = 'Gastos Operativos deben ser mayor a cero.';
+-var m_10138 = '#var1# fuera de rango v�lido';
++var m_10138 = '#var1# fuera de rango v�lido';
+ var m_10139 = '#var1# debe ser menor a #var2#';
+-var m_10140 = 'Existe una solicitud asignada a la evaluaci�n. No procede operaci�n';
++var m_10140 = 'Existe una solicitud asignada a la evaluaci�n. No procede operaci�n';
+ //Fin [S17-017] 
+ //Inicio [Req.S17-023] kdelacruz 11.05.2017
+-var m_10141 = 'Cuenta ingresada es Inv�lida';
++var m_10141 = 'Cuenta ingresada es Inv�lida';
+ //Fin [Req.S17-023]
+ //Inicio [S17-023] agarcia 12.05.2017 
+ var m_10142 = 'Fecha de vencimiento no puede ser menor a Fecha de inicio';
+-var m_10143 = 'D�a de mes no v�lido';
++var m_10143 = 'D�a de mes no v�lido';
+ var m_10145 = 'Debe establecer un titular';
+-var m_10146 = "EL alquiler presenta pagos. No procede operaci�n";
++var m_10146 = "EL alquiler presenta pagos. No procede operaci�n";
+ var m_10147 = 'Debe ingresar detalle Viatico';
+ //Fin [S17-023] 
+ //Fin [S17-017
+ //[Req.17-029] rsanchez 22.05.2017
+-var m_10144 = 'Extensi�n de archivo debe ser ZIP';
+-var m_10148 = 'El campo N�mero no puede tener caracteres alfab�ticos.';
++var m_10144 = 'Extensi�n de archivo debe ser ZIP';
++var m_10148 = 'El campo N�mero no puede tener caracteres alfab�ticos.';
+ 
+ function ayuda(){
+   window.showModalDialog(f.path.value+"/GENERAL/Ayuda.jsp?nombre="+
+   nombreJSP(parent.document.location+""),window,"dialogHeight:300px;"+
+   "dialogWidth:350px;center:yes;help:no;resizable:no;status:no");
+ }
+-//funci�n que anula la Tecla F1
++//funci�n que anula la Tecla F1
+ function getF1(){
+   window.event.cancelBubble = true;
+   event.returnValue = false;
+ }
+-//funci�n que devuelve el nombre del JSP
++//funci�n que devuelve el nombre del JSP
+ function nombreJSP(nombre){
+   nombre = document.URL;
+   var cadena=nombre.split("?");
+@@ -1520,7 +1520,7 @@
+   cad2=cad1[cad1.length-1];
+   return(cad2);
+ }
+-// Funci�n que permite reconcer la teclas
++// Funci�n que permite reconcer la teclas
+ function keyUp(DnEvents) {
+     var myDate = new Date();  
+   if (isIE) {
+@@ -1535,14 +1535,14 @@
+         return false;
+     }
+ }
+-//funci�n que anulan el click derecho del mouse
++//funci�n que anulan el click derecho del mouse
+ function clickIE() {
+   if (document.all) {
+     (message);
+     return false;
+   }
+ }
+-//Funci�n que compara dos fechas para saber si la primera es menor
++//Funci�n que compara dos fechas para saber si la primera es menor
+ function comparar_Fecha(String1,String2){
+     String1 = String1 + "";
+     String2 = String2 + "";
+@@ -1557,7 +1557,7 @@
+   if (String2.substring(4,5) == "/")
+       String2 = String2.substring(0,3)+"0"+String2.substring(3,9)
+ 
+-  //Se obtiene el d�a, mes y a�o de las dos fechas
++  //Se obtiene el d�a, mes y a�o de las dos fechas
+   dia1  = String1.substring(0,2);
+   mes1  = String1.substring(3,5);
+   anyo1 = String1.substring(6,10);
+@@ -1573,15 +1573,15 @@
+   anyo1 = parseInt(anyo1,10);
+   anyo2 = parseInt(anyo2,10);
+     
+-    //Si el a�o de la primera fecha es mayor se devuelve false
++    //Si el a�o de la primera fecha es mayor se devuelve false
+   if (anyo1 > anyo2)
+       return false;
+   
+-    //Si los a�os son iguales, pero el mes de la 1� es mayor se devuelve false
++    //Si los a�os son iguales, pero el mes de la 1� es mayor se devuelve false
+   if ((anyo1 == anyo2) && (mes1 > mes2))
+       return false;
+   
+-    //Si los a�os y meses son iguales, pero el d�a del 1� es mayor se devuelve false
++    //Si los a�os y meses son iguales, pero el d�a del 1� es mayor se devuelve false
+   if ((anyo1 == anyo2) && (mes1 == mes2) && (dia1 > dia2))
+       return false;
+     
+@@ -1607,7 +1607,7 @@
+   if (String2.substring(4,5) == "/")
+       String2 = String2.substring(0,3)+"0"+String2.substring(3,9)
+ 
+-  //Se obtiene el d�a, mes y a�o de las dos fechas
++  //Se obtiene el d�a, mes y a�o de las dos fechas
+   dia1  = String1.substring(0,2);
+   mes1  = String1.substring(3,5);
+   anyo1 = String1.substring(6,10);
+@@ -1623,15 +1623,15 @@
+   anyo1 = parseInt(anyo1,10);
+   anyo2 = parseInt(anyo2,10);
+     
+-    //Si el a�o de la primera fecha es mayor se devuelve 1
++    //Si el a�o de la primera fecha es mayor se devuelve 1
+   if (anyo1 > anyo2){
+       return 1;
+   }else if (anyo1 == anyo2){
+-    //Si los a�os son iguales, pero el mes de la 1� es mayor se devuelve 1
++    //Si los a�os son iguales, pero el mes de la 1� es mayor se devuelve 1
+     if (mes1 > mes2){
+         return 1;
+     }else if (mes1 == mes2){
+-      //Si los a�os y meses son iguales, pero el d�a del 1� es mayor se devuelve 1
++      //Si los a�os y meses son iguales, pero el d�a del 1� es mayor se devuelve 1
+       if (dia1 > dia2){
+           return 1;
+         }else if (dia1 == dia2){
+@@ -1656,7 +1656,7 @@
+ }
+ //funcion que convierte cadana a fecha en formato mm/dd/yyyy
+ function parseDate(fecha){
+-    //Si la fecha no es 10 caracteres  se devuelve nom�s
++    //Si la fecha no es 10 caracteres  se devuelve nom�s
+     if(fecha.length < 10)
+         return fecha;
+   var strDate = fecha;
+@@ -1680,7 +1680,7 @@
+ }
+ //funcion que vuelve una cadena a fecha en formato dd/mm/yyyy
+ function vuelveFecha2(fecha){
+-    //Si la fecha no es 10 caracteres  se devuelve nom�s
++    //Si la fecha no es 10 caracteres  se devuelve nom�s
+     if(fecha.length < 10)
+         return fecha;
+     var strDate = fecha;
+@@ -1691,15 +1691,15 @@
+     return strDate;
+ }
+ 
+-//funci�n que formatea y redondea dos decimales
++//funci�n que formatea y redondea dos decimales
+ function formateador(valor){
+     return fmtoNum(redondear(fmtoInv(valor)));
+ }
+-//funci�n que formatea y redondea a la cantidad de decimales especificados
++//funci�n que formatea y redondea a la cantidad de decimales especificados
+ function formateadorParam(valor, dec){
+     return fmtoNum(redondearFormato(fmtoInv(valor),dec));
+ }
+-//funci�n que te permite redondear un n�mero a dos decimales
++//funci�n que te permite redondear un n�mero a dos decimales
+ function redondear(val){
+   var negativo = false,v = "";
+   val = val + "";
+@@ -1825,7 +1825,7 @@
+             return fmto;
+   }
+ }
+-//Dada una cadena la rellena con un par�metro hasta una cantidad dada y en una direcci�n determinada
++//Dada una cadena la rellena con un par�metro hasta una cantidad dada y en una direcci�n determinada
+ function rellenar(cadena,relleno,cantidad,direccion){
+   while(cadena.length<cantidad)
+     if(direccion=="0")//derecha
+@@ -1853,7 +1853,7 @@
+     }   
+   return cadena;
+ }
+-//funci�n para el backspace gen�rico//
++//funci�n para el backspace gen�rico//
+ function backspace(){
+   //document.activeElement es el elemento con el foco
+   if(document.activeElement.type != "text" && 
+@@ -1864,10 +1864,10 @@
+   else
+     return true;
+ }
+-//funci�n que valida n�mero
++//funci�n que valida n�mero
+ function valida_numero(xinput,tipval){
+     var xkey = event.keyCode;
+-    //Validaci�n de enteros
++    //Validaci�n de enteros
+   if(tipval=="int")
+     if ((xkey < 48) || (xkey > 57) ) event.returnValue = false;
+ 
+@@ -1876,13 +1876,13 @@
+       if (xkey!=46)
+         event.returnValue = false;
+     } 
+-  //Validaci�n de decimales
++  //Validaci�n de decimales
+   if(tipval=="dec")
+     if ((xkey < 46) || (xkey > 57)) event.returnValue = false;  
+-//Validaci�n de decimales sin /
++//Validaci�n de decimales sin /
+   if(tipval=="dec2")
+     if ((xkey < 46) || (xkey > 57) || (xkey == 47)) event.returnValue = false;  
+-  //Validaci�n de cadenas
++  //Validaci�n de cadenas
+   if(tipval=="str")
+     if (((xkey != 32) && (xkey < 65)) || ((xkey > 90) && (xkey < 97))) event.returnValue = false;
+   if(tipval=="tlf")
+@@ -1892,7 +1892,7 @@
+     if(tipval=="especial")
+       //jpena 20.07.2012 Se adiciona la validacion del caracter especial "|". [Ticket 3235]
+     if ((xkey == 34) || (xkey == 39) || (xkey == 124)) event.returnValue = false;
+-    // [S16-034] dlazo 07.10.2016 Implementaci�n del balance sectorial institucional
++    // [S16-034] dlazo 07.10.2016 Implementaci�n del balance sectorial institucional
+     if(tipval=="neg")
+         if ((xkey < 45) || (xkey > 57) || (xkey == 47)) event.returnValue = false;
+ }
+@@ -1900,7 +1900,7 @@
+ //cchalco 05/08/2013
+ function valida_numero_hb(xinput,tipval,caja){
+     var xkey = event.keyCode;
+-    //Validaci�n de enteros
++    //Validaci�n de enteros
+   if(tipval=="int")
+     if ((xkey < 48) || (xkey > 57)) event.returnValue = false;
+ 
+@@ -1909,10 +1909,10 @@
+       if (xkey!=46)
+         event.returnValue = false;
+     } 
+-  //Validaci�n de decimales
++  //Validaci�n de decimales
+   if(tipval=="dec")
+     if ((xkey < 46) || (xkey > 57)) event.returnValue = false;  
+-  //Validaci�n de cadenas
++  //Validaci�n de cadenas
+   if(tipval=="str")
+     if (((xkey != 32) && (xkey < 65)) || ((xkey > 90) && (xkey < 97))) event.returnValue = false;
+   if(tipval=="tlf")
+@@ -1924,7 +1924,7 @@
+     if ((xkey == 34) || (xkey == 39) || (xkey == 124)) event.returnValue = false;
+     caja.disabled = false;
+ }
+-//Funci�n que valida fecha
++//Funci�n que valida fecha
+ function esFecha(fecha){
+     //si fecha es vacia entonces retornar true
+     if (fecha==""){
+@@ -1933,7 +1933,7 @@
+     //La fecha debe estar en fomato dd/MM/yyyy
+     if(fecha.length != 10)
+         return false;        
+-  //Se verifica que la fecha s�lo tenga caracteres num�ricos y el caracter "/"
++  //Se verifica que la fecha s�lo tenga caracteres num�ricos y el caracter "/"
+   for (var i = 0; i < fecha.length; i++) { 
+     var carac = fecha.charAt(i);
+     if ((carac < "0" || carac > "9") && carac != "/")
+@@ -1960,9 +1960,9 @@
+   }
+   var mes = parseInt(aux,10);
+       
+-  //Obtenemos el a�o de la fecha
++  //Obtenemos el a�o de la fecha
+   aux = fecha.substring(pos2+1,fecha.length);
+-  //verificamos que la parte del a�o tenga cuatro caracteres
++  //verificamos que la parte del a�o tenga cuatro caracteres
+   if (aux.length != 4) return false;
+   var anno = parseInt(aux,10);
+   
+@@ -1977,23 +1977,23 @@
+     }  //el mes debe estar entre 1 y 12
+   if (dia < 1 || dia > 31){
+         return false
+-        };  //el d�a debe estar entre 1 y 31
++        };  //el d�a debe estar entre 1 y 31
+   if (anno < 1754 || anno > 9999) {
+         return false;
+-    }  //el a�o debe estar entre 1754 y 9999
+-  if (mes == 2 && dia > 29) return false;  //valida Febrero: el d�a debe estar entre 1 y 29
+-  if ((anno%4)!=0 && dia==29 && (mes == 2)) return false; //A�o Bisiesto: se verifica que febrero tenga 29 d�as
++    }  //el a�o debe estar entre 1754 y 9999
++  if (mes == 2 && dia > 29) return false;  //valida Febrero: el d�a debe estar entre 1 y 29
++  if ((anno%4)!=0 && dia==29 && (mes == 2)) return false; //A�o Bisiesto: se verifica que febrero tenga 29 d�as
+   if ((mes == 4 || mes == 6 || mes == 9 || mes == 11) & dia > 30) {
+         return false;
+     }  //Meses de 30 dias.
+   return true;
+ }
+-//Funci�n que valida el email
++//Funci�n que valida el email
+ function validarEmail(valor) {
+   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(valor)){     
+     return (true)
+   } else {
+-    alert("La direcci�n de email es incorrecta.");
++    alert("La direcci�n de email es incorrecta.");
+     return (false);
+   }
+ }
+@@ -2012,7 +2012,7 @@
+     return LTrim(RTrim(value));
+ }
+ 
+-//Funci�n que se utiliza para el efecto de cargar la p�gina
++//Funci�n que se utiliza para el efecto de cargar la p�gina
+ function loadImages() {
+     if (document.getElementById) {  // DOM3 = IE5, NS6
+         document.getElementById('hidepage').style.visibility = 'hidden';
+@@ -2051,7 +2051,7 @@
+ function setVisible(id,valor){
+   document.getElementById(id).style.display = valor;
+ }
+-//funci�n que muestra la hora
++//funci�n que muestra la hora
+ function mostrar() { 
+     var  dia = new Date(); 
+     var  hora = dia.getHours(); 
+@@ -2105,7 +2105,7 @@
+ function cambiarEstilo(id,estilo){
+           document.getElementById(id).className = estilo;
+ }
+-//Funci�n que valida hora
++//Funci�n que valida hora
+ function esHora(hora){
+   //si hora es vacia entonces retornar true
+     if (hora==""){
+@@ -2116,7 +2116,7 @@
+     if(hora.length != 5)
+         return false;
+     
+-    //Se verifica que la hora s�lo tenga caracteres num�ricos y el caracter "/"
++    //Se verifica que la hora s�lo tenga caracteres num�ricos y el caracter "/"
+   for (var i = 0; i < hora.length; i++) { 
+     var carac = hora.charAt(i);
+     if ((carac < "0" || carac > "9") && carac != ":")
+@@ -2158,7 +2158,7 @@
+ 
+ //valida que el campo sea alfanumerico
+ function esTeclaAlfanumerico(e,flg) {
+-  var valid = "abcdefghijklm�nopqrstuvwxyzABCDEFGHIJKLMN�OPQRSTUVWXYZ���������� 0123456789";
++  var valid = "abcdefghijklm�nopqrstuvwxyzABCDEFGHIJKLMN�OPQRSTUVWXYZ���������� 0123456789";
+   //stacanga 09.01.2013 variable flg agregada para aceptar el '&' si es requerido
+   if(flg == 1){// aceptara el caracter & ampersand
+     valid = valid.concat("&");
+@@ -2167,19 +2167,19 @@
+   if (valid.indexOf("" + key) == "-1") return false;
+ }
+ 
+-//Funci�n de Comparaci�n de Fechas
++//Funci�n de Comparaci�n de Fechas
+ function devuelveMes(fecha){
+-    //Si la fecha no es 10 caracteres  se devuelve nom�s
++    //Si la fecha no es 10 caracteres  se devuelve nom�s
+     if(fecha.length < 10)
+         return fecha;
+   var strDate = fecha;
+   var mm = strDate.substring(3,5);
+   return mm;
+ }
+-//Funci�n de Comparaci�n de Fechas
++//Funci�n de Comparaci�n de Fechas
+ function devuelveDia(fecha){
+   alert('Entra devuelve dia');
+-    //Si la fecha no es 10 caracteres  se devuelve nom�s
++    //Si la fecha no es 10 caracteres  se devuelve nom�s
+     if(fecha.length < 10)
+         return fecha;
+   var strDate = fecha;
+@@ -2187,9 +2187,9 @@
+   return dd;
+ }
+ 
+-//funci�n de Comparaci�n de Fechas
++//funci�n de Comparaci�n de Fechas
+ function devuelveAno(fecha){
+-    //Si la fecha no es 10 caracteres  se devuelve nom�s
++    //Si la fecha no es 10 caracteres  se devuelve nom�s
+     if(fecha.length < 10)
+         return fecha;
+   var strDate = fecha;
+@@ -2236,7 +2236,7 @@
+ //
+ function valida_especiales(xinput,tipval){
+     var xkey = event.keyCode;
+-    //Validaci�n de enteros
++    //Validaci�n de enteros
+   if(tipval=="int")
+     if ((xkey < 48) || (xkey > 57)) event.returnValue = false;
+ 
+@@ -2314,11 +2314,11 @@
+ 	}
+ 	var res = pr_validaNumero(number, validaNegativos, 12, 2);
+ 	if (res.flag == 1){
+-		alert("El m�ximo monto permitido es de: "+formateador(res.maximo));
++		alert("El m�ximo monto permitido es de: "+formateador(res.maximo));
+ 		return false;
+ 	}
+ 	if (res.flag == -1){
+-		alert("El m�nimo monto permitido es de: "+formateador(res.minimo));
++		alert("El m�nimo monto permitido es de: "+formateador(res.minimo));
+ 		return false;
+ 	}
+ 	return true;
+@@ -2328,11 +2328,11 @@
+ 	var res = pr_validaNumero(number, negativo, precision, scale);
+ 	if (res.flag != 0){
+ 		if (res.flag == 1){
+-			alert("El m�ximo permitido es de: "+res.maximo);
++			alert("El m�ximo permitido es de: "+res.maximo);
+ 			return false;
+ 		}
+ 		if (res.flag == -1){
+-			alert("El m�nimo permitido es de: "+res.minimo);
++			alert("El m�nimo permitido es de: "+res.minimo);
+ 			return false;
+ 		}
+ 	}
+@@ -2341,7 +2341,7 @@
+ // Fin [Req.16-039]
+ 
+ //Inicio [Req.S17-017] agarcia 19.04.2017
+-//Le quita el formato #'###,### y retorna true si es no es n�mero
++//Le quita el formato #'###,### y retorna true si es no es n�mero
+ function fmtoInvIsNaN(val){
+ 	  val = val + "";
+ 	  var cadena1 = val.split(",");
+diff --git a/DELFINWEBNEW/src/financ/cuentaspasivas/sevlets/CP_T_Apertura_Servlet.java b/DELFINWEBNEW/src/financ/cuentaspasivas/sevlets/CP_T_Apertura_Servlet.java
+index c9526c5..ddffbb7 100644
+--- a/DELFINWEBNEW/src/financ/cuentaspasivas/sevlets/CP_T_Apertura_Servlet.java
++++ b/DELFINWEBNEW/src/financ/cuentaspasivas/sevlets/CP_T_Apertura_Servlet.java
+@@ -292,6 +292,8 @@
+ 		String errorLA="";	
+ 		String resultadoValidacionListaNegra = null;
+ 		
++		String fecValorDeposito = request.getParameter("txtFecValorDeposito") != null ? request.getParameter("txtFecValorDeposito") : "";//[Req.17-033] acnunez 15.06.2017
++		
+         //Inicio [Req.16-022] gmeza 30.06.2016
+         session.setAttribute("resultadoValidacionListasLA", null);
+         session.setAttribute("listaPEP", null);
+@@ -761,8 +763,8 @@
+ 																		  lstSaldosPendientes,
+ 																		  incCapital,
+ 																		  strTipoCuentaMan,
+-																		  strComentario
+-																		  );
++																		  strComentario,
++																		  fecValorDeposito);//[Req.17-033] acnunez 16.06.2017
+ 					String codigoError=mapApertura.get("strError").toString();
+ 					 
+                     // [+] dfujimoto Req. 14-074 Registrar Cuenta por
+diff --git a/DELFINWEBNEW/src/financ/operaciones/servlets/OP_T_AnulacionOperacionRegularizacion_Servlet.java b/DELFINWEBNEW/src/financ/operaciones/servlets/OP_T_AnulacionOperacionRegularizacion_Servlet.java
+index 821bdb5..0893d0b 100644
+--- a/DELFINWEBNEW/src/financ/operaciones/servlets/OP_T_AnulacionOperacionRegularizacion_Servlet.java
++++ b/DELFINWEBNEW/src/financ/operaciones/servlets/OP_T_AnulacionOperacionRegularizacion_Servlet.java
+@@ -164,6 +164,7 @@
+ 		//Me indica la p�gina a cargar
+ 		String strPage = "/DELFINWEBNEW/OP_C_AnulacionOperacionRegularizacion_Servlet?referrer="+strReferrer;
+ 		Map mapAnulacion=null;
++		String respuestaDeposito = Constante.NO_ERROR;
+ 		try{
+ 									
+ 			//hpajuelo 13.04.2011 Validacion para las regularizaciones en oficina principal
